@@ -21,6 +21,7 @@ $arrays=array(
 	"Perfil"=>"Perfil",
 	"TIPO"=>"Tipo",
 	"Menu"=>"Menu Principal",
+	"AltaSesion"=>"Alta Sesion",
 	"GestionDeportista"=>"Gestion de Deportistas",
 	"GestionMonitores"=>"Gestion de Monitores",
 	"GestionActividades"=>"Gestion de Actividades",
@@ -43,7 +44,13 @@ $arrays=array(
 	"Id_actividad"=>"Id Actividad",
 	"Descripcion"=>"Descripcion",
 	"AltaActividad"=>"Alta Actividad",
-	"ModificarActividad"=>"Modificar Actividad"
+	"ModificarActividad"=>"Modificar Actividad",
+	"Fecha"=>"Fecha",
+	"Monitor"=>"Entrenador",
+	"Deportista"=>"Deportista",
+	"Comentario"=>"Comentario",
+	"Ejercicio"=>"Ejercicio",
+	"Sesion"=>"Sesion"
 	);
 
 return $arrays;
@@ -56,6 +63,7 @@ $arrays=array(
 	"Datosdeportista"=>"Datos do Deportista",
 	"Password"=>"Contrasinal",
 	"FechaNac"=>"Data de Nacimiento",
+	"AltaSesion"=>"Alta Sesion",
 	"Nombre"=>"Nome",
 	"Apellidos"=>"Apelidos",
 	"Apellido1"=>"Apelido1",
@@ -92,7 +100,14 @@ $arrays=array(
 	"Id_actividad"=>"Id Actividade",
 	"Descripcion"=>"Descripcion",
 	"AltaActividad"=>"Alta Actividade",
-	"ModificarActividad"=>"Modificar Actividade");
+	"ModificarActividad"=>"Modificar Actividade",
+	"Fecha"=>"Data",
+	"Monitor"=>"Entrenador",
+	"Deportista"=>"Deportista",
+	"Comentario"=>"Comentario",
+	"Ejercicio"=>"Exercicio",
+	"Sesion"=>"Sesion"
+	);
 
 return $arrays;
 
@@ -104,6 +119,7 @@ $arrays=array(
 	"Usuario"=>"User",
 	"Password"=>"Password",
 	"Datosmonitor"=>"Coach Data",
+	"AltaSesion"=>"Insert Session",
 	"Datosdeportista"=>"Athlete data",
 	"FechaNac"=>"Birthdate",
 	"Configuracion"=>"Configuration",
@@ -153,7 +169,14 @@ $arrays=array(
 	"Id_actividad"=> "Id Activity",
 	"Descripcion" => "Description",
 	"AltaActividad"=>"Create Activity",
- 	"ModificarActividad"=>"Edit Activity");
+ 	"ModificarActividad"=>"Edit Activity",
+ 	"Fecha"=>"Date",
+ 	"Monitor"=>"Trainer",
+ 	"Deportista"=>"Athlete",
+ 	"Comentario"=>"Comment",
+ 	"Ejercicio"=>"Exercice",
+ 	"Sesion"=>"Session"
+ 	);
 
 return $arrays;
 

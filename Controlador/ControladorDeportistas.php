@@ -21,13 +21,13 @@
 
 			}
 
-			if(isset($_POST['Alta']))
+			if(isset($_POST['Alta']) and !isset($_REQUEST['altaDeportista']))
 			{
 				$idiom=new idiomas();
 				$clase=new deportistaAlta();
 				$clase->crear($idiom);
 			}
-			if(isset($_POST['altaDeportista'])){
+			if(isset($_REQUEST['altaDeportista'])){
 				
 					$idiom=new idiomas();
 					$nombre=$_POST['Nombre'];
@@ -39,9 +39,11 @@
 					$tipo=$_POST['TIPO'];
 					$usuario=$_POST['Usuario'];
 					$password=$_POST['Password'];
+					$password=md5($password);
 					$model=new Deportista();
 					$model->altaDeportista($nombre,$dni,$fechaNac,$email,$apellidos,$usuario,$telefono,$password,$tipo);
 					$model->creararrayDeportistas();
+					
 					include("../Archivos/ArrayConsultar.php");
 					$arra=new consult();
 					$form=$arra->array_consultar();
@@ -66,10 +68,10 @@
 				$model->eliminarDeportista($DNI);
 				$model->creararrayDeportistas();
 				include("../Archivos/ArrayConsultar.php");
-					$arra=new consult();
-					$form=$arra->array_consultar();
-					$vista=new deportistavista();
-					$vista->crear($form,$idiom);
+				$arra=new consult();
+				$form=$arra->array_consultar();
+				$vista=new deportistavista();
+				$vista->crear($form,$idiom);
 
 
 			}
@@ -85,6 +87,7 @@
 					$tipo=$_POST['TIPO'];
 					$usuario=$_POST['Usuario'];
 					$password=$_POST['Password'];
+					$password=md5($password);
 					$model=new Deportista();
 					$model->modificarDeportista($nombre,$dni,$fechanac,$email,$apellidos,$usuario,$telefono,$password,$tipo);
 					$model->creararrayDeportistas();

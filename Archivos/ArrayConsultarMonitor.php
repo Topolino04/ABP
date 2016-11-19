@@ -1,8 +1,4 @@
-<?php class consult { function array_consultar(){
+<?php class consultar { function array_consultar1(){
 $form=array(
-array("nombre"=>'Pablo',"email"=>'pablopeiboll@gmail.com',
-					"fecha"=>'2016-11-04',
-					"apellido2"=>'Gonzalez Rodriguez',"dni"=>'39486158B',"tipo"=>'Baile',
-					"usuario"=>'ADMIN',
-					"password"=>'ADMIN',"telefono"=>'4324242',),
+array("nombre"=>'Sheriff'),
 );return $form;}}?>

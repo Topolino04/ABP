@@ -142,10 +142,10 @@ function altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$de
 	<?php }
 	$mysqli->close();
  }
- function modificarActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion){
+ function modificarActividad($id,$nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion){
 
  	$mysqli=$this->conexionBD();
-    $query= "UPDATE `actividad` SET `Nombre`='$nombreAct',`Duracion`='$duracion',`Hora`='$hora',`Lugar`='$lugar',`Plazas`='$plazas',`Dificultad`='$dificultad',`Descripcion`='$descripcion' WHERE 1";
+    $query= "UPDATE `actividad` SET `Nombre`='$nombreAct',`Duracion`='$duracion',`Hora`='$hora',`Lugar`='$lugar',`Plazas`='$plazas',`Dificultad`='$dificultad',`Descripcion`='$descripcion' WHERE `id_Actividad`='$id'";
 		
 	if($mysqli->query($query)==TRUE){
 		?>

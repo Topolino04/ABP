@@ -48,22 +48,20 @@ function conexionBD()
 		 }
 
 
-function comprobarMonitor($user,$pass)
+
+	function comprobarMonitor($user,$pass)
 	{
+		$mysqli=$this->conexionBD();
+		$query="SELECT * FROM entrenador  WHERE Usuario='$user' AND Password='$pass'";
+		$resultado=$mysqli->query($query);
+		if(mysqli_num_rows($resultado)){
 
-	$mysqli=$this->conexionBD();
-
-	$query="SELECT * From entrenador Where '$user'=Usuario And '$pass'=Password";
-	$resultado=$mysqli->query($query);
-		if($resultado>0)
-		{
-		return $true;
-		}
-		else{
-	 return $false;
+		return true;
+		}else{
+			return false;
 		}
 	}
-	
+
 	function creararrayMonitor()
 	{
 		$file = fopen("../Archivos/ArrayConsultarMonitor.php", "w");

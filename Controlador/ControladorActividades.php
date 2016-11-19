@@ -51,7 +51,6 @@
 			}
 			if (isset($_POST['Modificar']))
 			{
-				
 				$idiom=new idiomas();
 				$id_actividad=$_POST['id_actividad'];
 				$modificar=new actividadModificar();
@@ -80,8 +79,9 @@
 					$plazas=$_POST['plazas'];
 					$dificultad=$_POST['dificultad'];							
 					$descripcion=$_POST['descripcion'];
+					$id=$_POST['id'];
 					$model=new Actividad();
-					$model->modificarActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion);
+					$model->modificarActividad($id,$nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion);
 					$model->creararrayActividades();
 					include("../Archivos/ArrayConsultarActividad.php");
 					$arra=new consultactividad();

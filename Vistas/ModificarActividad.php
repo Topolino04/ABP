@@ -2,7 +2,7 @@
 
 class actividadModificar{
 
-	function crear($idioma,$dni){
+	function crear($idioma,$id_actividad){
 
 	include("../Funciones/comprobaridioma.php");
         include '../plantilla/cabecera.php';
@@ -34,7 +34,7 @@ class actividadModificar{
 			echo "<div class=\"input-group col-sm-3\">";
 			echo "<"."input"." "."class=\"form-control\""."type=text required id=nombre name=nombre>"; 
 			echo "</div></div>";
-
+			echo "<input type=hidden name=id value=$id_actividad>";
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"duracion\"id =\"duracion\"> ".$idiom['Duracion'].":</label>";
 			echo "<div class=\"input-group col-sm-3\">";
 			echo "<"."input"." "."class=\"form-control\""."type=number required id=duracion name=duracion>"; 

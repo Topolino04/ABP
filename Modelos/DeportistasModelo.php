@@ -47,24 +47,20 @@ function conexionBD()
 		 }
 
 
-function comprobarusuario($user,$pass)
+
+	
+	function comprobarDeportista($user,$pass)
 	{
+		$mysqli=$this->conexionBD();
+		$query="SELECT * FROM `deportista` WHERE `Usuario`='$user' AND `Password`='$pass'";
+		$resultado=$mysqli->query($query);
+		if(mysqli_num_rows($resultado)){
 
-	$mysqli=$this->conexionBD();
-
-
-
-	$query="SELECT * From deportista Where '$user'=Usuario And '$pass'=Password";
-	$resultado=$mysqli->query($query);
-		if($resultado>0)
-		{
-		return $true;
-		}
-		else{
-	 return $false;
+		return true;
+		}else{
+			return false;
 		}
 	}
-	
 
 	function creararrayDeportistas()
 	{

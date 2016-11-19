@@ -110,14 +110,17 @@ class cabecera{
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php //echo $_SESSION['usuario']; ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                         <?php  echo "<a href=\"#\"><i class=\"fa fa-fw fa-user\"></i>".$idioma['Perfil']."</a>"; ?>
+
+                         <?php 
+
+                         if (isset ($_SESSION['usuario'])) echo "<a href=\"#\"><i class=\"fa fa-fw fa-user\"></i>".$_SESSION['usuario']."</a>"; ?>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-fw fa-gear"></i> <?php echo $idioma['Configuracion']; ?></a>
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="ControladorPrincipal.php?salir=salir"><i class="fa fa-fw fa-power-off"></i> <?php echo $idioma['salir']; ?></a>
+                            <a href="ControladorPrincipal.php?salir"><i class="fa fa-fw fa-power-off"></i> <?php echo $idioma['salir']; ?></a>
                         </li>
                     </ul>
                 </li>

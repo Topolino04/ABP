@@ -48,18 +48,8 @@ if(isset($_SESSION['usuario']))
 	</style>
 
 
-	<script src="Archivos\md5-min.js"></script>
-	<script type="text/javascript">
-	function encriptar(){
-		//alert("dentro");
-		//alert(document.getElementById('password').value);
-		if(document.getElementById('password').value!=null){ 
-		document.getElementById('password').value=hex_md5(document.getElementById('password').value);
-		}
-		//alert(document.getElementById('password').value);
-		}
 
-	</script>
+	
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 </head>
@@ -88,8 +78,7 @@ if(isset($_SESSION['usuario']))
 		<div class="checkbox">
 
 		
-		<input type="submit" class="btn btn-primary" name="login" onclick="encriptar();" value="Entrar"></input>
-		<input type="submit" class="btn btn-primary" name="registrar" value="Registrarse"></input>
+		<input type="submit" class="btn btn-primary" name="login"  value="Entrar"></input>
 		</form>
 
 		

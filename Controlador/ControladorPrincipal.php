@@ -2,6 +2,8 @@
 
 include '../Vistas/VistapanelPrincipal.php';
 include '../Idiomas/idiomas.php';
+include "../Modelos/DeportistasModelo.php";
+include "../Modelos/MonitorModelo.php";
 session_start();
 
 		//viene desde el vinculo de la imagen de la bandera
@@ -17,12 +19,26 @@ session_start();
  		{
  					$user=$_POST['usuario'];
  					$pass=$_POST['password'];
-
+ 					$pass=md5($pass);
+ 					$modelodeportista=new Deportista();
+ 					$resultado=$modelodeportista->comprobarDeportista($user,$pass);
+ 					$modelomonitor=new Monitor();
+ 					$resultado1=$modelomonitor->comprobarMonitor($user,$pass);
+ 				if($resultado==true){
+ 				$_SESSION['usuario']=$user;
  				$idiom=new idiomas();
- 				$menus=new panel();
+ 				$menus=new panel(); 
  				$menus->constructor($idiom);
+ 			}elseif($resultado1==true){
+ 				$_SESSION['usuario']=$user;
+ 				$idiom=new idiomas();
+ 				$menus=new panel(); 
+ 				$menus->constructor($idiom);
+ 			}
+ 			else{
+ 				echo "<script> window.location=\".././index.php\"</script>";
+ 			}
  		}
-
  	//viene de acceder del boton menu principal 
  	 	if(isset($_REQUEST['principal']))
  	 		{
@@ -31,7 +47,7 @@ session_start();
  				$menus->constructor($idiom);
 			}
 			//viene de la imagen de la puerta para salir 
-			if(isset($_POST['salir'])){
+			if(isset($_REQUEST['salir'])){
 				session_destroy();
 				echo "<script> window.location=\".././index.php\"</script>";
 			}
