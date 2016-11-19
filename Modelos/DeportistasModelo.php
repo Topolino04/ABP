@@ -101,8 +101,7 @@ function comprobarusuario($user,$pass)
 				 $dni=$fila['DNI'];
 				 $tipo=$fila['Tipo'];
 				 $telefono=$fila['Telefono'];
-				 $email=$fila['emailgit'];
-				 $id_usuario=$fila['id_Usuario'];
+				 $email=$fila['Email'];
 				 $usuario=$fila['Usuario'];
 				 $password=$fila['Password'];
 				 $fechaNac=$fila['FechaNac'];
@@ -136,7 +135,7 @@ function altaDeportista($nombre,$dni,$fecha,$email,$apell1,$usuario,$telefono,$p
 	
 	//$query="INSERT INTO `deportista`( `Tipo`, `Nombre`,  `Apellidos`, `DNI`, `Telefono`, `Usuario`, `Password`, `emailgit`, `FechaNac`) VALUES ('$tipo','$nombre','$apell1','$dni','$telefono','$usuario','$pass','$telefono','$fecha')";
 	//$resultado=$mysqli->query("INSERT INTO `deportista`( `Tipo`, `Nombre`, `Apellido_1`, `Apellidoss`, `DNI`, `Telefono`, `Usuario`, `Password`, `emailgit`, `FechaNac`) VALUES ('$tipo','$nombre','$apell','$apell1','$dni','$telefono','$usuario','$pass','$telefono','$fecha')");
-		if($mysqli->query("INSERT INTO `deportista`( `Tipo`, `Nombre`, `Apellidos`, `DNI`, `Telefono`, `Usuario`, `Password`, `emailgit`, `FechaNac`) VALUES ('$tipo','$nombre','$apell1','$dni','$telefono','$usuario','$pass','$telefono','$fecha')")==TRUE)
+		if($mysqli->query("INSERT INTO `deportista`(`Usuario`, `Password`, `Nombre`, `Apellidos`, `DNI`, `Email`, `FechaNac`, `Telefono`, `Tipo`) VALUES ('$usuario','$pass','$nombre','$apell1','$dni','$email','$fecha','$telefono','$tipo')")==TRUE)
 		{
 
 			?>
@@ -175,7 +174,7 @@ function altaDeportista($nombre,$dni,$fecha,$email,$apell1,$usuario,$telefono,$p
  function modificarDeportista($nombre,$dni,$fecha,$email,$apell1,$usuario,$telefono,$pass,$tipo){
 
  	$mysqli=$this->conexionBD();
- 	$query="UPDATE `deportista` SET `Tipo`='$tipo',`Nombre`='$nombre',`Apellidos`='$apell1',`DNI`='$dni',`Telefono`='$telefono',`Usuario`='$usuario',`Password`='$pass',`emailgit`='$email',`FechaNac`='$fecha' WHERE DNI='$dni'";
+ 	$query="UPDATE `deportista` SET `Usuario`='$usuario',`Password`='$apell1',`Nombre`='$nombre',`Apellidos`='$apell1',`DNI`='$dni',`Email`='$email',`FechaNac`='$fecha',`Telefono`='$telefono',`Tipo`='$tipo' WHERE DNI='$dni'";
  	if($mysqli->query($query)==TRUE){
 		?>
 		<script>

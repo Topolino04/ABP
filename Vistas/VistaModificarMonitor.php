@@ -62,7 +62,7 @@ class monitorModificar{
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"DNI\"id =\"DNI\"> ".$idiom['TIPO'].":</label>";
 			echo "<div class=\"input-group col-sm-3\">";
-			echo "<"."select"." "."class=\"form-control\""."type=text required id=TIPO name=TIPO><option value='Fitness' >Fitness</option><option value='Zumba'>Zumba</option></select>";
+			echo "<"."select"." "."class=\"form-control\""."type=text required id=TIPO name=TIPO><option value='Baile' >Baile</option><option value='Fitnes'>Fitnes</option></select>";
 			echo "</div></div>";
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"Usuario\"id =\"Usuario\"> ".$idiom['Usuario'].":</label>";

@@ -41,5 +41,10 @@ session_start();
  				$menus=new panel();
  				$menus->constructor($idiom);
 				}
+				if(isset($_REQUEST['volver\\'])){
+				$idiom=new idiomas();
+ 				$menus=new panel();
+ 				$menus->constructor($idiom);
+				}
 	
 ?>

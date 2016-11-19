@@ -82,16 +82,15 @@ function comprobarMonitor($user,$pass)
 				 $dni=$fila['DNI'];
 				 $tipo=$fila['Tipo'];
 				 $telefono=$fila['Telefono'];
-				 $email=$fila['emailgit'];
-				 $id_usuario=$fila['id_Usuario'];
+				 $email=$fila['Email'];
 				 $usuario=$fila['Usuario'];
 				 $password=$fila['Password'];
 				 $fechaNac=$fila['FechaNac'];
 				fwrite($file,"array(\"nombre\"=>'$nombre',\"email\"=>'$email',
 					\"fecha\"=>'$fechaNac',
 					\"apellido2\"=>'$apellido2',\"dni\"=>'$dni',\"tipo\"=>'$tipo',
-					\"idusuario\"=>'$id_usuario',\"usuario\"=>'$usuario',
-					\"password\"=>'$password',\"telefono\"=>'$telefono')," . PHP_EOL);	
+					\"usuario\"=>'$usuario',
+					\"password\"=>'$password',\"telefono\"=>'$telefono',)," . PHP_EOL);	
 			 }
 		}
 				 fwrite($file,");return \$form;}}?>". PHP_EOL);
@@ -107,7 +106,7 @@ function altaMonitor($nombre,$dni,$fecha,$email,$apell1,$usuario,$telefono,$pass
 	$mysqli=$this->conexionBD();
 	
 	//$mysqli->query("INSERT INTO `entrenador`(`Nombre`, `Password`, `Tipo`, `Usuario`, ` Apellido_1`, `Apellido_2`, `DNI`, `emailgit`, `FechaNac`, `Telefono`) VALUES ('$nombre','$pass','$tipo','$usuario','$apell','$apell1','$dni','$email','$fecha','$telefono')")or die("no funciona");
-	if ($mysqli->query("INSERT INTO `entrenador`(`Nombre`, `Password`, `Tipo`, `Usuario`, `Apellidos`, `DNI`, `emailgit`, `FechaNac`, `Telefono`) VALUES ('$nombre','$pass','$tipo','$usuario','$apell1','$dni','$email','$fecha','$telefono')")==TRUE)
+	if ($mysqli->query("INSERT INTO `entrenador`(`Usuario`, `Password`, `Nombre`, `Apellidos`, `DNI`, `Email`, `FechaNac`, `Telefono`, `Tipo`) VALUES ('$usuario','$nombre','$pass','$apell1','$dni','$email','$fecha','$telefono','$tipo')")==TRUE)
 	{
 		?>
 		<script>
@@ -144,7 +143,7 @@ function altaMonitor($nombre,$dni,$fecha,$email,$apell1,$usuario,$telefono,$pass
  function modificarMonitor($nombre,$dni,$fecha,$email,$apell1,$usuario,$telefono,$pass,$tipo){
 
  	$mysqli=$this->conexionBD();
- 	$query="UPDATE `entrenador` SET `Nombre`='$nombre',`Password`='$pass',`Tipo`='$tipo',`Usuario`='$usuario',`Apellidos`='$apell1',`emailgit`='$email',`FechaNac`='$fecha',`Telefono`='$telefono' WHERE DNI='$dni'";
+ 	$query="UPDATE `entrenador` SET `Usuario`='$usuario',`Password`='$pass',`Nombre`='$nombre',`Apellidos`='$apell1',`DNI`='$dni',`Email`='$email',`FechaNac`='$fecha',`Telefono`='$telefono',`Tipo`='$tipo' WHERE DNI='$dni'";
  	//$query="UPDATE `entrenador` SET `Tipo`='$tipo',`Nombre`='$nombre',`Apellido_1`='$apell',`Apellido_2`='$apell1',`DNI`='$dni',`Telefono`='$telefono',`Usuario`='$usuario',`Password`='$pass',`emailgit`='$email',`FechaNac`='$fecha' WHERE DNI='$dni'";
  	
  	if($mysqli->query($query)==TRUE){

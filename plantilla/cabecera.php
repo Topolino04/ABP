@@ -62,27 +62,22 @@ class cabecera{
                     </form>
                 </li>
                 <li>
-                    <form class="principal" method="post" action="..\Controlador\ControladorDeportistas.php">
+                    <form class="principal" method="post" action="..\Controlador\ControladorActividades.php">
                     <input type="submit" class="btn btn-default" name="actividades"  value="<?php echo $idiom['GestionActividades'];?>" >
                     </form>
                 </li>
                 <li>
-                    <form class="principal" method="post" action="..\Controlador\DeportistasControlador.php">
-                    <input type="submit" class="btn btn-default" name="notificaciones"  value="<?php echo $idiom['GestionNotificaciones'];?>" >
-                    </form>
-                </li>
-                <li>
-                    <form class="principal" method="post" action="..\Controlador\ControladorDeportistas.php">
+                    <form class="principal" method="post" action="..\Controlador\ControladorSesiones.php">
                     <input type="submit" class="btn btn-default" name="sesiones"  value="<?php echo $idiom['GestionSesiones'];?>" >
                     </form>
                 </li>
                 <li>
-                   <form class="principal" method="post" action="..\Controlador\ControladorDeportistas.php">
-                    <input type="submit" class="btn btn-default" name="reservas"  value="<?php echo $idiom['GestionReservas'];?>" >
+                   <form class="principal" method="post" action="..\Controlador\EJERCICIO_Controller.php">
+                    <input type="submit" class="btn btn-default" name="ejercicios"  value="<?php echo $idiom['GestionEjercicios'];?>" >
                     </form>
                 </li>
                 <li>
-                   <form class="principal" method="post" action="..\Controlador\ControladorDeportistas.php">
+                   <form class="principal" method="post" action="..\Controlador\TABLA_Controller.php">
                     <input type="submit" class="btn btn-default" name="tablas"  value="<?php echo $idiom['GestionTablas'];?>" >
                     </form>
                 </li>

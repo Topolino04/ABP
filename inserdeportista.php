@@ -1,1 +1,0 @@
-INSERT INTO `deportista`( `Tipo`, `Nombre`, `Apellido_1`, `Apellido_2`, `DNI`, `Telefono`, `Usuario`, `Password`, `emailgit`, `FechaNac`) VALUES ('PEF','Pablo','Gonzalez','Rodriguez','39486158B','634614612','Peiboll','Horacio2','pablopeiboll@gmail.com','2006-10-01');
