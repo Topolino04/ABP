@@ -7,7 +7,7 @@
 	include("../VIstas/ModificarDeportista.php");
 	session_start();		
 	
-			if(isset($_POST['deportistas']))
+			if(isset($_REQUEST['deportistas']))
 			{
 				$idiom=new idiomas();
 				$deportista=new Deportista();

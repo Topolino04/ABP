@@ -3,13 +3,15 @@
 
 		function crear($form,$idioma){ 
 
-			include '../plantilla/cabecera.php';
-			
-			$cabecera=new cabecera();
-			$cabecera->crear($idioma);
-
-       		$clase=new comprobacion();
-    		$idiom=$clase->comprobaridioma($idioma);
+			include("../Funciones/comprobaridioma.php");
+        include '../plantilla/cabecera.php';
+        include('../plantilla/menulateral.php');
+        $clase=new cabecera();
+        $clases=new comprobacion();
+        $idiom=$clases->comprobaridioma($idioma);
+        $clase->crear($idiom);
+        $menus=new menulateral();
+        $menus->crear($idiom);
     		?>
     		<header>
 

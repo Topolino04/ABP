@@ -8,7 +8,7 @@ include("../Vistas/VistaModificarMonitor.php");
 	session_start();		
 
 
-	if(isset($_POST['monitores']))
+	if(isset($_REQUEST['monitores']))
 			{
 				$idiom=new idiomas();
 				$monitor=new Monitor();

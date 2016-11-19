@@ -5,10 +5,10 @@ include '../Idiomas/idiomas.php';
 session_start();
 
 		//viene desde el vinculo de la imagen de la bandera
-		if (isset($_POST['idiomas']))
+		if (isset($_REQUEST['idiomas']))
 		{  			
 				 $idiom=new idiomas();
-				 $_SESSION['idioma']=$_POST['idiomas'];
+				 $_SESSION['idioma']=$_REQUEST['idiomas'];
 				 $menu=new panel();
 				 $menu->constructor($idiom);
 		}
@@ -24,7 +24,7 @@ session_start();
  		}
 
  	//viene de acceder del boton menu principal 
- 	 	if(isset($_POST['principal']))
+ 	 	if(isset($_REQUEST['principal']))
  	 		{
  	 			$idiom=new idiomas();
  	 			$menus=new panel();

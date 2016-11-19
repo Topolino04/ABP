@@ -7,7 +7,7 @@
 	include("../VIstas/ModificarActividad.php");
 	session_start();
 
-			if(isset($_POST['actividades']))
+			if(isset($_REQUEST['actividades']))
 			{
 				$idiom=new idiomas();
 				$actividad=new Actividad();
