@@ -108,8 +108,8 @@ CREATE TABLE IF NOT EXISTS `Gimnasio_BD`.`Actividad` (
   PRIMARY KEY (`id_Actividad`))
 ENGINE = InnoDB;
 
-INSERT INTO `Actividad`(`id_Actividad`, `Nombre`, `Duracion`, `Hora`, `Lugar`, `Plazas`, `Dificultad`, `Descripcion`);
-VALUES ('','Baile','30','18:00','Aula3','20','FACIL','Clase de baile');
+INSERT INTO `Actividad`(`Nombre`, `Duracion`, `Hora`, `Lugar`, `Plazas`, `Dificultad`, `Descripcion`)
+VALUES ('Baile','00:30:00','18:00:00','Aula3','20','FACIL','Clase de baile');
 -- -----------------------------------------------------
 -- Table `Gimnasio_BD`.`Gestion_Ejercicio`
 -- -----------------------------------------------------
@@ -220,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `Gimnasio_BD`.`Tabla_contiene_Ejercicios` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-INSERT INTO `Gimnasio_BD`.`Tabla_contiene_Ejercicios` VALUES (1,1),(1,2),(1,3),(1,4),(2,1),(2,1),(3,1),(4,1),(1,4),
+INSERT INTO `Gimnasio_BD`.`Tabla_contiene_Ejercicios` VALUES (1,1),(1,2),(1,3),(1,4),(2,1),(3,1),(4,1);
 
 -- -----------------------------------------------------
 -- Table `Gimnasio_BD`.`Sesion`
