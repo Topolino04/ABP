@@ -33,10 +33,9 @@ function conexionBD()
 				$host="127.0.0.1";
 				$user="root";
 				$pw ="";
-				$db="gimnasio_bd";
-				$mysqli=mysqli_connect("127.0.0.1","root","","gimnasio_bd");
+				$db="Gimnasio_BD";
+				$mysqli=mysqli_connect("127.0.0.1","root","iu","Gimnasio_BD");
 				if(!$mysqli){
-
 					echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
     				echo "error de depuración: " . mysqli_connect_errno() . PHP_EOL;
     				echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
@@ -45,21 +44,21 @@ function conexionBD()
 				
 			return $mysqli;
 		 }
-
-
-
 	
 	function comprobarDeportista($user,$pass)
 	{
 		$mysqli=$this->conexionBD();
-		$query="SELECT * FROM `deportista` WHERE `Usuario`='$user' AND `Password`='$pass'";
+		$query="SELECT * FROM `Deportista` WHERE `Usuario`='$user' AND `Password`='$pass' ";
 		$resultado=$mysqli->query($query);
+		
 		if(mysqli_num_rows($resultado)){
+		
+		return TRUE;
 
-		return true;
 		}else{
-			return false;
+			return FALSE;
 		}
+		
 	}
 
 	function creararrayDeportistas()
@@ -82,7 +81,7 @@ function conexionBD()
 				 	fwrite($file,"\$form=array(" . PHP_EOL);
 		$mysqli=$this->conexionBD();
 
-		$query="SELECT * FROM `deportista`";
+		$query="SELECT * FROM `Deportista`";
 		$resultado=$mysqli->query($query);
 		if(mysqli_num_rows($resultado)){
 			//$fila =$resultado->fetch_array(MYSQLI_ASSOC);
@@ -131,7 +130,7 @@ function altaDeportista($nombre,$dni,$fecha,$email,$apell1,$usuario,$telefono,$p
 	
 	//$query="INSERT INTO `deportista`( `Tipo`, `Nombre`,  `Apellidos`, `DNI`, `Telefono`, `Usuario`, `Password`, `emailgit`, `FechaNac`) VALUES ('$tipo','$nombre','$apell1','$dni','$telefono','$usuario','$pass','$telefono','$fecha')";
 	//$resultado=$mysqli->query("INSERT INTO `deportista`( `Tipo`, `Nombre`, `Apellido_1`, `Apellidoss`, `DNI`, `Telefono`, `Usuario`, `Password`, `emailgit`, `FechaNac`) VALUES ('$tipo','$nombre','$apell','$apell1','$dni','$telefono','$usuario','$pass','$telefono','$fecha')");
-		if($mysqli->query("INSERT INTO `deportista`(`Usuario`, `Password`, `Nombre`, `Apellidos`, `DNI`, `Email`, `FechaNac`, `Telefono`, `Tipo`) VALUES ('$usuario','$pass','$nombre','$apell1','$dni','$email','$fecha','$telefono','$tipo')")==TRUE)
+		if($mysqli->query("INSERT INTO `Deportista`(`Usuario`, `Password`, `Nombre`, `Apellidos`, `DNI`, `Email`, `FechaNac`, `Telefono`, `Tipo`) VALUES ('$usuario','$pass','$nombre','$apell1','$dni','$email','$fecha','$telefono','$tipo')")==TRUE)
 		{
 
 			?>
@@ -152,7 +151,7 @@ function altaDeportista($nombre,$dni,$fecha,$email,$apell1,$usuario,$telefono,$p
 
  	$mysqli=$this->conexionBD();
 
- 	$query="DELETE FROM `deportista` WHERE DNI='$dni'";
+ 	$query="DELETE FROM `Deportista` WHERE DNI='$dni'";
  	if($mysqli->query($query)==TRUE){
 	?>
 		<script>
@@ -170,7 +169,7 @@ function altaDeportista($nombre,$dni,$fecha,$email,$apell1,$usuario,$telefono,$p
  function modificarDeportista($nombre,$dni,$fecha,$email,$apell1,$usuario,$telefono,$pass,$tipo){
 
  	$mysqli=$this->conexionBD();
- 	$query="UPDATE `deportista` SET `Usuario`='$usuario',`Password`='$apell1',`Nombre`='$nombre',`Apellidos`='$apell1',`DNI`='$dni',`Email`='$email',`FechaNac`='$fecha',`Telefono`='$telefono',`Tipo`='$tipo' WHERE DNI='$dni'";
+ 	$query="UPDATE `Deportista` SET `Usuario`='$usuario',`Password`='$pass',`Nombre`='$nombre',`Apellidos`='$apell1',`DNI`='$dni',`Email`='$email',`FechaNac`='$fecha',`Telefono`='$telefono',`Tipo`='$tipo' WHERE DNI='$dni'";
  	if($mysqli->query($query)==TRUE){
 		?>
 		<script>

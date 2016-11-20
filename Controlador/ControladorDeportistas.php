@@ -4,7 +4,7 @@
 	include("../Modelos/DeportistasModelo.php");
 	include("../Idiomas/idiomas.php");
 	include("../Vistas/AltaDeportista.php");
-	include("../VIstas/ModificarDeportista.php");
+	include("../Vistas/ModificarDeportista.php");
 	session_start();		
 	
 			if(isset($_REQUEST['deportistas']))

@@ -29,15 +29,18 @@ session_start();
  				$idiom=new idiomas();
  				$menus=new panel(); 
  				$menus->constructor($idiom);
- 			}elseif($resultado1==true){
- 				$_SESSION['usuario']=$user;
+ 			}if($resultado1==true){
+ 				$_SESSION['MONITOR']=$user;
  				$idiom=new idiomas();
  				$menus=new panel(); 
  				$menus->constructor($idiom);
  			}
- 			else{
- 				echo "<script> window.location=\".././index.php\"</script>";
- 			}
+ 			
+ 			/*if(!isset($_SESSION['usuario']))
+ 			{
+ 			 echo "<script> window.location=\".././index.php\"</script>";
+ 			}*/
+ 			
  		}
  	//viene de acceder del boton menu principal 
  	 	if(isset($_REQUEST['principal']))

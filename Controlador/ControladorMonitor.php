@@ -3,7 +3,7 @@
 include("../Idiomas/idiomas.php");
 include("../Modelos/MonitorModelo.php");
 include("../Vistas/VistaPrincipalMonitor.php");
-include("../Vistas/VistaALtaMonitor.php");
+include("../Vistas/VistaAltaMonitor.php");
 include("../Vistas/VistaModificarMonitor.php");
 	session_start();		
 
@@ -20,7 +20,6 @@ include("../Vistas/VistaModificarMonitor.php");
 				$vista=new monitorvista();
 				$vista->crear($form,$idiom);
 			}
-
 
 			if(isset($_POST['Alta']))
 			{
