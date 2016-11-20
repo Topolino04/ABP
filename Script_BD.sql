@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `Gimnasio_BD`.`Ejercicio` (
   `id_Ejercicio` INT NOT NULL AUTO_INCREMENT,
   `Tipo` VARCHAR(45) NOT NULL,
   `Nombre` VARCHAR(45) NOT NULL,
-  `Tiempo` TIME(0) NULL,
+  `Tiempo` TIME NULL,
   `Repeticiones` INT NULL,
   `Peso` INT NULL,
   `Series` INT NULL,
@@ -64,12 +64,12 @@ CREATE TABLE IF NOT EXISTS `Gimnasio_BD`.`Ejercicio` (
   PRIMARY KEY (`id_Ejercicio`))
 ENGINE = InnoDB;
 
-INSERT INTO `ejercicio`(`Tipo`, `Nombre`, `Tiempo`, `Repeticiones`, `Peso`, `Series`, `Descripcion`) VALUES
-    ('tipo1','nombre1','00:01',2,25,3,'Descripcion1'),
-    ('tipo1','nombre2','00:02',3,20,4,'Descripcion2'),
-    ('tipo2','nombre3','00:03',3,10,5,'Descripcion3'),
-    ('tipo2','nombre4','00:04',8,50,6,'Descripcion4'),
-    ('tipo3','nombre5','00:05',2,75,7,'Descripcion5');
+INSERT INTO `Ejercicio`(`Tipo`, `Nombre`, `Tiempo`, `Repeticiones`, `Peso`, `Series`, `Descripcion`) VALUES
+    ('tipo1','nombre1','00:00:01',2,25,3,'Descripcion1'),
+    ('tipo1','nombre2','00:00:02',3,20,4,'Descripcion2'),
+    ('tipo2','nombre3','00:00:03',3,10,5,'Descripcion3'),
+    ('tipo2','nombre4','00:00:04',8,50,6,'Descripcion4'),
+    ('tipo3','nombre5','00:00:05',2,75,7,'Descripcion5');
 
 
 
@@ -82,7 +82,7 @@ CREATE TABLE IF NOT EXISTS `Gimnasio_BD`.`Tabla` (
   PRIMARY KEY (`id_Tabla`))
 ENGINE = InnoDB;
 
-INSERT INTO `tabla`(`Nombre`) VALUES
+INSERT INTO `Tabla`(`Nombre`) VALUES
     ('Ejercicios Basicos'),
     ('Ejercicios Avazados'),
     ('Ejercicios HARDCORE'),
@@ -97,8 +97,8 @@ INSERT INTO `tabla`(`Nombre`) VALUES
 CREATE TABLE IF NOT EXISTS `Gimnasio_BD`.`Actividad` (
   `id_Actividad` INT NOT NULL AUTO_INCREMENT,
   `Nombre` VARCHAR(45) NOT NULL,
-  `Duracion` TIME(0) NOT NULL,
-  `Hora` TIME(0) NOT NULL,
+  `Duracion` TIME NOT NULL,
+  `Hora` TIME NOT NULL,
   `Lugar` VARCHAR(45) NOT NULL,
   `Plazas` INT NOT NULL,
   `Dificultad` ENUM('FACIL','MEDIA','DIFICIL') NOT NULL,
