@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `Gimnasio_BD`.`Deportista` (
 ENGINE = InnoDB;
 
 INSERT INTO `Deportista` (`Usuario`, `Password`, `Nombre`, `Apellidos`, `DNI`, `Email`, `FechaNac`, `Telefono`, `Tipo`) VALUES
-('ADMIN1', 'Gonzalez Rodriguez', 'Pablo', 'Gonzalez Rodriguez', '43242', 'pablopeiboll@gmail.com', '2016-11-05', 634614612, 'PEF');
+('ADMIN', '73acd9a5972130b75066c82595a1fae3', 'Pablo', 'Gonzalez Rodriguez', '39476158B', 'pablopeiboll@gmail.com', '2016-11-05', 321313, 'TDU');
 
 
 -- -----------------------------------------------------
@@ -48,8 +48,8 @@ CREATE TABLE IF NOT EXISTS `Gimnasio_BD`.`Entrenador` (
   PRIMARY KEY (`DNI`))
 ENGINE = InnoDB;
 
-INSERT INTO `Entrenador` (`Usuario`, `Password`, `Nombre`, `Apellidos`, `DNI`, `Email`, `FechaNac`, `Telefono`, `Tipo`) VALUES
-('ADMIN', '73acd9a5972130b75066c82595a1fae3', 'Pablo', 'Gonzalez Rodriguez', '3', 'pablopeiboll@gmail.com', '2016-11-04', 3213131, 'Baile');
+NSERT INTO `Entrenador` (`Usuario`, `Password`, `Nombre`, `Apellidos`, `DNI`, `Email`, `FechaNac`, `Telefono`, `Tipo`) VALUES
+('MONITOR', 'ff3e179b3cc64393841107ccba0d6e48', 'MONITOR1', 'PACO GIMENEZ', '1213131', 'mario_cafeina@hotmail.com', '2016-11-11', 2147483647, 'Baile');
 
 -- -----------------------------------------------------
 -- Table `Gimnasio_BD`.`Ejercicio`
@@ -108,6 +108,8 @@ CREATE TABLE IF NOT EXISTS `Gimnasio_BD`.`Actividad` (
   PRIMARY KEY (`id_Actividad`))
 ENGINE = InnoDB;
 
+INSERT INTO `Actividad`(`id_Actividad`, `Nombre`, `Duracion`, `Hora`, `Lugar`, `Plazas`, `Dificultad`, `Descripcion`);
+VALUES ('','Baile','30','18:00','Aula3','20','FACIL','Clase de baile')
 -- -----------------------------------------------------
 -- Table `Gimnasio_BD`.`Gestion_Ejercicio`
 -- -----------------------------------------------------
@@ -218,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `Gimnasio_BD`.`Tabla_contiene_Ejercicios` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-INSERT INTO `Gimnasio_BD`.`Tabla_contiene_Ejercicios` VALUES (1,1),(1,2),(1,3),(1,4),(2,1),(3,1),(4,1);
+INSERT INTO `Gimnasio_BD`.`Tabla_contiene_Ejercicios` VALUES (1,1),(1,2),(1,3),(1,4),(2,1),(2,1),(3,1),(4,1),(1,4),
 
 -- -----------------------------------------------------
 -- Table `Gimnasio_BD`.`Sesion`
