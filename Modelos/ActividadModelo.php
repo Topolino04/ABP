@@ -27,7 +27,7 @@ function conexionBD()
 				$user="root";
 				$pw ="";
 				$db="gimnasio_bd";
-				$mysqli=mysqli_connect("127.0.0.1","root","","gimnasio_bd");
+				$mysqli=mysqli_connect("127.0.0.1","root","iu","Gimnasio_BD");
 				if(!$mysqli){
 
 					echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
@@ -66,7 +66,7 @@ function conexionBD()
 		$mysqli=$this->conexionBD();
 
 
-		$query="SELECT * FROM `actividad`";
+		$query="SELECT * FROM `Actividad`";
 		$resultado=$mysqli->query($query);
 		if(mysqli_num_rows($resultado)){
 
@@ -104,7 +104,7 @@ function altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$de
 {
 	$mysqli=$this->conexionBD();
 
-	if($mysqli->query("INSERT INTO `actividad`(`Nombre`, `Duracion`, `Hora`, `Lugar`, `Plazas`, `Dificultad`, `Descripcion`)
+	if($mysqli->query("INSERT INTO `Actividad`(`Nombre`, `Duracion`, `Hora`, `Lugar`, `Plazas`, `Dificultad`, `Descripcion`)
 		VALUES
 		('$nombreAct','$duracion','$hora','$lugar','$plazas','$dificultad','$descripcion')")==TRUE)
 	{	
@@ -127,7 +127,7 @@ function altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$de
 
  	$mysqli=$this->conexionBD();
 
- 	$query="DELETE FROM `actividad` WHERE id_Actividad='$id_actividad'";
+ 	$query="DELETE FROM `Actividad` WHERE id_Actividad='$id_actividad'";
  	if($mysqli->query($query)==TRUE){
 	?>
 		<script>
@@ -145,7 +145,7 @@ function altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$de
  function modificarActividad($id,$nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion){
 
  	$mysqli=$this->conexionBD();
-    $query= "UPDATE `actividad` SET `Nombre`='$nombreAct',`Duracion`='$duracion',`Hora`='$hora',`Lugar`='$lugar',`Plazas`='$plazas',`Dificultad`='$dificultad',`Descripcion`='$descripcion' WHERE `id_Actividad`='$id'";
+    $query= "UPDATE `Actividad` SET `Nombre`='$nombreAct',`Duracion`='$duracion',`Hora`='$hora',`Lugar`='$lugar',`Plazas`='$plazas',`Dificultad`='$dificultad',`Descripcion`='$descripcion' WHERE `id_Actividad`='$id'";
 		
 	if($mysqli->query($query)==TRUE){
 		?>
