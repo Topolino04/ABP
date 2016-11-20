@@ -4,7 +4,7 @@
 	include("../Modelos/ActividadModelo.php");
 	include("../Idiomas/idiomas.php");
 	include("../Vistas/AltaActividad.php");
-	include("../VIstas/ModificarActividad.php");
+	include("../Vistas/ModificarActividad.php");
 	session_start();
 
 			if(isset($_REQUEST['actividades']))
