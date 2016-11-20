@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `Gimnasio_BD`.`Entrenador` (
   PRIMARY KEY (`DNI`))
 ENGINE = InnoDB;
 
-NSERT INTO `Entrenador` (`Usuario`, `Password`, `Nombre`, `Apellidos`, `DNI`, `Email`, `FechaNac`, `Telefono`, `Tipo`) VALUES
+INSERT INTO `Entrenador` (`Usuario`, `Password`, `Nombre`, `Apellidos`, `DNI`, `Email`, `FechaNac`, `Telefono`, `Tipo`) VALUES
 ('MONITOR', 'ff3e179b3cc64393841107ccba0d6e48', 'MONITOR1', 'PACO GIMENEZ', '1213131', 'mario_cafeina@hotmail.com', '2016-11-11', 2147483647, 'Baile');
 
 -- -----------------------------------------------------
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `Gimnasio_BD`.`Actividad` (
 ENGINE = InnoDB;
 
 INSERT INTO `Actividad`(`id_Actividad`, `Nombre`, `Duracion`, `Hora`, `Lugar`, `Plazas`, `Dificultad`, `Descripcion`);
-VALUES ('','Baile','30','18:00','Aula3','20','FACIL','Clase de baile')
+VALUES ('','Baile','30','18:00','Aula3','20','FACIL','Clase de baile');
 -- -----------------------------------------------------
 -- Table `Gimnasio_BD`.`Gestion_Ejercicio`
 -- -----------------------------------------------------
