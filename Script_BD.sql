@@ -28,7 +28,8 @@ CREATE TABLE IF NOT EXISTS `Gimnasio_BD`.`Deportista` (
     PRIMARY KEY (`DNI`))
 ENGINE = InnoDB;
 
-
+INSERT INTO `Deportista` (`Usuario`, `Password`, `Nombre`, `Apellidos`, `DNI`, `Email`, `FechaNac`, `Telefono`, `Tipo`) VALUES
+('ADMIN1', 'Gonzalez Rodriguez', 'Pablo', 'Gonzalez Rodriguez', '43242', 'pablopeiboll@gmail.com', '2016-11-05', 634614612, 'PEF');
 
 
 -- -----------------------------------------------------
@@ -47,7 +48,8 @@ CREATE TABLE IF NOT EXISTS `Gimnasio_BD`.`Entrenador` (
   PRIMARY KEY (`DNI`))
 ENGINE = InnoDB;
 
-
+INSERT INTO `Entrenador` (`Usuario`, `Password`, `Nombre`, `Apellidos`, `DNI`, `Email`, `FechaNac`, `Telefono`, `Tipo`) VALUES
+('ADMIN', '73acd9a5972130b75066c82595a1fae3', 'Pablo', 'Gonzalez Rodriguez', '3', 'pablopeiboll@gmail.com', '2016-11-04', 3213131, 'Baile');
 
 -- -----------------------------------------------------
 -- Table `Gimnasio_BD`.`Ejercicio`
@@ -216,6 +218,7 @@ CREATE TABLE IF NOT EXISTS `Gimnasio_BD`.`Tabla_contiene_Ejercicios` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
+INSERT INTO `Gimnasio_BD`.`Tabla_contiene_Ejercicios` VALUES (1,1),(1,2),(1,3),(1,4),(2,1),(2,1),(3,1),(4,1),(1,4),
 
 -- -----------------------------------------------------
 -- Table `Gimnasio_BD`.`Sesion`
