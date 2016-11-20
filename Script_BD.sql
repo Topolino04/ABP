@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `Gimnasio_BD`.`Tabla_contiene_Ejercicios` (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-INSERT INTO `Gimnasio_BD`.`Tabla_contiene_Ejercicios` VALUES (1,1),(1,2),(1,3),(1,4),(2,1),(2,1),(3,1),(4,1),(1,4),
+INSERT INTO `Gimnasio_BD`.`Tabla_contiene_Ejercicios` VALUES (1,1),(1,2),(1,3),(1,4),(2,1),(3,1),(4,1);
 
 -- -----------------------------------------------------
 -- Table `Gimnasio_BD`.`Sesion`
