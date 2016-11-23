@@ -26,7 +26,7 @@ class actividadModificar{
 				echo "<div class=\"container well\">";
  			echo "<div class=\"row\">"; 
 			echo "<div class=\"col-xs-12\">";
-			echo "<form class=\"form-horizontal\" method=\"post\"action=\"..\Controlador\ControladorActividades.php\">";
+			echo "<form class=\"form-horizontal\" method=\"post\"action=\"../Controlador/ControladorActividades.php\">";
 			
 			echo "<fieldset><legend>".$idiom['ModificarActividad']."</legend>";
 			
@@ -66,7 +66,7 @@ class actividadModificar{
 			echo "</div></div>";
 
 
-			echo "<input type=\"image\" id=\"ModificarActividad\" name=\"ModificarActividad\" alt=\"Submit\" value=\"ModificarActividad\" onclick=\"ModificarActividad();\" src=\"..\Archivos\añadir.png\" width=\"20\" height=\"20\">";  	
+			echo "<input type=\"image\" id=\"ModificarActividad\" name=\"ModificarActividad\" alt=\"Submit\" value=\"ModificarActividad\" onclick=\"ModificarActividad();\" src=\"../Archivos/añadir.png\" width=\"20\" height=\"20\">";  	
 			
 
 ?>

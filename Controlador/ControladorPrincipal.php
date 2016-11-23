@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include '../Vistas/VistapanelPrincipal.php';
 include '../Idiomas/idiomas.php';
@@ -8,7 +8,7 @@ session_start();
 
 		//viene desde el vinculo de la imagen de la bandera
 		if (isset($_REQUEST['idiomas']))
-		{  			
+		{
 				 $idiom=new idiomas();
 				 $_SESSION['idioma']=$_REQUEST['idiomas'];
 				 $menu=new panel();
@@ -27,29 +27,30 @@ session_start();
  				if($resultado==true){
  				$_SESSION['usuario']=$user;
  				$idiom=new idiomas();
- 				$menus=new panel(); 
+ 				$menus=new panel();
  				$menus->constructor($idiom);
  			}if($resultado1==true){
  				$_SESSION['MONITOR']=$user;
  				$idiom=new idiomas();
- 				$menus=new panel(); 
+ 				$menus=new panel();
  				$menus->constructor($idiom);
  			}
+
  			
- 			/*if(!isset($_SESSION['usuario']))
+			if(!isset($_SESSION['usuario']))
  			{
  			 echo "<script> window.location=\".././index.php\"</script>";
- 			}*/
- 			
+ 			}
+
  		}
- 	//viene de acceder del boton menu principal 
+ 	//viene de acceder del boton menu principal
  	 	if(isset($_REQUEST['principal']))
  	 		{
  	 			$idiom=new idiomas();
  	 			$menus=new panel();
  				$menus->constructor($idiom);
 			}
-			//viene de la imagen de la puerta para salir 
+			//viene de la imagen de la puerta para salir
 			if(isset($_REQUEST['salir'])){
 				session_destroy();
 				echo "<script> window.location=\".././index.php\"</script>";
@@ -65,5 +66,5 @@ session_start();
  				$menus=new panel();
  				$menus->constructor($idiom);
 				}
-	
+
 ?>

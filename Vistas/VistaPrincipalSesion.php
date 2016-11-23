@@ -29,9 +29,9 @@
             	document.getElementById("eliminar").submit();
             }
    </script>
-   <form name="formularioalta"  class="form-horizontal" action="..\Controlador\ControladorSesiones.php" method="post" >
+   <form name="formularioalta"  class="form-horizontal" action="../Controlador/ControladorSesiones.php" method="post" >
 			<fieldset>
-			<input type="image" id="alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();" src="..\Archivos\añadir.png" width="20" height="20"></input>
+			<input type="image" id="alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();" src="../Archivos/añadir.png" width="20" height="20"></input>
 			</fieldset>
 			</form>
 
@@ -42,11 +42,11 @@
 			echo "<div class=\"container well\">";
  			echo "<div class=\"row\">";
 			echo "<div class=\"col-xs-12\">";
-			echo "<form class=\"form-horizontal\" method=\"post\" action=\"..\Controlador\ControladorSesiones.php\">";
+			echo "<form class=\"form-horizontal\" method=\"post\" action=\"../Controlador/ControladorSesiones.php\">";
 			echo "<fieldset><legend>".$idiom['Sesion']."</legend>";
-			echo "<input type=image id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"..\Archivos\lapiz.png\" width=\"30\"  height=\"30\" ></input>";
+			echo "<input type=image id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"../Archivos/lapiz.png\" width=\"30\"  height=\"30\" ></input>";
 			echo "<input type=hidden id=sesion name=sesion value=".$form[$numar]["Sesion"].">";
-			echo "<input type=image id=\"eliminar\" name=\"Eliminar\" value=\"Eliminar\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"..\Archivos\\eliminar.png\" width=\"30\"  height=\"30\" >";
+			echo "<input type=image id=\"eliminar\" name=\"Eliminar\" value=\"Eliminar\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"../Archivos//eliminar.png\" width=\"30\"  height=\"30\" >";
 			echo"<br>";
 			echo $idiom['Monitor'].":".$form[$numar]["nombre"];
 			echo "<br>";

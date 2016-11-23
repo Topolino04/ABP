@@ -29,7 +29,7 @@ class monitorAlta{
 			echo "<div class=\"container well\">";
  			echo "<div class=\"row\">"; 
 			echo "<div class=\"col-xs-12\">";
-			echo "<form class=\"form-horizontal\" method=\"post\"action=\"..\Controlador\ControladorMonitor.php\">";
+			echo "<form class=\"form-horizontal\" method=\"post\"action=\"../Controlador/ControladorMonitor.php\">";
 			echo "<fieldset><legend>".$idiom['Datosmonitor']."</legend>";
 			
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"nombre\"id =\"nombre\"> ".$idiom['Nombre'].":</label>";
@@ -79,7 +79,7 @@ class monitorAlta{
 			echo "<"."input"." "."class=\"form-control\""."type=Password required id=Password name=Password>"; 
 			echo "</div></div>";
 
-			echo "<input type=\"image\" id=\"altaMonitor\" name=\"altaMonitor\" alt=\"Submit\" value=\"altaMonitor\" onclick=\"enviaraltaMonitor();\" src=\"..\Archivos\añadir.png\" width=\"20\" height=\"20\">";
+			echo "<input type=\"image\" id=\"altaMonitor\" name=\"altaMonitor\" alt=\"Submit\" value=\"altaMonitor\" onclick=\"enviaraltaMonitor();\" src=\"../Archivos/añadir.png\" width=\"20\" height=\"20\">";
 
 ?>
 

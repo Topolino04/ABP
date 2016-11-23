@@ -26,7 +26,7 @@ class actividadAlta{
     		echo "<div class=\"container well\">";
  			echo "<div class=\"row\">"; 
 			echo "<div class=\"col-xs-12\">";
-			echo "<form class=\"form-horizontal\" id=formulario method=\"post\"action=\"..\Controlador\ControladorActividades.php\">";
+			echo "<form class=\"form-horizontal\" id=formulario method=\"post\"action=\"../Controlador/ControladorActividades.php\">";
 			
 			echo "<fieldset><legend>".$idiom['AltaSesion']."</legend>";
 			
@@ -52,7 +52,7 @@ class actividadAlta{
 			
 
 
-			echo "<input type=\"image\" id=\"altaActividad\" name=\"altaActividad\" alt=\"Submit\" value=\"altaActividad\" onclick=\"enviarAltaActividad();\" src=\"..\Archivos\añadir.png\" width=\"20\" height=\"20\">";  	
+			echo "<input type=\"image\" id=\"altaActividad\" name=\"altaActividad\" alt=\"Submit\" value=\"altaActividad\" onclick=\"enviarAltaActividad();\" src=\"../Archivos/añadir.png\" width=\"20\" height=\"20\">";  	
 			
 
 ?>

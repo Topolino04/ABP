@@ -1,13 +1,13 @@
 
-<?php 
+<?php
 include ("Idiomas/idiomas.php");
 include("Vistas/VistapanelPrincipal.php");
 
 session_start();
 if(isset($_SESSION['usuario']))
 {
-	
-	header("location:Controlador\ControladorPrincipal.php?acceso=acceso");
+
+	header("location:Controlador/ControladorPrincipal.php?acceso=acceso");
 
 }else {
 
@@ -19,7 +19,7 @@ if(isset($_SESSION['usuario']))
 	<title>Login</title>
 
 	<style>
-	
+
 	body{
 
 		padding-top:40px;
@@ -49,7 +49,7 @@ if(isset($_SESSION['usuario']))
 
 
 
-	
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 </head>
@@ -57,16 +57,16 @@ if(isset($_SESSION['usuario']))
 <body>
 
 
-<div class="container well" id="sha"> 
+<div class="container well" id="sha">
 
 	<div class="row">
- 		<div class="col-xs-12"> 
-			<img src="Archivos\avatar.png" class="img-responsive" id="avatar">
+ 		<div class="col-xs-12">
+			<img src="Archivos/avatar.png" class="img-responsive" id="avatar">
  		</div>
 	</div>
 		<form class="login" method="post" action="Controlador/ControladorPrincipal.php">
-		
-		<div class="form-group"> 
+
+		<div class="form-group">
 			<label for="usuario">Usuario:</label>
 			<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Introduzca Usuario" required autofocus>
 		</div>
@@ -77,11 +77,11 @@ if(isset($_SESSION['usuario']))
 		</div>
 		<div class="checkbox">
 
-		
+
 		<input type="submit" class="btn btn-primary" name="login"  value="Entrar"></input>
 		</form>
 
-		
+
  </div>
 
 <script src="js/jquery-3.1.1.min.js"></script>
@@ -89,6 +89,6 @@ if(isset($_SESSION['usuario']))
 
 </body>
 </html>
-<?php 
+<?php
 }
 ?>

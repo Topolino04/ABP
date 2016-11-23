@@ -1,10 +1,10 @@
 
-<?php 
+<?php
 
 class cabecera{
 
-    function crear($idioma){ 
-        
+    function crear($idioma){
+
 
 ?>
 <!DOCTYPE html>
@@ -46,15 +46,15 @@ class cabecera{
     <style>
     #col{
     margin-left: 400px;
-    } 
-    </style>      
+    }
+    </style>
     <!-- jQuery -->
     <script src=".././js/jquery.js"></script>
-    
+
     <script src=".././js/jquery-3.1.1.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src=".././js/bootstrap.min.js"></script>
-    
+
     <!-- Morris Charts JavaScript -->
     <script src=".././js/plugins/morris/raphael.min.js"></script>
     <script src=".././js/plugins/morris/morris.min.js"></script>
@@ -63,13 +63,13 @@ class cabecera{
     <script type="text/javascript">
 
         $(document).ready(function (){
-                
+
                 $('#example1').datepicker({
 
                     format: "yyyy-mm-dd"
-                });  
+                });
             });
-       
+
     </script>
 </head>
 <body style="background-color: white">
@@ -85,22 +85,22 @@ class cabecera{
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="..\Controlador\ControladorPrincipal.php?principal"><?php echo $idioma['Menu']; ?></a>
+                <a class="navbar-brand" href="../Controlador/ControladorPrincipal.php?principal"><?php echo $idioma['Menu']; ?></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
-            
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
                         <li>
-                            <a href="ControladorPrincipal.php?idiomas=gallego"><?php echo $idioma['Gallego']; ?><input type="image" align="right" src="..\Archivos\galicia.png" height="30" width="30"></a>
+                            <a href="ControladorPrincipal.php?idiomas=gallego"><?php echo $idioma['Gallego']; ?><input type="image" align="right" src="../Archivos/galicia.png" height="30" width="30"></a>
                         </li>
                         <li>
-                            <a href="ControladorPrincipal.php?idiomas=español"><?php echo $idioma['Español']; ?><input type="image" align="right" src="..\Archivos\españa.gif" height="30" width="30"></a>
+                            <a href="ControladorPrincipal.php?idiomas=español"><?php echo $idioma['Español']; ?><input type="image" align="right" src="../Archivos/españa.gif" height="30" width="30"></a>
                         </li>
                         <li>
-                            <a href="ControladorPrincipal.php?idiomas=ingles"><?php echo $idioma['Ingles']; ?><input type="image" align="right" src="..\Archivos\ingles.png" height="30" width="30"></a>
+                            <a href="ControladorPrincipal.php?idiomas=ingles"><?php echo $idioma['Ingles']; ?><input type="image" align="right" src="../Archivos/ingles.png" height="30" width="30"></a>
                         </li>
                         <li class="divider"></li>
                     </ul>
@@ -111,7 +111,7 @@ class cabecera{
                     <ul class="dropdown-menu">
                         <li>
 
-                         <?php 
+                         <?php
 
                          if (isset ($_SESSION['usuario'])) echo "<a href=\"#\"><i class=\"fa fa-fw fa-user\"></i>".$_SESSION['usuario']."</a>"; ?>
                         </li>
@@ -125,7 +125,6 @@ class cabecera{
                     </ul>
                 </li>
             </ul>
-            <?php 
+            <?php
  }} ?>
             <!-- /.navbar-collapse -->
-     
