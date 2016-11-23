@@ -19,7 +19,8 @@ function __construct($id_Tabla,$nombre,$arrayE = null){
 
 //Metodo (invocable estático) que conecta contra la BD y la tabla TABLAS
 function ConectarBD(){
-    $this->mysqli = new mysqli('localhost', 'root', 'iu','Gimnasio_BD');
+	include "../DataBase/datos_BD.php";
+    $this->mysqli = new mysqli($host,$user,$pass,$name);
 	if ($this->mysqli->connect_errno) {
 		echo "Fallo al conectar a MySQL: (" . $this->mysqli->connect_errno . ") " . $this->mysqli->connect_error;
 	}

@@ -23,11 +23,8 @@ function contructor(){
 }
 function conexionBD()
 		{
-				$host="127.0.0.1";
-				$user="root";
-				$pw ="";
-				$db="gimnasio_bd";
-				$mysqli=mysqli_connect("127.0.0.1","root","iu","Gimnasio_BD");
+                include "../DataBase/datos_BD.php";
+                $mysqli=mysqli_connect($host,$user,$pass,$name);
 				if(!$mysqli){
 
 					echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
@@ -35,7 +32,7 @@ function conexionBD()
     				echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
     				exit;
 				}
-				
+
 			return $mysqli;
 		 }
 
@@ -55,7 +52,7 @@ function conexionBD()
 				 $hora=null;
 				 $lugar=null;
 				 $plazas=null;
-				 $dificultad=null;			
+				 $dificultad=null;
 				 $id_actividad=null;
 				 $descripcion=null;
 		$this->conexionBD();
@@ -75,27 +72,27 @@ function conexionBD()
 				$filas[] = $fila;
 			}
 			foreach($filas as $fila)
-			{ 
+			{
 				 $id_actividad=$fila['id_Actividad'];
 				 $nombre=$fila['Nombre'];
 				 $duracion=$fila['Duracion'];
 				 $hora=$fila['Hora'];
 				 $lugar=$fila['Lugar'];
 				 $plazas=$fila['Plazas'];
-				 $dificultad=$fila['Dificultad'];				 
+				 $dificultad=$fila['Dificultad'];
 				 $descripcion=$fila['Descripcion'];
 				fwrite($file,"array(\"nombre\"=>'$nombre',\"duracion\"=>'$duracion',
 					\"hora\"=>'$hora',\"lugar\"=>'$lugar',
 					\"plazas\"=>'$plazas',\"dificultad\"=>'$dificultad',
 					\"id_actividad\"=>'$id_actividad',\"descripcion\"=>'$descripcion')," . PHP_EOL);
-			
+
 		 }
 		}
 				 fwrite($file,");return \$form;}}?>". PHP_EOL);
 				 fclose($file);
 				 $resultado->free();
 				 $mysqli->close();
-	
+
 	}
 
 
@@ -107,12 +104,12 @@ function altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$de
 	if($mysqli->query("INSERT INTO `Actividad`(`Nombre`, `Duracion`, `Hora`, `Lugar`, `Plazas`, `Dificultad`, `Descripcion`)
 		VALUES
 		('$nombreAct','$duracion','$hora','$lugar','$plazas','$dificultad','$descripcion')")==TRUE)
-	{	
+	{
 	?>
 		<script>
 		alert("Insercción Realizada con Exito");
 		</script>
-		<?php 
+		<?php
 		}else {
 		?>
 		<script>
@@ -120,7 +117,7 @@ function altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$de
 		</script>
 	<?php }
 		$mysqli->close();
-	
+
 }
 
  function eliminarActividad($id_actividad){
@@ -133,7 +130,7 @@ function altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$de
 		<script>
 		alert("Eliminado con Exito");
 		</script>
-		<?php 
+		<?php
  	}else {
 		?>
 		<script>
@@ -146,13 +143,13 @@ function altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$de
 
  	$mysqli=$this->conexionBD();
     $query= "UPDATE `Actividad` SET `Nombre`='$nombreAct',`Duracion`='$duracion',`Hora`='$hora',`Lugar`='$lugar',`Plazas`='$plazas',`Dificultad`='$dificultad',`Descripcion`='$descripcion' WHERE `id_Actividad`='$id'";
-		
+
 	if($mysqli->query($query)==TRUE){
 		?>
 		<script>
-		alert("Modificado con Exito");	
+		alert("Modificado con Exito");
 		</script>
-		<?php 
+		<?php
 	}else {
 		?>
 		<script>

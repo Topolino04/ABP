@@ -30,8 +30,8 @@ function __construct($id_Ejercicio,$tipo,$nombre,$tiempo,$repeticiones,$peso,$se
 
 //Metodo (invocable estático) que conecta contra la BD y el ejercicio EJERCICIOS
 function ConectarBD(){
-
-	$this->mysqli = new mysqli('localhost', 'root', 'iu','Gimnasio_BD');
+	include "../DataBase/datos_BD.php";
+	$this->mysqli = new mysqli($host,$user,$pass,$name);
 	if ($this->mysqli->connect_errno) {
 		echo "Fallo al conectar a MySQL: (" . $this->mysqli->connect_errno . ") " . $this->mysqli->connect_error;
 	}
