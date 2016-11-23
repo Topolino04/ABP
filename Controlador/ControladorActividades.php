@@ -70,8 +70,7 @@
 					$vista=new actividadvista();
 					$vista->crear($form,$idiom);
 			}
-			if(isset($_POST['ModificarActividad']))
-			{
+			if(isset($_POST['ModificarActividad'])){
 					$idiom=new idiomas();
 					$nombreAct=$_POST['nombre'];
 					$duracion=$_POST['duracion'];
