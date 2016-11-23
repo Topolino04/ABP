@@ -33,7 +33,7 @@ function ConectarBD(){
 function Insertar(){
     $this->ConectarBD();
     if ($this->nombre <> '' ){
-		$sql = "INSERT INTO Tabla (Nombre) VALUES ('".$this->nombre."')";
+		$sql = "INSERT INTO Tabla (Nombre) VALUES ('{$this->nombre}')";
 		$this->mysqli->query($sql);
 		return 'Inserción realizada con éxito'; //operacion de insertado correcta
     }
@@ -97,14 +97,13 @@ function Modificar(){
 			return "Se ha producido un error en la modificación"; // sustituir por un try
 		}
 		else{
-			$sql = 	"DELETE FROM Tabla_contiene_Ejercicios WHERE Tabla_id_Tabla=".$this->id_Tabla."; ";
+			$sql = 	"DELETE FROM Tabla_contiene_Ejercicios WHERE Tabla_id_Tabla= {$this->id_Tabla}; ";
 			if(sizeof($this->ejercicios)>1)
 				$sql = $sql."INSERT INTO Tabla_contiene_Ejercicios VALUES ";
 			for($i=0;$i<count($this->ejercicios)-1;$i++)
-				$sql = $sql."(".$this->id_Tabla.",".$this->ejercicios[$i]."),";
+				$sql = $sql."( {$this->id_Tabla} , {$this->ejercicios[$i]}),";
 			$sql = rtrim($sql,',');
 			$sql = $sql.";";
-			echo $sql."<br>";
 			if (!$this->mysqli->multi_query($sql)){
 				return "Se ha producido un error en la modificación ejercicios";
 			}
@@ -116,10 +115,8 @@ function Modificar(){
 }
 function ListarEjercicios(){
 	$this->ConectarBD();
-	if($result = $this->mysqli->prepare("SELECT * FROM Tabla_contiene_Ejercicios, Ejercicio WHERE Ejercicio_id_Ejercicio = id_Ejercicio AND Tabla_id_Tabla = ?")){
-		$result->bind_param("i",$this->id_Tabla);
-		$result->execute();
-		$result = $result->get_result();
+	$sql ="SELECT * FROM Tabla_contiene_Ejercicios, Ejercicio WHERE Ejercicio_id_Ejercicio = id_Ejercicio AND Tabla_id_Tabla = {$this->id_Tabla}";
+	if($result = $this->mysqli->query($sql)){
 		if($result->num_rows <= 0){
 			$result = "Tabla vacia";
 		}
@@ -129,19 +126,19 @@ function ListarEjercicios(){
 	}
 	return $result;
 }
+
+
 function ListarEjerciciosConCheck(){
 	$this->ConectarBD();
-	if($result = $this->mysqli->prepare("	SELECT Ejercicio.*, true FROM Tabla_contiene_Ejercicios, Ejercicio WHERE Ejercicio_id_Ejercicio = id_Ejercicio AND Tabla_id_Tabla = ?
+	$sql ="	SELECT Ejercicio.*, true FROM Tabla_contiene_Ejercicios, Ejercicio WHERE Ejercicio_id_Ejercicio = id_Ejercicio AND Tabla_id_Tabla = {$this->id_Tabla}
 											UNION
 											SELECT *, false
 											FROM Ejercicio
 											WHERE id_Ejercicio not in (	SELECT id_Ejercicio
 																		FROM Tabla_contiene_Ejercicios, Ejercicio
-																		WHERE Ejercicio_id_Ejercicio = id_Ejercicio AND Tabla_id_Tabla = ?)")){
-		$result->bind_param("ii",$this->id_Tabla,$this->id_Tabla);
-		$result->execute();
-		var_dump($result);
-		$result = $result->get_result();
+																		WHERE Ejercicio_id_Ejercicio = id_Ejercicio AND Tabla_id_Tabla = {$this->id_Tabla})";
+	if($result = $this->mysqli->query($sql)){
+
 		if($result->num_rows <= 0){
 			$result = "Tabla vacia";
 		}

@@ -15,6 +15,8 @@ function get_data_form(){
 	$nombre = $_REQUEST['Nombre'];
 	if (isset($_REQUEST["check"])) {
 		$ejercicios = $_REQUEST["check"];
+	}else{
+		$ejercicios = null;
 	}
 	$tabla = new TABLA_Modelo($id_Tabla,$nombre,$ejercicios);
 	return $tabla;
