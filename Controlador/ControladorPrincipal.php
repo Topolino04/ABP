@@ -4,6 +4,7 @@ include '../Vistas/VistapanelPrincipal.php';
 include '../Idiomas/idiomas.php';
 include "../Modelos/DeportistasModelo.php";
 include "../Modelos/MonitorModelo.php";
+include "../datos_BD.php";
 session_start();
 
 		//viene desde el vinculo de la imagen de la bandera
@@ -36,7 +37,7 @@ session_start();
  				$menus->constructor($idiom);
  			}
 
- 			
+
 			if(!isset($_SESSION['usuario']))
  			{
  			 echo "<script> window.location=\".././index.php\"</script>";

@@ -5,6 +5,7 @@
 	include("../Idiomas/idiomas.php");
 	include("../Vistas/AltaActividad.php");
 	include("../Vistas/ModificarActividad.php");
+	include("../datos_BD.php");
 	session_start();
 
 			if(isset($_REQUEST['actividades']))
@@ -25,11 +26,11 @@
 			{
 				$idiom=new idiomas();
 				$clase=new actividadAlta();
-				$clase->crear($idiom);	
+				$clase->crear($idiom);
 			}
 
 			if(isset($_POST['altaActividad'])){
-				
+
 					$idiom=new idiomas();
 					$nombreAct=$_POST['nombre'];
 					$duracion=$_POST['duracion'];
@@ -37,7 +38,7 @@
 					$lugar=$_POST['lugar'];
 					$plazas=$_POST['plazas'];
 					$dificultad=$_POST['dificultad'];
-							
+
 					$descripcion=$_POST['descripcion'];
 					$model=new Actividad();
 					$model->altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion);
@@ -77,7 +78,7 @@
 					$hora=$_POST['hora'];
 					$lugar=$_POST['lugar'];
 					$plazas=$_POST['plazas'];
-					$dificultad=$_POST['dificultad'];							
+					$dificultad=$_POST['dificultad'];
 					$descripcion=$_POST['descripcion'];
 					$id=$_POST['id'];
 					$model=new Actividad();

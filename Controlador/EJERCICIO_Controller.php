@@ -8,6 +8,7 @@ include '../Vistas/EJERCICIO_Modificar_Vista.php';
 include '../Vistas/EJERCICIO_Borrar_Vista.php';
 include '../Vistas/Mensaje_Vista.php';
 include '../Functions/LibraryFunctions.php';
+include("../datos_BD.php");
 
 function get_data_form(){
 	$id_Ejercicio = $_REQUEST['id_Ejercicio'];

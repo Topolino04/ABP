@@ -1,17 +1,13 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "iu";
-
 // Create connection
-$conn = new mysqli($servername, $username, $password);
+$conn = new mysqli($host, $user, $pass;
 // Check connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 // Create database
-$sql = "DROP DATABASE Gimnasio_BD";
+$sql = "DROP DATABASE ." $name;
 $conn->query($sql);
 $sql = "CREATE DATABASE Gimnasio_BD";
 if ($conn->query($sql) === TRUE) {

@@ -1,4 +1,4 @@
-<?php 
+<?php
 class Monitor{
 
 private $nombre;
@@ -28,14 +28,8 @@ function contructor(){
  $fechaNac=null;
 
  }
-function conexionBD()
-		{
-				$host="127.0.0.1";
-				$user="root";
-				$pw ="";
-				$db="Gimnasio_BD";
-				//$mysqli=new mysqli_connect($host,$user,$pw,$db);
-				$mysqli=mysqli_connect("127.0.0.1","root","iu","Gimnasio_BD");
+function conexionBD(){
+				$mysqli=mysqli_connect($host, $user , $pass, $name);
 				if(!$mysqli){
 					echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
     				echo "error de depuración: " . mysqli_connect_errno() . PHP_EOL;
@@ -68,7 +62,7 @@ function conexionBD()
 				 	fwrite($file,"\$form=array(" . PHP_EOL);
 		$mysqli=$this->conexionBD();
 		$resultado=$mysqli->query("SELECT * FROM `Entrenador`");
-		if($resultado!=null){ 
+		if($resultado!=null){
 		if(mysqli_num_rows($resultado)){
 		while($fila = $resultado->fetch_array())
 			{
@@ -88,7 +82,7 @@ function conexionBD()
 					\"fecha\"=>'$fechaNac',
 					\"apellido2\"=>'$apellido2',\"dni\"=>'$dni',\"tipo\"=>'$tipo',
 					\"usuario\"=>'$usuario',
-					\"password\"=>'$password',\"telefono\"=>'$telefono',)," . PHP_EOL);	
+					\"password\"=>'$password',\"telefono\"=>'$telefono',)," . PHP_EOL);
 			 }
 		}
 		}
@@ -103,7 +97,7 @@ function conexionBD()
 function altaMonitor($nombre,$dni,$fecha,$email,$apell1,$usuario,$telefono,$pass,$tipo)
 {
 	$mysqli=$this->conexionBD();
-	
+
 	//$mysqli->query("INSERT INTO `entrenador`(`Nombre`, `Password`, `Tipo`, `Usuario`, ` Apellido_1`, `Apellido_2`, `DNI`, `emailgit`, `FechaNac`, `Telefono`) VALUES ('$nombre','$pass','$tipo','$usuario','$apell','$apell1','$dni','$email','$fecha','$telefono')")or die("no funciona");
 	if ($mysqli->query("INSERT INTO `Entrenador`(`Usuario`, `Password`, `Nombre`, `Apellidos`, `DNI`, `Email`, `FechaNac`, `Telefono`, `Tipo`) VALUES ('$usuario','$pass','$nombre','$apell1','$dni','$email','$fecha','$telefono','$tipo')")==TRUE)
 	{
@@ -111,7 +105,7 @@ function altaMonitor($nombre,$dni,$fecha,$email,$apell1,$usuario,$telefono,$pass
 		<script>
 		alert("Insercción Realizada con Exito");
 		</script>
-		<?php 
+		<?php
 	}else {
 		?>
 		<script>
@@ -130,7 +124,7 @@ function altaMonitor($nombre,$dni,$fecha,$email,$apell1,$usuario,$telefono,$pass
 		<script>
 		alert("Eliminado con Exito");
 		</script>
-		<?php 
+		<?php
 	}else {
 		?>
 		<script>
@@ -144,13 +138,13 @@ function altaMonitor($nombre,$dni,$fecha,$email,$apell1,$usuario,$telefono,$pass
  	$mysqli=$this->conexionBD();
  	$query="UPDATE `Entrenador` SET `Usuario`='$usuario',`Password`='$pass',`Nombre`='$nombre',`Apellidos`='$apell1',`DNI`='$dni',`Email`='$email',`FechaNac`='$fecha',`Telefono`='$telefono',`Tipo`='$tipo' WHERE DNI='$dni'";
  	//$query="UPDATE `entrenador` SET `Tipo`='$tipo',`Nombre`='$nombre',`Apellido_1`='$apell',`Apellido_2`='$apell1',`DNI`='$dni',`Telefono`='$telefono',`Usuario`='$usuario',`Password`='$pass',`emailgit`='$email',`FechaNac`='$fecha' WHERE DNI='$dni'";
- 	
+
  	if($mysqli->query($query)==TRUE){
 		?>
 		<script>
 		alert("Modificado con Exito");
 		</script>
-		<?php 
+		<?php
 	}else {
 		?>
 		<script>

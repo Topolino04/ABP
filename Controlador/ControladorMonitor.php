@@ -1,11 +1,12 @@
-<?php 
+<?php
 
 include("../Idiomas/idiomas.php");
 include("../Modelos/MonitorModelo.php");
 include("../Vistas/VistaPrincipalMonitor.php");
 include("../Vistas/VistaAltaMonitor.php");
 include("../Vistas/VistaModificarMonitor.php");
-	session_start();		
+include("../datos_BD.php");
+	session_start();
 
 
 	if(isset($_REQUEST['monitores']))
@@ -28,7 +29,7 @@ include("../Vistas/VistaModificarMonitor.php");
 				$clase->crear($idiom);
 			}
 			if(isset($_POST['altaMonitor'])){
-				
+
 					$idiom=new idiomas();
 					$nombre=$_POST['Nombre'];
 					$Apellidos=$_POST['Apellidos'];
@@ -52,7 +53,7 @@ include("../Vistas/VistaModificarMonitor.php");
 			}
 			if (isset($_POST['Modificar']))
 			{
-				
+
 				$idiom=new idiomas();
 				$DNI=$_POST['dni'];
 				$modificar=new monitorModificar();

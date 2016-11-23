@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 	include("../Vistas/VistaPrincipalSesion.php");
@@ -6,6 +6,7 @@
 	include("../Idiomas/idiomas.php");
 	include("../Vistas/AltaSesion.php");
 	//include("../Vistas/ModificarSesion.php");
+	include("../datos_BD.php");
 	session_start();
 
 			if(isset($_REQUEST['sesiones']))
@@ -18,7 +19,7 @@
 				$arra=new consultSesiones();
 				$form=$arra->array_consultarSesiones();
 
-				
+
 				$vista=new Sesionvista();
 				$vista->crear($form,$idiom);
 			}
@@ -32,17 +33,17 @@
 				include("../Archivos/ArrayConsultar.php");
 				$arra=new consult();
 				$formdeportistas=$arra->array_consultar();
-				
+
 				$sesion->creararrayMonitor();
 				include("../Archivos/ArrayConsultarMonitor.php");
 				$arra=new consultar();
 				$formmonitores=$arra->array_consultar1();
 				$clase=new actividadAlta();
-				$clase->crear($formdeportistas,$formmonitores,$idiom);	
+				$clase->crear($formdeportistas,$formmonitores,$idiom);
 			}
 
 			if(isset($_POST['altaActividad'])){
-				
+
 					$idiom=new idiomas();
 					$nombreAct=$_POST['nombre'];
 					$duracion=$_POST['duracion'];
@@ -50,7 +51,7 @@
 					$lugar=$_POST['lugar'];
 					$plazas=$_POST['plazas'];
 					$dificultad=$_POST['dificultad'];
-							
+
 					$descripcion=$_POST['descripcion'];
 					$model=new Actividad();
 					$model->altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion);
@@ -64,7 +65,7 @@
 			}
 			if (isset($_POST['Modificar']))
 			{
-				
+
 				$idiom=new idiomas();
 				$id_actividad=$_POST['id_actividad'];
 				$modificar=new actividadModificar();
@@ -91,7 +92,7 @@
 					$hora=$_POST['hora'];
 					$lugar=$_POST['lugar'];
 					$plazas=$_POST['plazas'];
-					$dificultad=$_POST['dificultad'];							
+					$dificultad=$_POST['dificultad'];
 					$descripcion=$_POST['descripcion'];
 					$model=new Actividad();
 					$model->modificarActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion);

@@ -9,6 +9,7 @@ include '../Vistas/TABLA_Borrar_Vista.php';
 include '../Vistas/TABLA_Buscar_Vista.php';
 include '../Vistas/Mensaje_Vista.php';
 include '../Functions/LibraryFunctions.php';
+include("../datos_BD.php");
 
 function get_data_form(){
 	$id_Tabla = $_REQUEST['id_Tabla'];

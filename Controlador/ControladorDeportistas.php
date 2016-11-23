@@ -1,12 +1,13 @@
-<?php 
+<?php
 
 	include("../Vistas/VistaPrincipalDeportista.php");
 	include("../Modelos/DeportistasModelo.php");
 	include("../Idiomas/idiomas.php");
 	include("../Vistas/AltaDeportista.php");
 	include("../Vistas/ModificarDeportista.php");
-	session_start();		
-	
+	include("../datos_BD.php");
+	session_start();
+
 			if(isset($_REQUEST['deportistas']))
 			{
 				$idiom=new idiomas();
@@ -28,7 +29,7 @@
 				$clase->crear($idiom);
 			}
 			if(isset($_REQUEST['altaDeportista'])){
-				
+
 					$idiom=new idiomas();
 					$nombre=$_POST['Nombre'];
 					$apellidos=$_POST['Apellidos'];
@@ -43,7 +44,7 @@
 					$model=new Deportista();
 					$model->altaDeportista($nombre,$dni,$fechaNac,$email,$apellidos,$usuario,$telefono,$password,$tipo);
 					$model->creararrayDeportistas();
-					
+
 					include("../Archivos/ArrayConsultar.php");
 					$arra=new consult();
 					$form=$arra->array_consultar();
@@ -53,7 +54,7 @@
 			}
 			if (isset($_POST['Modificar']))
 			{
-				
+
 				$idiom=new idiomas();
 				$DNI=$_POST['dni'];
 				$modificar=new deportistaModificar();

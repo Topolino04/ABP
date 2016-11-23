@@ -6,13 +6,8 @@ class Sesion{
 function contructor(){
 
 }
-function conexionBD()
-		{
-				$host="127.0.0.1";
-				$user="root";
-				$pw ="";
-				$db="gimnasio_bd";
-				$mysqli=mysqli_connect("127.0.0.1","root","","gimnasio_bd");
+function conexionBD(){
+				$mysqli=mysqli_connect($host, $user , $pass, $name);
 				if(!$mysqli){
 
 					echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
@@ -20,7 +15,7 @@ function conexionBD()
     				echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
     				exit;
 				}
-				
+
 			return $mysqli;
 		 }
 
@@ -40,7 +35,7 @@ function conexionBD()
 				 $hora=null;
 				 $lugar=null;
 				 $plazas=null;
-				 $dificultad=null;			
+				 $dificultad=null;
 				 $id_actividad=null;
 				 $descripcion=null;
 		$this->conexionBD();
@@ -60,24 +55,24 @@ function conexionBD()
 				$filas[] = $fila;
 			}
 			foreach($filas as $fila)
-			{ 
+			{
 				 $entrenador=$fila['Entrenador_id_Usuario'];
 				 $deportista=$fila['Deportista_id_Usuario'];
 				 $Fecha=$fila['Fecha'];
 				 $Comentario=$fila['Comentario'];
 				fwrite($file,"array(\"entrenador\"=>'$entrenador',\"deportista\"=>'$deportista',
 					\"Fecha\"=>'$Fecha',\"Comentario\"=>'$Comentario')," . PHP_EOL);
-			
+
 		 		}
 			}
 				 fwrite($file,");return \$form;}}?>". PHP_EOL);
 				 fclose($file);
 				 $resultado->free();
 				 $mysqli->close();
-	
+
 		}
 
-		
+
 function creararrayDeportistas()
 	{
 				 $nombre=null;
@@ -93,7 +88,7 @@ function creararrayDeportistas()
 				 $fechaNac=null;
 		$this->conexionBD();
 		$file = fopen("../Archivos/ArrayConsultar.php", "w");
-	
+
 		fwrite($file,"<?php class consult { function array_consultar(){". PHP_EOL);
 				 	fwrite($file,"\$form=array(" . PHP_EOL);
 		$mysqli=$this->conexionBD();
@@ -107,10 +102,10 @@ function creararrayDeportistas()
 				$filas[] = $fila;
 			}
 			foreach($filas as $fila)
-			{ 
+			{
 				 $nombre=$fila['Nombre'];
 
-				fwrite($file,"array(\"nombre\"=>'$nombre')," . PHP_EOL);	
+				fwrite($file,"array(\"nombre\"=>'$nombre')," . PHP_EOL);
 
 		}
 		}
@@ -121,7 +116,7 @@ function creararrayDeportistas()
 				 $mysqli->close();
 	}
 
-		
+
 
 		function creararrayMonitor()
 	{
@@ -137,8 +132,8 @@ function creararrayDeportistas()
 			}
 			foreach($filas as $fila)
 			{ 	 $nombre=$fila['Nombre'];
-				 
-				fwrite($file,"array(\"nombre\"=>'$nombre')," . PHP_EOL);	
+
+				fwrite($file,"array(\"nombre\"=>'$nombre')," . PHP_EOL);
 			 }
 		}
 				 fwrite($file,");return \$form;}}?>". PHP_EOL);
@@ -152,12 +147,12 @@ function altaSesion($monitor,$deportista,$fecha,$comentario)
 	$mysqli=$this->conexionBD();
 
 	if($mysqli->query("INSERT INTO `sesion`(`Entrenador_id_Usuario`, `Deportista_id_Usuario`, `Fecha`, `Comentario`) VALUES ('$monitor','$deportista','$fecha','$comentario')")==TRUE)
-	{	
+	{
 	?>
 		<script>
 		alert("Insercción Realizada con Exito");
 		</script>
-		<?php 
+		<?php
 		}else {
 		?>
 		<script>
@@ -165,7 +160,7 @@ function altaSesion($monitor,$deportista,$fecha,$comentario)
 		</script>
 	<?php }
 		$mysqli->close();
-	
+
 }
 
  function eliminarActividad($fecha){
@@ -178,7 +173,7 @@ function altaSesion($monitor,$deportista,$fecha,$comentario)
 		<script>
 		alert("Eliminado con Exito");
 		</script>
-		<?php 
+		<?php
  	}else {
 		?>
 		<script>
@@ -191,13 +186,13 @@ function altaSesion($monitor,$deportista,$fecha,$comentario)
 
  	$mysqli=$this->conexionBD();
     $query= "UPDATE `sesion` SET `Entrenador_id_Usuario`='$monitor',`Deportista_id_Usuario`='$deportista',`Fecha`='$fecha',`Comentario`='$comentario' WHERE `Fecha`='$fecha'";
-		
+
 	if($mysqli->query($query)==TRUE){
 		?>
 		<script>
-		alert("Modificado con Exito");	
+		alert("Modificado con Exito");
 		</script>
-		<?php 
+		<?php
 	}else {
 		?>
 		<script>
