@@ -76,8 +76,7 @@
 
 
 			}
-			if(isset($_POST['ModificarDeportista']))
-			{
+			if(isset($_POST['ModificarDeportista'])){
 					$idiom=new idiomas();
 					$nombre=$_POST['Nombre'];
 					$apellidos=$_POST['Apellidos'];
@@ -97,8 +96,5 @@
 					$form=$arra->array_consultar();
 					$vista=new deportistavista();
 					$vista->crear($form,$idiom);
-
 			}
-
-
 ?>
