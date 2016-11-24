@@ -1,5 +1,5 @@
 <?php
-include "datos_BD";
+include "datos_BD.php";
 // Create connection
 $conn = new mysqli($host, $user, $pass);
 // Check connection
@@ -8,10 +8,12 @@ if ($conn->connect_error) {
 }
 
 // Create database
-$sql = "DROP DATABASE".$name;
+$sql = "DROP DATABASE IF EXISTS ".$name;
+//echo $sql."<br>";
 $conn->query($sql);
-$sql = "CREATE DATABASE Gimnasio_BD";
+$sql = "CREATE DATABASE ".$name;
 if ($conn->query($sql) === TRUE) {
+    //echo $sql."<br>";
     echo "Database created successfully";
     ejecutarSQL("Script_BD.sql",$conn);
 } else {
@@ -24,6 +26,7 @@ function ejecutarSQL($_rutaArchivo, $_conexionDB){
     foreach($queries as $query){
         if($query != ''){
             $_conexionDB->query($query); // Asumo un objeto conexión que ejecuta consultas
+            //echo $query."<br>";
         }
     }
 }

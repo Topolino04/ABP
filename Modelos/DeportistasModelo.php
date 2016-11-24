@@ -47,11 +47,9 @@ function conexionBD()
 		$mysqli=$this->conexionBD();
 		$query="SELECT * FROM `Deportista` WHERE `Usuario`='$user' AND `Password`='$pass' ";
 		$resultado=$mysqli->query($query);
-
+        echo mysqli_num_rows($resultado);
 		if(mysqli_num_rows($resultado)){
-
-		return TRUE;
-
+		          return TRUE;
 		}else{
 			return FALSE;
 		}
