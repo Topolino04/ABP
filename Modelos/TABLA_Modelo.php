@@ -95,9 +95,9 @@ function Modificar(){
     $sql = "SELECT * from Tabla where id_Tabla = '".$this->id_Tabla."'";
     $result = $this->mysqli->query($sql);
     if ($result->num_rows == 1){
-		$consulta = $this->mysqli->prepare("UPDATE Tabla SET id_Tabla=?, Nombre=? WHERE id_Tabla=?");
-		echo $sql;
-	    if (!$consulta->execute()){
+		$sql ="UPDATE Tabla SET id_Tabla={$this->id_Tabla}, Nombre='{$this->nombre}' WHERE id_Tabla={$this->id_Tabla}; ";
+	   	echo $sql;
+	     if (!$this->mysqli->query($sql)){
 			return "Se ha producido un error en la modificación"; // sustituir por un try
 		}
 		else{
@@ -105,16 +105,16 @@ function Modificar(){
 
 			if(sizeof($this->ejercicios)>1)
 				$sql = $sql."INSERT INTO Tabla_contiene_Ejercicios VALUES ";
-			for($i=0;$i<count($this->ejercicios)-1;$i++)
+			for($i=0;$i<count($this->ejercicios);$i++)
 				$sql = $sql."( {$this->id_Tabla} , {$this->ejercicios[$i]}),";
 			$sql = rtrim($sql,',');
 			$sql = $sql.";";
-			$sql = $sql."DELETE FROM Tabla_Deportista WHERE Tabla_id_Tabla= {$this->id_Tabla}; ";
 
+			$sql = $sql."DELETE FROM Tabla_Deportista WHERE Tabla_id_Tabla= {$this->id_Tabla}; ";
             if(sizeof($this->usuarios)>1)
-                $sql = $sql."INSERT INTO Tabla_Deportista VALUES ";
-            for($i=0;$i<count($this->usuarios)-1;$i++)
-                $sql = $sql."( {$this->id_Tabla} , {$this->usuarios[$i]}),";
+                $sql = $sql."INSERT INTO Tabla_Deportista (Tabla_id_Tabla,Deportista_id_Usuario)VALUES ";
+            for($i=0;$i<count($this->usuarios);$i++)
+                $sql = $sql."( {$this->id_Tabla} , '{$this->usuarios[$i]}'),";
             $sql = rtrim($sql,',');
             $sql = $sql.";";
 			echo $sql;
