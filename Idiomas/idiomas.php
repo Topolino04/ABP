@@ -2,9 +2,13 @@
 class idiomas{
 	function español(){
 $arrays=array(
-	"Usuario"=>"Usuario" ,
+	"Usuario"=>"Usuario",
+	"Actividad" => "Actividad",
+	"Asistencia" => "Asistencia",
 	"Datosmonitor"=>"Datos del monitor",
 	"Datosdeportista"=>"Datos del Deportista",
+	"DatosReserva" => "Datos de la reserva",
+	"DatosSesion"=> "Datos de la sesión",
 	"Password"=>"Contraseña",
 	"FechaNac"=>"Fecha  de Nacimiento",
 	"Configuracion"=>"Configuracion",
@@ -24,6 +28,9 @@ $arrays=array(
 	"Notificacion1"=>"Notificacion",
 	"Menu"=>"Menu Principal",
 	"AltaSesion"=>"Alta Sesion",
+	"ModificarSesion" => "Modificar Session",
+	"AltaReserva" => "Alta Reserva",	
+	"ModificarReserva" => "Modificar reserva",
 	"GestionDeportista"=>"Gestion de Deportistas",
 	"GestionMonitores"=>"Gestion de Monitores",
 	"GestionActividades"=>"Gestion de Actividades",
@@ -63,7 +70,31 @@ $arrays=array(
 	"foto"=>"FOTO",
 	"borrartodo"=>"Borrar Todo",
 	"confirmareliminados"=>"¿Esta seguro de que desea eliminar estas notificaciones?",
-	"Tabla"=>"Tabla"
+	"Tabla"=>"Tabla",
+	 //AÑADIDOS SIN TRADUCIR
+	"Ejercicio"=>"Ejercicio",
+	"BorrarEjercicio" => "Borrar Ejercicio",
+    "InsertarEjercicio" => "Insertar Ejercicio",
+    "ModificarEjercicio" => "Modificar Ejercicio",
+    "id_Ejercicio" => "Clave de ejercicio",
+    'Tipo' => "Tipo",
+    'Tiempo'=> "Tiempo",
+    'Repeticiones' => "Repeticiones",
+    'Peso'=>"Peso",
+    'Series' => "Series",
+    "El item no existe" => "El item no existe",
+    "Volver" => "Volver",
+    "El borrado se ha realizado con éxito" =>"El borrado se ha realizado con éxito",
+    "Inserción realizada con éxito" =>"Inserción realizada con éxito",
+    "La modificación se ha realizado con éxito"=>"La modificación se ha realizado con éxito",
+    "id_Tabla" => "Clave de Tabla",
+    "InsertarTabla" => "Insertar Tabla",
+    "ConsultarTabla" => "Consultar Tabla",
+    "ModificarTabla" => "Modificar Tabla",
+    "BorrarTabla" => "Borrar Tabla",
+    "Deportistas" =>"Deportistas",
+    "Se ha producido un error en la modificación" =>"Se ha producido un error en la modificación",
+    //FIN AÑADIDOS
 	);
 
 return $arrays;
@@ -72,11 +103,17 @@ function gallego(){
 
 $arrays=array(
 	"Usuario"=>"Usuario" ,
+	"Actividad" => "Actividade",
+	"Asistencia" => "Asistencia",
 	"Datosmonitor"=>"Datos do monitor",
 	"Datosdeportista"=>"Datos do Deportista",
+	"DatosSesion"=> "Datos da sesión",
+	"DatosReserva" => "Datos da reserva",
 	"Password"=>"Contrasinal",
 	"FechaNac"=>"Data de Nacimiento",
 	"AltaSesion"=>"Alta Sesion",
+	"AltaReserva" => "Alta Reserva",
+	"ModificarReserva" => "Modificar a reserva",
 	"Nombre"=>"Nome",
 	"Apellidos"=>"Apelidos",
 	"Apellido1"=>"Apelido1",
@@ -132,7 +169,9 @@ $arrays=array(
 	"mensaje"=>"Mensaxe",
 	"borrartodo"=>"Borrar Todo",
 	"confirmareliminados"=>"¿Esta seguro de que desexa eliminar estas notificacions?",
-	"Tabla"=>"Tabla"
+	"AltaSesion"=> "Crear sesión",
+	"ModificarSesion" => "Modificar Session",
+	"Tabla"=>"Taboa"
 	);
 
 return $arrays;
@@ -143,9 +182,14 @@ function ingles(){
 
 $arrays=array(
 	"Usuario"=>"User",
+	"Actividad" => "Activity",
+	"Asistencia" => "Asistance",
 	"Password"=>"Password",
 	"Datosmonitor"=>"Coach Data",
+	"DatosReserva" => "Reservation data",
 	"AltaSesion"=>"Insert Session",
+	"Altareserva" => "Add reserve",
+	"ModificarReserva" => "Edit reserve",
 	"Datosdeportista"=>"Athlete data",
 	"FechaNac"=>"Birthdate",
 	"Configuracion"=>"Configuration",
@@ -169,32 +213,24 @@ $arrays=array(
 	"GestionActividades"=>"Activities Management",
 	"GestionNotificaciones"=>"Reports Management ",
 	"GestionSesiones"=>"Session Management",
-	"GestionReservas"=>"Reservs Management ",
+	"GestionReservas"=>"Reserves Management ",
 	"GestionTablas"=>"Tables Management",
 	"GestionEjercicios"=>"Excercises Managemente",
 	"Reset"=>"Rest",
 	"notificacioninsertada"=>"Notification Sent",
 	"salir"=>"Logout",
-	"Altarealizada"=>"Insercion Realizada",
-	"DatosActividad"=>"Datos de la Actividad",
-	"Duracion"=>"Duracion",
-	"Hora"=>"Hora",
-	"Lugar" =>"Lugar",
-	"Plazas"=>"Plazas",
-	"Dificultad"=>"Dificultad",
-	"Fecha"=>"Fecha",
-	"Id_actividad"=>"Id Actividad",
-	"Descripcion"=>"Descripcion",
-	"AltaActividad"=>"Alta Actividad",
-	"ModificarActividad"=>"Modificar Actividad",
+	"Altarealizada"=>"Add succesfull",	
+	"Id_actividad"=>"Id Activity",
+	"Descripcion"=>"Description",
+	"AltaActividad"=>"Add Activity",
+	"ModificarActividad"=>"Edit Activity",
 	"Altaerronea"=>"Rellene los campos necesarios",
 	"DatosActividad"=>"Activities data",
 	"Duracion" => "Lenght",
 	"Hora" => "Time",
 	"Lugar" =>"Place",
 	"Plazas" => "Slots",
-	"Dificultad" => "Difficulty",
-	"Fecha" => "Date",
+	"Dificultad" => "Difficulty",	
 	"Id_actividad"=> "Id Activity",
 	"Descripcion" => "Description",
 	"AltaActividad"=>"Create Activity",
@@ -214,7 +250,10 @@ $arrays=array(
 	"foto"=>"Picture",
 	"borrartodo"=>"Delete All",
 	"confirmareliminados"=>"Are you sure that you want to delete this notifications?",
-	"Tabla"=>"Tabla"
+	"Tabla"=>"Table",
+	"DatosSesion"=> "Session data",
+ 	"AltaSesion"=> "Add Session",
+ 	"ModificarSesion" => "Edit Session"
  	);
 
 return $arrays;

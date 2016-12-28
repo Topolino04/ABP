@@ -29,11 +29,11 @@
 						$deportista=$form[$numarT]["deportista"];
 						$fecha=$form[$numarT]["fecha"];
 						$comentario=$form[$numarT]["comentario"];
-						$sesion->creararrayTabla($tabla);
+						$formejercicios=$sesion->creararrayTabla($tabla);
 						//cargamos el fichero de ejerciciosde la tabla.
-						include("../Archivos/Arrayejerciciosdetabla.php");
-						$caca=new consultararrayejercicio();
-						$formejercicios=$caca->array_consultar14343();
+						//include("../Archivos/Arrayejerciciosdetabla.php");
+						//$caca=new consultararrayejercicio();
+						//$formejercicios=$caca->array_consultar14343();
 						//
 						fwrite($file,"array(\"tabla\"=>'$tabla',\"deportista\"=>'$deportista',\"fecha\"=>'$fecha',\"comentario\"=>'$comentario'," . PHP_EOL);
 
@@ -63,9 +63,12 @@
 
 			if(isset($_POST['Alta']))
 			{
-				$idiom=new idiomas();
-				$sesion=new sesionAlta();
-				$sesion-> crear($idiom);
+				$idiom=new idiomas();			
+				$vista=new sesionAlta();
+				$sesion=new Sesion();
+				$listaDeportistas=$sesion->getDeportistas();
+				$listablas=$sesion->gettablas();
+				$vista->crear($idiom,$listaDeportistas,$listablas);
 				
 			}
 
@@ -82,6 +85,7 @@
 					//echo $tabla;
 					
 					$sesion=new Sesion();
+					
 					$sesion->altaSesion($deportista,$comentario,$tabla);
 					//cargo todo de nuevo
 					$sesion->creararraySesiones();
@@ -129,6 +133,7 @@
 				 include("../Archivos/ArrayConsultartablasyejerciciosdeunasesion.php");
 				 $datos=new consult();
 				 $formfinal=$datos->array_consultar12();
+
 					$vista=new sesionVista();
 					$vista->crear($formfinal,$idiom);
 

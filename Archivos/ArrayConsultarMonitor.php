@@ -1,8 +1,8 @@
 <?php class consult { function array_consultar(){
 $form=array(
 array("nombre"=>'MONITOR1',"email"=>'mario_cafeina@hotmail.com',
-					"fecha"=>'2016-12-03',
-					"apellido2"=>'PACO',"dni"=>'1213131',"tipo"=>'Baile',
+					"fecha"=>'2016-11-11',
+					"apellido2"=>'PACO GIMENEZ',"dni"=>'1213131',"tipo"=>'Baile',
 					"usuario"=>'MONITOR',
-					"password"=>'e0f3e6b4cad7d7514497874839205aa9',"telefono"=>'2147483647',),
+					"password"=>'ff3e179b3cc64393841107ccba0d6e48',"telefono"=>'2147483647',),
 );return $form;}}?>

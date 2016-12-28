@@ -38,6 +38,16 @@ class menulateral{
                       </li>
                     </li>
                      <?php  } ?>
+
+                     <li>
+                        <li>
+
+                        <a href="../Controlador/ControladorReservas.php?reservas" data-toggle="collapse" data-target="#down2"><i class="fa fa-users"></i> <?php echo $idioma['GestionReservas'];?> </a>
+
+                      </li>
+                    </li>
+                        
+                    <li>
                       
                      <li>
                         <li>
@@ -74,6 +84,10 @@ class menulateral{
                           <?php  } ?>
             </div>
               </nav>
+              </li>
+              </ul>
+              
+              
 
 <?php
  }

@@ -119,6 +119,8 @@ CREATE TABLE Ejercicio (
 --
 -- Dumping data for table `Ejercicio`
 --
+ALTER TABLE `Ejercicio`
+  MODIFY `id_Ejercicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 INSERT INTO Ejercicio VALUES (1,'tipo1','nombre1','00:00:01',2,25,3,'Descripcion1');
 INSERT INTO Ejercicio VALUES (2,'tipo1','nombre2','00:00:02',3,20,4,'Descripcion2');
@@ -298,7 +300,7 @@ CREATE TABLE Sesion (
   Fecha datetime NOT NULL,
   Comentario varchar(150) DEFAULT NULL,
   Tabla_id int(11) NOT NULL,
-  PRIMARY KEY (Deportista_id_Usuario,Fecha),
+  PRIMARY KEY (Deportista_id_Usuario,Fecha,Tabla_id),
   KEY fk_Entrenador_has_Deportista_Deportista1_idx (Deportista_id_Usuario),  
   KEY idx_Sesion_Tabla_id (Tabla_id),
   CONSTRAINT fk_Sesion_has_Tabla FOREIGN KEY (Tabla_id) REFERENCES Tabla (id_Tabla) ON DELETE CASCADE ON UPDATE CASCADE,

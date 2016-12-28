@@ -5,6 +5,11 @@ class TABLA_Buscar{
 
 function __construct(){
 	$this->render();
+	include("../Idiomas/idiomas.php");
+    $idioma=new idiomas();
+    include("../Funciones/cargadodedatos.php");
+    $this->idiom=$idiom;
+	$this->idiom=$clases->comprobaridioma(new idiomas());
 }
 
 function render(){

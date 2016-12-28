@@ -8,36 +8,22 @@ private $volver;
 function __construct($string, $volver){
 	$this->string = $string;
 	$this->volver = $volver;
+    include("../Idiomas/idiomas.php");
+    $idioma=new idiomas();
+    include("../Funciones/cargadodedatos.php");
+    $this->idiom=$idiom;
 	$this->render();
 }
 
 function render(){
-?>
-<html>
- <head>
-<meta charset="UTF-8">
-</head>
-<body>
-<div>
-<p>
-<h2>
-<?php
-include '../Locates/Strings_SPANISH.php';
-echo $strings[$this->string];
-?>
-</h2>
-</p>
-<p>
-<h3>
-<?php
-echo '<a href=\'' . $this->volver . "'>" . $strings['Volver'] . " </a>";
-?>
-</h3>
-</p>
+?><br>
+    <div class="container well">
+    <div class="row">
+    <div class="col-xs-12">
 
-</div>
-</body>
-</html>
+    <fieldset><legend> <?=$this->idiom[$this->string]?></legend>
+
+    <a href='<?=$this->volver?>'> <?=$this->idiom['Volver'] ?></a>
 <?php
 } //fin metodo render
 

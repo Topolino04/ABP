@@ -4,6 +4,10 @@ class EJERCICIO_Consultar{
 
 
 function __construct(){
+	include("../Idiomas/idiomas.php");
+    $idioma=new idiomas();
+    include("../Funciones/cargadodedatos.php");
+    $this->idiom=$idiom;
 	$this->render();
 }
 
@@ -46,9 +50,10 @@ function render(){
 	</p>
 
 	</div>
-
+</div>
 <?php
 } //fin metodo render
+
 
 }
 ?>

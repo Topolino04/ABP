@@ -8,12 +8,16 @@ class TABLA_Modelo
 {
 	var $id_Tabla;		// Clave de la tabla
 	var $nombre;	// Nombre de la tabla
+    var $mysqli;
+    var $ejercicios;
+    var $usuarios;
 
 //Constructor de la clase
 //parametros: nombre de tabla
-function __construct($id_Tabla,$nombre,$arrayE = null){
+function __construct($id_Tabla,$nombre,$arrayE = null, $arrayU = null){
 	$this->id_Tabla = $id_Tabla;
 	$this->ejercicios = $arrayE;
+    $this->usuarios = $arrayU;
     $this->nombre = $nombre;  // Nombre de la tabla
 }
 
@@ -92,18 +96,29 @@ function Modificar(){
     $result = $this->mysqli->query($sql);
     if ($result->num_rows == 1){
 		$consulta = $this->mysqli->prepare("UPDATE Tabla SET id_Tabla=?, Nombre=? WHERE id_Tabla=?");
-		$consulta->bind_param('isi',$this->id_Tabla,$this->nombre,$this->id_Tabla);
+		echo $sql;
 	    if (!$consulta->execute()){
 			return "Se ha producido un error en la modificación"; // sustituir por un try
 		}
 		else{
 			$sql = 	"DELETE FROM Tabla_contiene_Ejercicios WHERE Tabla_id_Tabla= {$this->id_Tabla}; ";
+
 			if(sizeof($this->ejercicios)>1)
 				$sql = $sql."INSERT INTO Tabla_contiene_Ejercicios VALUES ";
 			for($i=0;$i<count($this->ejercicios)-1;$i++)
 				$sql = $sql."( {$this->id_Tabla} , {$this->ejercicios[$i]}),";
 			$sql = rtrim($sql,',');
 			$sql = $sql.";";
+			$sql = $sql."DELETE FROM Tabla_Deportista WHERE Tabla_id_Tabla= {$this->id_Tabla}; ";
+
+            if(sizeof($this->usuarios)>1)
+                $sql = $sql."INSERT INTO Tabla_Deportista VALUES ";
+            for($i=0;$i<count($this->usuarios)-1;$i++)
+                $sql = $sql."( {$this->id_Tabla} , {$this->usuarios[$i]}),";
+            $sql = rtrim($sql,',');
+            $sql = $sql.";";
+			echo $sql;
+
 			if (!$this->mysqli->multi_query($sql)){
 				return "Se ha producido un error en la modificación ejercicios";
 			}
@@ -148,6 +163,40 @@ function ListarEjerciciosConCheck(){
 	}
 	return $result;
 }
-}//fin de clase
 
+function ListarUsuarios(){
+    $this->ConectarBD();
+    $sql ="SELECT * FROM Tabla_Deportista, Deportista WHERE Deportista_id_Usuario = DNI AND Tabla_id_Tabla = {$this->id_Tabla}";
+    if($result = $this->mysqli->query($sql)){
+        if($result->num_rows <= 0){
+            $result = "Tabla vacia";
+        }
+    }
+    else {
+        $result = "Error en la consulta";
+    }
+    return $result;
+}
+
+    function ListarUsuariosConCheck(){
+        $this->ConectarBD();
+        $sql ="	SELECT Deportista.*, true FROM Tabla_Deportista, Deportista WHERE Deportista_id_Usuario = DNI AND Tabla_id_Tabla = {$this->id_Tabla}
+											UNION
+											SELECT *, false
+											FROM Deportista
+											WHERE DNI not in (	SELECT DNI
+																		FROM Tabla_Deportista, Deportista
+																		WHERE Deportista_id_Usuario = DNI AND Tabla_id_Tabla = {$this->id_Tabla})";
+        if($result = $this->mysqli->query($sql)){
+            if($result->num_rows <= 0){
+                $result = "Tabla vacia";
+            }
+        }
+        else {
+            $result = "Error en la consulta";
+        }
+        return $result;
+    }
+
+}//fin de clase
 ?>

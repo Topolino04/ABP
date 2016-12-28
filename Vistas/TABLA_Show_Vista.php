@@ -6,82 +6,53 @@ private $datos;
 private $volver;
 
 function __construct($array, $volver){
-	$this->datos = $array;
-	$this->volver = $volver;
-	$this->render();
+    $this->datos = $array;
+    $this->volver = $volver;
+    
+   include("../Idiomas/idiomas.php");
+    $idioma=new idiomas();
+    include("../Funciones/cargadodedatos.php");
+    $this->idiom=$idiom;
+    $this->render();
 }
 
 function render(){
-?>
-<div>
-<p>
-<h2>
-<?php
-	include '../Locates/Strings_SPANISH.php';
-?>
-	<div> <!-- div de muestra de datos.... titulos y datos -->
-<?php
-	$lista = array('id_Tabla','Nombre');
-?>
-	<a href='./TABLA_Controller.php?accion=Buscar'>Buscar</a>
-	<--------->
-	<a href='./TABLA_Controller.php?accion=Insertar'>Insertar</a>
-	<--------->
-	<?php echo $strings['Nombre'] . ' : ' /*. $_SESSION['login'];*/ ?>
-	<--------->
-	<a href='../Functions/Desconectar.php'><?php echo $strings['Cerrar Sesión']; ?></a>
-	<br><br>
-	<table border = 1>
-	<tr>
-<?php
-	foreach($lista as $titulo){
-?>
-		<th>
-<?php
-		echo $strings[$titulo];
-?>
-		</th>
-<?php
-	}
-?>
-	</tr>
-<?php
+    ?><br>
+  <div class="container well">
+        <div class="row">
+            <div class="col-xs-12">
+                <form name="formularioalta"  class="form-horizontal" action="..\Controlador\TABLA_Controller.php" method="post">
+                    <fieldset>
+                        <input type="image" id="alta" name="accion" alt="Submit" value="Insertar" onclick="doSubmit();" src="..\Archivos\añadir.png" width="20" height="20">
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+  </div>
 
-	foreach($this->datos as $datos){
-?>
-	<tr>
-<?php
-		for($i=0;$i<count($lista);$i++){
-?>
-		<td>
-<?php
-			echo $datos[$lista[$i]];
-?>
-		</td>
-<?php
-	}
-?>
-	<td><a href='TABLA_Controller.php?id_Tabla=<?php echo $datos['id_Tabla'].'&accion=Consultar'; ?>'>Consultar</a></td>
-	<td><a href='TABLA_Controller.php?id_Tabla=<?php echo $datos['id_Tabla'].'&accion=Modificar'; ?>'>Modificar</a></td>
-	<td><a href='TABLA_Controller.php?id_Tabla=<?php echo $datos['id_Tabla'].'&accion=Borrar'; ?>'>Borrar</a></td>
-	<tr>
-<?php
-	}
-?>
-	</table>
+    <?php    foreach ($this->datos as $dato){        ?>
+        <div class="container well">
+            <div class="row">
+                <div class="col-xs-12">
+                    <form class="form-horizontal" method="post" action="..\Controlador\TABLA_Controller.php">
+                        <fieldset>
+                            <legend><?=$dato["Nombre"]?></legend>
+                            <input type=hidden id=id_Tabla name=id_Tabla value='<?=$dato["id_Tabla"]?>'>
+                            <input type=image name="accion" value="Consultar" alt ="Submit" src="..\Archivos\lupa.png"      width="30"  height="30" >
+                            <input type=image name="accion" value="Modificar" alt ="Submit" src="..\Archivos\lapiz.png"     width="30"  height="30" >
+                            <input type=image name="accion" value="Borrar"    alt ="Submit" src="..\Archivos\\eliminar.png" width="30"  height="30" >
+                            <br>
+                            <?=$this->idiom['id_Tabla'].":".$dato["id_Tabla"];?>
+                            <br>
+                            <?=$this->idiom['Nombre'].":"." ".$dato["Nombre"];?>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+    include '../plantilla/pie.php';
 
-</div> <!-- fin de div de muestra de datos -->
-<h3>
-<p>
-<?php
-	echo '<a href=\'' . $this->volver . "\'>" . $strings['Volver'] . " </a>";
-?>
-</h3>
-</p>
-
-</div>
-
-<?php
 } //fin metodo render
-
 }

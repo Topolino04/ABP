@@ -5,7 +5,7 @@
 
 class sesionAlta{
 
-	function crear($idioma){
+	function crear($idioma,$listaDeportistas,$listablas){
 
 			include("../Funciones/cargadodedatos.php");
 ?>
@@ -30,15 +30,25 @@ class sesionAlta{
 			echo "<div class=\"input-group col-sm-3\">";
 			echo "<"."select"." "."class=\"form-control\""."required id=deportista name=deportista><option value='0'>Selecciones un deportista</option>";
 				
-				$mysqli = new mysqli('localhost', 'root', '', 'Gimnasio_BD');
+				//$mysqli = new mysqli('localhost', 'root', 'iu', 'Gimnasio_BD');
 											
-	          	$query = $mysqli -> query ("SELECT * FROM Deportista");
+	          	//$query = $mysqli -> query ("SELECT * FROM Deportista");
 												
-	         	 while ($valores = mysqli_fetch_array($query)) {
+
+	         	if($listaDeportistas!=null){ 
+
+							for ($numar =0;$numar<count($listaDeportistas);$numar++)
+							{
+								
+								//echo $formejercicios[$numar]["IdEjercicio"];
+							$dni=$listaDeportistas[$numar]["DNI"];
+							$usuario=$listaDeportistas[$numar]["Usuario"];
+							 echo '<option value="'.$dni.'">'.$usuario.'</option>';
+							}
+						}
 													
-	            echo '<option value="'.$valores[DNI].'">'.$valores[Usuario].'</option>';
+	           
 														
-	          	}
           	echo "</select>";
         
 			echo "</div></div>";
@@ -57,15 +67,19 @@ class sesionAlta{
 			echo "<div class=\"input-group col-sm-3\">";
 			echo "<"."select"." "."class=\"form-control\""."required id=tabla name=tabla><option value='0'>Selecciones una tabla</option>";
 				
-				//$mysqli = new mysqli('localhost', 'root', 'iu', 'Gimnasio_BD');
-											
-	          	$query = $mysqli -> query ("SELECT * FROM Tabla");
-												
-	         	 while ($valores = mysqli_fetch_array($query)) {
-													
-	            echo '<option value="'.$valores[id_Tabla].'">'.$valores[Nombre].'</option>';
+				if($listablas!=null){ 
+
+							for ($numar =0;$numar<count($listablas);$numar++)
+							{
+								
+								//echo $formejercicios[$numar]["IdEjercicio"];
+							$id=$listablas[$numar]["idtabla"];
+							$nombre=$listablas[$numar]["nombre"];
+							 echo '<option value="'.$id.'">'.$nombre.'</option>';
+							}
+						}
 														
-	          	}
+	          	
           	echo "</select>";
         
 			echo "</div></div>";			

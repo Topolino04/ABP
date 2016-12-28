@@ -39,14 +39,13 @@ function conexionBD()
 		$comentario=null;
 		$tabla=null;
 
-		$this->conexionBD();
+		
 
 		$file = fopen("../Archivos/ArrayConsultarSesiones.php", "w");
 
 		fwrite($file,"<?php class consultSesion { function array_consultarSesiones(){". PHP_EOL);
 				 	fwrite($file,"\$form=array(" . PHP_EOL);
-		$mysqli=$this->conexionBD();
-
+		
 
 		$mysqli=$this->conexionBD();
 		$resultado=$mysqli->query("SELECT * FROM `Sesion`");
@@ -74,6 +73,37 @@ function conexionBD()
 				 fclose($file);
 				 $resultado->free();
 				 $mysqli->close();
+
+		}
+
+		function gettablas(){
+
+			$this->conexionBD();
+
+		$form=array();
+				 	
+		$query="SELECT * FROM Tabla";
+		$mysqli=$this->conexionBD();
+		$resultado=$mysqli->query($query);
+
+		if(mysqli_num_rows($resultado)){
+			
+			while($fila = $resultado->fetch_array())
+			{
+				$filas[] = $fila;
+			}
+			foreach($filas as $fila)
+			{
+				 $idtabla=$fila['id_Tabla'];
+				 $nombre=$fila['Nombre'];
+
+				$fila_array=array("idtabla"=>$idtabla,"nombre"=>$nombre);
+				array_push($form,$fila_array);
+			}
+		}			$resultado->free();
+				 $mysqli->close();
+				 return $form;
+
 
 		}
 		function creararraySesionesDeportista($deportista)
@@ -153,44 +183,7 @@ function creararrayTabla($tabla)
 				 return $form;
 				
 	}
-	/*function creararrayTabla($tabla)
-	{
-
-				
-		$this->conexionBD();
-		$mysqli=$this->conexionBD();
-		$a = array( array( ),
-            array( ),
-            array( ),
-            array( ),
-                    // la clave será 0
-          );
-
-$b = array('a', 'b', 'c');
-		$file = fopen("../Archivos/Arrayejerciciosdetabla.php", "w");
-		fwrite($file,"<?php class consultararrayejercicio { function array_consultar14343(){". PHP_EOL);
-				 	fwrite($file,"\$form=array(" . PHP_EOL);
-		$query="SELECT * FROM `Tabla_contiene_ejercicios` WHERE `Tabla_id_Tabla` = '$tabla'";
-		$resultado=$mysqli->query($query);
-		if(mysqli_num_rows($resultado)){
-			//$fila =$resultado->fetch_array(MYSQLI_ASSOC);
-			while($fila = $resultado->fetch_array())
-			{
-				$filas[] = $fila;
-			}
-			foreach($filas as $fila)
-			{
-				 $IdTabla=$fila['Tabla_id_Tabla'];
-				 $IdEjercicio=$fila['Ejercicio_id_Ejercicio'];
-				fwrite($file,"array(\"IdTabla\"=>'$IdTabla',\"IdEjercicio\"=>'$IdEjercicio'),". PHP_EOL);
-			}
-		}	
-		fwrite($file,");return \$form;}}?>". PHP_EOL);
-				 fclose($file);
-				 $resultado->free();
-				 $mysqli->close();
-	}*/
-
+	
 
 
 function creararrayMonitor()
@@ -218,15 +211,37 @@ function creararrayMonitor()
 				 $mysqli->close();
 	}
 
+function getDeportistas(){
+
+		$this->conexionBD();
+		$mysqli=$this->conexionBD();
+		
+		$form=array();
+		$query="SELECT * FROM Deportista";
+		$lista = array();
+		$resultado=$mysqli->query($query);
+		while($fila = $resultado->fetch_array())
+			{
+				$filas[] = $fila;
+			}
+			foreach($filas as $fila)
+			{
+				 $dni=$fila['DNI'];
+				 $usuario=$fila['Usuario'];
+
+				$fila_array=array("DNI"=>$dni,"Usuario"=>$usuario);
+				array_push($form,$fila_array);
+			}
+					 $resultado->free();
+				 $mysqli->close();
+				 return $form;
+  }
+
+
 function altaSesion($deportista,$comentario,$tabla)
 {
-	$mysqli=$this->conexionBD();
-
+	$mysqli=$this->conexionBD();	
 	
-	/*$dniEntrenador = "SELECT 'DNI' FROM 'Entrenador' WHERE Usuario='$entrenador'";
-	$dniDeportista = "SELECT 'DNI' FROM 'Deportista' WHERE Usuario='$deportista'";
-	$idTabla = "SELECT 'id_Tabla ' FROM 'Tabla' WHERE Id_Tabla='$tabla'";*/
-
 	if($mysqli->query("INSERT INTO `Sesion`(`Deportista_id_Usuario`, `Fecha`, `Comentario`, `Tabla_id`)
 	 VALUES
 	  ('$deportista',now(),'$comentario','$tabla')")==TRUE)
@@ -239,7 +254,8 @@ function altaSesion($deportista,$comentario,$tabla)
 		}else {
 		?>
 		<script>
-		alert('<?php echo $deportista;echo $fecha;echo $comentario;echo $tabla; ?>');
+		alert("Error al insertar");
+		
 		</script>
 	<?php }
 		$mysqli->close();
@@ -254,6 +270,7 @@ function altaSesion($deportista,$comentario,$tabla)
  	if($mysqli->query($query)==TRUE){
 	?>
 		<script>
+		
 		alert("Eliminado con Exito");
 		</script>
 		<?php

@@ -117,7 +117,7 @@ class cabecera{
                         <?php  } ?>
                     </ul>
                 </li>
-                <?php }?>
+                <?php }  ?>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
@@ -154,7 +154,8 @@ class cabecera{
                     </ul>
                 </li>
             </ul>
-            <?php 
- }} ?>
+        
+        
+           <?php }} ?>
             <!-- /.navbar-collapse -->
      
