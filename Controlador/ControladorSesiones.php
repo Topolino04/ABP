@@ -170,20 +170,62 @@
 				$idiom=new idiomas();
 				$deportista=$_POST['deportista'];
 				$tabla=$_POST['tabla'];
-				$model=new Sesion();
-				$model->eliminarSesion($deportista,$tabla);
-				
-				$model->creararraySesiones();
+				$sesion=new Sesion();
+				$sesion->eliminarSesion($deportista,$tabla);				
+				$sesion->creararraySesiones();
 				include("../Archivos/ArrayConsultarSesiones.php");
 				$arra=new consultSesion();
 				$form=$arra->array_consultarSesiones();
 
-				include("../Archivos/ArrayConsultartablasyejerciciosdeunasesion.php");
-				 $datos=new consult();
-				 $formfinal=$datos->array_consultar12();				 
+				//creo elarray con lassesiones y las tablas de ejercicios.
+				$file = fopen("../Archivos/ArrayConsultartablasyejerciciosdeunasesion.php", "w");
+				fwrite($file,"<?php class consult { function array_consultar12(){". PHP_EOL);
+				 	fwrite($file,"\$form=array(" . PHP_EOL);
 
+				for ($numarT=0;$numarT<count($form);$numarT++){
+
+						$tabla=$form[$numarT]["tabla"];
+						$deportista=$form[$numarT]["deportista"];
+						$fecha=$form[$numarT]["fecha"];
+						$comentario=$form[$numarT]["comentario"];
+						$NombreDeportista=$sesion->crearArrayDeportista($deportista);
+						$formejercicios=$sesion->creararrayTabla($tabla);
+
+						//cargamos el fichero de ejerciciosde la tabla.				
+					
+						fwrite($file,"array(\"tabla\"=>'$tabla',\"deportista\"=>'$deportista',\"fecha\"=>'$fecha',\"comentario\"=>'$comentario'," . PHP_EOL);
+
+						//if($NombreDeportista!=null){ 
+
+							//for ($numar =0;$numar<count($NombreDeportista);$numar++){
+								
+							$usuario=$NombreDeportista[0]["usuario"];
+							fwrite($file,"\"usuario"."\"=>'$usuario'," . PHP_EOL);
+							//}
+						//}
+
+						if($formejercicios!=null){ 
+
+							for ($numar =0;$numar<count($formejercicios);$numar++){
+								//echo $formejercicios[$numar]["IdEjercicio"];
+							$idejercicio=$formejercicios[$numar]["IdEjercicio"];
+							fwrite($file,"\"idejercicio".$numar."\"=>'$idejercicio'," . PHP_EOL);
+							}
+						}
+						fwrite($file,")," . PHP_EOL);
+
+
+		 		}
+		 		fwrite($file,");return \$form;}}?>". PHP_EOL);
+				fclose($file);
+				 //fichero creado
+
+				 //cargo el fichero final
+				 include("../Archivos/ArrayConsultartablasyejerciciosdeunasesion.php");
+				 $datos=new consult();
+				 $formfinal=$datos->array_consultar12();
 				$vista=new sesionVista();
-				$vista->crear($form,$idiom);
+				$vista->crear($formfinal,$idiom);
 			}
 			if(isset($_POST['ModificarSesion']))
 			{
