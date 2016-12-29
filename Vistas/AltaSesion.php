@@ -28,11 +28,8 @@ class sesionAlta{
 			
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"deportista\"id =\"deportista\"> ".$idiom['Deportista'].":</label>";
 			echo "<div class=\"input-group col-sm-3\">";
-			echo "<"."select"." "."class=\"form-control\""."required id=deportista name=deportista><option value='0'>Selecciones un deportista</option>";
+			echo "<"."select"." "."class=\"form-control\""."required id=deportista name=deportista><option value='0'>Selecciones un deportista</option>";	
 				
-				//$mysqli = new mysqli('localhost', 'root', 'iu', 'Gimnasio_BD');
-											
-	          	//$query = $mysqli -> query ("SELECT * FROM Deportista");
 												
 
 	         	if($listaDeportistas!=null){ 
@@ -70,9 +67,8 @@ class sesionAlta{
 				if($listablas!=null){ 
 
 							for ($numar =0;$numar<count($listablas);$numar++)
-							{
-								
-								//echo $formejercicios[$numar]["IdEjercicio"];
+							{								
+							
 							$id=$listablas[$numar]["idtabla"];
 							$nombre=$listablas[$numar]["nombre"];
 							 echo '<option value="'.$id.'">'.$nombre.'</option>';

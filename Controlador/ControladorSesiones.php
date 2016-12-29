@@ -11,6 +11,8 @@
 			{
 				$idiom=new idiomas();
 				$sesion=new Sesion();
+				
+				//$listablas=$sesion->getNombreTablas();
 				//$sesion->contructor();
 
 				$sesion->creararraySesiones();
@@ -29,13 +31,21 @@
 						$deportista=$form[$numarT]["deportista"];
 						$fecha=$form[$numarT]["fecha"];
 						$comentario=$form[$numarT]["comentario"];
+						$NombreDeportista=$sesion->crearArrayDeportista($deportista);
 						$formejercicios=$sesion->creararrayTabla($tabla);
-						//cargamos el fichero de ejerciciosde la tabla.
-						//include("../Archivos/Arrayejerciciosdetabla.php");
-						//$caca=new consultararrayejercicio();
-						//$formejercicios=$caca->array_consultar14343();
-						//
+
+						//cargamos el fichero de ejerciciosde la tabla.				
+					
 						fwrite($file,"array(\"tabla\"=>'$tabla',\"deportista\"=>'$deportista',\"fecha\"=>'$fecha',\"comentario\"=>'$comentario'," . PHP_EOL);
+
+						//if($NombreDeportista!=null){ 
+
+							//for ($numar =0;$numar<count($NombreDeportista);$numar++){
+								
+							$usuario=$NombreDeportista[0]["usuario"];
+							fwrite($file,"\"usuario"."\"=>'$usuario'," . PHP_EOL);
+							//}
+						//}
 
 						if($formejercicios!=null){ 
 
@@ -105,12 +115,18 @@
 						$fecha=$form[$numarT]["fecha"];
 						$comentario=$form[$numarT]["comentario"];
 						$formejercicios=$sesion->creararrayTabla($tabla);
+						$NombreDeportista=$sesion->crearArrayDeportista($deportista);
 						//cargamos el fichero de ejerciciosde la tabla.
 						
 						//
 						//
 						//var_dump($formejercicios);
 						fwrite($file,"array(\"tabla\"=>'$tabla',\"deportista\"=>'$deportista',\"fecha\"=>'$fecha',\"comentario\"=>'$comentario'," . PHP_EOL);
+
+						$usuario=$NombreDeportista[0]["usuario"];
+						fwrite($file,"\"usuario"."\"=>'$usuario'," . PHP_EOL);
+
+
 						if($formejercicios!=null){ 
 
 							for ($numar =0;$numar<count($formejercicios);$numar++)
@@ -153,14 +169,21 @@
 			{
 				$idiom=new idiomas();
 				$deportista=$_POST['deportista'];
+				$tabla=$_POST['tabla'];
 				$model=new Sesion();
-				$model->eliminarSesion($deportista);
+				$model->eliminarSesion($deportista,$tabla);
+				
 				$model->creararraySesiones();
 				include("../Archivos/ArrayConsultarSesiones.php");
-					$arra=new consultsesion();
-					$form=$arra->array_consultarSesiones();
-					$vista=new sesionVista();
-					$vista->crear($form,$idiom);
+				$arra=new consultSesion();
+				$form=$arra->array_consultarSesiones();
+
+				include("../Archivos/ArrayConsultartablasyejerciciosdeunasesion.php");
+				 $datos=new consult();
+				 $formfinal=$datos->array_consultar12();				 
+
+				$vista=new sesionVista();
+				$vista->crear($form,$idiom);
 			}
 			if(isset($_POST['ModificarSesion']))
 			{
