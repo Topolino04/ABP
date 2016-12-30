@@ -6,6 +6,7 @@ class Sesion{
 	private $fecha;
 	private $comentario;
 	private $tabla;
+	//private $IdEjercicio;
 
 	function conexionBD()
 	{
@@ -38,7 +39,7 @@ function creararraySesiones()
 	$fecha=null;
 	$comentario=null;
 	$tabla=null;
-
+	$idEjercicio=null;
 
 
 	$file = fopen("../Archivos/ArrayConsultarSesiones.php", "w");
@@ -76,6 +77,33 @@ function creararraySesiones()
 
 }
 
+//Indica el nombre del deportista en alta Sesion
+function getDeportistas(){
+
+	$this->conexionBD();
+	$mysqli=$this->conexionBD();
+
+	$form=array();
+	$query="SELECT * FROM Deportista";		
+	$resultado=$mysqli->query($query);
+	while($fila = $resultado->fetch_array())
+	{
+		$filas[] = $fila;
+	}
+	foreach($filas as $fila)
+	{
+		$dni=$fila['DNI'];
+		$usuario=$fila['Usuario'];
+
+		$fila_array=array("DNI"=>$dni,"Usuario"=>$usuario);
+		array_push($form,$fila_array);
+	}
+	$resultado->free();
+	$mysqli->close();
+	return $form;
+}
+
+//Indica el nombre de la tabla en alta Sesion
 function gettablas(){
 
 	$this->conexionBD();
@@ -103,61 +131,11 @@ function gettablas(){
 	}			$resultado->free();
 	$mysqli->close();
 	return $form;
-
-
 }
-/*
-function creararraySesionesDeportista($deportista)
-{
-	
-	$deportista=null;
-	$fecha=null;
-	$comentario=null;
-	$tabla=null;
 
-	$this->conexionBD();
-
-	$file = fopen("../Archivos/ArrayConsultarSesiones.php", "w");
-
-	fwrite($file,"<?php class consultSesion { function array_consultarSesiones(){". PHP_EOL);
-	fwrite($file,"\$form=array(" . PHP_EOL);
-	$mysqli=$this->conexionBD();
-
-
-	$mysqli=$this->conexionBD();
-	$resultado=$mysqli->query("SELECT * FROM `Sesion` where $='deportista'");
-	if(mysqli_num_rows($resultado)){
-
-		while($fila = $resultado->fetch_array())
-		{
-			$filas[] = $fila;
-		}
-		foreach($filas as $fila)
-		{				 
-			$deportista=$fila['Deportista_id_Usuario'];
-			$fecha=$fila['Fecha'];
-			$comentario=$fila['Comentario'];
-			$tabla=$fila['Tabla_id'];
-
-			fwrite($file,"array(\"deportista\"=>'$deportista',
-				\"fecha\"=>'$fecha',
-				\"comentario\"=>'$comentario',
-				\"tabla\"=>'$tabla')," . PHP_EOL);
-
-		}
-	}
-	fwrite($file,");return \$form;}}?>". PHP_EOL);
-	fclose($file);
-	$resultado->free();
-	$mysqli->close();
-
-}*/
-
-
+//Añade al array final el id de las tablas y los ejercicios que contiene cada una
 function creararrayTabla($tabla)
 {
-
-
 	$this->conexionBD();
 	$mysqli=$this->conexionBD();
 
@@ -185,7 +163,69 @@ function creararrayTabla($tabla)
 
 }
 
+//Añade al array final los datos de los ejercicios
+function crearArrayDatosEjercicio(){
+
+	$this->conexionBD();
+	$form=array();
+
+	$query="SELECT * FROM Ejercicio ";
+	$mysqli=$this->conexionBD();
+	$resultado=$mysqli->query($query);
+
+	if(mysqli_num_rows($resultado)){
+
+		while($fila = $resultado->fetch_array())
+		{
+			$filas[] = $fila;
+		}
+		foreach($filas as $fila)
+		{
+			$Id=$fila['id_Ejercicio'];
+			$Nombre=$fila['Nombre'];
+			$tipo=$fila['Tipo'];
+			$tiempo=$fila['Tiempo'];	
+			$repeticiones=$fila['Repeticiones'];
+			$peso=$fila['Peso'];
+			$series=$fila['Series'];	
+			$descripcion=$fila['Descripcion'];	
+
+			$fila_array=array("Id"=>$Id,"Nombre"=>$Nombre,"tipo"=>$tipo,"tiempo"=>$tiempo,"repeticiones"=>$repeticiones,"peso"=>$peso,"series"=>$series,"descripcion"=>$series);
+			array_push($form,$fila_array);
+		}
+	}			$resultado->free();
+	$mysqli->close();
+	return $form;
+}
+
+//Añade el nombre del deportista al array del alta sesion
 function crearArrayDeportista($deportista){
+	$this->conexionBD();
+	$form=array();
+	$query="SELECT * FROM Deportista WHERE `DNI` = '$deportista'";
+	$mysqli=$this->conexionBD();
+	$resultado=$mysqli->query($query);
+	if(mysqli_num_rows($resultado)){
+		while($fila = $resultado->fetch_array())
+		{
+			$filas[] = $fila;
+		}
+		foreach($filas as $fila)
+		{
+			$Usuario=$fila['Usuario'];
+			$dni=$fila['DNI'];
+			$fila_array=array("usuario"=>$Usuario,"dni"=>$dni);
+			array_push($form,$fila_array);
+		}
+	}			$resultado->free();
+	$mysqli->close();
+	return $form;
+}
+
+
+
+//Añade al array final el nombre de los deportistas
+function crearArrayNombreDeportista($deportista){
 
 	$this->conexionBD();
 	$form=array();
@@ -213,58 +253,8 @@ function crearArrayDeportista($deportista){
 	return $form;
 }
 
-/*
-function creararrayMonitor()
-{
 
-	$file = fopen("../Archivos/ArrayConsultarMonitor.php", "w");
-	fwrite($file,"<?php class consult { function array_consultar1(){". PHP_EOL);
-	fwrite($file,"\$form=array(" . PHP_EOL);
-	$mysqli=$this->conexionBD();
-	$resultado=$mysqli->query("SELECT * FROM `Entrenador`");
-	if(mysqli_num_rows($resultado)){
-		while($fila = $resultado->fetch_array())
-		{
-			$filas[] = $fila;
-		}
-		foreach($filas as $fila)
-			{ 	 $nombre=$fila['Nombre'];
 
-		fwrite($file,"array(\"nombre\"=>'$nombre')," . PHP_EOL);
-	}
-}
-fwrite($file,");return \$form;}}?>". PHP_EOL);
-fclose($file);
-$resultado->free();
-$mysqli->close();
-}
-*/
-
-//Indica el nombre del deportista en cada Sesion
-function getDeportistas(){
-
-	$this->conexionBD();
-	$mysqli=$this->conexionBD();
-
-	$form=array();
-	$query="SELECT * FROM Deportista";		
-	$resultado=$mysqli->query($query);
-	while($fila = $resultado->fetch_array())
-	{
-		$filas[] = $fila;
-	}
-	foreach($filas as $fila)
-	{
-		$dni=$fila['DNI'];
-		$usuario=$fila['Usuario'];
-
-		$fila_array=array("DNI"=>$dni,"Usuario"=>$usuario);
-		array_push($form,$fila_array);
-	}
-	$resultado->free();
-	$mysqli->close();
-	return $form;
-}
 
 
 function altaSesion($deportista,$comentario,$tabla)

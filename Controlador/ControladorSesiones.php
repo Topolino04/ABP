@@ -31,29 +31,53 @@
 						$deportista=$form[$numarT]["deportista"];
 						$fecha=$form[$numarT]["fecha"];
 						$comentario=$form[$numarT]["comentario"];
-						$NombreDeportista=$sesion->crearArrayDeportista($deportista);
+						//Variables para mostrar el nombre del deportista y los ejercicios
+						$NombreDeportista=$sesion->crearArrayNombreDeportista($deportista);
 						$formejercicios=$sesion->creararrayTabla($tabla);
+						
 
 						//cargamos el fichero de ejerciciosde la tabla.				
 					
 						fwrite($file,"array(\"tabla\"=>'$tabla',\"deportista\"=>'$deportista',\"fecha\"=>'$fecha',\"comentario\"=>'$comentario'," . PHP_EOL);
 
-						//if($NombreDeportista!=null){ 
+						//Nombre de ususario		
+						$usuario=$NombreDeportista[0]["usuario"];
+						fwrite($file,"\"usuario"."\"=>'$usuario'," . PHP_EOL);
 
-							//for ($numar =0;$numar<count($NombreDeportista);$numar++){
-								
-							$usuario=$NombreDeportista[0]["usuario"];
-							fwrite($file,"\"usuario"."\"=>'$usuario'," . PHP_EOL);
-							//}
-						//}
-
+						//Lista de ejercicios con su nombre
 						if($formejercicios!=null){ 
 
 							for ($numar =0;$numar<count($formejercicios);$numar++){
-								//echo $formejercicios[$numar]["IdEjercicio"];
-							$idejercicio=$formejercicios[$numar]["IdEjercicio"];
-							fwrite($file,"\"idejercicio".$numar."\"=>'$idejercicio'," . PHP_EOL);
-							}
+								
+								
+								$idejercicio=$formejercicios[$numar]["IdEjercicio"];
+								fwrite($file,"\"idejercicio".$numar."\"=>'$idejercicio'," . PHP_EOL);	
+						
+
+							$DatosEjercicio=$sesion->crearArrayDatosEjercicio();	
+								if($DatosEjercicio!=null){ 
+						
+									$nombre=$DatosEjercicio[$numar]["Nombre"];
+									$tipo=$DatosEjercicio[$numar]["tipo"];
+									$tiempo=$DatosEjercicio[$numar]["tiempo"];
+									$repeticiones=$DatosEjercicio[$numar]["repeticiones"];
+									$peso=$DatosEjercicio[$numar]["peso"];
+									$series=$DatosEjercicio[$numar]["series"];
+									$descripcion=$DatosEjercicio[$numar]["descripcion"];
+									
+									
+									fwrite($file,"\"Nombre".$numar."\"=>'$nombre',
+										\"Tipo".$numar."\"=>'$tipo',
+										\"Tiempo".$numar."\"=>'$tiempo',
+										\"Repeticiones".$numar."\"=>'$repeticiones',
+										\"Peso".$numar."\"=>'$peso',
+										\"Series".$numar."\"=>'$series',
+										\"Descripcion".$numar."\"=>'$descripcion'," . PHP_EOL);
+									}
+										
+								
+								}							
+							
 						}
 						fwrite($file,")," . PHP_EOL);
 
@@ -127,18 +151,42 @@
 						fwrite($file,"\"usuario"."\"=>'$usuario'," . PHP_EOL);
 
 
+						//Lista de ejercicios con su nombre
 						if($formejercicios!=null){ 
 
-							for ($numar =0;$numar<count($formejercicios);$numar++)
-							{
+							for ($numar =0;$numar<count($formejercicios);$numar++){
 								
-								//echo $formejercicios[$numar]["IdEjercicio"];
-							$idejercicio=$formejercicios[$numar]["IdEjercicio"];
-							fwrite($file,"\"idejercicio".$numar."\"=>'$idejercicio'," . PHP_EOL);
-							}
+								
+								$idejercicio=$formejercicios[$numar]["IdEjercicio"];
+								fwrite($file,"\"idejercicio".$numar."\"=>'$idejercicio'," . PHP_EOL);	
+						
+
+							$DatosEjercicio=$sesion->crearArrayDatosEjercicio();	
+								if($DatosEjercicio!=null){ 
+						
+									$nombre=$DatosEjercicio[$numar]["Nombre"];
+									$tipo=$DatosEjercicio[$numar]["tipo"];
+									$tiempo=$DatosEjercicio[$numar]["tiempo"];
+									$repeticiones=$DatosEjercicio[$numar]["repeticiones"];
+									$peso=$DatosEjercicio[$numar]["peso"];
+									$series=$DatosEjercicio[$numar]["series"];
+									$descripcion=$DatosEjercicio[$numar]["descripcion"];
+									
+									
+									fwrite($file,"\"Nombre".$numar."\"=>'$nombre',
+										\"Tipo".$numar."\"=>'$tipo',
+										\"Tiempo".$numar."\"=>'$tiempo',
+										\"Repeticiones".$numar."\"=>'$repeticiones',
+										\"Peso".$numar."\"=>'$peso',
+										\"Series".$numar."\"=>'$series',
+										\"Descripcion".$numar."\"=>'$descripcion'," . PHP_EOL);
+									}
+										
+								
+								}							
+							
 						}
 						fwrite($file,")," . PHP_EOL);
-
 
 		 		}
 		 		fwrite($file,");return \$form;}}?>". PHP_EOL);
@@ -204,13 +252,40 @@
 							//}
 						//}
 
+						//Lista de ejercicios con su nombre
 						if($formejercicios!=null){ 
 
 							for ($numar =0;$numar<count($formejercicios);$numar++){
-								//echo $formejercicios[$numar]["IdEjercicio"];
-							$idejercicio=$formejercicios[$numar]["IdEjercicio"];
-							fwrite($file,"\"idejercicio".$numar."\"=>'$idejercicio'," . PHP_EOL);
-							}
+								
+								
+								$idejercicio=$formejercicios[$numar]["IdEjercicio"];
+								fwrite($file,"\"idejercicio".$numar."\"=>'$idejercicio'," . PHP_EOL);	
+						
+
+							$DatosEjercicio=$sesion->crearArrayDatosEjercicio();	
+								if($DatosEjercicio!=null){ 
+						
+									$nombre=$DatosEjercicio[$numar]["Nombre"];
+									$tipo=$DatosEjercicio[$numar]["tipo"];
+									$tiempo=$DatosEjercicio[$numar]["tiempo"];
+									$repeticiones=$DatosEjercicio[$numar]["repeticiones"];
+									$peso=$DatosEjercicio[$numar]["peso"];
+									$series=$DatosEjercicio[$numar]["series"];
+									$descripcion=$DatosEjercicio[$numar]["descripcion"];
+									
+									
+									fwrite($file,"\"Nombre".$numar."\"=>'$nombre',
+										\"Tipo".$numar."\"=>'$tipo',
+										\"Tiempo".$numar."\"=>'$tiempo',
+										\"Repeticiones".$numar."\"=>'$repeticiones',
+										\"Peso".$numar."\"=>'$peso',
+										\"Series".$numar."\"=>'$series',
+										\"Descripcion".$numar."\"=>'$descripcion'," . PHP_EOL);
+									}
+										
+								
+								}							
+							
 						}
 						fwrite($file,")," . PHP_EOL);
 

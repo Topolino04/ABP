@@ -71,6 +71,7 @@ $arrays=array(
 	"borrartodo"=>"Borrar Todo",
 	"confirmareliminados"=>"¿Esta seguro de que desea eliminar estas notificaciones?",
 	"Tabla"=>"Tabla",
+	"Id"=>"Id",	
 	 //AÑADIDOS SIN TRADUCIR
 	"Ejercicio"=>"Ejercicio",
 	"BorrarEjercicio" => "Borrar Ejercicio",
@@ -171,7 +172,8 @@ $arrays=array(
 	"confirmareliminados"=>"¿Esta seguro de que desexa eliminar estas notificacions?",
 	"AltaSesion"=> "Crear sesión",
 	"ModificarSesion" => "Modificar Session",
-	"Tabla"=>"Taboa"
+	"Tabla"=>"Taboa",
+	"Id"=>"Id"
 	);
 
 return $arrays;
@@ -232,7 +234,6 @@ $arrays=array(
 	"Plazas" => "Slots",
 	"Dificultad" => "Difficulty",	
 	"Id_actividad"=> "Id Activity",
-	"Descripcion" => "Description",
 	"AltaActividad"=>"Create Activity",
  	"ModificarActividad"=>"Edit Activity",
  	"mensaje"=>"Message",
@@ -251,6 +252,7 @@ $arrays=array(
 	"borrartodo"=>"Delete All",
 	"confirmareliminados"=>"Are you sure that you want to delete this notifications?",
 	"Tabla"=>"Table",
+	"Id"=>"Id",
 	"DatosSesion"=> "Session data",
  	"AltaSesion"=> "Add Session",
  	"ModificarSesion" => "Edit Session"

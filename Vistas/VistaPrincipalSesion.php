@@ -60,13 +60,33 @@
 			echo $idiom['Tabla'].":"." ".$form[$numar]["tabla"];
 			echo "<br>";
 			echo "</thead>";
-				
+			echo "<br>";
+			echo "<b>";
+			echo $idiom['Ejercicio'].":";
+			echo "</b>";
+			echo "<br>";	
 			for ($numarT =0;$numarT<200;$numarT++){
 
 				if(isset($form[$numar]["idejercicio"."$numarT"]))
 				{ 
-					echo $idiom['Ejercicio'].":"." ".$form[$numar]["idejercicio"."$numarT"];
+					echo $idiom['Id'].":"." ".$form[$numar]["idejercicio"."$numarT"];
 					echo "<br>";
+					echo $idiom['Nombre'].":"." ".$form[$numar]["Nombre"."$numarT"];
+					echo "<br>";
+					echo $idiom['Tipo'].":"." ".$form[$numar]["Tipo"."$numarT"];
+					echo "<br>";
+					echo $idiom['Tiempo'].":"." ".$form[$numar]["Tiempo"."$numarT"];
+					echo "<br>";
+					echo $idiom['Repeticiones'].":"." ".$form[$numar]["Repeticiones"."$numarT"];
+					echo "<br>";
+					echo $idiom['Series'].":"." ".$form[$numar]["Series"."$numarT"];
+					echo "<br>";
+					echo $idiom['Descripcion'].":"." ".$form[$numar]["Descripcion"."$numarT"];
+					echo "<br>";
+					echo "<br>";
+					
+					
+
 				}
 			
 			 }
