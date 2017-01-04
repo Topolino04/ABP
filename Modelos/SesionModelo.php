@@ -1,37 +1,27 @@
 <?php
+
 class Sesion{
-
-
 	private $deportista;
 	private $fecha;
 	private $comentario;
 	private $tabla;
 	//private $IdEjercicio;
 
-	function conexionBD()
-	{
-		include "../DataBase/datos_BD.php";
-		$mysqli=mysqli_connect($host,$user,$pass,$name);
-		if(!$mysqli){
-
-			echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
-			echo "error de depuración: " . mysqli_connect_errno() . PHP_EOL;
-			echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
-			exit;
-		}
-
-		return $mysqli;
+function conexionBD()
+{
+	include "../DataBase/datos_BD.php";
+	$mysqli=mysqli_connect($host,$user,$pass,$name);
+	if(!$mysqli){
+		echo "Error: No se pudo conectar a MySQL." . PHP_EOL;
+		echo "error de depuración: " . mysqli_connect_errno() . PHP_EOL;
+		echo "error de depuración: " . mysqli_connect_error() . PHP_EOL;
+		exit;
 	}
+	return $mysqli;
+}
 
 
-/*	function devolveridactividad($id_actividad)
-	{
-
-	$query="SELECT id_Actividad FROM actividad WHERE id_Actividad=$id_actividad";
-	$resultado=mysql_query($query)or die (mysql_error());
-	return $resultado;
-}*/
-
+//Carga el array inicial con con los atributos de la sesion (DNI de deportista, fecha de cuando se crea la sesion, comentario y numero de tabla)
 function creararraySesiones()
 {
 	
@@ -75,62 +65,6 @@ function creararraySesiones()
 	$resultado->free();
 	$mysqli->close();
 
-}
-
-//Indica el nombre del deportista en alta Sesion
-function getDeportistas(){
-
-	$this->conexionBD();
-	$mysqli=$this->conexionBD();
-
-	$form=array();
-	$query="SELECT * FROM Deportista";		
-	$resultado=$mysqli->query($query);
-	while($fila = $resultado->fetch_array())
-	{
-		$filas[] = $fila;
-	}
-	foreach($filas as $fila)
-	{
-		$dni=$fila['DNI'];
-		$usuario=$fila['Usuario'];
-
-		$fila_array=array("DNI"=>$dni,"Usuario"=>$usuario);
-		array_push($form,$fila_array);
-	}
-	$resultado->free();
-	$mysqli->close();
-	return $form;
-}
-
-//Indica el nombre de la tabla en alta Sesion
-function gettablas(){
-
-	$this->conexionBD();
-
-	$form=array();
-
-	$query="SELECT * FROM Tabla";
-	$mysqli=$this->conexionBD();
-	$resultado=$mysqli->query($query);
-
-	if(mysqli_num_rows($resultado)){
-
-		while($fila = $resultado->fetch_array())
-		{
-			$filas[] = $fila;
-		}
-		foreach($filas as $fila)
-		{
-			$idtabla=$fila['id_Tabla'];
-			$nombre=$fila['Nombre'];
-
-			$fila_array=array("idtabla"=>$idtabla,"nombre"=>$nombre);
-			array_push($form,$fila_array);
-		}
-	}			$resultado->free();
-	$mysqli->close();
-	return $form;
 }
 
 //Añade al array final el id de las tablas y los ejercicios que contiene cada una
@@ -198,33 +132,7 @@ function crearArrayDatosEjercicio(){
 	return $form;
 }
 
-//Añade el nombre del deportista al array del alta sesion
-function crearArrayDeportista($deportista){
-	$this->conexionBD();
-	$form=array();
-	$query="SELECT * FROM Deportista WHERE `DNI` = '$deportista'";
-	$mysqli=$this->conexionBD();
-	$resultado=$mysqli->query($query);
-	if(mysqli_num_rows($resultado)){
-		while($fila = $resultado->fetch_array())
-		{
-			$filas[] = $fila;
-		}
-		foreach($filas as $fila)
-		{
-			$Usuario=$fila['Usuario'];
-			$dni=$fila['DNI'];
-			$fila_array=array("usuario"=>$Usuario,"dni"=>$dni);
-			array_push($form,$fila_array);
-		}
-	}			$resultado->free();
-	$mysqli->close();
-	return $form;
-}
-
-
-
-//Añade al array final el nombre de los deportistas
+//Añade al array final el nombre de ususario de los deportistas
 function crearArrayNombreDeportista($deportista){
 
 	$this->conexionBD();
@@ -253,8 +161,61 @@ function crearArrayNombreDeportista($deportista){
 	return $form;
 }
 
+//Lista los nombres de los deportistas al crear una nueva sesion Sesion
+function getDeportistas(){
 
+	$this->conexionBD();
+	$mysqli=$this->conexionBD();
 
+	$form=array();
+	$query="SELECT * FROM Deportista";		
+	$resultado=$mysqli->query($query);
+	while($fila = $resultado->fetch_array())
+	{
+		$filas[] = $fila;
+	}
+	foreach($filas as $fila)
+	{
+		$dni=$fila['DNI'];
+		$usuario=$fila['Usuario'];
+
+		$fila_array=array("DNI"=>$dni,"Usuario"=>$usuario);
+		array_push($form,$fila_array);
+	}
+	$resultado->free();
+	$mysqli->close();
+	return $form;
+}
+
+//Lista los nombres de las tablas al crear una nueva Sesion
+function gettablas(){
+
+	$this->conexionBD();
+
+	$form=array();
+
+	$query="SELECT * FROM Tabla";
+	$mysqli=$this->conexionBD();
+	$resultado=$mysqli->query($query);
+
+	if(mysqli_num_rows($resultado)){
+
+		while($fila = $resultado->fetch_array())
+		{
+			$filas[] = $fila;
+		}
+		foreach($filas as $fila)
+		{
+			$idtabla=$fila['id_Tabla'];
+			$nombre=$fila['Nombre'];
+
+			$fila_array=array("idtabla"=>$idtabla,"nombre"=>$nombre);
+			array_push($form,$fila_array);
+		}
+	}			$resultado->free();
+	$mysqli->close();
+	return $form;
+}
 
 
 function altaSesion($deportista,$comentario,$tabla)
@@ -281,43 +242,98 @@ function altaSesion($deportista,$comentario,$tabla)
 
 	}
 
-	function eliminarSesion($deportista,$tabla){
-		$mysqli=$this->conexionBD();
-		$query="DELETE FROM `Sesion` WHERE Deportista_id_Usuario='$deportista' && Tabla_id = '$tabla'";
-		if($mysqli->query($query)==TRUE){
-			?>
-			<script>
+function eliminarSesion($deportista,$tabla,$comentario){
+	$mysqli=$this->conexionBD();
+	$query="DELETE FROM `Sesion` WHERE Deportista_id_Usuario='$deportista' && Tabla_id = '$tabla' && Comentario = '$comentario'";
+	if($mysqli->query($query)==TRUE){
+		?>
+		<script>
+			alert("Eliminado con Exito");
+		</script>
+		<?php
+	}else {
+		?>
+		<script>
+			alert("Problema al Borrar");
+		</script>
+		<?php }
+		$mysqli->close();
+	}
 
-				alert("Eliminado con Exito");
-			</script>
-			<?php
-		}else {
-			?>
-			<script>
-				alert("Problema al Borrar");
-			</script>
-			<?php }
-			$mysqli->close();
-		}
 
 
-		function modificarSesion($deportista,$fecha,$comentario,$tabla){
-			$mysqli=$this->conexionBD();
-			$query= "UPDATE `Sesion` SET `Deportista_id_Usuario`='$deportista',`Fecha`='$fecha',`Comentario`='$comentario',`Tabla`='$tabla'  WHERE `Deportista_id_Usuario`='$deportista'";
+function modificarSesion($deportista,$fecha,$comentario,$tabla){
+
+	$mysqli=$this->conexionBD();
+	$sql = "SELECT * FROM Sesion"; 
+	$result = $mysqli->query($sql);
+	if ($row = $result->fetch_array(MYSQLI_ASSOC)) 
+	{
+		if($row["Fecha"]=="$fecha") {
+
+			$query= "UPDATE `Sesion` SET `Fecha`='$fecha',`Comentario`='$comentario',`Tabla_id`='$tabla' WHERE `Deportista_id_Usuario`='$deportista' && `Fecha`='".$row["Fecha"]."'";
+
 			if($mysqli->query($query)==TRUE){
 				?>
 				<script>
-					alert("Modificado con Exito");
+					alert("BIEN<?php echo($deportista); echo($fecha); echo($comentario); echo($tabla);?>");
 				</script>
 				<?php
 			}else {
 				?>
 				<script>
-					alert("Problema al Modificar");
+					alert("MAL<?php echo($deportista); echo($fecha); echo($comentario); echo($tabla);?>");
 				</script>
 				<?php }
+				$result->free();
 				$mysqli->close();
-			}
+				
 		}
+	}else{
 		?>
-		?>
+		<script>
+			alert("No hay sesiones en la BD");
+		</script>
+		<?php } 
+		$result->free();
+		$mysqli->close();
+		
+		
+}
+/*function RellenaDatos()
+{
+    $this->ConectarBD();
+    $sql = "SELECT * from Ejercicio where id_Ejercicio = '".$this->id_Ejercicio."'";
+    if (!($resultado = $this->mysqli->query($sql))){
+	    return 'Error en la consulta sobre la base de datos'; // sustituir por un try
+	}
+    else{
+	       $result = $resultado->fetch_array();
+		   return $result;
+	}
+}
+
+function modificarSesion()
+{
+    $this->ConectarBD();
+    $sql = "SELECT * from Sesion where Deportista_id_Usuario = '".$this->deportista."'";
+    $result = $this->mysqli->query($sql);
+    if ($result->num_rows == 1){
+		$consulta = $this->mysqli->prepare("UPDATE Sesion SET Deportista_id_Usuario=?,Fecha=?,Comentario=?,Tabla_id=?");
+		$consulta->bind_param('ssiiiisi',$this->deportista,$this->fecha,$this->comentario,$this->tabla);
+	        if (!$consulta->execute()){
+				return "Se ha producido un error en la modificación"; // sustituir por un try
+		}
+		else{
+			return "La modificación se ha realizado con éxito";
+		}
+    }
+    else
+        return "El item no existe";
+}*/
+
+
+
+}
+?>
+

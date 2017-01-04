@@ -1,3 +1,10 @@
+<html>
+<head>
+<title>
+</title>
+</head>
+<body background="..\Archivos\background-faded1.jpg">
+
 <?php
 
 	class sesionVista{
@@ -24,7 +31,7 @@
    </script>
    <form name="formularioalta"  class="form-horizontal" action="..\Controlador\ControladorSesiones.php" method="post" >
 			<fieldset>
-			<input type="image" id="alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();" src="..\Archivos\añadir.png" width="20" height="20"></input>
+			<input type="image" title ="$idiom['Alta']" id="alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();" src="..\Archivos\añadir.png" width="20" height="20"></input>
 			</fieldset>
 			</form>
 
@@ -35,23 +42,22 @@
 			echo "<div class=\"container well\">";
  			echo "<div class=\"row\">";
 			echo "<div class=\"col-xs-12\">";
-				echo "<form class=\"form-horizontal\" method=\"post\" action=\"..\Controlador\ControladorSesiones.php\">";
-			echo "<fieldset><legend>".$idiom['DatosSesion']."</legend>";
-			echo "<input type=image id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"..\Archivos\lapiz.png\" width=\"30\"  height=\"30\" ></input>";
+			echo "<form method=\"post\" action=\"..\Controlador\ControladorSesiones.php\">";
+			echo "<b><fieldset><legend>".$idiom['DatosSesion']."</legend></b>";
+			echo "<input type=image title =".$idiom['Modificar']." id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"..\Archivos\lapiz.png\" width=\"30\"  height=\"30\" ></input>";
 			echo "<input type=hidden id=deportista name=deportista value=".$form[$numar]["deportista"].">";
 			echo "<input type=hidden id=fecha name=fecha value=".$form[$numar]["fecha"].">";
 			echo "<input type=hidden id=comentario name=comentario value=".$form[$numar]["comentario"].">";
 			echo "<input type=hidden id=tabla name=tabla value=".$form[$numar]["tabla"].">";
 			//echo "<input type=hidden id=usuario name=usuario value=".$form[$numar]["usuario"].">";
-			echo "<input type=image id=\"eliminar\" name=\"Eliminar\" value=\"Eliminar\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"..\Archivos\\eliminar.png\" width=\"30\"  height=\"30\" >";
+			echo "<input type=image title =".$idiom['Eliminar']." id=\"eliminar\" name=\"Eliminar\" value=\"Eliminar\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"..\Archivos\\eliminar.png\" width=\"30\"  height=\"30\" >";
 			
-			 echo "<thead>";			
-			 echo "<tr>";
+			echo "<thead>";			
 
 			echo "<br>";				 			
- 			echo $idiom['Deportista'].":".$form[$numar]["usuario"];					
+ 			echo $idiom['Deportista'].":"." ".$form[$numar]["usuario"];					
 			echo "<br>";			
-			echo $idiom['DNI'].":".$form[$numar]["deportista"];
+			echo $idiom['DNI'].":"." ".$form[$numar]["deportista"];
 			echo "<br>";
 			echo $idiom['Fecha'].":"." ".$form[$numar]["fecha"];
 			echo "<br>";
@@ -61,10 +67,11 @@
 			echo "<br>";
 			echo "</thead>";
 			echo "<br>";
+			echo "</fieldset>";			
 			echo "<b>";
-			echo $idiom['Ejercicio'].":";
+			echo "<fieldset><legend>".$idiom['EjercicioTabla']." ".$form[$numar]["tabla"]."</legend>";
 			echo "</b>";
-			echo "<br>";	
+				
 			for ($numarT =0;$numarT<200;$numarT++){
 
 				if(isset($form[$numar]["idejercicio"."$numarT"]))
@@ -84,23 +91,23 @@
 					echo $idiom['Descripcion'].":"." ".$form[$numar]["Descripcion"."$numarT"];
 					echo "<br>";
 					echo "<br>";
-					
-					
-
 				}
+
 			
-			 }
-			
+			}
 			echo "</fieldset>";
 			echo "</form>";
 
- 			echo "</div>";
-			echo "</div>";
+ 			//echo "</div>";
+			echo "</div>"; //Cierra col-xs-6
 
-			echo "</div>";
+			//echo "<div class=\"col-md-6\">";
+			//echo "Hola";
 
+			echo "</div>"; //Cierra row
 
-			 }
+			echo "</div>"; //Cierra container
+		}
 			
 
 
@@ -117,3 +124,5 @@ include '../plantilla/pie.php';
 }
 }
 ?>
+</body>
+</html>

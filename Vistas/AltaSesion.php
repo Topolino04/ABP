@@ -27,8 +27,8 @@ class sesionAlta{
 
 			
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"deportista\"id =\"deportista\"> ".$idiom['Deportista'].":</label>";
-			echo "<div class=\"input-group col-sm-3\">";
-			echo "<"."select"." "."class=\"form-control\""."required id=deportista name=deportista><option value='0'>Selecciones un deportista</option>";	
+			echo "<div class=\"input-group col-sm-4\">";
+			echo "<"."select"." "."class=\"form-control\""."required id=deportista name=deportista><option value='0'>".$idiom['SelecDep']."</option>";	
 				
 												
 
@@ -50,19 +50,15 @@ class sesionAlta{
         
 			echo "</div></div>";
 
-			/*echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"Fecha\"id =\"Fecha\"> ".$idiom['Fecha'].":</label>";
-			echo "<div class=\"input-group col-sm-3\">";
-			echo "<"."input"." "."class=\"form-control\""."type=datetime required id=fecha name=fecha>"; 
-			echo "</div></div>";*/
-
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"comentario\"id =\"comentario\"> ".$idiom['Comentario'].":</label>";
-			echo "<div class=\"input-group col-sm-3\">";
-			echo "<"."input"." "."class=\"form-control\""."type=text required id=comentario name=comentario>"; 
+			echo "<div class=\"input-group col-sm-4\">";
+			echo "<"."textarea"." "."class=\"form-control\""."name=comentario cols=40 rows=10>";
+			echo "<"."/textarea".">";
 			echo "</div></div>";
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"Tabla\"id =\"Tabla\"> ".$idiom['Tabla'].":</label>";
-			echo "<div class=\"input-group col-sm-3\">";
-			echo "<"."select"." "."class=\"form-control\""."required id=tabla name=tabla><option value='0'>Selecciones una tabla</option>";
+			echo "<div class=\"input-group col-sm-4\">";
+			echo "<"."select"." "."class=\"form-control\""."required id=tabla name=tabla><option value='0'>".$idiom['SelecTab']."</option>";
 				
 				if($listablas!=null){ 
 
