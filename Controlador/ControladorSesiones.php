@@ -12,11 +12,12 @@
 				$idiom=new idiomas();
 				$sesion=new Sesion();
 				$sesion->creararraySesiones();
+				
 				include("../Archivos/ArrayConsultarSesiones.php");
 				$arra=new consultSesion();
 				$form=$arra->array_consultarSesiones();
 
-				//creo elarray con lassesiones y las tablas de ejercicios.
+				//creo el array con las sesiones y las tablas de ejercicios.
 				$file = fopen("../Archivos/ArrayConsultartablasyejerciciosdeunasesion.php", "w");
 				fwrite($file,"<?php class consult { function array_consultar12(){". PHP_EOL);
 				 	fwrite($file,"\$form=array(" . PHP_EOL);

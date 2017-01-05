@@ -1,11 +1,11 @@
 <?php
 
 class Sesion{
-	private $deportista;
-	private $fecha;
-	private $comentario;
-	private $tabla;
-	//private $IdEjercicio;
+
+private $deportista;
+private $fecha;
+private $comentario;
+private $tabla;
 
 function conexionBD()
 {
@@ -20,23 +20,19 @@ function conexionBD()
 	return $mysqli;
 }
 
-
 //Carga el array inicial con con los atributos de la sesion (DNI de deportista, fecha de cuando se crea la sesion, comentario y numero de tabla)
 function creararraySesiones()
 {
-	
 	$deportista=null;
 	$fecha=null;
 	$comentario=null;
 	$tabla=null;
 	$idEjercicio=null;
 
-
 	$file = fopen("../Archivos/ArrayConsultarSesiones.php", "w");
 
 	fwrite($file,"<?php class consultSesion { function array_consultarSesiones(){". PHP_EOL);
 	fwrite($file,"\$form=array(" . PHP_EOL);
-
 
 	$mysqli=$this->conexionBD();
 	$resultado=$mysqli->query("SELECT * FROM `Sesion`");
@@ -53,7 +49,8 @@ function creararraySesiones()
 			$comentario=$fila['Comentario'];
 			$tabla=$fila['Tabla_id'];
 
-			fwrite($file,"array(\"deportista\"=>'$deportista',
+			fwrite($file,"array(
+				\"deportista\"=>'$deportista',
 				\"fecha\"=>'$fecha',
 				\"comentario\"=>'$comentario',
 				\"tabla\"=>'$tabla')," . PHP_EOL);
@@ -132,7 +129,7 @@ function crearArrayDatosEjercicio(){
 	return $form;
 }
 
-//Añade al array final el nombre de ususario de los deportistas
+//Añade al array final con el nombre de ususario de los deportistas
 function crearArrayNombreDeportista($deportista){
 
 	$this->conexionBD();

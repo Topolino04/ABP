@@ -10,14 +10,26 @@
 			if(isset($_REQUEST['reservas']))
 			{
 				$idiom=new idiomas();
-				$actividad=new Reserva();
-				$actividad->contructor();
-				$actividad->creararrayReservas();
-				include("../Archivos/ArrayConsultarReserva.php");
-				$arra=new consultreserva();
-				$form=$arra->array_consultarReserva();
-				$vista=new reservavista();
-				$vista->crear($form,$idiom);
+				$reserva=new Reserva();
+				$reserva->creararrayReservas();
+				$NombreDeportista=$reserva->crearArrayNombreDeportista();
+				$formActividad=$reserva->creararrayActividades();
+				//var_dump($NombreDeportista);
+				//var_dump($formActividad);
+			/*	?>
+				<script>
+				alert(<?php  ?>);
+				</script>
+				<?php*/
+
+				$reserva->RellenarArrayFinal($NombreDeportista,$formActividad);
+				//cargo el fichero final
+			    include("../Archivos/ArrayConsultarActividadesDeReserva.php");
+			    $datos=new consult();
+			    $formfinal=$datos->array_consultarActividades();
+
+				$vista=new reservaVista();
+				$vista->crear($formfinal,$idiom);
 
 			}
 
