@@ -13,7 +13,7 @@
 
 			include("../Funciones/cargadodedatos.php");
     	?>
-<script type="text/javascript">
+	<script type="text/javascript">
 
             function enviaralta(){
 
@@ -38,11 +38,14 @@
 <?php
 			
 			for ($numar =0;$numar<count($form);$numar++){
-
+				$userLoggedIn=$form[$numar]["usuario"];
+				if(($_SESSION['usuario']==$userLoggedIn)){
 			echo "<div class=\"container well\">";
  			echo "<div class=\"row\">";
 			echo "<div class=\"col-xs-12\">";
 			echo "<form method=\"post\" action=\"..\Controlador\ControladorSesiones.php\">";
+			
+
 			echo "<b><fieldset><legend>".$idiom['DatosSesion']."</legend></b>";
 			echo "<input type=image title =".$idiom['Modificar']." id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"..\Archivos\lapiz.png\" width=\"30\"  height=\"30\" ></input>";
 			echo "<input type=hidden id=deportista name=deportista value=".$form[$numar]["deportista"].">";
@@ -92,23 +95,15 @@
 					echo "<br>";
 					echo "<br>";
 				}
-
-			
 			}
 			echo "</fieldset>";
 			echo "</form>";
-
  			//echo "</div>";
 			echo "</div>"; //Cierra col-xs-6
-
-			//echo "<div class=\"col-md-6\">";
-			//echo "Hola";
-
 			echo "</div>"; //Cierra row
-
 			echo "</div>"; //Cierra container
-		}
-			
+			}
+		}	
 
 
 	
@@ -123,6 +118,7 @@
 include '../plantilla/pie.php';
 }
 }
+  
 ?>
 </body>
 </html>

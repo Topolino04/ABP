@@ -1,16 +1,25 @@
 <?php 
+session_start();
+foreach ($_SESSION as $index => $value) {
+    echo __FILE__ . __LINE__ . " $index: $value<br>";
+}		
+include("../Vistas/VistaPrincipalSesion.php");
+include("../Modelos/SesionModelo.php");
+include("../Idiomas/idiomas.php");
+include("../Vistas/AltaSesion.php");
+include("../Vistas/ModificarSesion.php");
 
-	include("../Vistas/VistaPrincipalSesion.php");
-	include("../Modelos/SesionModelo.php");
-	include("../Idiomas/idiomas.php");
-	include("../Vistas/AltaSesion.php");
-	include("../Vistas/ModificarSesion.php");
-	session_start();
 
 			if(isset($_REQUEST['sesiones']))
 			{
+				//if(isset($_SESSION['MONITOR'])or(isset($_SESSION['ADMIN']))){
+				//$nombreUsuarioLogueado=$_SESSION['usuario'];
+
 				$idiom=new idiomas();
 				$sesion=new Sesion();
+				//Mostrar sólo sesiones del usuario logueado
+				 //$usuarioLogueado=$_POST['deportista'];	
+				 //$resul=$modeloSesion->comprobarSesion($$usuarioLogueado);
 				$sesion->creararraySesiones();
 				
 				include("../Archivos/ArrayConsultarSesiones.php");
@@ -51,7 +60,7 @@
 								fwrite($file,"\"idejercicio".$numar."\"=>'$idejercicio'," . PHP_EOL);	
 						
 
-							$DatosEjercicio=$sesion->crearArrayDatosEjercicio();	
+								$DatosEjercicio=$sesion->crearArrayDatosEjercicio();	
 								if($DatosEjercicio!=null){ 
 						
 									$nombre=$DatosEjercicio[$numar]["Nombre"];
@@ -88,8 +97,10 @@
 				 include("../Archivos/ArrayConsultartablasyejerciciosdeunasesion.php");
 				 $datos=new consult();
 				 $formfinal=$datos->array_consultar12();
-				$vista=new sesionVista();
-				$vista->crear($formfinal,$idiom);
+
+				 $vista=new sesionVista();
+				 $vista->crear($formfinal,$idiom);
+				//}
 			}
 
 			if(isset($_POST['Alta'])) //Cuando se hace click en el + dentro de la vista principal de sesion

@@ -20,6 +20,18 @@ function conexionBD()
 	return $mysqli;
 }
 
+function comprobarSesion($deportista)
+{
+	$mysqli=$this->conexionBD();
+	$query="SELECT * FROM `Sesion` WHERE `Deportista_id_Usuario`='$deportista'";
+	$resultado=$mysqli->query($query);
+	if(mysqli_num_rows($resultado)){
+	    return TRUE;
+	}else{
+		return FALSE;
+	}
+}
+
 //Carga el array inicial con con los atributos de la sesion (DNI de deportista, fecha de cuando se crea la sesion, comentario y numero de tabla)
 function creararraySesiones()
 {
@@ -134,8 +146,9 @@ function crearArrayNombreDeportista($deportista){
 
 	$this->conexionBD();
 	$form=array();
-
-	$query="SELECT * FROM Deportista WHERE `DNI` = '$deportista'";
+	
+	//&& `Usuario`='$nombreUsuarioLogueado' 
+	$query="SELECT * FROM Deportista WHERE `DNI` = '$deportista' ";
 	$mysqli=$this->conexionBD();
 	$resultado=$mysqli->query($query);
 

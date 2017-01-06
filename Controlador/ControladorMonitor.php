@@ -5,7 +5,7 @@ include("../Modelos/MonitorModelo.php");
 include("../Vistas/VistaPrincipalMonitor.php");
 include("../Vistas/VistaAltaMonitor.php");
 include("../Vistas/VistaModificarMonitor.php");
-	session_start();		
+session_start();		
 
 
 	if(isset($_REQUEST['monitores']))

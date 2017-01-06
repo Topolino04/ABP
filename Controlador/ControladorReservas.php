@@ -1,11 +1,11 @@
 <?php
-
+	session_start();
 	include("../Vistas/VistaPrincipalReserva.php");
 	include("../Modelos/ReservaModelo.php");
 	include("../Idiomas/idiomas.php");
 	include("../Vistas/AltaReserva.php");
 	//include("../Vistas/ModificarReserva.php");
-	session_start();
+	
 
 			if(isset($_REQUEST['reservas']))
 			{
