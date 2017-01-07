@@ -1,12 +1,14 @@
 <?php 
 session_start();
+foreach ($_SESSION as $index => $value) {
+    echo __FILE__ . __LINE__ . " $index: $value<br>";
+}	
 include '../Vistas/VistapanelPrincipal.php';
 include '../Idiomas/idiomas.php';
 include "../Modelos/DeportistasModelo.php";
 include "../Modelos/MonitorModelo.php";
 include "../Modelos/Notificacion_Modelo.php";
-
-
+include "../Modelos/SesionModelo.php";
 
 	//viene desde el vinculo de la imagen de la bandera
 	if (isset($_REQUEST['idiomas']))
@@ -21,7 +23,6 @@ include "../Modelos/Notificacion_Modelo.php";
 	{
 		$user=$_POST['usuario'];
 		$pass=$_POST['password'];
-
 		if("ADMIN"==$user && $pass=="ADMIN"){ 
 			$_SESSION['ADMIN']=$user;
 			$idiom=new idiomas();	
@@ -33,7 +34,6 @@ include "../Modelos/Notificacion_Modelo.php";
 		$resultado=$modelodeportista->comprobarDeportista($user,$pass);
 		$modelomonitor=new Monitor();
 		$resultado1=$modelomonitor->comprobarMonitor($user,$pass);
-
 		//cargo las notificaciones del usuario
 		$modelnotificacion=new Notificacion();
 		$modelnotificacion->arrayNotificacionesusuario($user);
@@ -46,6 +46,7 @@ include "../Modelos/Notificacion_Modelo.php";
 		}
 		if($resultado1==true){
 			$_SESSION['MONITOR']=$user;
+			$_SESSION['usuario']=$user; //Añadido para que el monitor pueda ver las sesiones
 			$idiom=new idiomas();
 			$menus=new panel(); 
 			$menus->constructor($idiom);
@@ -70,7 +71,6 @@ include "../Modelos/Notificacion_Modelo.php";
 	}
 	//¿De donde viene esto?
 	if(isset($_REQUEST['acceso'])){
-
 		$idiom=new idiomas();
 		$menus=new panel();
 		$menus->constructor($idiom);
@@ -81,7 +81,4 @@ include "../Modelos/Notificacion_Modelo.php";
 		$menus=new panel();
 		$menus->constructor($idiom);
 	}
-
-
-
 ?>

@@ -138,11 +138,10 @@ class cabecera{
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <?php //echo $_SESSION['usuario']; ?> <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-
-                         <?php 
-
+                         <?php
                          if (isset ($_SESSION['usuario'])) echo "<a href=\"#\"><i class=\"fa fa-fw fa-user\"></i>".$_SESSION['usuario']."</a>"; 
-                         if (isset ($_SESSION['MONITOR'])) echo "<a href=\"#\"><i class=\"fa fa-fw fa-user\"></i>".$_SESSION['MONITOR']."</a>"; ?>
+                         //if (isset ($_SESSION['MONITOR'])) echo "<a href=\"#\"><i class=\"fa fa-fw fa-user\"></i>".$_SESSION['MONITOR']."</a>"; 
+                         ?>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-fw fa-gear"></i> <?php echo $idioma['Configuracion']; ?></a>

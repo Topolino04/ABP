@@ -48,7 +48,7 @@ class menulateral{
                     </li>
                         
                     <li>
-                    <?php if(isset($_SESSION['usuario'])or(isset($_SESSION['ADMIN']))){?>
+                    
                      <li>
                         <li>
                        
@@ -56,7 +56,7 @@ class menulateral{
 
                       </li>
                     </li>
-                    <?php  } ?>
+                    
                     
                       
                      <li>
