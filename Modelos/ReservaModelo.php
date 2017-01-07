@@ -125,58 +125,103 @@ function crearArrayNombreDeportista(){
 
 function RellenarArrayFinal($NombreDeportista,$formActividad){
 	include("../Archivos/ArrayConsultarReservas.php");
-				$arra=new consultReserva();
-				$form=$arra->array_consultarReservas();
+	$arra=new consultReserva();
+	$form=$arra->array_consultarReservas();
 
-				//creo el array con las sesiones y las tablas de ejercicios.
-				$file = fopen("../Archivos/ArrayConsultarActividadesDeReserva.php", "w");
-				fwrite($file,"<?php class consult { function array_consultarActividades(){". PHP_EOL);
-				fwrite($file,"\$form=array(" . PHP_EOL);
+	//creo el array con las sesiones y las tablas de ejercicios.
+	$file = fopen("../Archivos/ArrayConsultarActividadesDeReserva.php", "w");
+	fwrite($file,"<?php class consult { function array_consultarActividades(){". PHP_EOL);
+	fwrite($file,"\$form=array(" . PHP_EOL);
 
-				for ($numarT=0;$numarT<count($form);$numarT++){
+	for ($numarT=0;$numarT<count($form);$numarT++){
 
-						$deportistaId=$form[$numarT]["deportistaId"];
-						$actividadId=$form[$numarT]["actividadId"];
-						$fecha=$form[$numarT]["fecha"];
-						$asistencia=$form[$numarT]["asistencia"];
-						//Variables para mostrar el nombre del deportista y los ejercicios
-						//$NombreDeportista=$reserva->crearArrayNombreDeportista();
-						//$formActividad->creararrayActividades();
-						
-						//cargamos el fichero de ejerciciosde la tabla.				
-					
-						fwrite($file,"array(\"deportistaId\"=>'$deportistaId',\"actividadId\"=>'$actividadId',\"fecha\"=>'$fecha',\"asistencia\"=>'$asistencia'," . PHP_EOL);
+		$deportistaId=$form[$numarT]["deportistaId"];
+		$actividadId=$form[$numarT]["actividadId"];
+		$fecha=$form[$numarT]["fecha"];
+		$asistencia=$form[$numarT]["asistencia"];
+		//Variables para mostrar el nombre del deportista y los ejercicios
+		//$NombreDeportista=$reserva->crearArrayNombreDeportista();
+		//$formActividad->creararrayActividades();
+		
+		//cargamos el fichero de ejerciciosde la tabla.				
+	
+		fwrite($file,"array(\"deportistaId\"=>'$deportistaId',\"actividadId\"=>'$actividadId',\"fecha\"=>'$fecha',\"asistencia\"=>'$asistencia'," . PHP_EOL);
 
-						//Nombre de ususario
-						
-						$usuario=$NombreDeportista[0]["usuario"];
-						fwrite($file,"\"usuario"."\"=>'$usuario'," . PHP_EOL);
+		//Nombre de ususario
+		
+		$usuario=$NombreDeportista[0]["usuario"];
+		fwrite($file,"\"usuario"."\"=>'$usuario'," . PHP_EOL);
 
-						//Lista de ejercicios con su nombre
-						if($formActividad!=null){ 
+		//Lista de ejercicios con su nombre
+		if($formActividad!=null){ 
 
-							for ($numar =0;$numar<count($formActividad);$numar++){	
-								
-								$actividadId=$formActividad[$numar]["actividadId"];
-								$nombre=$formActividad[$numar]["nombre"];
-								$plazas=$formActividad[$numar]["plazas"];
+			for ($numar =0;$numar<count($formActividad);$numar++){	
+				
+				$actividadId=$formActividad[$numar]["actividadId"];
+				$nombre=$formActividad[$numar]["nombre"];
+				$plazas=$formActividad[$numar]["plazas"];
 
-								fwrite($file,"
-									\"actividadId".$numar."\"=>'$actividadId',
-									\"nombre".$numar."\"=>'$nombre',
-									\"plazas".$numar."\"=>'$plazas'," . PHP_EOL);	
-								}							
-							
-						}
-						fwrite($file,")," . PHP_EOL);
+				fwrite($file,"
+					\"actividadId".$numar."\"=>'$actividadId',
+					\"nombre".$numar."\"=>'$nombre',
+					\"plazas".$numar."\"=>'$plazas'," . PHP_EOL);	
+				}							
+			}
+			fwrite($file,")," . PHP_EOL);
+		}
+		fwrite($file,");return \$form;}}?>". PHP_EOL);
+		fclose($file);				 				
+}
+//Lista los nombres de los deportistas al crear una nueva Reserva
+function getDeportistas(){
 
+	$this->conexionBD();
+	$mysqli=$this->conexionBD();
 
-		 		}
-		 		fwrite($file,");return \$form;}}?>". PHP_EOL);
-				fclose($file);
-				 //fichero creado
+	$form=array();
+	$query="SELECT * FROM Deportista";		
+	$resultado=$mysqli->query($query);
+	while($fila = $resultado->fetch_array())
+	{
+		$filas[] = $fila;
+	}
+	foreach($filas as $fila)
+	{
+		$dni=$fila['DNI'];
+		$usuario=$fila['Usuario'];
 
-				 				
+		$fila_array=array("DNI"=>$dni,"Usuario"=>$usuario);
+		array_push($form,$fila_array);
+	}
+	$resultado->free();
+	$mysqli->close();
+	return $form;
+}
+
+//Lista los nombres de las actividades al crear una nueva Reserva
+function getActividades(){
+
+	$this->conexionBD();
+	$mysqli=$this->conexionBD();
+
+	$form=array();
+	$query="SELECT * FROM Actividad";		
+	$resultado=$mysqli->query($query);
+	while($fila = $resultado->fetch_array())
+	{
+		$filas[] = $fila;
+	}
+	foreach($filas as $fila)
+	{
+		$id=$fila['id_Actividad'];
+		$nombre=$fila['Nombre'];
+
+		$fila_array=array("id_Actividad"=>$id,"Nombre"=>$nombre);
+		array_push($form,$fila_array);
+	}
+	$resultado->free();
+	$mysqli->close();
+	return $form;
 }
 
 function altaReserva($deportistaId,$actividadId,$fecha,$asistencia)

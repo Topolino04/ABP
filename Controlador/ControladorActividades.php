@@ -1,11 +1,11 @@
 <?php
-
+session_start();
 	include("../Vistas/VistaPrincipalActividades.php");
 	include("../Modelos/ActividadModelo.php");
 	include("../Idiomas/idiomas.php");
 	include("../Vistas/AltaActividad.php");
 	include("../Vistas/ModificarActividad.php");
-	session_start();
+
 
 			if(isset($_REQUEST['actividades']))
 			{

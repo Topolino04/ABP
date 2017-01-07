@@ -1,15 +1,24 @@
+<html>
+<head>
+<title>
+</title>
+</head>
+<body background="..\Archivos\background-faded1.jpg">
 <?php
-
 class reservaAlta{
 
-	function crear($idioma){
+	function crear($idioma,$listaDeportistas,$listaActividades){
 
 		include("../Funciones/cargadodedatos.php");
 ?>
 <script type="text/javascript">
 
     function enviarAltaReserva(){
-    document.getElementById("Alta").submit();
+    document.getElementById("altaReserva").submit();
+
+    }
+    function enviarPrincipalReservas(){
+    document.getElementById("Volver").submit();
 
     }
 </script>
@@ -18,33 +27,48 @@ class reservaAlta{
     		echo "<div class=\"container well\">";
  			echo "<div class=\"row\">";
 			echo "<div class=\"col-xs-12\">";
-			echo "<form class=\"form-horizontal\" method=\"post\"action=\"..\Controlador\ControladorReservas.php\">";
+			echo "<form class=\"form-horizontal\" id=formulario method=\"post\"action=\"..\Controlador\ControladorReservas.php\">";
 
 			echo "<fieldset><legend>".$idiom['AltaReserva']."</legend>";
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"deportista\"id =\"deportista\"> ".$idiom['Deportista'].":</label>";
 			echo "<div class=\"input-group col-sm-3\">";
-			echo "<"."input"." "."class=\"form-control\""."type=text required id=deportista name=deportista>";
+			echo "<"."select"." "."class=\"form-control\""."required id=deportista name=deportista><option value='0'>".$idiom['SelecDep']."</option>";	
+				
+	         	if($listaDeportistas!=null){ 
+
+					for ($numar =0;$numar<count($listaDeportistas);$numar++)
+					{
+						
+						//echo $formejercicios[$numar]["IdEjercicio"];
+					$dni=$listaDeportistas[$numar]["DNI"];
+					$usuario=$listaDeportistas[$numar]["Usuario"];
+					 echo '<option value="'.$dni.'">'.$usuario.'</option>';
+					}
+				}																								
+          	echo "</select>";
 			echo "</div></div>";
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"actividad\"id =\"actividad\"> ".$idiom['Actividad'].":</label>";
 			echo "<div class=\"input-group col-sm-3\">";
-			echo "<"."input"." "."class=\"form-control\""."type=number required id=Actividad name=Actividad>";
+			echo "<"."select"." "."class=\"form-control\""."required id=actividad name=actividad><option value='0'>".$idiom['SelecAct']."</option>";	
+				
+	         	if($listaActividades!=null){ 
+
+					for ($numar =0;$numar<count($listaActividades);$numar++)
+					{	
+						//echo $formejercicios[$numar]["IdEjercicio"];
+					$id=$listaActividades[$numar]["id_Actividad"];
+					$nombre=$listaActividades[$numar]["Nombre"];
+					 echo '<option value="'.$id.'">'.$nombre.'</option>';
+					}
+				}																								
+          	echo "</select>";
 			echo "</div></div>";
 
-			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"fecha\"id =\"fecha\"> ".$idiom['Fecha'].":</label>";
-			echo "<div class=\"input-group col-sm-3\">";
-			echo "<"."input"." "."class=\"form-control\""."type=datetime required id=hora name=hora>";
-			echo "</div></div>";
+			echo "<input type=\"image\" title=\"Crear reserva\" id=\"altaReserva\" name=\"altaReserva\" alt=\"Submit\" value=\"altaReserva\" onclick=\"enviarAltaReserva();\" src=\"..\Archivos\aceptar.png\" width=\"20\" height=\"20\">";
 
-			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"lugar\"id =\"lugar\"> ".$idiom['Asistencia'].":</label>";
-			echo "<div class=\"input-group col-sm-3\">";
-			echo "<"."input"." "."class=\"form-control\""."type=text required id=lugar name=lugar>";		echo "</div></div>";
-
-			
-
-
-			echo "<input type=\"image\" id=\"altaReserva\" name=\"altaReserva\" alt=\"Submit\" value=\"altaReserva\" onclick=\"enviarAltaReserva();\" src=\"..\Archivos\añadir.png\" width=\"20\" height=\"20\">";
+			echo "<input type=\"image\" title=\"Volver\" id=\"Volver\" name=\"Volver\" alt=\"Submit\" value=\"Volver\" onclick=\"enviarPrincipalReservas();\" src=\"..\Archivos\cancelar.png\" width=\"20\" height=\"20\">";
 
 
 ?>
@@ -53,3 +77,5 @@ class reservaAlta{
 	}
 
 ?>
+</body>
+</html>

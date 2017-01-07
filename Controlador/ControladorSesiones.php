@@ -1,8 +1,9 @@
 <?php 
 session_start();
-foreach ($_SESSION as $index => $value) {
+//Muestra la sesion
+/*foreach ($_SESSION as $index => $value) {
     echo __FILE__ . __LINE__ . " $index: $value<br>";
-}		
+}*/		
 include("../Vistas/VistaPrincipalSesion.php");
 include("../Modelos/SesionModelo.php");
 include("../Idiomas/idiomas.php");
@@ -10,16 +11,11 @@ include("../Vistas/AltaSesion.php");
 include("../Vistas/ModificarSesion.php");
 
 
-			if(isset($_REQUEST['sesiones']))
+			if(isset($_REQUEST['sesiones']) or isset($_REQUEST['Volver']))
 			{
-				//if(isset($_SESSION['MONITOR'])or(isset($_SESSION['ADMIN']))){
-				//$nombreUsuarioLogueado=$_SESSION['usuario'];
-
 				$idiom=new idiomas();
 				$sesion=new Sesion();
-				//Mostrar sólo sesiones del usuario logueado
-				 //$usuarioLogueado=$_POST['deportista'];	
-				 //$resul=$modeloSesion->comprobarSesion($$usuarioLogueado);
+
 				$sesion->creararraySesiones();
 				
 				include("../Archivos/ArrayConsultarSesiones.php");
@@ -108,7 +104,7 @@ include("../Vistas/ModificarSesion.php");
 				$idiom=new idiomas();		
 				$vista=new sesionAlta();
 				$sesion=new Sesion();
-
+				//Menus despegables
 				$listaDeportistas=$sesion->getDeportistas();
 				$listablas=$sesion->gettablas();
 				$vista->crear($idiom,$listaDeportistas,$listablas);

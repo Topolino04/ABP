@@ -28,12 +28,26 @@
 
             	document.getElementById("eliminar").submit();
             }
+            function MostrarMensaje(){
+
+            	return $idiom['Deportista'];
+            }
    </script>
+   <br>
+   <div class="container well">
+   <div class="row">
+   <div class="col-xs-2">
+   <fieldset><legend><b>
+   <div style="color:black;" id ="ejemplo"> <?php echo $idiom['NuevaReserva']; ?> </div>
+   <legend></b>
    <form name="formularioalta"  class="form-horizontal" action="..\Controlador\ControladorReservas.php" method="post" >
-			<fieldset>
-			<input type="image" title ="$idiom['Alta']" id="alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();" src="..\Archivos\añadir.png" width="20" height="20"></input>
-			</fieldset>
-			</form>
+		
+			<input type="image" align="top" title = "$idiom['Alta']" id="alta" name="Alta" alt="Submit" value="Alta" onload="MostrarMensaje();" onclick="enviaralta();" src="..\Archivos\agregar.png" width="20" height="20"></input>
+	</fieldset>
+	</form>
+	</div></div></div>
+	<br>
+	<br>
 
 <?php
 			
@@ -61,10 +75,10 @@
 			echo $idiom['DNI'].":"." ".$form[$numar]["deportistaId"];
 			echo "<br>";
 			echo $idiom['Fecha'].":"." ".$form[$numar]["fecha"];
-			echo "<br>";
-			echo $idiom['PlazasRestantes'].":"." ".$form[$numar]["plazas0"];
-			echo "<br>";
+			echo "<br><b>";
 			echo $idiom['Actividad'].":";
+			echo "<br></b>";
+			echo $idiom['PlazasRestantes'].":"." ".$form[$numar]["plazas0"];
 			echo "<br>";
 			echo $idiom['Id_actividad'].":"." ".$form[$numar]["actividadId"];
 			echo "<br>";

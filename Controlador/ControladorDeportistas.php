@@ -1,11 +1,11 @@
 <?php 
-
+session_start();
 	include("../Vistas/VistaPrincipalDeportista.php");
 	include("../Modelos/DeportistasModelo.php");
 	include("../Idiomas/idiomas.php");
 	include("../Vistas/AltaDeportista.php");
 	include("../Vistas/ModificarDeportista.php");
-	session_start();		
+			
 			if(isset($_REQUEST['deportistas']))
 			{
 				$idiom=new idiomas();

@@ -1,19 +1,23 @@
+<html>
+<head>
+<title>
+</title>
+</head>
+<body background="..\Archivos\background-faded1.jpg">
 <?php
-
-
-
-
 class sesionAlta{
 
 	function crear($idioma,$listaDeportistas,$listablas){
 
-			include("../Funciones/cargadodedatos.php");
+		include("../Funciones/cargadodedatos.php");
 ?>
 <script type="text/javascript">
 
     function enviarAltaSesion(){
     document.getElementById("altaSesion").submit();
-
+    }
+    function enviarPrincipalSesiones(){
+    document.getElementById("Volver").submit();
     }
 </script>
 
@@ -25,7 +29,6 @@ class sesionAlta{
 			
 			echo "<fieldset><legend>".$idiom['AltaSesion']."</legend>";		
 
-			
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"deportista\"id =\"deportista\"> ".$idiom['Deportista'].":</label>";
 			echo "<div class=\"input-group col-sm-4\">";
 			echo "<"."select"." "."class=\"form-control\""."required id=deportista name=deportista><option value='0'>".$idiom['SelecDep']."</option>";	
@@ -34,20 +37,16 @@ class sesionAlta{
 
 	         	if($listaDeportistas!=null){ 
 
-							for ($numar =0;$numar<count($listaDeportistas);$numar++)
-							{
-								
-								//echo $formejercicios[$numar]["IdEjercicio"];
-							$dni=$listaDeportistas[$numar]["DNI"];
-							$usuario=$listaDeportistas[$numar]["Usuario"];
-							 echo '<option value="'.$dni.'">'.$usuario.'</option>';
-							}
-						}
-													
-	           
-														
+					for ($numar =0;$numar<count($listaDeportistas);$numar++)
+					{
+						
+						//echo $formejercicios[$numar]["IdEjercicio"];
+					$dni=$listaDeportistas[$numar]["DNI"];
+					$usuario=$listaDeportistas[$numar]["Usuario"];
+					 echo '<option value="'.$dni.'">'.$usuario.'</option>';
+					}
+				}											
           	echo "</select>";
-        
 			echo "</div></div>";
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"comentario\"id =\"comentario\"> ".$idiom['Comentario'].":</label>";
@@ -77,8 +76,8 @@ class sesionAlta{
 			echo "</div></div>";			
 
 
-			echo "<input type=\"image\" id=\"altaSesion\" name=\"altaSesion\" alt=\"Submit\" value=\"altaSesion\" onclick=\"enviarAltaSesion();\" src=\"..\Archivos\añadir.png\" width=\"20\" height=\"20\">";  	
-			
+			echo "<input type=\"image\" id=\"altaSesion\" name=\"altaSesion\" alt=\"Submit\" value=\"altaSesion\" onclick=\"enviarAltaSesion();\" src=\"..\Archivos\agregar.png\" width=\"20\" height=\"20\">";  	
+			echo "<input type=\"image\" title=\"Volver\" id=\"Volver\" name=\"Volver\" alt=\"Submit\" value=\"Volver\" onclick=\"enviarPrincipalSesiones();\" src=\"..\Archivos\cancelar.png\" width=\"20\" height=\"20\">";
 
 ?>
 <?php
@@ -86,3 +85,5 @@ class sesionAlta{
 	}
 
 ?>
+</body>
+</html>

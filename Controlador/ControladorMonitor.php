@@ -1,11 +1,11 @@
 <?php 
-
+session_start();	
 include("../Idiomas/idiomas.php");
 include("../Modelos/MonitorModelo.php");
 include("../Vistas/VistaPrincipalMonitor.php");
 include("../Vistas/VistaAltaMonitor.php");
 include("../Vistas/VistaModificarMonitor.php");
-session_start();		
+	
 
 
 	if(isset($_REQUEST['monitores']))

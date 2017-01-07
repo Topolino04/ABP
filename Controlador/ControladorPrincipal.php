@@ -1,8 +1,9 @@
 <?php 
 session_start();
-foreach ($_SESSION as $index => $value) {
+//Muestra la sesion
+/*foreach ($_SESSION as $index => $value) {
     echo __FILE__ . __LINE__ . " $index: $value<br>";
-}	
+}*/	
 include '../Vistas/VistapanelPrincipal.php';
 include '../Idiomas/idiomas.php';
 include "../Modelos/DeportistasModelo.php";
