@@ -18,7 +18,6 @@
             function enviaralta(){
 
                 document.getElementById("alta").submit();
-
             }
             function enviarmodificar(){
 

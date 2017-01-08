@@ -149,9 +149,9 @@ function RellenarArrayFinal($NombreDeportista,$formActividad)
 		fwrite($file,"array(\"deportistaId\"=>'$deportistaId',\"actividadId\"=>'$actividadId',\"fecha\"=>'$fecha',\"asistencia\"=>'$asistencia'," . PHP_EOL);
 
 		//Nombre de ususario
-		foreach($NombreDeportista as $usu => $dni){
-			if($deportistaId==$dni){
-			$usuario=$NombreDeportista[$numarT]["usuario"];
+		for ($numarC=0;$numarC<count($NombreDeportista);$numarC++){
+			if($deportistaId==$NombreDeportista[$numarC]["dni"]){
+			$usuario=$NombreDeportista[$numarC]["usuario"];
 			fwrite($file,"\"usuario"."\"=>'$usuario'," . PHP_EOL);
 			}
 		}
@@ -250,11 +250,11 @@ function altaReserva($deportistaId,$actividadId)
 		$mysqli->close();
 }
 
- function eliminarReserva($deportistaId){
+ function eliminarReserva($deportistaId,$actividadId){
 
  	$mysqli=$this->conexionBD();
 
- 	$query="DELETE FROM `Deportista_reserva_actividad` WHERE Deportista_id_Usuario='$deportistaId'";
+ 	$query="DELETE FROM `Deportista_reserva_actividad` WHERE Deportista_id_Usuario='$deportistaId' && Actividad_id_Actividad='$actividadId'";
  	if($mysqli->query($query)==TRUE){
 	?>
 		<script>
