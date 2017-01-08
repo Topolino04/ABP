@@ -18,7 +18,6 @@
             function enviaralta(){
 
                 document.getElementById("alta").submit();
-
             }
             function enviarmodificar(){
 
@@ -62,8 +61,8 @@
 			echo "<form method=\"post\" action=\"..\Controlador\ControladorReservas.php\">";
 			echo "<b><fieldset><legend>".$idiom['DatosReserva']."</legend></b>";
 			echo "<input type=image title =".$idiom['Modificar']." id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"..\Archivos\lapiz.png\" width=\"30\"  height=\"30\" ></input>";
-			echo "<input type=hidden id=deportista name=deportista value=".$form[$numar]["deportistaId"].">";
-			echo "<input type=hidden id=actividad name=actividad value=".$form[$numar]["actividadId"].">";
+			echo "<input type=hidden id=deportistaId name=deportistaId value=".$form[$numar]["deportistaId"].">";
+			echo "<input type=hidden id=actividadId name=actividadId value=".$form[$numar]["actividadId"].">";
 			echo "<input type=hidden id=fecha name=fecha value=".$form[$numar]["fecha"].">";
 			//echo "<input type=hidden id=plazas name=plazas value=".$form[$numar]["plazas"].">";
 			//echo "<input type=hidden id=tabla name=tabla value=".$form[$numar]["tabla"].">";

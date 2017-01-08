@@ -1,4 +1,5 @@
 CREATE DATABASE  IF NOT EXISTS `Gimnasio_BD` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE  IF NOT EXISTS `Gimnasio_BD` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `Gimnasio_BD`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
@@ -84,6 +85,7 @@ CREATE TABLE Deportista_reserva_actividad (
   Actividad_id_Actividad int(11) NOT NULL,
   Fecha datetime NOT NULL,
   Asistencia tinyint(1) DEFAULT 0,
+  PRIMARY KEY (Deportista_id_Usuario,Actividad_id_Actividad),
   KEY fk_Deportista_has_Actividad_Actividad1 (Actividad_id_Actividad),
   KEY fk_Deportista_has_Actividad_Deportista1 (Deportista_id_Usuario),
   CONSTRAINT fk_Deportista_has_Actividad_Actividad1 FOREIGN KEY (Actividad_id_Actividad) REFERENCES Actividad (id_Actividad) ON DELETE NO ACTION ON UPDATE NO ACTION,
