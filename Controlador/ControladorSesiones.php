@@ -42,7 +42,7 @@ include("../Vistas/ModificarSesion.php");
 					
 						fwrite($file,"array(\"tabla\"=>'$tabla',\"deportista\"=>'$deportista',\"fecha\"=>'$fecha',\"comentario\"=>'$comentario'," . PHP_EOL);
 
-						//Nombre de ususario		
+						//Nombre de usuario		
 						$usuario=$NombreDeportista[0]["usuario"];
 						fwrite($file,"\"usuario"."\"=>'$usuario'," . PHP_EOL);
 
@@ -110,8 +110,8 @@ include("../Vistas/ModificarSesion.php");
 				$vista->crear($idiom,$listaDeportistas,$listablas);
 				
 			}
-
-			if(isset($_POST['altaSesion'])){ //Cuando se introducen los datos de la nueva sesion, al enviar cargar todas las sesiones
+			//Cuando se introducen los datos de la nueva sesion, al enviar el alta carga todas las sesiones
+			if(isset($_POST['altaSesion'])){ 
 				
 					$idiom=new idiomas();												
 					$deportista=$_POST['deportista'];					

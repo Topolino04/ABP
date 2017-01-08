@@ -88,7 +88,8 @@ function creararrayActividades()
 			$fila_array=array("actividadId"=>$actividadId,"nombre"=>$nombre,"plazas"=>$plazas);
 			array_push($form,$fila_array);
 		}
-	}			 $resultado->free();
+	}			 
+	$resultado->free();
 	$mysqli->close();
 	return $form;
 }
@@ -99,7 +100,7 @@ function crearArrayNombreDeportista(){
 	$this->conexionBD();
 	$form=array();
 
-	$query="SELECT * FROM Deportista"; // WHERE `DNI` = '$deportistaId'";
+	$query="SELECT * FROM Deportista";// WHERE `DNI` = '$deportistaId'";
 	$mysqli=$this->conexionBD();
 	$resultado=$mysqli->query($query);
 
@@ -117,13 +118,15 @@ function crearArrayNombreDeportista(){
 			$fila_array=array("usuario"=>$usuario,"dni"=>$dni);
 			array_push($form,$fila_array);
 		}
-	}			$resultado->free();
+	}			
+	$resultado->free();
 	$mysqli->close();
 	return $form;
 	
 }
 
-function RellenarArrayFinal($NombreDeportista,$formActividad){
+function RellenarArrayFinal($NombreDeportista,$formActividad)
+{
 	include("../Archivos/ArrayConsultarReservas.php");
 	$arra=new consultReserva();
 	$form=$arra->array_consultarReservas();
@@ -132,26 +135,26 @@ function RellenarArrayFinal($NombreDeportista,$formActividad){
 	$file = fopen("../Archivos/ArrayConsultarActividadesDeReserva.php", "w");
 	fwrite($file,"<?php class consult { function array_consultarActividades(){". PHP_EOL);
 	fwrite($file,"\$form=array(" . PHP_EOL);
-
+	
 	for ($numarT=0;$numarT<count($form);$numarT++){
-
+		
 		$deportistaId=$form[$numarT]["deportistaId"];
 		$actividadId=$form[$numarT]["actividadId"];
 		$fecha=$form[$numarT]["fecha"];
 		$asistencia=$form[$numarT]["asistencia"];
-		//Variables para mostrar el nombre del deportista y los ejercicios
-		//$NombreDeportista=$reserva->crearArrayNombreDeportista();
-		//$formActividad->creararrayActividades();
+		//$NombreDeportista->crearArrayNombreDeportista($deportistaId);
+		//$formActividad->creararrayActividades($actividadId);
 		
 		//cargamos el fichero de ejerciciosde la tabla.				
-	
 		fwrite($file,"array(\"deportistaId\"=>'$deportistaId',\"actividadId\"=>'$actividadId',\"fecha\"=>'$fecha',\"asistencia\"=>'$asistencia'," . PHP_EOL);
 
 		//Nombre de ususario
-		
-		$usuario=$NombreDeportista[0]["usuario"];
-		fwrite($file,"\"usuario"."\"=>'$usuario'," . PHP_EOL);
-
+		foreach($NombreDeportista as $usu => $dni){
+			if($deportistaId==$dni){
+			$usuario=$NombreDeportista[$numarT]["usuario"];
+			fwrite($file,"\"usuario"."\"=>'$usuario'," . PHP_EOL);
+			}
+		}
 		//Lista de ejercicios con su nombre
 		if($formActividad!=null){ 
 
@@ -224,24 +227,29 @@ function getActividades(){
 	return $form;
 }
 
-function altaReserva($deportistaId,$actividadId,$fecha,$asistencia)
+function altaReserva($deportistaId,$actividadId)
 {
 	$mysqli=$this->conexionBD();
 
-	if($mysqli->query("INSERT INTO `Deportista_reserva_actividad`(`Deportista_id_Usuario`, `Actividad_id_Actividad`, `Fecha`, `Asistencia`)
+	if($mysqli->query("INSERT INTO `Deportista_reserva_actividad`(`Deportista_id_Usuario`,`Actividad_id_Actividad`,`Fecha`,`Asistencia`)
 		VALUES
-		('$deportistaId','$actividadId','$fecha','$asistencia')")==TRUE)
+		('$deportistaId','$actividadId','now()','1')")==TRUE)
 	{
-	
-		}else {
+	?>
+		<script>
+			alert("Insercción Realizada con Exito");
+		</script>
+		<?php
+	}else {
 		?>
 		<script>
-		alert("Vuelva a Introducir los datos");
-		</script>
-	<?php }
-		$mysqli->close();
+			alert("Error al insertar");
 
+		</script>
+		<?php }
+		$mysqli->close();
 }
+
  function eliminarReserva($deportistaId){
 
  	$mysqli=$this->conexionBD();

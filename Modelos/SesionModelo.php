@@ -249,7 +249,6 @@ function altaSesion($deportista,$comentario,$tabla)
 		</script>
 		<?php }
 		$mysqli->close();
-
 	}
 
 function eliminarSesion($deportista,$tabla,$comentario){

@@ -34,19 +34,22 @@
             }
    </script>
    <br>
+
    <div class="container well">
    <div class="row">
-   <div class="col-xs-2">
-   <fieldset><legend><b>
-   <div style="color:black;" id ="ejemplo"> <?php echo $idiom['NuevaReserva']; ?> </div>
-   <legend></b>
-   <form name="formularioalta"  class="form-horizontal" action="..\Controlador\ControladorReservas.php" method="post" >
-		
-			<input type="image" align="top" title = "$idiom['Alta']" id="alta" name="Alta" alt="Submit" value="Alta" onload="MostrarMensaje();" onclick="enviaralta();" src="..\Archivos\agregar.png" width="20" height="20"></input>
-	</fieldset>
-	</form>
+   <div class="col-xs-4">
+   <table id="myTable">
+   <tr> 
+   <b>
+   <td><div style="color:black;" id ="BotonNuevaReserva"> <?php echo $idiom['NuevaReserva']; echo "&nbsp;"; ?></td>
+   </b>
+   <td><form name="formularioalta"  class="form-horizontal" action="..\Controlador\ControladorReservas.php" method="post" >
+		<input type="image" align="right" title=<?php echo$idiom['Alta'];?> id="alta" name="Alta" alt="Submit" value="Alta" onload="MostrarMensaje();" onclick="enviaralta();" src="..\Archivos\agregar.png" width="20" height="20"></input>
+	</form></div></td>
+	</tr>
+	</div></table>
 	</div></div></div>
-	<br>
+	
 	<br>
 
 <?php

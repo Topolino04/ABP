@@ -8,21 +8,35 @@ include("../Vistas/AltaReserva.php");
 	
 
 	if( isset($_REQUEST['reservas']) or isset($_REQUEST['Volver']) ) 
-	{
+	{	
+		
 		$idiom=new idiomas();
 		$reserva=new Reserva();
+		
 		$reserva->creararrayReservas();
+
+		
 		$NombreDeportista=$reserva->crearArrayNombreDeportista();
 		$formActividad=$reserva->creararrayActividades();
-		/*var_dump($NombreDeportista);
-		//var_dump($formActividad);
-		?>
+		var_dump($NombreDeportista);
+		var_dump($formActividad);	
+		//var_dump($reserva);
+		/*echo "<br>";
+		echo "Nombredportista";
+		echo "<br>";
+		
+		echo "<br>";
+		echo "Foractividad";
+		echo "<br>";
+	
+		echo "<br>";
+		/*?>
 		<script>
 		alert(<?php  ?>);
 		</script>
 		<?php*/
-
 		$reserva->RellenarArrayFinal($NombreDeportista,$formActividad);
+		//$reserva->RellenarArrayFinal();
 		//cargo el fichero final
 	    include("../Archivos/ArrayConsultarActividadesDeReserva.php");
 	    $datos=new consult();
@@ -41,22 +55,23 @@ include("../Vistas/AltaReserva.php");
 		$listActividades=$reserva->getActividades();
 		$vista->crear($idiom,$listaDeportistas,$listActividades);
 	}
+	//Cuando se introducen los datos de la nueva reserva, al enviar el alta carga todas las reservas
 	if(isset($_POST['altaReserva'])){
 		
-			$idiom=new idiomas();
-			$deportistaId=$_POST['deportistaId'];
-			$actividadId=$_POST['actividadId'];
-			$fecha=$_POST['fecha'];
-			$asistencia=$_POST['asistencia'];
-
-			$model=new Reserva();
-			$model->altaReserva($deportistaId,$actividadId,$fecha,$asistencia);
-			$model->creararrayReservas();
-			include("../Archivos/ArrayConsultarReserva.php");
-			$arra=new consultreserva();
-			$form=$arra->array_consultarReserva();
-			$vista=new reservavista();
-			$vista->crear($form,$idiom);
+		$idiom=new idiomas();
+		$deportistaId=$_POST['deportistaId'];
+		$actividadId=$_POST['actividadId'];
+		//$asistencia=$_POST['asistencia'];
+		$model=new Reserva();
+		$model->altaReserva($deportistaId,$actividadId);
+		$model->creararrayReservas();
+		$NombreDeportista=$model->crearArrayNombreDeportista();
+		$formActividad=$model->creararrayActividades();
+		include("../Archivos/ArrayConsultarActividadesDeReserva.php");
+    	$datos=new consult();
+   		$formfinal=$datos->array_consultarActividades();
+		$vista=new reservaVista();
+		$vista->crear($formfinal,$idiom);
 	}
 	if (isset($_POST['Modificar']))
 	{

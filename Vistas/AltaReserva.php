@@ -31,9 +31,9 @@ class reservaAlta{
 
 			echo "<fieldset><legend>".$idiom['AltaReserva']."</legend>";
 
-			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"deportista\"id =\"deportista\"> ".$idiom['Deportista'].":</label>";
+			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"deportistaId\"id =\"deportistaId\"> ".$idiom['Deportista'].":</label>";
 			echo "<div class=\"input-group col-sm-3\">";
-			echo "<"."select"." "."class=\"form-control\""."required id=deportista name=deportista><option value='0'>".$idiom['SelecDep']."</option>";	
+			echo "<"."select"." "."class=\"form-control\""."required id=deportistaId name=deportistaId><option value='0'>".$idiom['SelecDep']."</option>";	
 				
 	         	if($listaDeportistas!=null){ 
 
@@ -49,9 +49,9 @@ class reservaAlta{
           	echo "</select>";
 			echo "</div></div>";
 
-			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"actividad\"id =\"actividad\"> ".$idiom['Actividad'].":</label>";
+			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"actividadId\"id =\"actividadId\"> ".$idiom['Actividad'].":</label>";
 			echo "<div class=\"input-group col-sm-3\">";
-			echo "<"."select"." "."class=\"form-control\""."required id=actividad name=actividad><option value='0'>".$idiom['SelecAct']."</option>";	
+			echo "<"."select"." "."class=\"form-control\""."required id=actividadId name=actividadId><option value='0'>".$idiom['SelecAct']."</option>";	
 				
 	         	if($listaActividades!=null){ 
 

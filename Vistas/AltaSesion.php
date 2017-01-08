@@ -32,9 +32,6 @@ class sesionAlta{
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"deportista\"id =\"deportista\"> ".$idiom['Deportista'].":</label>";
 			echo "<div class=\"input-group col-sm-4\">";
 			echo "<"."select"." "."class=\"form-control\""."required id=deportista name=deportista><option value='0'>".$idiom['SelecDep']."</option>";	
-				
-												
-
 	         	if($listaDeportistas!=null){ 
 
 					for ($numar =0;$numar<count($listaDeportistas);$numar++)

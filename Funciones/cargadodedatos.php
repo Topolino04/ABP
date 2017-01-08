@@ -1,6 +1,6 @@
 <?php 
  		
-               include('../plantilla/cabecera.php');
+             include('../plantilla/cabecera.php');
         include("../Funciones/comprobaridioma.php");
         include("../Archivos/ArrayNotificaciondeusuario.php");
        
