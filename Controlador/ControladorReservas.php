@@ -24,7 +24,7 @@ if( isset($_REQUEST['reservas']) or isset($_REQUEST['Volver']) )
 	$vista=new reservaVista();
 	$vista->crear($formfinal,$idiom);
 }
-if(isset($_POST['Alta']))
+if(isset($_POST['Alta'])) //Al hacer click en Crear Reserva
 {
 	$idiom=new idiomas();
 	$vista=new reservaAlta(); //Llamada a la vista de alta

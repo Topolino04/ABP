@@ -131,7 +131,7 @@ function crearArrayGestionActividad()
 			$alumnoId=$fila['identificador_deportista'];
 			$fecha=$fila['fecha'];
 
-			$fila_array=array("entrenadorId"=>$entrenadorId,"actividadId"=>$actividadId,"alumnoId"=>$alumnoId,"fecha"=>$fecha);
+			$fila_array=array("Entrenador_id_Usuario"=>$entrenadorId,"Actividad_id_Actividad"=>$actividadId,"identificador_deportista"=>$alumnoId,"fecha"=>$fecha);
 			array_push($form,$fila_array);
 		}
 	}			 
@@ -159,7 +159,7 @@ function getEntrenadores(){
 		$Nombre=$fila['Nombre'];
 		$Apellidos=$fila['Apellidos'];
 
-		$fila_array=array("dni"=>$dni,"Nombre"=>$Nombre,"Apellidos"=>$Apellidos);
+		$fila_array=array("DNI"=>$dni,"Nombre"=>$Nombre,"Apellidos"=>$Apellidos);
 		array_push($form,$fila_array);
 	}
 	$resultado->free();
@@ -202,33 +202,38 @@ function RellenarArrayFinal($DatosActividad,$NombreEntrenador)
 			\"descripcion\"=>'$descripcion',
 			\"plazas_libres\"=>'$plazas_libres'," . PHP_EOL);
 		
-		//Datos Gestion Actividad
-		for ($numarC=0;$numarC<count($DatosActividad);$numarC++){
-			if($id_actividad==$DatosActividad[$numarC]["actividadId"]){
-			
-			$entrenadorId=$DatosActividad[$numarC]["entrenadorId"];
-			$actividadId=$DatosActividad[$numarC]["actividadId"];
-			$alumnoId=$DatosActividad[$numarC]["alumnoId"];
-			$fecha=$DatosActividad[$numarC]["fecha"];
-			fwrite($file,"
-					\"entrenadorId".$numarC."\"=>'$entrenadorId',
-					\"actividadId".$numarC."\"=>'$actividadId',
-					\"alumnoId".$numarC."\"=>'$alumnoId',
-					\"fecha".$numarC."\"=>'$fecha'," . PHP_EOL);
+		//Datos tabla Gestion Actividad
+		if (isset($DatosActividad)){
+			for ($numarC=0;$numarC<count($DatosActividad);$numarC++){
+				//Si la id de la actividad existe en Gestion Actividades
+				if($id_actividad==$DatosActividad[$numarC]["Actividad_id_Actividad"]){ 
+				
+				$entrenadorId=$DatosActividad[$numarC]["Entrenador_id_Usuario"];
+				$actividadId=$DatosActividad[$numarC]["Actividad_id_Actividad"];
+				$alumnoId=$DatosActividad[$numarC]["identificador_deportista"];
+				$fecha=$DatosActividad[$numarC]["fecha"];
+				fwrite($file,"
+						\"Entrenador_id_Usuario\"=>'$entrenadorId',
+						\"Actividad_id_Actividad".$numarC."\"=>'$actividadId',
+						\"identificador_deportista".$numarC."\"=>'$alumnoId',
+						\"fecha".$numarC."\"=>'$fecha'," . PHP_EOL);
+				}
 			}
 		}
-		//Datos Gestion Actividad
-		for ($numar=0;$numar<count($NombreEntrenador);$numar++){
-			if($entrenadorId==$NombreEntrenador[$numar]["dni"]){
-			
-			$NombreEntrenadorActividad=$NombreEntrenador[$numar]["Nombre"];
-			$ApellidoEntrenadorActividad=$NombreEntrenador[$numar]["Apellidos"];
-			fwrite($file,"
-					\"NombreEntrenadorActividad\"=>'$NombreEntrenadorActividad',
-					\"ApellidoEntrenadorActividad\"=>'$ApellidoEntrenadorActividad',
-					" . PHP_EOL);
+		if (isset($NombreEntrenador)){
+			//Datos tabla Entrenador Actividad
+			for ($numar=0;$numar<count($NombreEntrenador);$numar++){
+				if($entrenadorId==$NombreEntrenador[$numar]["DNI"]){
+				
+				$NombreEntrenadorActividad=$NombreEntrenador[$numar]["Nombre"];
+				$ApellidoEntrenadorActividad=$NombreEntrenador[$numar]["Apellidos"];
+				fwrite($file,"
+						\"NombreEntrenadorActividad\"=>'$NombreEntrenadorActividad',
+						\"ApellidoEntrenadorActividad\"=>'$ApellidoEntrenadorActividad',
+						" . PHP_EOL);
 
-			//fwrite($file,"\"entrenadorId"."\"=>'$entrenadorId'," . PHP_EOL);
+				//fwrite($file,"\"entrenadorId"."\"=>'$entrenadorId'," . PHP_EOL);
+				}
 			}
 		}
 
@@ -240,23 +245,49 @@ function RellenarArrayFinal($DatosActividad,$NombreEntrenador)
 
 
 //Alta de actividad
-function altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion)
+function altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion,$entrenadorId)
 {
 	$mysqli=$this->conexionBD();
-
+	
+	
+	
 	if($mysqli->query("INSERT INTO `Actividad`(`Nombre`, `Duracion`, `Hora`, `Lugar`, `Plazas`, `Dificultad`, `Descripcion`,`Plazas_libres`)
 		VALUES
 		('$nombreAct','$duracion','$hora','$lugar','$plazas','$dificultad','$descripcion',$plazas)")==TRUE)
 	{
+		$idActividad = $mysqli->insert_id;
 	?>
 		<script>
-		alert("Insercción Realizada con Exito");
+		alert("<?php echo $idActividad?>");
+		</script>
+		<?php
+		return $idActividad;
+		}else {
+		?>
+		<script>
+		alert("Vuelva a Introducir los datos");
+		</script>
+	<?php }
+		
+}
+//Añade un entrenador a una actividad
+function asignarEntrenador($entrenadorId,$idActividad)
+{	
+	$mysqli=$this->conexionBD();	
+
+	if($mysqli->query("INSERT INTO `Gestion_actividad`(`Entrenador_id_Usuario`, `Actividad_id_Actividad`, `identificador_deportista`,`fecha`)
+		VALUES
+		('$entrenadorId','$idActividad','default',now())")==TRUE)
+	{
+	?>
+		<script>
+		alert("Exito");
 		</script>
 		<?php
 		}else {
 		?>
 		<script>
-		alert("Vuelva a Introducir los datos");
+		alert("Fail");
 		</script>
 	<?php }
 		$mysqli->close();

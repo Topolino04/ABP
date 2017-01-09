@@ -1,3 +1,9 @@
+<html>
+<head>
+<title>
+</title>
+</head>
+<body background="..\Archivos\background-faded1.jpg" class="img-responsive">
 <?php
 	class actividadvista{
 
@@ -38,7 +44,7 @@ include("../Funciones/cargadodedatos.php");
 								echo "<input align=right type=image id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"..\Archivos\lapiz.png\" width=\"30\"  height=\"30\" ></input>";
 								echo "<input  type=hidden id=id_actividad name=id_actividad value=".$form[$numar]["id_actividad"].">";
 								//echo "<input type=hidden id=id_alumno name=id_actividad value=".$form[$numar]["id_actividad"].">";
-								echo "<input type=hidden id=id_actividad name=id_actividad value=".$form[$numar]["id_actividad"].">";
+								//echo "<input type=hidden id=id_actividad name=id_actividad value=".$form[$numar]["id_actividad"].">";
 								echo "<input align=right type=image id=\"eliminar\" name=\"Eliminar\" value=\"Eliminar\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"..\Archivos\\eliminar.png\" width=\"30\"  height=\"30\" >";
 									
 							echo "</legend>";
@@ -46,7 +52,7 @@ include("../Funciones/cargadodedatos.php");
 						echo "<div class=\"row\">";
 							echo "<div class=\"col-xs-6\">";
 								
-								echo "<fieldset><legend>". $idiom['Actividad'].":"." ".$form[$numar]["nombre"]."</legend>";
+								echo "<fieldset align=left><legend>". $idiom['Actividad'].":"." ".$form[$numar]["nombre"]."</legend>";
 								//echo $idiom['Actividad'].":"." ".$form[$numar]["nombre"];
 								
 								echo $idiom['Monitor'].":"." ".$form[$numar]["NombreEntrenadorActividad"];
@@ -71,18 +77,22 @@ include("../Funciones/cargadodedatos.php");
 				 			echo "</div>";//Cierra la columna con datos de la actividad		
 						
 							echo "<div class=\"col-xs-6\">";
-								echo "<fieldset><legend>".$idiom['Alumnos']."</legend>";
+								echo "<fieldset align=left><legend>".$idiom['Alumnos']."</legend>";
 								//\"entrenadorId".$numarC."\"=>'$entrenadorId',
 								
 								for ($numarT=0;$numarT<200;$numarT++){
 
-									if(isset($form[$numar]["alumnoId"."$numarT"]))
+									if(isset($form[$numar]["identificador_deportista"."$numarT"]))
 									{
-										echo $form[$numar]["alumnoId"."$numarT"];
-										echo "<input type=hidden id=id_alumno name=id_alumno value=".$form[$numar]["alumnoId"."$numarT"].">";
+										if($form[$numar]["identificador_deportista"."$numarT"]=='default'){
+											echo "Sin deportistas asignados";
+										}else{
+										echo $form[$numar]["identificador_deportista"."$numarT"];
+										echo "<input type=hidden id=id_alumno name=id_alumno value=".$form[$numar]["identificador_deportista"."$numarT"].">";
 										echo "<input align=right type=image id=\"eliminarAlumno\" name=\"eliminarAlumno\" value=\"eliminarAlumno\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"..\Archivos\\cancelar.png\" width=\"20\"  height=\"20\" >";
 										echo "<br>";										
-									}
+										}
+									}	
 								}
 								echo"</fieldset>";
 							echo "</div>";//Cierra columna con alumnos
@@ -103,3 +113,5 @@ include '../plantilla/pie.php';
 }
 }
 ?>
+</body>
+</html>

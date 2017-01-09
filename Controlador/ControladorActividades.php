@@ -27,29 +27,38 @@ if(isset($_REQUEST['actividades']))
 if(isset($_POST['Alta']))
 {
 	$idiom=new idiomas();
-	$clase=new actividadAlta();
-	$clase->crear($idiom);	
+	$vista=new actividadAlta();
+	$actividad=new Actividad();
+	//Variable para menu despelgable entrenadores
+	$listaEntrenadores=$actividad->getEntrenadores();
+	$vista->crear($idiom,$listaEntrenadores);
 }
 
 if(isset($_POST['altaActividad'])){
 	
 		$idiom=new idiomas();
+		//$idActividad=$POST_['id_actividad'];
 		$nombreAct=$_POST['nombre'];
 		$duracion=$_POST['duracion'];
 		$hora=$_POST['hora'];
 		$lugar=$_POST['lugar'];
 		$plazas=$_POST['plazas'];
-		$dificultad=$_POST['dificultad'];
-				
+		$dificultad=$_POST['dificultad'];			
 		$descripcion=$_POST['descripcion'];
+		$entrenadorId=$_POST['entrenador'];
+			
 		$model=new Actividad();
-		$model->altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion);
+		$idActividad=$model->altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion,$entrenadorId);	
+		$model->asignarEntrenador($entrenadorId,$idActividad);
 		$model->creararrayActividades();
-		include("../Archivos/ArrayConsultarActividad.php");
-		$arra=new consultactividad();
-		$form=$arra->array_consultarActividad();
+		$DatosActividad=$model->crearArrayGestionActividad();
+		$NombreEntrenador=$model->getEntrenadores();
+		$model->RellenarArrayFinal($DatosActividad,$NombreEntrenador);
+		include("../Archivos/ArrayConsultarGestionActividad.php");
+		$datos=new consult();
+		$formfinal=$datos->array_consultarGestionActividades();
 		$vista=new actividadvista();
-		$vista->crear($form,$idiom);
+		$vista->crear($formfinal,$idiom);
 
 }
 if (isset($_POST['Modificar']))
@@ -64,14 +73,18 @@ if (isset($_POST['Eliminar']))
 {
 	$idiom=new idiomas();
 	$id_actividad=$_POST['id_actividad'];
-	$model=new Actividad();
-	$model->eliminarActividad($id_actividad);
-	$model->creararrayActividades();
-	include("../Archivos/ArrayConsultarActividad.php");
-		$arra=new consultactividad();
-		$form=$arra->array_consultarActividad();
-		$vista=new actividadvista();
-		$vista->crear($form,$idiom);
+	$model1=new Actividad();
+	$model1->eliminarActividad($id_actividad);
+	//$model1->asignarEntrenador($entrenadorId,$idActividad);
+	$model1->creararrayActividades();
+	$DatosActividad=$model1->crearArrayGestionActividad();
+	$NombreEntrenador=$model1->getEntrenadores();
+	$model1->RellenarArrayFinal($DatosActividad,$NombreEntrenador);
+	include("../Archivos/ArrayConsultarGestionActividad.php");
+	$arra=new consult();
+	$formfinal=$arra->array_consultarGestionActividades();
+	$vista=new actividadvista();
+	$vista->crear($formfinal,$idiom);
 }
 
 if (isset($_POST['eliminarAlumno']))
@@ -83,7 +96,8 @@ if (isset($_POST['eliminarAlumno']))
 	$actividad->eliminarAlumno($id_actividad,$id_alumno);
 	$actividad->creararrayActividades();
 	$DatosActividad=$actividad->crearArrayGestionActividad();
-	$actividad->RellenarArrayFinal($DatosActividad);
+	$NombreEntrenador=$actividad->getEntrenadores();
+	$actividad->RellenarArrayFinal($DatosActividad,$NombreEntrenador);
 	//cargo el fichero final
 	include("../Archivos/ArrayConsultarGestionActividad.php");
 	$datos=new consult();
