@@ -125,7 +125,7 @@ function crearArrayNombreDeportista(){
 	
 }
 
-function RellenarArrayFinal($NombreDeportista,$formActividad)
+function RellenarArrayFinal($NombreDeportista,$formActividad,$DatosEntrenadores,$ObtenerEntrenadorActividad)
 {
 	include("../Archivos/ArrayConsultarReservas.php");
 	$arra=new consultReserva();
@@ -136,8 +136,8 @@ function RellenarArrayFinal($NombreDeportista,$formActividad)
 	fwrite($file,"<?php class consult { function array_consultarActividades(){". PHP_EOL);
 	fwrite($file,"\$form=array(" . PHP_EOL);
 	
+	//Tala Deportista_reserva_actividad
 	for ($numarT=0;$numarT<count($form);$numarT++){
-		
 		$deportistaId=$form[$numarT]["deportistaId"];
 		$actividadId=$form[$numarT]["actividadId"];
 		$fecha=$form[$numarT]["fecha"];
@@ -147,7 +147,28 @@ function RellenarArrayFinal($NombreDeportista,$formActividad)
 		
 		//cargamos el fichero de ejerciciosde la tabla.				
 		fwrite($file,"array(\"deportistaId\"=>'$deportistaId',\"actividadId\"=>'$actividadId',\"fecha\"=>'$fecha',\"asistencia\"=>'$asistencia'," . PHP_EOL);
-
+		//Datos Gestion Actividad
+		//Obtengo el dni del entrenador de esa actividad
+		for ($numarO=0;$numarO<count($ObtenerEntrenadorActividad);$numarO++){
+			if($actividadId==$ObtenerEntrenadorActividad[$numarO]["actividadId"]){
+			
+			$entrenadorId=$ObtenerEntrenadorActividad[$numarO]["entrenadorId"];
+			//$actividadId=$DatosActividad[$numarC]["actividadId"];
+			//$alumnoId=$DatosActividad[$numarO]["alumnoId"];
+			//$fecha=$DatosActividad[$numarC]["fecha"];
+			fwrite($file,"
+					\"entrenadorId\"=>'$entrenadorId'," . PHP_EOL);
+			}
+		}
+		//Tabla Entrenador
+		//Obtengo el nombre del entrenador
+		for ($numarE=0;$numarE<count($DatosEntrenadores);$numarE++){
+			if($entrenadorId==$DatosEntrenadores[$numarE]["dni"]){
+			$usuario=$DatosEntrenadores[$numarE]["Nombre"];
+			fwrite($file,"\"NombreEntrenador"."\"=>'$usuario'," . PHP_EOL);
+			}
+		}
+		//Tabla Deportista
 		//Nombre de ususario
 		for ($numarC=0;$numarC<count($NombreDeportista);$numarC++){
 			if($deportistaId==$NombreDeportista[$numarC]["dni"]){
@@ -155,20 +176,21 @@ function RellenarArrayFinal($NombreDeportista,$formActividad)
 			fwrite($file,"\"usuario"."\"=>'$usuario'," . PHP_EOL);
 			}
 		}
+		//Tabla actividad
 		//Lista de ejercicios con su nombre
 		if($formActividad!=null){ 
-
 			for ($numar =0;$numar<count($formActividad);$numar++){	
-				
-				$actividadId=$formActividad[$numar]["actividadId"];
-				$nombre=$formActividad[$numar]["nombre"];
-				$plazas=$formActividad[$numar]["plazas"];
+				if($actividadId==$formActividad[$numar]["actividadId"]){
+					$actividadId=$formActividad[$numar]["actividadId"];
+					$nombre=$formActividad[$numar]["nombre"];
+					$plazas=$formActividad[$numar]["plazas"];
 
-				fwrite($file,"
-					\"actividadId".$numar."\"=>'$actividadId',
-					\"nombre".$numar."\"=>'$nombre',
-					\"plazas".$numar."\"=>'$plazas'," . PHP_EOL);	
-				}							
+					fwrite($file,"
+						\"actividadId".$numar."\"=>'$actividadId',
+						\"nombre".$numar."\"=>'$nombre',
+						\"plazas".$numar."\"=>'$plazas'," . PHP_EOL);	
+					}
+			 	}							
 			}
 			fwrite($file,")," . PHP_EOL);
 		}
@@ -201,6 +223,33 @@ function getDeportistas(){
 	return $form;
 }
 
+//Lista los nombres de los entrenadores
+function getEntrenadores(){
+
+	$this->conexionBD();
+	$mysqli=$this->conexionBD();
+
+	$form=array();
+	$query="SELECT * FROM Entrenador";		
+	$resultado=$mysqli->query($query);
+	while($fila = $resultado->fetch_array())
+	{
+		$filas[] = $fila;
+	}
+	foreach($filas as $fila)
+	{
+		$dni=$fila['DNI'];
+		$Nombre=$fila['Nombre'];
+		$Apellidos=$fila['Apellidos'];
+
+		$fila_array=array("dni"=>$dni,"Nombre"=>$Nombre,"Apellidos"=>$Apellidos);
+		array_push($form,$fila_array);
+	}
+	$resultado->free();
+	$mysqli->close();
+	return $form;
+}
+
 //Lista los nombres de las actividades al crear una nueva Reserva
 function getActividades(){
 
@@ -226,7 +275,40 @@ function getActividades(){
 	$mysqli->close();
 	return $form;
 }
+//Convierte en array la tabla Gestion_actividad
+//Crea un array con los datos de gestion de las actividades
+function crearArrayGestionActividad()
+{
+	$this->conexionBD();
+	$form=array();
 
+	$query="SELECT * FROM Gestion_actividad"; //WHERE `id_Actividad` = '$actividadId'";
+	$mysqli=$this->conexionBD();
+	$resultado=$mysqli->query($query);
+
+	if(mysqli_num_rows($resultado)){
+			//$fila =$resultado->fetch_array(MYSQLI_ASSOC);
+		while($fila = $resultado->fetch_array())
+		{
+			$filas[] = $fila;
+		}
+		foreach($filas as $fila)
+		{
+			$entrenadorId=$fila['Entrenador_id_Usuario'];
+			$actividadId=$fila['Actividad_id_Actividad'];
+			$alumnoId=$fila['identificador_deportista'];
+			$fecha=$fila['fecha'];
+
+			$fila_array=array("entrenadorId"=>$entrenadorId,"actividadId"=>$actividadId,"alumnoId"=>$alumnoId,"fecha"=>$fecha);
+			array_push($form,$fila_array);
+		}
+	}			 
+	$resultado->free();
+	$mysqli->close();
+	return $form;
+}
+
+//Crea la reserva
 function altaReserva($deportistaId,$actividadId)
 {
 	$mysqli=$this->conexionBD();
@@ -243,10 +325,32 @@ function altaReserva($deportistaId,$actividadId)
 	}else {
 		?>
 		<script>
-			alert("Error al insertar");
+			alert("Error al insertar. Ya existe un usuario con ese nombre en esa actividad");
 
 		</script>
 		<?php }
+		$mysqli->close();
+}
+//Añade la reserca a una actividad existente
+function altaAlumno($deportistaId,$actividadId,$entrenadorId)
+{
+	$mysqli=$this->conexionBD();
+
+	if($mysqli->query("INSERT INTO `Gestion_actividad`(`Entrenador_id_Usuario`, `Actividad_id_Actividad`, `identificador_deportista`,`fecha`)
+		VALUES
+		('$entrenadorId','$actividadId','$deportistaId',now())")==TRUE)
+	{
+	?>
+		<script>
+		alert("Insercción Realizada con Exito");
+		</script>
+		<?php
+		}else {
+		?>
+		<script>
+		alert("Vuelva a Introducir los datos");
+		</script>
+	<?php }
 		$mysqli->close();
 }
 
@@ -264,7 +368,7 @@ function altaReserva($deportistaId,$actividadId)
  	}else {
 		?>
 		<script>
-		alert("Problema al Borrar");
+		alert("Problema al Borrar. Ya existe un usuario con ese nombre en esa actividad ");
 		</script>
 	<?php }
 	$mysqli->close();

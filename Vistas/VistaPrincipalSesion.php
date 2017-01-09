@@ -42,7 +42,7 @@
 			if (($_SESSION['usuario']!="ADMIN") && ($_SESSION['usuario']!="MONITOR") && ($_SESSION['usuario']==$userLoggedIn)){
 			echo "<div class=\"container well\">";
  			echo "<div class=\"row\">";
-			echo "<div class=\"col-xs-12\">";
+			echo "<div class=\"col-xs-6\">";
 			echo "<form method=\"post\" action=\"..\Controlador\ControladorSesiones.php\">";
 			
 
@@ -70,7 +70,9 @@
 			echo "<br>";
 			echo "</thead>";
 			echo "<br>";
-			echo "</fieldset>";			
+			echo "</fieldset>";	
+			echo "</div>"; //Cierra col-xs-6
+			echo "<div class=\"col-xs-6\">";		
 			echo "<b>";
 			echo "<fieldset><legend>".$idiom['EjercicioTabla']." ".$form[$numar]["tabla"]."</legend>";
 			echo "</b>";
@@ -106,7 +108,7 @@
 			}if (($_SESSION['usuario']=="ADMIN") or ($_SESSION['usuario']=="MONITOR")){ 
 			echo "<div class=\"container well\">";
  			echo "<div class=\"row\">";
-			echo "<div class=\"col-xs-12\">";
+			echo "<div class=\"col-xs-4\">";
 			echo "<form method=\"post\" action=\"..\Controlador\ControladorSesiones.php\">";
 			
 
@@ -134,7 +136,9 @@
 			echo "<br>";
 			echo "</thead>";
 			echo "<br>";
-			echo "</fieldset>";			
+			echo "</fieldset>";	
+			echo "</div>"; //Cierra col-xs-6
+			echo "<div class=\"col-xs-6\">";		
 			echo "<b>";
 			echo "<fieldset><legend>".$idiom['EjercicioTabla']." ".$form[$numar]["tabla"]."</legend>";
 			echo "</b>";

@@ -32,22 +32,23 @@ CREATE TABLE Actividad (
   Plazas int(11) NOT NULL,
   Dificultad enum('FACIL','MEDIA','DIFICIL') NOT NULL,
   Descripcion varchar(150) DEFAULT NULL,
+  Plazas_libres int(11) NOT NULL,
   PRIMARY KEY (id_Actividad)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
-
+ALTER TABLE `Actividad`
+  MODIFY `id_Actividad` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Dumping data for table `Actividad`
 --
 
-INSERT INTO Actividad VALUES (1,'Baile','00:30:00','18:00:00','Aula3',20,'FACIL','Clase de baile');
+INSERT INTO Actividad VALUES (1,'Baile','00:30:00','18:00:00','Aula3',20,'FACIL','Clase de baile',20);
 
 --
 -- Table structure for table `Deportista`
 --
 
- ALTER TABLE `Actividad`
-  MODIFY `id_Actividad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 
 DROP TABLE IF EXISTS Deportista;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -170,12 +171,13 @@ CREATE TABLE Gestion_actividad (
   Actividad_id_Actividad int(11) NOT NULL,
   identificador_deportista varchar(11) NOT NULL,
   fecha datetime NOT NULL,
+  PRIMARY KEY (Entrenador_id_Usuario,Actividad_id_Actividad,identificador_deportista),
   KEY fk_Entrenador_has_Actividad_Actividad1 (Actividad_id_Actividad),
   KEY fk_Entrenador_has_Actividad_Entrenador1 (Entrenador_id_Usuario),
   KEY fk_deportista (identificador_deportista),
   CONSTRAINT fk_Entrenador_has_Actividad_Actividad1 FOREIGN KEY (Actividad_id_Actividad) REFERENCES Actividad (id_Actividad) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT fk_Entrenador_has_Actividad_Entrenador1 FOREIGN KEY (Entrenador_id_Usuario) REFERENCES Entrenador (DNI) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT fk_deportista FOREIGN KEY (identificador_deportista) REFERENCES deportista (DNI) ON DELETE CASCADE ON UPDATE NO ACTION
+  CONSTRAINT fk_deportista FOREIGN KEY (identificador_deportista) REFERENCES Deportista (DNI) ON DELETE CASCADE ON UPDATE NO ACTION
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -184,7 +186,6 @@ CREATE TABLE Gestion_actividad (
 --
 
 INSERT INTO Gestion_actividad VALUES ('1213131',1,'39476158B','0000-00-00 00:00:00');
-INSERT INTO Gestion_actividad VALUES ('1213131',1,'39476158B','0000-00-00 00:00:40');
 
 --
 -- Table structure for table `Gestion_deportistas_entrenador`

@@ -78,14 +78,12 @@
 			echo "<br>";
 			echo $idiom['Fecha'].":"." ".$form[$numar]["fecha"];
 			echo "<br><b>";
-			echo $idiom['Actividad'].":";
+			echo $idiom['Actividad'].":"." ".$form[$numar]["actividadId"];
 			echo "<br></b>";
-			echo $idiom['PlazasRestantes'].":"." ".$form[$numar]["plazas0"];
-			echo "<br>";
-			echo $idiom['Id_actividad'].":"." ".$form[$numar]["actividadId"];
-			echo "<br>";
 			echo $idiom['Nombre'].":"." ".$form[$numar]["nombre0"];
 			echo "<br>";
+			echo $idiom['PlazasLibres'].":"." ".$form[$numar]["plazas0"];
+			echo "<br>";			
 			/*echo "</thead>";
 			echo "<br>";
 			echo "</fieldset>";			

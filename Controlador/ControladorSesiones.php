@@ -3,7 +3,7 @@ session_start();
 //Muestra la sesion
 /*foreach ($_SESSION as $index => $value) {
     echo __FILE__ . __LINE__ . " $index: $value<br>";
-}*/		
+}*/	
 include("../Vistas/VistaPrincipalSesion.php");
 include("../Modelos/SesionModelo.php");
 include("../Idiomas/idiomas.php");
@@ -76,27 +76,19 @@ include("../Vistas/ModificarSesion.php");
 										\"Series".$numar."\"=>'$series',
 										\"Descripcion".$numar."\"=>'$descripcion'," . PHP_EOL);
 									}
-										
-								
 								}							
-							
 						}
 						fwrite($file,")," . PHP_EOL);
-
-
 		 		}
 		 		fwrite($file,");return \$form;}}?>". PHP_EOL);
 				fclose($file);
 				 //fichero creado
-
 				 //cargo el fichero final
 				 include("../Archivos/ArrayConsultartablasyejerciciosdeunasesion.php");
 				 $datos=new consult();
 				 $formfinal=$datos->array_consultar12();
-
 				 $vista=new sesionVista();
 				 $vista->crear($formfinal,$idiom);
-				//}
 			}
 
 			if(isset($_POST['Alta'])) //Cuando se hace click en el + dentro de la vista principal de sesion
