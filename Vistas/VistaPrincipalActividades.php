@@ -3,13 +3,13 @@
 <title>
 </title>
 </head>
-<body background="..\Archivos\background-faded1.jpg" class="img-responsive">
+<body background="../Archivos/background-faded1.jpg">
 <?php
-	class actividadvista{
+class actividadvista{
 
-		function crear($form,$idioma){
-include("../Funciones/cargadodedatos.php");
-    		?>
+	function crear($form,$idioma){
+	include("../Funciones/cargadodedatos.php");
+?>
 <script type="text/javascript">
 
             function enviaralta(){
@@ -26,19 +26,36 @@ include("../Funciones/cargadodedatos.php");
             	document.getElementById("eliminar").submit();
             }
    </script>
-   <form name="formularioalta"  class="form-horizontal" action="..\Controlador\ControladorActividades.php" method="post" >
-			<fieldset>
-			<input type="image" id="alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();" src="..\Archivos\añadir.png" width="20" height="20"></input>
-			</fieldset>
-			</form>
+   <br>
+   <div class="container">    
+	   <div class="row">
+		   <div class="col-xs-3 well">
+			   <table id="myTable">
+				   <tr> 					   
+					   <td>	
+					   		<b><div style="color:black;" id ="BotonNuevaActividad"> <?php echo $idiom['NuevaActividad']; echo "&nbsp;"; ?></b>	
+					   </td>
+					   <td>	
+	  						 <form name="formularioalta"  class="form-horizontal" action="..\Controlador\ControladorActividades.php" method="post" >				
+								<input type="image" align="right" title=<?php echo$idiom['NuevaActividad'];?> id="alta" name="Alta" alt="Submit" value="Alta" onload="MostrarMensaje();" onclick="enviaralta();" src="..\Archivos\agregar.png" width="20" height="20">						
+								</input>						
+							</form>
+							</div>
+						</td>
+					</tr>					
+				</table>
+			</div>
+		</div>
+	</div>		
+	<br>
 
 <?php
 
 		for ($numar=0;$numar<count($form);$numar++){
 
-			echo "<div class=\"container well\">";
+			echo "<div class=\"container\">";
 	 			echo "<div class=\"row\">";
-					echo "<div class=\"col-xs-12\">";
+					echo "<div class=\"col-xs-12  well\">";
 						echo "<form class=\"form-horizontal\" method=\"post\" action=\"..\Controlador\ControladorActividades.php\">";
 							echo "<fieldset align=center><legend>".$idiom['DatosActividad'];//."</legend>";
 								echo "<input align=right type=image id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"..\Archivos\lapiz.png\" width=\"30\"  height=\"30\" ></input>";
@@ -50,7 +67,7 @@ include("../Funciones/cargadodedatos.php");
 							echo "</legend>";
 						//echo "</div>";//Cierra la columna del titulo (datos de la actividad)
 						echo "<div class=\"row\">";
-							echo "<div class=\"col-xs-6\">";
+							echo "<div class=\"col-xs-6 well\">";
 								
 								echo "<fieldset align=left><legend>". $idiom['Actividad'].":"." ".$form[$numar]["nombre"]."</legend>";
 								//echo $idiom['Actividad'].":"." ".$form[$numar]["nombre"];
@@ -76,7 +93,7 @@ include("../Funciones/cargadodedatos.php");
 							
 				 			echo "</div>";//Cierra la columna con datos de la actividad		
 						
-							echo "<div class=\"col-xs-6\">";
+							echo "<div class=\"col-xs-6 well\">";
 								echo "<fieldset align=left><legend>".$idiom['Alumnos']."</legend>";
 								//\"entrenadorId".$numarC."\"=>'$entrenadorId',
 								
@@ -87,11 +104,13 @@ include("../Funciones/cargadodedatos.php");
 										if($form[$numar]["identificador_deportista"."$numarT"]=='default'){
 											
 										}else{
+																		
 										echo $form[$numar]["identificador_deportista"."$numarT"];
 										echo "<input type=hidden id=id_alumno name=id_alumno value=".$form[$numar]["identificador_deportista"."$numarT"].">";
-										echo "<input align=right type=image id=\"eliminarAlumno\" name=\"eliminarAlumno\" value=\"eliminarAlumno\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"..\Archivos\\cancelar.png\" width=\"20\"  height=\"20\" >";
-										echo "<br>";										
+										echo "<input align=right title =".$idiom['Eliminar']." type=image id=\"eliminarAlumno\" name=\"eliminarAlumno\" value=\"eliminarAlumno\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"..\Archivos\\cancelar.png\" width=\"20\"  height=\"20\" >";																				
+										echo "<br>";
 										}
+										
 									}	
 								}
 								echo"</fieldset>";
@@ -102,16 +121,16 @@ include("../Funciones/cargadodedatos.php");
 			echo "</div>";//Cierra el container
 
 		 	}
-
-
+	include '../plantilla/pie.php';
 ?>
-	</div></div></div>
 
-	</div>
+
+
+
+
 <?php
-include '../plantilla/pie.php';
-}
-}
+	}//Cierra la funcion crear()
+}//Cierra la clase
 ?>
 </body>
 </html>

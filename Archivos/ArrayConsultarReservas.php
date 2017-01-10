@@ -5,4 +5,19 @@ array(
 				"actividadId"=>'1',
 				"fecha"=>'0000-00-00 00:00:00',
 				"asistencia"=>'1'),
+array(
+				"deportistaId"=>'32165498',
+				"actividadId"=>'17',
+				"fecha"=>'0000-00-00 00:00:00',
+				"asistencia"=>'1'),
+array(
+				"deportistaId"=>'39476158B',
+				"actividadId"=>'1',
+				"fecha"=>'0000-00-00 00:00:00',
+				"asistencia"=>'1'),
+array(
+				"deportistaId"=>'39476158B',
+				"actividadId"=>'17',
+				"fecha"=>'0000-00-00 00:00:00',
+				"asistencia"=>'1'),
 );return $form;}}?>

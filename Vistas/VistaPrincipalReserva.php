@@ -4,7 +4,7 @@
 </title>
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<body background="..\Archivos\background-faded1.jpg" class="img-responsive" alt="Imagen responsive">
+<body background="../Archivos/background-faded1.jpg">
 
 <?php
 
@@ -34,18 +34,18 @@
             }
    </script>
 
-
+  <br>
    <div class="container">    
 	   <div class="row">
-		   <div class="col-xs-2 well">
+		   <div class="col-xs-3 well">
 			   <table id="myTable">
 				   <tr> 					   
-					   <td>
+					   <td>					  
 					   		<b><div style="color:black;" id ="BotonNuevaReserva"> <?php echo $idiom['NuevaReserva']; echo "&nbsp;"; ?></b>
 					   </td>
 					   <td>
 					   		<form name="formularioalta"  class="form-horizontal" action="..\Controlador\ControladorReservas.php" method="post" >
-								<input type="image" align="right" title=<?php echo$idiom['Alta'];?> id="alta" name="Alta" alt="Submit" value="Alta" onload="MostrarMensaje();" onclick="enviaralta();" src="..\Archivos\agregar.png" width="20" height="20">
+								<input type="image" align="right" title=<?php echo$idiom['NuevaReserva'];?> id="alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();" src="..\Archivos\agregar.png" width="20" height="20">
 								</input>
 							</form>
 							</div>
@@ -54,8 +54,7 @@
 				</table>
 			</div>
 		</div>
-	</div>
-		
+	</div>		
 	<br>
 
 <?php

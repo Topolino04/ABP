@@ -257,7 +257,7 @@ function altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$de
 		$idActividad = $mysqli->insert_id;
 	?>
 		<script>
-		alert("<?php echo $idActividad?>");
+		alert("Actividad creada con éxito");
 		</script>
 		<?php
 		return $idActividad;
@@ -269,7 +269,7 @@ function altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$de
 	<?php }
 		
 }
-//Añade un entrenador a una actividad
+//Añade un entrenador a una actividad y le añade un usuario por defecto ya que no puede ser null
 function asignarEntrenador($entrenadorId,$idActividad)
 {	
 	$mysqli=$this->conexionBD();	
@@ -280,13 +280,13 @@ function asignarEntrenador($entrenadorId,$idActividad)
 	{
 	?>
 		<script>
-		alert("Exito");
+	//	alert("Exito");
 		</script>
 		<?php
 		}else {
 		?>
 		<script>
-		alert("Fail");
+	//	alert("Fail");
 		</script>
 	<?php }
 		$mysqli->close();

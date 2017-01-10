@@ -3,7 +3,7 @@
 <title>
 </title>
 </head>
-<body background="..\Archivos\background-faded1.jpg">
+<body background="../Archivos/background-faded1.jpg">
 <?php
 class reservaAlta{
 
