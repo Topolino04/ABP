@@ -236,7 +236,6 @@ function RellenarArrayFinal($DatosActividad,$NombreEntrenador)
 				}
 			}
 		}
-
 		fwrite($file,")," . PHP_EOL);
 		}
 		fwrite($file,");return \$form;}}?>". PHP_EOL);

@@ -80,12 +80,12 @@ include("../Funciones/cargadodedatos.php");
 								echo "<fieldset align=left><legend>".$idiom['Alumnos']."</legend>";
 								//\"entrenadorId".$numarC."\"=>'$entrenadorId',
 								
+								
 								for ($numarT=0;$numarT<200;$numarT++){
-
 									if(isset($form[$numar]["identificador_deportista"."$numarT"]))
 									{
 										if($form[$numar]["identificador_deportista"."$numarT"]=='default'){
-											echo "Sin deportistas asignados";
+											
 										}else{
 										echo $form[$numar]["identificador_deportista"."$numarT"];
 										echo "<input type=hidden id=id_alumno name=id_alumno value=".$form[$numar]["identificador_deportista"."$numarT"].">";

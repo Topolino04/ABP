@@ -142,8 +142,6 @@ function RellenarArrayFinal($NombreDeportista,$formActividad,$DatosEntrenadores,
 		$actividadId=$form[$numarT]["actividadId"];
 		$fecha=$form[$numarT]["fecha"];
 		$asistencia=$form[$numarT]["asistencia"];
-		//$NombreDeportista->crearArrayNombreDeportista($deportistaId);
-		//$formActividad->creararrayActividades($actividadId);
 		
 		//cargamos el fichero de ejerciciosde la tabla.				
 		fwrite($file,"array(\"deportistaId\"=>'$deportistaId',\"actividadId\"=>'$actividadId',\"fecha\"=>'$fecha',\"asistencia\"=>'$asistencia'," . PHP_EOL);
@@ -162,23 +160,29 @@ function RellenarArrayFinal($NombreDeportista,$formActividad,$DatosEntrenadores,
 		}
 		//Tabla Entrenador
 		//Obtengo el nombre del entrenador
+		if(isset($DatosEntrenadores)){
 		for ($numarE=0;$numarE<count($DatosEntrenadores);$numarE++){
-			if($entrenadorId==$DatosEntrenadores[$numarE]["dni"]){
-			$usuario=$DatosEntrenadores[$numarE]["Nombre"];
-			fwrite($file,"\"NombreEntrenador"."\"=>'$usuario'," . PHP_EOL);
+				if($entrenadorId==$DatosEntrenadores[$numarE]["dni"]){
+				$usuario=$DatosEntrenadores[$numarE]["Nombre"];
+				fwrite($file,"
+					\"NombreEntrenador"."\"=>'$usuario'," . PHP_EOL);
+				}
 			}
 		}
 		//Tabla Deportista
 		//Nombre de ususario
-		for ($numarC=0;$numarC<count($NombreDeportista);$numarC++){
-			if($deportistaId==$NombreDeportista[$numarC]["dni"]){
-			$usuario=$NombreDeportista[$numarC]["usuario"];
-			fwrite($file,"\"usuario"."\"=>'$usuario'," . PHP_EOL);
+		if(isset($NombreDeportista)){
+			for ($numarC=0;$numarC<count($NombreDeportista);$numarC++){
+				if($deportistaId==$NombreDeportista[$numarC]["dni"]){
+				$usuario=$NombreDeportista[$numarC]["usuario"];
+				fwrite($file,"
+					\"usuario"."\"=>'$usuario'," . PHP_EOL);
+				}
 			}
 		}
 		//Tabla actividad
 		//Lista de ejercicios con su nombre
-		if($formActividad!=null){ 
+		if(isset($formActividad)){ 
 			for ($numar =0;$numar<count($formActividad);$numar++){	
 				if($actividadId==$formActividad[$numar]["actividadId"]){
 					$actividadId=$formActividad[$numar]["actividadId"];
@@ -186,16 +190,16 @@ function RellenarArrayFinal($NombreDeportista,$formActividad,$DatosEntrenadores,
 					$plazas=$formActividad[$numar]["plazas"];
 
 					fwrite($file,"
-						\"actividadId".$numar."\"=>'$actividadId',
-						\"nombre".$numar."\"=>'$nombre',
-						\"plazas".$numar."\"=>'$plazas'," . PHP_EOL);	
-					}
-			 	}							
-			}
-			fwrite($file,")," . PHP_EOL);
+						\"actividadId\"=>'$actividadId',
+						\"nombre\"=>'$nombre',
+						\"plazas\"=>'$plazas'," . PHP_EOL);	
+				}
+		 	}							
 		}
-		fwrite($file,");return \$form;}}?>". PHP_EOL);
-		fclose($file);				 				
+			fwrite($file,")," . PHP_EOL);
+	}
+	fwrite($file,");return \$form;}}?>". PHP_EOL);
+	fclose($file);				 				
 }
 //Lista los nombres de los deportistas al crear una nueva Reserva
 function getDeportistas(){
@@ -317,12 +321,14 @@ function altaReserva($deportistaId,$actividadId)
 		VALUES
 		('$deportistaId','$actividadId','now()','1')")==TRUE)
 	{
+			return TRUE;
 	?>
 		<script>
 			alert("Insercción Realizada con Exito");
 		</script>
 		<?php
 	}else {
+			return FALSE;
 		?>
 		<script>
 			alert("Error al insertar. Ya existe un usuario con ese nombre en esa actividad");
@@ -331,14 +337,14 @@ function altaReserva($deportistaId,$actividadId)
 		<?php }
 		$mysqli->close();
 }
-//Añade la reserca a una actividad existente
+//Añade la reserva a una actividad existente
 function altaAlumno($deportistaId,$actividadId,$entrenadorId)
 {
 	$mysqli=$this->conexionBD();
 
 	if($mysqli->query("INSERT INTO `Gestion_actividad`(`Entrenador_id_Usuario`, `Actividad_id_Actividad`, `identificador_deportista`,`fecha`)
 		VALUES
-		('$entrenadorId','$actividadId','$deportistaId',now())")==TRUE)
+		('$entrenadorId','$actividadId','$deportistaId','now()')")==TRUE)
 	{
 	?>
 		<script>
@@ -348,13 +354,13 @@ function altaAlumno($deportistaId,$actividadId,$entrenadorId)
 		}else {
 		?>
 		<script>
-		alert("Vuelva a Introducir los datos");
+		alert("<?php echo "<br>"; echo $deportistaId; echo "<br>"; echo $actividadId; echo "<br>"; echo $entrenadorId; ?>");
 		</script>
 	<?php }
 		$mysqli->close();
 }
 
- function eliminarReserva($deportistaId,$actividadId){
+function eliminarReserva($deportistaId,$actividadId){
 
  	$mysqli=$this->conexionBD();
 
@@ -372,7 +378,29 @@ function altaAlumno($deportistaId,$actividadId,$entrenadorId)
 		</script>
 	<?php }
 	$mysqli->close();
- }
+}
+
+function eliminarAlumnodeActividad($deportistaId,$actividadId){
+
+ 	$mysqli=$this->conexionBD();
+
+ 	$query="DELETE FROM `Gestion_actividad` WHERE Actividad_id_Actividad='$actividadId' && identificador_deportista='$deportistaId'";
+ 	if($mysqli->query($query)==TRUE){
+	?>
+		<script>
+		alert("Eliminado con Exito");
+		</script>
+		<?php
+ 	}else {
+		?>
+		<script>
+		alert("Problema al Borrar");
+		</script>
+	<?php }
+	$mysqli->close();
+}
+
+
 
  function modificarReserva($deportistaId,$actividadId,$fecha,$asistencia){
 

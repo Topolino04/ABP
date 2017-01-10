@@ -37,13 +37,15 @@
 <?php 	
 
 		for ($numar =0;$numar<count($form);$numar++){
-
+			//Añado esta condicion para que no muestre el deportista por defecto, necesario cuando se crea una actividad por primera vez
+			if($form[$numar]["dni"]!='default'){
 			echo "<div class=\"container well\">";
  			echo "<div class=\"row\">"; 
 			echo "<div class=\"col-xs-12\">";
 			echo "<form class=\"form-horizontal\" method=\"post\" action=\"..\Controlador\ControladorDeportistas.php\">";
 			echo "<fieldset><legend>".$idiom['Datosdeportista']."</legend>";
 			echo "<input type=image id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"..\Archivos\lapiz.png\" width=\"30\"  height=\"30\" >";
+
 			echo "<input type=hidden  name=dni value=".$form[$numar]["dni"].">";
 			echo "<input type=hidden  name=nombre value=".$form[$numar]["nombre"].">";
 			echo "<input type=hidden  name=apellido value=".$form[$numar]["apellido2"].">";
@@ -76,7 +78,7 @@
 
 			echo "</div>";
 			
-
+			}
 		 	}
 
 		 

@@ -41,17 +41,31 @@ if(isset($_POST['altaReserva'])){
 	$actividadId=$_POST['actividadId'];
 	//$asistencia=$_POST['asistencia'];
 	$model=new Reserva();
-	$model->altaReserva($deportistaId,$actividadId);
-	$model->altaAlumno($deportistaId,$actividadId,$entrenadorId);
 	$model->creararrayReservas();
 	$NombreDeportista=$model->crearArrayNombreDeportista();
 	$formActividad=$model->creararrayActividades();
-	$model->RellenarArrayFinal($NombreDeportista,$formActividad);
+	$DatosEntrenadores=$model->getEntrenadores();
+	$ObtenerEntrenadorActividad=$model->crearArrayGestionActividad();
+	for ($numarO=0;$numarO<count($ObtenerEntrenadorActividad);$numarO++){
+		if($actividadId==$ObtenerEntrenadorActividad[$numarO]["actividadId"]){			
+			$entrenadorId=$ObtenerEntrenadorActividad[$numarO]["entrenadorId"];			
+		}
+	}
+	$error=$model->altaReserva($deportistaId,$actividadId);
+	if($error==TRUE){
+		$model->altaAlumno($deportistaId,$actividadId,$entrenadorId);
+	}
+	$model->creararrayReservas();
+	$NombreDeportista=$model->crearArrayNombreDeportista();
+	$formActividad=$model->creararrayActividades();
+	$DatosEntrenadores=$model->getEntrenadores();
+	$ObtenerEntrenadorActividad=$model->crearArrayGestionActividad();
+	$model->RellenarArrayFinal($NombreDeportista,$formActividad,$DatosEntrenadores,$ObtenerEntrenadorActividad);
 	include("../Archivos/ArrayConsultarActividadesDeReserva.php");
 	$datos=new consult();
-		$formfinal=$datos->array_consultarActividades();
+	$formfinal=$datos->array_consultarActividades();
 	$vista=new reservaVista();
-	$vista->crear($formfinal,$idiom);
+	$vista->crear($formfinal,$idiom);	
 }
 if (isset($_POST['Modificar']))
 {
@@ -71,15 +85,18 @@ if (isset($_POST['Eliminar']))
 	//$asistencia=$_POST['asistencia'];
 	$model=new Reserva();
 	$model->eliminarReserva($deportistaId,$actividadId);
+	$model->eliminarAlumnodeActividad($deportistaId,$actividadId);
 	$model->creararrayReservas();
 	$NombreDeportista=$model->crearArrayNombreDeportista();
 	$formActividad=$model->creararrayActividades();
-	$model->RellenarArrayFinal($NombreDeportista,$formActividad);
+	$DatosEntrenadores=$model->getEntrenadores();
+	$ObtenerEntrenadorActividad=$model->crearArrayGestionActividad();
+	$model->RellenarArrayFinal($NombreDeportista,$formActividad,$DatosEntrenadores,$ObtenerEntrenadorActividad);
 	include("../Archivos/ArrayConsultarActividadesDeReserva.php");
 	$datos=new consult();
 	$formfinal=$datos->array_consultarActividades();
 	$vista=new reservaVista();
-	$vista->crear($formfinal,$idiom);
+	$vista->crear($formfinal,$idiom);	
 }
 
 if(isset($_POST['ModificarReserva']))
