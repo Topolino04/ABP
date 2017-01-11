@@ -71,8 +71,9 @@ CREATE TABLE Deportista (
 -- Dumping data for table `Deportista`
 --
 
-INSERT INTO Deportista VALUES ('ADMIN','73acd9a5972130b75066c82595a1fae3','Pablo','Gonzalez Rodriguez','321.jpg','39476158B','pablopeiboll@gmail.com','2016-11-05',321313,'TDU');
---Deportista por defecto para crear una actividad vacia
+--
+-- Deportista por defecto para poder crear Actividad 
+--
 INSERT INTO Deportista(`Usuario`,
                        `Password`,
                        `Nombre`,
@@ -81,9 +82,13 @@ INSERT INTO Deportista(`Usuario`,
                        `DNI`,
                        `Email`,
                        `FechaNac`,
-                       `Telefono`
+                       `Telefono`,
+					   `Tipo`
                        )
-                       VALUES ('default','default','default','default','default','default','default','0','0');
+                       VALUES ('default','default','default','default','default','default','default',0,0,'TDU');
+
+INSERT INTO Deportista VALUES ('ADMIN','73acd9a5972130b75066c82595a1fae3','Pablo','Gonzalez Rodriguez','321.jpg','39476158B','pablopeiboll@gmail.com','2016-11-05',321313,'TDU');
+
 --
 -- Table structure for table `Deportista_reserva_actividad`
 --
