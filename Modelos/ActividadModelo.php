@@ -1,7 +1,7 @@
 <?php
 class Actividad{
 
-private $idActividad;
+
 private $nombreAct;
 private $duracion;
 private $hora;
@@ -10,10 +10,10 @@ private $plazas;
 private $dificultad;
 private $id_actividad;
 private $descripcion;
-private $plazas_libres;
+
 function contructor(){
 
-	$idActividad=null;
+
 	$nombreAct=null;
 	$duracion=null;
 	$hora=null;
@@ -22,7 +22,7 @@ function contructor(){
 	$dificultad=null;
 	$id_actividad=null;
 	$descripcion=null;
-	$plazas_libres=null;
+	
 }
 function conexionBD()
 		{
@@ -59,7 +59,7 @@ function creararrayActividades()
 	$dificultad=null;
 	$id_actividad=null;
 	$descripcion=null;
-	$plazas_libres=null;
+	
 	$this->conexionBD();
 	$file = fopen("../Archivos/ArrayConsultarActividad.php", "w");
 
@@ -86,7 +86,7 @@ function creararrayActividades()
 			 $plazas=$fila['Plazas'];
 			 $dificultad=$fila['Dificultad'];
 			 $descripcion=$fila['Descripcion'];
-			 $plazas_libres=$fila['Plazas_libres'];
+			
 			fwrite($file,"array(
 				\"id_actividad\"=>'$id_actividad',
 				\"nombre\"=>'$nombre',
@@ -95,8 +95,7 @@ function creararrayActividades()
 				\"lugar\"=>'$lugar',
 				\"plazas\"=>'$plazas',
 				\"dificultad\"=>'$dificultad',				
-				\"descripcion\"=>'$descripcion',
-				\"plazas_libres\"=>'$plazas_libres'
+				\"descripcion\"=>'$descripcion'				
 				)," . PHP_EOL);
 
 	 	}
@@ -190,7 +189,7 @@ function RellenarArrayFinal($DatosActividad,$NombreEntrenador)
 		$plazas=$form[$numarT]["plazas"];
 		$dificultad=$form[$numarT]["dificultad"];
 	    $descripcion=$form[$numarT]["descripcion"];
-		$plazas_libres=$form[$numarT]["plazas_libres"];
+		
 		fwrite($file,"array(
 			\"id_actividad\"=>'$id_actividad',
 			\"nombre\"=>'$nombre',
@@ -199,8 +198,7 @@ function RellenarArrayFinal($DatosActividad,$NombreEntrenador)
 			\"lugar\"=>'$lugar',
 			\"plazas\"=>'$plazas',
 			\"dificultad\"=>'$dificultad',
-			\"descripcion\"=>'$descripcion',
-			\"plazas_libres\"=>'$plazas_libres'," . PHP_EOL);
+			\"descripcion\"=>'$descripcion',". PHP_EOL);
 		
 		//Datos tabla Gestion Actividad
 		if (isset($DatosActividad)){
@@ -220,6 +218,7 @@ function RellenarArrayFinal($DatosActividad,$NombreEntrenador)
 				}
 			}
 		}
+		
 		if (isset($NombreEntrenador)){
 			//Datos tabla Entrenador Actividad
 			for ($numar=0;$numar<count($NombreEntrenador);$numar++){
@@ -236,6 +235,7 @@ function RellenarArrayFinal($DatosActividad,$NombreEntrenador)
 				}
 			}
 		}
+
 		fwrite($file,")," . PHP_EOL);
 		}
 		fwrite($file,");return \$form;}}?>". PHP_EOL);
@@ -244,15 +244,13 @@ function RellenarArrayFinal($DatosActividad,$NombreEntrenador)
 
 
 //Alta de actividad
-function altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion,$entrenadorId)
+function CrearActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion)
 {
-	$mysqli=$this->conexionBD();
+	$mysqli=$this->conexionBD();	
 	
-	
-	
-	if($mysqli->query("INSERT INTO `Actividad`(`Nombre`, `Duracion`, `Hora`, `Lugar`, `Plazas`, `Dificultad`, `Descripcion`,`Plazas_libres`)
+	if($mysqli->query("INSERT INTO `Actividad`(`Nombre`, `Duracion`, `Hora`, `Lugar`, `Plazas`, `Dificultad`, `Descripcion`)
 		VALUES
-		('$nombreAct','$duracion','$hora','$lugar','$plazas','$dificultad','$descripcion',$plazas)")==TRUE)
+		('$nombreAct','$duracion','$hora','$lugar','$plazas','$dificultad','$descripcion')")==TRUE)
 	{
 		$idActividad = $mysqli->insert_id;
 	?>
@@ -355,7 +353,7 @@ function eliminarAlumno($id_actividad,$id_alumno)
  function modificarActividad($id,$nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion){
 
  	$mysqli=$this->conexionBD();
-    $query= "UPDATE `Actividad` SET `Nombre`='$nombreAct',`Duracion`='$duracion',`Hora`='$hora',`Lugar`='$lugar',`Plazas`='$plazas',`Dificultad`='$dificultad',`Descripcion`='$descripcion',`Plazas_libres`='$plazas' WHERE `id_Actividad`='$id'";
+    $query= "UPDATE `Actividad` SET `Nombre`='$nombreAct',`Duracion`='$duracion',`Hora`='$hora',`Lugar`='$lugar',`Plazas`='$plazas',`Dificultad`='$dificultad',`Descripcion`='$descripcion'WHERE `id_Actividad`='$id'";
 
 	if($mysqli->query($query)==TRUE){
 		?>

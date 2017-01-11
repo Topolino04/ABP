@@ -89,11 +89,11 @@ include("../Vistas/VistaModificarMonitor.php");
 				
 				$idiom=new idiomas();
 				$nombre=$_POST['nombre'];
-					$apellidos=$_POST['apellido'];
-					$telefono=$_POST['telefono'];
-					$email=$_POST['email'];
-					$usuario=$_POST['usuario'];
-					$dni=$_POST['dni'];
+				$apellidos=$_POST['apellido'];
+				$telefono=$_POST['telefono'];
+				$email=$_POST['email'];
+				$usuario=$_POST['usuario'];
+				$dni=$_POST['dni'];
 				$form1=array("nombre"=>"$nombre","apellidos"=>"$apellidos","telefono"=>"$telefono","dni"=>"$dni","email"=>"$email","usuario"=>"$usuario");
 				$modificar=new monitorModificar();
 				$modificar->crear($idiom,$form1,null);

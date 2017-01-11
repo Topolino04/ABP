@@ -32,7 +32,6 @@ CREATE TABLE Actividad (
   Plazas int(11) NOT NULL,
   Dificultad enum('FACIL','MEDIA','DIFICIL') NOT NULL,
   Descripcion varchar(150) DEFAULT NULL,
-  Plazas_libres int(11) NOT NULL,
   PRIMARY KEY (id_Actividad)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -42,7 +41,7 @@ ALTER TABLE `Actividad`
 -- Dumping data for table `Actividad`
 --
 
-INSERT INTO Actividad VALUES (1,'Baile','00:30:00','18:00:00','Aula3',20,'FACIL','Clase de baile',20);
+INSERT INTO Actividad VALUES (1,'Baile','00:30:00','18:00:00','Aula3',20,'FACIL','Clase de baile');
 
 --
 -- Table structure for table `Deportista`
@@ -74,7 +73,17 @@ CREATE TABLE Deportista (
 
 INSERT INTO Deportista VALUES ('ADMIN','73acd9a5972130b75066c82595a1fae3','Pablo','Gonzalez Rodriguez','321.jpg','39476158B','pablopeiboll@gmail.com','2016-11-05',321313,'TDU');
 --Deportista por defecto para crear una actividad vacia
-INSERT INTO `Deportista`(`Usuario`, `Password`, `Nombre`, `Apellidos`, `FOTO`, `DNI`, `Email`, `FechaNac`, `Telefono`, `Tipo`) VALUES ('default','default','default','default','default','default','default','default','default','TPU')
+INSERT INTO Deportista(`Usuario`,
+                       `Password`,
+                       `Nombre`,
+                       `Apellidos`,
+                       `FOTO`,
+                       `DNI`,
+                       `Email`,
+                       `FechaNac`,
+                       `Telefono`
+                       )
+                       VALUES ('default','default','default','default','default','default','default','0','0');
 --
 -- Table structure for table `Deportista_reserva_actividad`
 --
@@ -90,7 +99,7 @@ CREATE TABLE Deportista_reserva_actividad (
   PRIMARY KEY (Deportista_id_Usuario,Actividad_id_Actividad),
   KEY fk_Deportista_has_Actividad_Actividad1 (Actividad_id_Actividad),
   KEY fk_Deportista_has_Actividad_Deportista1 (Deportista_id_Usuario),
-  CONSTRAINT fk_Deportista_has_Actividad_Actividad1 FOREIGN KEY (Actividad_id_Actividad) REFERENCES Actividad (id_Actividad) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT fk_Deportista_has_Actividad_Actividad1 FOREIGN KEY (Actividad_id_Actividad) REFERENCES Actividad (id_Actividad) ON DELETE NO CASCADE ON UPDATE NO ACTION,
   CONSTRAINT fk_Deportista_has_Actividad_Deportista1 FOREIGN KEY (Deportista_id_Usuario) REFERENCES Deportista (DNI) ON DELETE CASCADE ON UPDATE NO ACTION
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -301,7 +310,7 @@ DROP TABLE IF EXISTS Sesion;
 CREATE TABLE Sesion (
 
   Deportista_id_Usuario varchar(10) NOT NULL,
-  Fecha datetime NOT NULL,
+  Fecha date NOT NULL,
   Comentario varchar(150) DEFAULT NULL,
   Tabla_id int(11) NOT NULL,
   PRIMARY KEY (Deportista_id_Usuario,Fecha,Tabla_id),

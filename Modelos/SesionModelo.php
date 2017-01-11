@@ -280,7 +280,7 @@ function modificarSesion($deportista,$fecha,$comentario,$tabla){
 	{
 		if($row["Fecha"]=="$fecha") {
 
-			$query= "UPDATE `Sesion` SET `Fecha`='$fecha',`Comentario`='$comentario',`Tabla_id`='$tabla' WHERE `Deportista_id_Usuario`='$deportista' && `Fecha`='".$row["Fecha"]."'";
+			$query= "UPDATE `Sesion` SET `Comentario`='$comentario',`Tabla_id`='$tabla' WHERE `Deportista_id_Usuario`='$deportista' && `Fecha`='".$row["Fecha"]."'";
 
 			if($mysqli->query($query)==TRUE){
 				?>
@@ -297,18 +297,15 @@ function modificarSesion($deportista,$fecha,$comentario,$tabla){
 				$result->free();
 				$mysqli->close();
 				
-		}
-	}else{
+			}
+	}else {
 		?>
 		<script>
-			alert("No hay sesiones en la BD");
+			alert("Error al insertar");
 		</script>
-		<?php } 
-		$result->free();
-		$mysqli->close();
+		<?php }
 		
-		
-}
+	}
 /*function RellenaDatos()
 {
     $this->ConectarBD();

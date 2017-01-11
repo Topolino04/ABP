@@ -30,7 +30,7 @@
    </script>
    <form name="formularioalta"  class="form-horizontal" action="..\Controlador\ControladorSesiones.php" method="post" >
 			<fieldset>
-			<input type="image" title ="$idiom['Alta']" id="alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();" src="..\Archivos\añadir.png" width="20" height="20"></input>
+			<input type="image" title ="$idiom['Alta']" id="alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();" src="..\Archivos\agregar.png" width="20" height="20"></input>
 			</fieldset>
 			</form>
 
@@ -47,7 +47,7 @@
 			
 
 			echo "<b><fieldset><legend>".$idiom['DatosSesion']."</legend></b>";
-			echo "<input type=image title =".$idiom['Modificar']." id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"..\Archivos\lapiz.png\" width=\"30\"  height=\"30\" ></input>";
+			echo "<input type=image title =".$idiom['Modificar']." id=\"modificar\" name=\"modificar\"  value=\"modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"..\Archivos\lapiz.png\" width=\"30\"  height=\"30\" ></input>";
 			echo "<input type=hidden id=deportista name=deportista value=".$form[$numar]["deportista"].">";
 			echo "<input type=hidden id=fecha name=fecha value=".$form[$numar]["fecha"].">";
 			echo "<input type=hidden id=comentario name=comentario value=".$form[$numar]["comentario"].">";
@@ -74,7 +74,7 @@
 			echo "</div>"; //Cierra col-xs-6
 			echo "<div class=\"col-xs-6\">";		
 			echo "<b>";
-			echo "<fieldset><legend>".$idiom['EjercicioTabla']." ".$form[$numar]["tabla"]."</legend>";
+			echo "<fieldset><legend>".$idiom['EjercicioTabla']." ".$form[$numar]["NombreTabla"]."</legend>";
 			echo "</b>";
 				
 			for ($numarT =0;$numarT<200;$numarT++){
@@ -104,7 +104,8 @@
 			echo "</div>"; //Cierra col-xs-6
 			echo "</div>"; //Cierra row
 			echo "</div>"; //Cierra container
-			//Vista para ADMIN y MONITOR
+
+///////////////////////////Vista para ADMIN y MONITOR///////////////////////////////////
 			}if (($_SESSION['usuario']=="ADMIN") or ($_SESSION['usuario']=="MONITOR")){ 
 			echo "<div class=\"container well\">";
  			echo "<div class=\"row\">";
@@ -140,7 +141,7 @@
 			echo "</div>"; //Cierra col-xs-6
 			echo "<div class=\"col-xs-6\">";		
 			echo "<b>";
-			echo "<fieldset><legend>".$idiom['EjercicioTabla']." ".$form[$numar]["tabla"]."</legend>";
+			echo "<fieldset><legend>".$idiom['EjercicioTabla']." ".$form[$numar]["NombreTabla"]."</legend>";
 			echo "</b>";
 				
 			for ($numarT =0;$numarT<200;$numarT++){

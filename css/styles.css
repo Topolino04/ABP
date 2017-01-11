@@ -1,55 +1,26 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans");
-
-/* Styles */
-* {
-  margin: 0;
-  padding: 0;
+#signup label.label {
+    display:inline-block;
+    width: 150px;
 }
-
-body {
-  font-family: "Open Sans";
-  font-size: 14px;
+#signup input.error {
+    background-color: #FFDFFF;
 }
-
-.container {
-  width: 500px;
-  margin: 25px auto;
+#signup label.error {
+    border: 4px solid #000000;
+    padding: 4px;
+    margin-left: 4px;
+    background-color: #FF0000;
+    border-radius: 5px;
+    color: White;
+    font-weight: bold;
 }
-
-form {
-  padding: 20px;
-  background: #2c3e50;
-  color: #fff;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
+.dataTables_filter { visibility: hidden;}
+input.error {
+border-color: red;
 }
-form label,
-form input,
-form button {
-  border: 0;
-  margin-bottom: 3px;
-  display: block;
-  width: 100%;
+input.error:focus {
+border-color: red;
 }
-form input {
-  height: 25px;
-  line-height: 25px;
-  background: #fff;
-  color: #000;
-  padding: 0 6px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-form button {
-  height: 30px;
-  line-height: 30px;
-  background: #e67e22;
-  color: #fff;
-  margin-top: 10px;
-  cursor: pointer;
-}
-form .error {
-  color: #ff0000;
+.error{
+	color:red;
 }

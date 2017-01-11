@@ -24,7 +24,7 @@ if(isset($_REQUEST['actividades']))
 
 }
 
-if(isset($_POST['Alta']))
+if(isset($_POST['Alta']) and !isset($_REQUEST['altaActividad']))
 {
 	$idiom=new idiomas();
 	$vista=new actividadAlta();
@@ -34,45 +34,81 @@ if(isset($_POST['Alta']))
 	$vista->crear($idiom,$listaEntrenadores);
 }
 
-if(isset($_POST['altaActividad'])){
+if(isset($_REQUEST['altaActividad']))
+{
+	$idiom=new idiomas();
+	//$idActividad=$POST_['id_actividad'];
+	$nombreAct=$_POST['nombre'];
+	$duracion=$_POST['duracion'];
+	$hora=$_POST['hora'];
+	$lugar=$_POST['lugar'];
+	$plazas=$_POST['plazas'];
+	$dificultad=$_POST['dificultad'];			
+	$descripcion=$_POST['descripcion'];
+	$entrenadorId=$_POST['entrenador'];	
+		
+	$model=new Actividad();
+	$idActividad=$model->CrearActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion);
 	
-		$idiom=new idiomas();
-		//$idActividad=$POST_['id_actividad'];
-		$nombreAct=$_POST['nombre'];
-		$duracion=$_POST['duracion'];
-		$hora=$_POST['hora'];
-		$lugar=$_POST['lugar'];
-		$plazas=$_POST['plazas'];
-		$dificultad=$_POST['dificultad'];			
-		$descripcion=$_POST['descripcion'];
-		$entrenadorId=$_POST['entrenador'];
-			
-		$model=new Actividad();
-		$idActividad=$model->altaActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion,$entrenadorId);	
-		$model->asignarEntrenador($entrenadorId,$idActividad);
-		$model->creararrayActividades();
-		$DatosActividad=$model->crearArrayGestionActividad();
-		$NombreEntrenador=$model->getEntrenadores();
-		$model->RellenarArrayFinal($DatosActividad,$NombreEntrenador);
-		include("../Archivos/ArrayConsultarGestionActividad.php");
-		$datos=new consult();
-		$formfinal=$datos->array_consultarGestionActividades();
-		$vista=new actividadvista();
-		$vista->crear($formfinal,$idiom);
-
+	$model->asignarEntrenador($entrenadorId,$idActividad);
+	$model->creararrayActividades();
+	$DatosActividad=$model->crearArrayGestionActividad();
+	$NombreEntrenador=$model->getEntrenadores();
+	$model->RellenarArrayFinal($DatosActividad,$NombreEntrenador);
+	include("../Archivos/ArrayConsultarGestionActividad.php");
+	$datos=new consult();
+	$formfinal=$datos->array_consultarGestionActividades();
+	$vista=new actividadvista();
+	$vista->crear($formfinal,$idiom);
 }
+
 if (isset($_POST['Modificar']))
 {
 	$idiom=new idiomas();
 	$id_actividad=$_POST['id_actividad'];
+	$nombreAct=$_POST['nombre'];
+	$duracion=$_POST['duracion'];
+	$hora=$_POST['hora'];
+	$lugar=$_POST['lugar'];
+	$plazas=$_POST['plazas'];
+	$dificultad=$_POST['dificultad'];			
+	$descripcion=$_POST['descripcion'];
+	//$entrenadorId=$_POST['entrenador'];
+	$form1=array("id_actividad"=>"$id_actividad","nombreAct"=>"$nombreAct","duracion"=>"$duracion","hora"=>"$hora","lugar"=>"$lugar","plazas"=>"$plazas","dificultad"=>"$dificultad","descripcion"=>"$descripcion");
 	$modificar=new actividadModificar();
-	$modificar->crear($idiom,$id_actividad);
+	$modificar->crear($idiom,$form1);
 }
-
-if (isset($_POST['Eliminar']))
+if(isset($_POST['ModificarActividad']))
 {
 	$idiom=new idiomas();
 	$id_actividad=$_POST['id_actividad'];
+	$nombreAct=$_POST['nombre'];
+	$duracion=$_POST['duracion'];
+	$hora=$_POST['hora'];
+	$lugar=$_POST['lugar'];
+	$plazas=$_POST['plazas'];
+	$dificultad=$_POST['dificultad'];							
+	$descripcion=$_POST['descripcion'];
+	//$entrenadorId=$_POST['entrenador'];	
+	$model=new Actividad();
+	$model->modificarActividad($id_actividad,$nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion);
+	//$model->asignarEntrenador($entrenadorId,$idActividad);
+	$model->creararrayActividades();
+	$DatosActividad=$model->crearArrayGestionActividad();
+	$NombreEntrenador=$model->getEntrenadores();
+	$model->RellenarArrayFinal($DatosActividad,$NombreEntrenador);
+	include("../Archivos/ArrayConsultarGestionActividad.php");
+	$datos=new consult();
+	$formfinal=$datos->array_consultarGestionActividades();
+	$vista=new actividadvista();
+	$vista->crear($formfinal,$idiom);
+}
+
+
+if (isset($_POST['eliminar']))
+{
+	$idiom=new idiomas();
+	$id_actividad=$_POST['id_actividad'];		
 	$model1=new Actividad();
 	$model1->eliminarActividad($id_actividad);
 	//$model1->asignarEntrenador($entrenadorId,$idActividad);
@@ -105,26 +141,6 @@ if (isset($_POST['eliminarAlumno']))
 	$vista=new actividadvista();
 	$vista->crear($formfinal,$idiom);
 
-}
-if(isset($_POST['ModificarActividad']))
-{
-		$idiom=new idiomas();
-		$nombreAct=$_POST['nombre'];
-		$duracion=$_POST['duracion'];
-		$hora=$_POST['hora'];
-		$lugar=$_POST['lugar'];
-		$plazas=$_POST['plazas'];
-		$dificultad=$_POST['dificultad'];							
-		$descripcion=$_POST['descripcion'];
-		$id=$_POST['id'];
-		$model=new Actividad();
-		$model->modificarActividad($id,$nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion);
-		$model->creararrayActividades();
-		include("../Archivos/ArrayConsultarActividad.php");
-		$arra=new consultactividad();
-		$form=$arra->array_consultarActividad();
-		$vista=new actividadvista();
-		$vista->crear($form,$idiom);
 }
 
 

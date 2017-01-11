@@ -27,7 +27,7 @@ class deportistaAlta{
 			echo "<div class=\"container well\">";
  			echo "<div class=\"row\">"; 
 			echo "<div class=\"col-xs-12\">";
-			echo "<form role=\"form\" name=\"agregarActividad\" class=\"form-horizontal\" enctype=\"multipart/form-data\" method=\"post\"action=\"..\Controlador\ControladorDeportistas.php?altaDeportista\">";
+			echo "<form role=\"form\" class=\"form-horizontal\" enctype=\"multipart/form-data\" method=\"post\"action=\"..\Controlador\ControladorDeportistas.php?altaDeportista\">";
 			echo "<fieldset><legend>".$idiom['Datosdeportista']."</legend>";
 			
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"nombre\"id =\"nombre\"> ".$idiom['Nombre'].":</label>";
