@@ -17,6 +17,13 @@ array(
 
 								"UsuarioDeportista0"=>'ADMIN',
 
+						"Entrenador_id_Usuario"=>'1213131',
+						"Actividad_id_Actividad1"=>'1',
+						"identificador_deportista1"=>'default',
+						"fecha1"=>'0000-00-00 00:00:00',
+
+								"UsuarioDeportista1"=>'default',
+
 						"NombreEntrenadorActividad"=>'MONITOR1',
 						"ApellidoEntrenadorActividad"=>'PACO GIMENEZ',
 						
