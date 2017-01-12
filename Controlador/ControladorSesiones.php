@@ -122,24 +122,24 @@ if(isset($_POST['Alta'])) //Cuando se hace click en el + dentro de la vista prin
 //Cuando se introducen los datos de la nueva sesion, al enviar el alta carga todas las sesiones
 if(isset($_POST['altaSesion'])){ 
 	
-		$idiom=new idiomas();												
-		$deportista=$_POST['deportista'];					
-		$comentario=$_POST['comentario'];
-		$tabla=$_POST['tabla'];
-		$sesion=new Sesion();
-		$sesion->altaSesion($deportista,$comentario,$tabla);
-		//cargo todo de nuevo
-		$sesion->creararraySesiones();
+	$idiom=new idiomas();												
+	$deportista=$_POST['deportista'];					
+	$comentario=$_POST['comentario'];
+	$tabla=$_POST['tabla'];
+	$sesion=new Sesion();
+	$sesion->altaSesion($deportista,$comentario,$tabla);
+	//cargo todo de nuevo
+	$sesion->creararraySesiones();
 	include("../Archivos/ArrayConsultarSesiones.php");
-$arra=new consultSesion();
-$form=$arra->array_consultarSesiones();
+	$arra=new consultSesion();
+	$form=$arra->array_consultarSesiones();
 
-//creo el array con las sesiones y las tablas de ejercicios.
-$file = fopen("../Archivos/ArrayConsultartablasyejerciciosdeunasesion.php", "w");
-fwrite($file,"<?php class consult { function array_consultar12(){". PHP_EOL);
+	//creo el array con las sesiones y las tablas de ejercicios.
+	$file = fopen("../Archivos/ArrayConsultartablasyejerciciosdeunasesion.php", "w");
+	fwrite($file,"<?php class consult { function array_consultar12(){". PHP_EOL);
 	fwrite($file,"\$form=array(" . PHP_EOL);
 
-for ($numarT=0;$numarT<count($form);$numarT++){
+	for ($numarT=0;$numarT<count($form);$numarT++){
 
 	$tabla=$form[$numarT]["tabla"];
 	$deportista=$form[$numarT]["deportista"];

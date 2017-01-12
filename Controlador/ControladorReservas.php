@@ -39,22 +39,43 @@ if(isset($_POST['altaReserva'])){
 	$idiom=new idiomas();
 	$deportistaId=$_POST['deportistaId'];
 	$actividadId=$_POST['actividadId'];
-	//$asistencia=$_POST['asistencia'];
+	$fecha=$_POST['fecha'];
+	
 	$model=new Reserva();
-	$model->creararrayReservas();
-	$NombreDeportista=$model->crearArrayNombreDeportista();
-	$formActividad=$model->creararrayActividades();
-	$DatosEntrenadores=$model->getEntrenadores();
+	$reservasActuales=$model->getReservasActuales();
+	include("../Archivos/ArrayConsultarReservasActuales.php");
+	$FuncionFichero=new consultReservaActuales();
+	$formReservas=$FuncionFichero->array_consultarReservasActuales();
+	
 	$ObtenerEntrenadorActividad=$model->crearArrayGestionActividad();
 	for ($numarO=0;$numarO<count($ObtenerEntrenadorActividad);$numarO++){
 		if($actividadId==$ObtenerEntrenadorActividad[$numarO]["actividadId"]){			
 			$entrenadorId=$ObtenerEntrenadorActividad[$numarO]["entrenadorId"];			
 		}
+		else{echo "No existe entrenador";}
 	}
-	$error=$model->altaReserva($deportistaId,$actividadId);
-	if($error==TRUE){
-		$model->altaAlumno($deportistaId,$actividadId,$entrenadorId);
+	//Si existe alguna reserva compruba que el deportista no la haya reserva antes
+	if(isset($formReservas[0]["deportistaId"])){//Existe alguna reserva?
+	for ($numarR=0;$numarR<count($formReservas);$numarR++){
+		if( $formReservas[$numarR]["deportistaId"]!=$deportistaId && $formReservas[$numarR]["actividadId"]!=$actividadId ){
+
+			$error=$model->altaReserva($deportistaId,$actividadId,$fecha);
+			//Inserta el alumno en la actividad despues de insertar la reserva
+			$model->altaAlumno($deportistaId,$actividadId,$entrenadorId,$fecha);		 
+		}else{
+			?>
+			<script>
+				alert("Actividad ya reservada");
+			</script>
+			<?php
+		}
 	}
+	}else{
+		$error=$model->altaReserva($deportistaId,$actividadId,$fecha);
+			//Inserta el alumno en la actividad despues de insertar la reserva
+		$model->altaAlumno($deportistaId,$actividadId,$entrenadorId,$fecha);	
+	}	
+	
 	$model->creararrayReservas();
 	$NombreDeportista=$model->crearArrayNombreDeportista();
 	$formActividad=$model->creararrayActividades();
@@ -82,10 +103,19 @@ if (isset($_POST['Eliminar']))
 	$idiom=new idiomas();
 	$deportistaId=$_POST['deportistaId'];
 	$actividadId=$_POST['actividadId'];
+	$AñoMesDia=$_POST['AñoMesDia'];
+	$HoraMinutos=$_POST['HoraMinutos'];
+	$fecha = $_POST['AñoMesDia'] . ' ' . $_POST['HoraMinutos'];
 	//$asistencia=$_POST['asistencia'];
 	$model=new Reserva();
-	$model->eliminarReserva($deportistaId,$actividadId);
-	$model->eliminarAlumnodeActividad($deportistaId,$actividadId);
+	$model->eliminarReserva($deportistaId,$actividadId,$fecha);
+
+	$ObtenerActividad=$model->crearArrayGestionActividad();
+	for ($numarO=0;$numarO<count($ObtenerActividad);$numarO++){
+		if($actividadId==$ObtenerActividad[$numarO]["actividadId"]){			
+			$model->eliminarAlumnodeActividad($deportistaId,$actividadId);		
+		}
+	}
 	$model->creararrayReservas();
 	$NombreDeportista=$model->crearArrayNombreDeportista();
 	$formActividad=$model->creararrayActividades();
