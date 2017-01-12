@@ -28,11 +28,22 @@
             	document.getElementById("eliminar").submit();
             }
    </script>
-   <form name="formularioalta"  class="form-horizontal" action="..\Controlador\ControladorSesiones.php" method="post" >
-			<fieldset>
-			<input type="image" title ="$idiom['Alta']" id="alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();" src="..\Archivos\agregar.png" width="20" height="20"></input>
-			</fieldset>
-			</form>
+
+   <br>
+   <div class="container">
+  	<div class="row">
+ 		<form name="alta" id="alta" class="form-group" action="..\Controlador\ControladorSesiones.php" method="post"> 
+	
+ 		<b><div style="color:black;" class="col-xs-2 well" id ="BotonNuevaActividad"><?php echo $idiom['NuevaSesion']; echo "&nbsp;"; ?></b>			
+			<input type="image" align=center title=<?php echo$idiom['NuevaSesion'];?> id="Alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();" src="..\Archivos\agregar.png" width="20" height="20">	
+		</div>		
+	</div>
+	
+
+	</div>
+	</form>
+
+ 
 
 <?php
 			
@@ -173,13 +184,7 @@
 			echo "</div>"; //Cierra container
 
 			}
-		}	
-
-
-	
-
-
-
+		}
 ?>
 	</div></div></div>
 

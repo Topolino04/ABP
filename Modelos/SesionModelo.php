@@ -162,9 +162,10 @@ function crearArrayNombreDeportista($deportista){
 		{
 			$Usuario=$fila['Usuario'];
 			$dni=$fila['DNI'];
-
+			
 			$fila_array=array("usuario"=>$Usuario,"dni"=>$dni);
 			array_push($form,$fila_array);
+			
 		}
 	}			$resultado->free();
 	$mysqli->close();
@@ -188,9 +189,10 @@ function getDeportistas(){
 	{
 		$dni=$fila['DNI'];
 		$usuario=$fila['Usuario'];
-
+		if($dni!='default'){
 		$fila_array=array("DNI"=>$dni,"Usuario"=>$usuario);
 		array_push($form,$fila_array);
+		}
 	}
 	$resultado->free();
 	$mysqli->close();

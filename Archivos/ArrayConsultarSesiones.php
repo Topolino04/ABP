@@ -2,7 +2,7 @@
 $form=array(
 array(
 				"deportista"=>'39476158B',
-				"fecha"=>'2017-01-10',
-				"comentario"=>'asfdsadfsadf',
-				"tabla"=>'6'),
+				"fecha"=>'2017-01-10 13:19:52',
+				"comentario"=>'asd',
+				"tabla"=>'1'),
 );return $form;}}?>

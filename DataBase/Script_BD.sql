@@ -90,7 +90,7 @@ DROP TABLE IF EXISTS Deportista_reserva_actividad;
 CREATE TABLE Deportista_reserva_actividad (
   Deportista_id_Usuario varchar(10) NOT NULL,
   Actividad_id_Actividad int(11) NOT NULL,
-  Fecha datetime NOT NULL,
+  Fecha date NOT NULL,
   Asistencia tinyint(1) DEFAULT 0,
   PRIMARY KEY (Deportista_id_Usuario,Actividad_id_Actividad),
   KEY fk_Deportista_has_Actividad_Actividad1 (Actividad_id_Actividad),
@@ -103,7 +103,7 @@ CREATE TABLE Deportista_reserva_actividad (
 --
 -- Dumping data for table `Deportista_reserva_actividad`
 --
-INSERT INTO Deportista_reserva_actividad VALUES ('39476158B',1,now(),1);
+INSERT INTO Deportista_reserva_actividad VALUES ('39476158B',1,'now()',1);
 
 --
 -- Table structure for table `Ejercicio`
@@ -176,7 +176,7 @@ CREATE TABLE Gestion_actividad (
   Entrenador_id_Usuario varchar(10) NOT NULL,
   Actividad_id_Actividad int(11) NOT NULL,
   identificador_deportista varchar(11) NOT NULL,
-  fecha datetime NOT NULL,
+  fecha date NOT NULL,
   PRIMARY KEY (Entrenador_id_Usuario,Actividad_id_Actividad,identificador_deportista),
   KEY fk_Entrenador_has_Actividad_Actividad1 (Actividad_id_Actividad),
   KEY fk_Entrenador_has_Actividad_Entrenador1 (Entrenador_id_Usuario),
@@ -306,7 +306,7 @@ DROP TABLE IF EXISTS Sesion;
 CREATE TABLE Sesion (
 
   Deportista_id_Usuario varchar(10) NOT NULL,
-  Fecha date NOT NULL,
+  Fecha datetime NOT NULL,
   Comentario varchar(150) DEFAULT NULL,
   Tabla_id int(11) NOT NULL,
   PRIMARY KEY (Deportista_id_Usuario,Fecha,Tabla_id),

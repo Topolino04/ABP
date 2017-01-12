@@ -114,7 +114,7 @@ class actividadvista{
 											
 										}else{
 																		
-										echo $form[$numar]["identificador_deportista"."$numarT"];
+										echo $form[$numar]["UsuarioDeportista"."$numarT"];
 										echo "<input type=hidden id=id_alumno name=id_alumno value=".$form[$numar]["identificador_deportista"."$numarT"].">";
 										echo "<input align=right title =".$idiom['Eliminar']." type=image id=\"eliminarAlumno\" name=\"eliminarAlumno\" value=\"eliminarAlumno\" onclick=\"enviareliminarAlumno()\" alt =\"Submit\" src=\"..\Archivos\\cancelar.png\" width=\"20\"  height=\"20\" >";																				
 										echo "<br>";
