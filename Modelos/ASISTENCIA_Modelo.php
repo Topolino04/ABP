@@ -9,10 +9,10 @@ class Asistencia
     private $deportista;
     private $asistencia;
 
-    function __construct($id_actividad = null,$fecha = null,$deportista = null,$asistencia = null){
+    function __construct($id_actividad = null, DateTime $fecha = null,$deportista = null,$asistencia = null){
 
         $this->id_actividad = $id_actividad;
-        $this->fecha = new DateTime($fecha);
+        $this->fecha = $fecha;
         $this->deportista = $deportista;
         $this->asistencia = $asistencia;
 
@@ -35,7 +35,7 @@ class Asistencia
         if($result = $mysqli->query($sql)){
             $toret = array();
             foreach ($result as $tupla){
-                array_push($toret, new Asistencia($tupla["Actividad_id_Actividad"],$tupla["Fecha"],$tupla["Deportista_id_Usuario"],$tupla["Asistencia"]));
+                array_push($toret, new Asistencia($tupla["Actividad_id_Actividad"], new DateTime($tupla["Fecha"]),$tupla["Deportista_id_Usuario"],$tupla["Asistencia"]));
             }
             return $toret;
         }
@@ -64,6 +64,15 @@ class Asistencia
             return $toret;
         }
         return null;
+    }
+    function update(){
+        $mysqli=$this->conexionBD();
+        $sql = "UPDATE deportista_reserva_actividad SET Asistencia = '{$this->asistencia}'  WHERE Deportista_id_Usuario = '{$this->deportista}'AND Actividad_id_Actividad = '{$this->id_actividad}' AND Fecha = '{$this->fecha->format('Y-m-d H:i:s')}'";
+        echo $sql;
+        if($result = $mysqli->query($sql)) {
+            return "La modificación se ha realizado con éxito";
+        }
+        return 'Error en la consulta sobre la base de datos';
     }
 
     /**

@@ -8,7 +8,6 @@ private $volver;
 function __construct($string, $volver){
 	$this->string = $string;
 	$this->volver = $volver;
-    include("../Idiomas/idiomas.php");
     $idioma=new idiomas();
     include("../Funciones/cargadodedatos.php");
     $this->idiom=$idiom;

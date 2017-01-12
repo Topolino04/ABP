@@ -5,6 +5,7 @@ include("../Modelos/ActividadModelo.php");
 include("../Modelos/ASISTENCIA_Modelo.php");
 include("../Idiomas/idiomas.php");
 include("../Vistas/AltaActividad.php");
+include("../Vistas/Mensaje_Vista.php");
 include("../Vistas/ModificarActividad.php");
 include("../Vistas/ASITENCIA_SHOW_Vista.php");
 
@@ -151,15 +152,41 @@ if (isset($_POST['eliminarAlumno']))
 	$vista->crear($formfinal,$idiom);
 }
 if (isset($_POST['Asistencia'])){
-    $idiom=new idiomas();
-    $actividad_id=$_POST['actividad_id'];
-    $actividad_nom=$_POST['actividad_nom'];
+    if($_POST['Asistencia'] == "ida"){
+        $actividad_id=$_POST['actividad_id'];
+        $actividad_nom=$_POST['actividad_nom'];
 
-    $model = new Asistencia();
-    $fechas = $model->listarFechasDeReservas($actividad_id);
-    $users =  $model->listarDeportisdasQueAsistenActividad($actividad_id);
-    $datos =  $model->listarAsistenciasDeActividad($actividad_id);
-    $vista = new ASISTENCIA_SHOW_Vista($actividad_id,$actividad_nom,$fechas,$users,$datos,"./ControladorActividades.php");
+        $model = new Asistencia();
+        $fechas = $model->listarFechasDeReservas($actividad_id);
+        $users =  $model->listarDeportisdasQueAsistenActividad($actividad_id);
+        $datos =  $model->listarAsistenciasDeActividad($actividad_id);
+        $vista = new ASISTENCIA_SHOW_Vista($actividad_id,$actividad_nom,$fechas,$users,$datos);
+    }
+    if($_POST['Asistencia'] == "vuelta") {
+        $actividad_id = $_POST['actividad_id'];
+
+        $model = new Asistencia();
+        $fechas = $model->listarFechasDeReservas($actividad_id);
+        $users = $model->listarDeportisdasQueAsistenActividad($actividad_id);
+        $datos = $model->listarAsistenciasDeActividad($actividad_id);
+
+        $asistencias = array();
+        foreach ($users as $user) {
+            foreach ($fechas as $fecha) {
+                if(isset($_POST[$user . $fecha->format("Y-m-d_H:i:s")]))
+                    array_push($asistencias, new Asistencia($actividad_id, $fecha, $user,1));
+                else
+                    array_push($asistencias, new Asistencia($actividad_id, $fecha, $user,0));
+            }
+        }
+
+        $mensaje = 'Error en la consulta sobre la base de datos';
+        foreach ($asistencias as $elem) {
+            $mensaje = $elem->update();
+        }
+        new Mensaje($mensaje, "ControladorActividades.php?actividades");
+    }
+
 }
 
 ?>

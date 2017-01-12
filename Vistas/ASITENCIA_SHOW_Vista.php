@@ -3,10 +3,9 @@
 class ASISTENCIA_SHOW_Vista{
 
 
-    function __construct($actividad_id,$actividad_nom,$fechas,$users,$datos,$volver){
+    function __construct($actividad_id,$actividad_nom,$fechas,$users,$datos){
         $this->actividad_id = $actividad_id;
         $this->actividad_nom = $actividad_nom;
-        $this->volver = $volver;
         $this->fechas = $fechas;
         $this->usuarios = $users;
         $this->datos = $datos;
@@ -19,6 +18,7 @@ class ASISTENCIA_SHOW_Vista{
 
     function render(){
         ?><br>
+        <form method="post" action="../Controlador/ControladorActividades.php">
         <div class="container well">
             <div class="row">
                 <div class="col-xs-12">
@@ -37,19 +37,20 @@ class ASISTENCIA_SHOW_Vista{
                                 echo "<td>$user</td>";
                                 foreach ($this->fechas as $fecha){
                                     ?>
-                                    <td><input type='checkbox' <?= check($this->datos,$user,$fecha)?>></td>
+                                    <td><input type='checkbox' name = "<?=$user.$fecha->format("Y-m-d_H:i:s")?>"<?= check($this->datos,$user,$fecha)?>></td>
                                     <?php
                                 }
                             }
                         ?>
-                        <tr>
-
-                        </tr>
-
                     </table>
+                    <input type="hidden" name="actividad_id"  value="<?=$this->actividad_id ?>">
+                    <input type="hidden" name="actividad_nom" value="<?=$this->actividad_nom?>">
+                    <input align=right type=image name="Asistencia"  value="vuelta" alt ="Submit" src="./../Archivos/lapiz.png" width="30" height="30">
+
                 </div>
             </div>
         </div>
+        </form>
         <?php
     } //fin metodo render
 }

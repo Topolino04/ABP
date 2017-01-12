@@ -1,6 +1,6 @@
 <?php class consult { function array_consultarActividades(){
 $form=array(
-array("deportistaId"=>'39476158B',"actividadId"=>'1',"fecha"=>'2017-01-12 11:03:20',"asistencia"=>'1',
+array("deportistaId"=>'39476158B',"actividadId"=>'1',"fecha"=>'2017-01-12 11:03:20',"asistencia"=>'0',
 
 					"entrenadorId"=>'1213131',
 
