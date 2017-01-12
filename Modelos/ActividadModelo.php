@@ -330,6 +330,25 @@ function eliminarAlumno($id_actividad,$id_alumno)
 	<?php }
 	$mysqli->close();
 }
+function eliminarReserva($id_alumno,$id_actividad){
+
+ 	$mysqli=$this->conexionBD();
+
+ 	$query="DELETE FROM `Deportista_reserva_actividad` WHERE Deportista_id_Usuario='$id_alumno' && Actividad_id_Actividad='$id_actividad'";
+ 	if($mysqli->query($query)==TRUE){
+	?>
+		<script>
+		alert("Eliminado con Exito");
+		</script>
+		<?php
+ 	}else {
+		?>
+		<script>
+		alert("Problema al Borrar. Ya existe un usuario con ese nombre en esa actividad ");
+		</script>
+	<?php }
+	$mysqli->close();
+}
 
  function eliminarActividad($id_actividad){
 

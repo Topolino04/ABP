@@ -1,13 +1,13 @@
 <?php class consultActividad { function array_consultarActividad(){
 $form=array(
 array(
-				"id_actividad"=>'40',
-				"nombre"=>'Fitness1',
-				"duracion"=>'00:00:00',
-				"hora"=>'00:00:00',
-				"lugar"=>'Aula5',
-				"plazas"=>'7',
+				"id_actividad"=>'1',
+				"nombre"=>'Baile',
+				"duracion"=>'00:30:00',
+				"hora"=>'18:00:00',
+				"lugar"=>'Aula3',
+				"plazas"=>'20',
 				"dificultad"=>'FACIL',				
-				"descripcion"=>'asd'				
+				"descripcion"=>'Clase de baile'				
 				),
 );return $form;}}?>

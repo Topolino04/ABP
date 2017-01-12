@@ -55,12 +55,16 @@ function creararrayReservas()
 				\"asistencia\"=>'$asistencia')," . PHP_EOL);
 
 	 	}
-	}
-	fwrite($file,");return \$form;}}?>". PHP_EOL);
+	 	
+	 	fwrite($file,");return \$form;}}?>". PHP_EOL);
+	 	fclose($file);
+	 	$resultado->free();
+		$mysqli->close();
+	}else{
+	fwrite($file,")" . PHP_EOL);
+	fwrite($file,";return \$form;}}?>". PHP_EOL);	
 	fclose($file);
-	$resultado->free();
-	$mysqli->close();
-
+	}
 }
 
 //Añade al array final el id de las tablas y los ejercicios que contiene cada una

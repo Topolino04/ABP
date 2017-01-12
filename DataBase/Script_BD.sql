@@ -190,7 +190,7 @@ CREATE TABLE Gestion_actividad (
 --
 -- Dumping data for table `Gestion_actividad`
 --
-
+INSERT INTO Gestion_actividad VALUES ('1213131',1,'default','0');
 INSERT INTO Gestion_actividad VALUES ('1213131',1,'39476158B','0000-00-00 00:00:00');
 
 --

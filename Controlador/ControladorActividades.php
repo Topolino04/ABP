@@ -130,6 +130,7 @@ if (isset($_POST['eliminarAlumno']))
 	$id_alumno=$_POST['id_alumno'];
 	$actividad=new Actividad();
 	$actividad->eliminarAlumno($id_actividad,$id_alumno);
+	$actividad->eliminarReserva($id_alumno,$id_actividad);
 	$actividad->creararrayActividades();
 	$DatosActividad=$actividad->crearArrayGestionActividad();
 	$NombreEntrenador=$actividad->getEntrenadores();
