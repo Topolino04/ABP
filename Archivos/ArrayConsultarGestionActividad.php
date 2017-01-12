@@ -12,10 +12,10 @@ array(
 
 						"Entrenador_id_Usuario"=>'1213131',
 						"Actividad_id_Actividad0"=>'1',
-						"identificador_deportista0"=>'default',
-						"fecha0"=>'0000-00-00',
+						"identificador_deportista0"=>'39476158B',
+						"fecha0"=>'0000-00-00 00:00:00',
 
-								"UsuarioDeportista0"=>'default',
+								"UsuarioDeportista0"=>'ADMIN',
 
 						"NombreEntrenadorActividad"=>'MONITOR1',
 						"ApellidoEntrenadorActividad"=>'PACO GIMENEZ',
