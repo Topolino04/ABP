@@ -1,5 +1,4 @@
 <?php
-//include("../Controlador/ControladorReservas.php");
 class Reserva{			
 
 private $deportistaId;
@@ -325,21 +324,21 @@ function altaReserva($deportistaId,$actividadId)
 		VALUES
 		('$deportistaId','$actividadId','now()','1')")==TRUE)
 	{
-			return TRUE;
+		return TRUE;
 	?>
 		<script>
 			alert("Insercción Realizada con Exito");
 		</script>
 		<?php
-	}else {
-			return FALSE;
+	}else{
+		return FALSE;
 		?>
 		<script>
 			alert("Error al insertar. Ya existe un usuario con ese nombre en esa actividad");
-
 		</script>
-		<?php }
-		$mysqli->close();
+		<?php 
+	}
+	$mysqli->close();
 }
 //Añade la reserva a una actividad existente
 function altaAlumno($deportistaId,$actividadId,$entrenadorId)
@@ -350,18 +349,19 @@ function altaAlumno($deportistaId,$actividadId,$entrenadorId)
 		VALUES
 		('$entrenadorId','$actividadId','$deportistaId','now()')")==TRUE)
 	{
-	?>
-		<script>
-		alert("Insercción Realizada con Exito");
-		</script>
-		<?php
-		}else {
 		?>
 		<script>
-		alert("<?php echo "<br>"; echo $deportistaId; echo "<br>"; echo $actividadId; echo "<br>"; echo $entrenadorId; ?>");
+			alert("Deportista agregado con éxito");
 		</script>
-	<?php }
-		$mysqli->close();
+		<?php
+	}else{
+		?>
+		<script>
+			alert("Ya existe ese alumno en la actividad");
+		</script>
+		<?php 
+	}
+	$mysqli->close();
 }
 
 function eliminarReserva($deportistaId,$actividadId){

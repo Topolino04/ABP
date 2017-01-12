@@ -25,6 +25,8 @@ class sesionAlta{
 </script>
 
 <?php
+/////////////////////////////////Vista para el deportista que está con sesión activa//////////////////////////
+			
     		echo "<div class=\"container \">";
  			echo "<div class=\"row\">"; 
 			echo "<div class=\"col-xs-7 well\">";
@@ -38,12 +40,15 @@ class sesionAlta{
 	         	if($listaDeportistas!=null){ 
 
 					for ($numar =0;$numar<count($listaDeportistas);$numar++)
-					{
-						
-						//echo $formejercicios[$numar]["IdEjercicio"];
-					$dni=$listaDeportistas[$numar]["DNI"];
-					$usuario=$listaDeportistas[$numar]["Usuario"];
-					 echo '<option value="'.$dni.'">'.$usuario.'</option>';
+					{						
+						$dni=$listaDeportistas[$numar]["DNI"];
+						$usuario=$listaDeportistas[$numar]["Usuario"];					
+						if (($_SESSION['usuario']!="ADMIN") && ($_SESSION['usuario']!="MONITOR") && ($_SESSION['usuario']==$usuario)){	
+							echo '<option value="'.$dni.'">'.$usuario.'</option>';
+						}
+						if (($_SESSION['usuario']=="ADMIN") or ($_SESSION['usuario']=="MONITOR")){
+							echo '<option value="'.$dni.'">'.$usuario.'</option>'; 
+						}
 					}
 				}											
           	echo "</select>";
@@ -77,9 +82,7 @@ class sesionAlta{
 			echo "<div align=\"right\" class=\"input-group col-sm-6\">";
 			echo "<input type=\"submit\" id=\"SubmitBtn\" name=\"altaSesion\" alt=\"Submit\" value=\"Enviar\" onclick=\"enviarAltaSesion();\" src=\"..\Archivos\agregar.png\" width=\"20\" height=\"20\">";
 			echo "</div>";
-			echo "</form>";
-
-			
+			echo "</form>";			
 ?>
 <script  src="../js/lib/jquery.js"></script>
 <script  src="../js/dist/jquery.validate.js"></script>

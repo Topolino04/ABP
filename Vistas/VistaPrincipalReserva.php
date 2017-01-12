@@ -89,7 +89,7 @@
 								echo "<br>";
 								echo $idiom['Nombre'].":"." ".$form[$numar]["nombre"];
 								echo "<br>";
-								echo $idiom['PlazasLibres'].":"." ".$form[$numar]["plazas"];
+								echo $idiom['Plazas'].":"." ".$form[$numar]["plazas"];
 								echo "<br>";			
 								echo "</fieldset>";
 								

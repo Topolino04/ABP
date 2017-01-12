@@ -14,7 +14,10 @@ if(isset($_REQUEST['actividades']))
 	$actividad->creararrayActividades();
 	$DatosActividad=$actividad->crearArrayGestionActividad();
 	$NombreEntrenador=$actividad->getEntrenadores();
-	$actividad->RellenarArrayFinal($DatosActividad,$NombreEntrenador);
+	$NombreDeportista=$actividad->crearArrayNombreDeportista();
+	if(isset($NombreDeportista)){
+	$actividad->RellenarArrayFinal($DatosActividad,$NombreEntrenador,$NombreDeportista);
+	}
 	//cargo el fichero final
 	include("../Archivos/ArrayConsultarGestionActividad.php");
 	$datos=new consult();
@@ -134,7 +137,10 @@ if (isset($_POST['eliminarAlumno']))
 	$actividad->creararrayActividades();
 	$DatosActividad=$actividad->crearArrayGestionActividad();
 	$NombreEntrenador=$actividad->getEntrenadores();
-	$actividad->RellenarArrayFinal($DatosActividad,$NombreEntrenador);
+	$NombreDeportista=$actividad->crearArrayNombreDeportista();
+	if(isset($NombreDeportista)){
+	$actividad->RellenarArrayFinal($DatosActividad,$NombreEntrenador,$NombreDeportista);
+	}
 	//cargo el fichero final
 	include("../Archivos/ArrayConsultarGestionActividad.php");
 	$datos=new consult();

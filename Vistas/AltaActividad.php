@@ -22,12 +22,6 @@ function enviarAltaActividad(){
     document.getElementById("altaActividad").submit();
     }
 </script>
-
-
-
-
-
-
 <?php
 echo "<div  align=\"left\" class=\"container\">";
 	echo "<div class=\"row\">";

@@ -165,10 +165,40 @@ function getEntrenadores(){
 	$mysqli->close();
 	return $form;
 }
+//Añade al array final con el nombre de ususario de los deportistas
+function crearArrayNombreDeportista(){
+
+	$this->conexionBD();
+	$form=array();
+
+	$query="SELECT * FROM Deportista";// WHERE `DNI` = '$deportistaId'";
+	$mysqli=$this->conexionBD();
+	$resultado=$mysqli->query($query);
+
+	if(mysqli_num_rows($resultado)){
+
+		while($fila = $resultado->fetch_array())
+		{
+			$filas[] = $fila;
+		}
+		foreach($filas as $fila)
+		{
+			$usuario=$fila['Usuario'];
+			$dni=$fila['DNI'];
+
+			$fila_array=array("usuario"=>$usuario,"dni"=>$dni);
+			array_push($form,$fila_array);
+		}
+	}			
+	$resultado->free();
+	$mysqli->close();
+	return $form;
+	
+}
 
 
 //Crea el array final con los datos de las actividades
-function RellenarArrayFinal($DatosActividad,$NombreEntrenador)
+function RellenarArrayFinal($DatosActividad,$NombreEntrenador,$NombreDeportista)
 {
 	include("../Archivos/ArrayConsultarActividad.php");
 	$arra=new consultActividad();
@@ -216,9 +246,23 @@ function RellenarArrayFinal($DatosActividad,$NombreEntrenador)
 						\"identificador_deportista".$numarC."\"=>'$alumnoId',
 						\"fecha".$numarC."\"=>'$fecha'," . PHP_EOL);
 				}
+			
+				//Añade el nombre de usuario del deportista
+				if (isset($NombreDeportista)){
+					//Datos tabla Entrenador Actividad
+					for ($numarN=0;$numarN<count($NombreDeportista);$numarN++){
+						if($alumnoId==$NombreDeportista[$numarN]["dni"]){
+						
+						$UsuarioDeportista=$NombreDeportista[$numarN]["usuario"];				
+						fwrite($file,"
+								\"UsuarioDeportista".$numarC."\"=>'$UsuarioDeportista'," . PHP_EOL);				
+						}
+					}
+				}
 			}
 		}
 		
+		//Añade el nombre y apellisdos del entrenador
 		if (isset($NombreEntrenador)){
 			//Datos tabla Entrenador Actividad
 			for ($numar=0;$numar<count($NombreEntrenador);$numar++){
@@ -319,7 +363,7 @@ function eliminarAlumno($id_actividad,$id_alumno)
  	if($mysqli->query($query)==TRUE){
 	?>
 		<script>
-		alert("Eliminado con Exito");
+		alert("Alumno eliminado con éxito");
 		</script>
 		<?php
  	}else {
@@ -338,7 +382,7 @@ function eliminarReserva($id_alumno,$id_actividad){
  	if($mysqli->query($query)==TRUE){
 	?>
 		<script>
-		alert("Eliminado con Exito");
+		alert("Reserva eliminada con éxito");
 		</script>
 		<?php
  	}else {
