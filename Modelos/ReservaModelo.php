@@ -96,6 +96,51 @@ function creararrayActividades()
 	$mysqli->close();
 	return $form;
 }
+function getReservasActuales()
+{
+	$deportistaId=null;
+	$actividadId=null;
+	$fecha=null;
+	$asistencia=null;
+	
+	$file = fopen("../Archivos/ArrayConsultarReservasActuales.php", "w");
+
+	fwrite($file,"<?php class consultReservaActuales { function array_consultarReservasActuales(){". PHP_EOL);
+	fwrite($file,"\$form=array(" . PHP_EOL);
+
+	$mysqli=$this->conexionBD();
+	$resultado=$mysqli->query("SELECT * FROM `Deportista_reserva_actividad`");
+	if(mysqli_num_rows($resultado)){
+
+		while($fila = $resultado->fetch_array())
+		{
+			$filas[] = $fila;
+		}
+		foreach($filas as $fila)
+		{
+			$deportistaId=$fila['Deportista_id_Usuario'];
+			$actividadId=$fila['Actividad_id_Actividad'];
+			$fecha=$fila['Fecha'];
+			$asistencia=$fila['Asistencia'];
+
+			fwrite($file,"array(
+				\"deportistaId\"=>'$deportistaId',
+				\"actividadId\"=>'$actividadId',
+				\"fecha\"=>'$fecha',
+				\"asistencia\"=>'$asistencia')," . PHP_EOL);
+
+	 	}
+	 	
+	 	fwrite($file,");return \$form;}}?>". PHP_EOL);
+	 	fclose($file);
+	 	$resultado->free();
+		$mysqli->close();
+	}else{
+	fwrite($file,")" . PHP_EOL);
+	fwrite($file,";return \$form;}}?>". PHP_EOL);	
+	fclose($file);
+	}
+}
 
 //Añade al array final con el nombre de ususario de los deportistas
 function crearArrayNombreDeportista(){
@@ -143,11 +188,14 @@ function RellenarArrayFinal($NombreDeportista,$formActividad,$DatosEntrenadores,
 	for ($numarT=0;$numarT<count($form);$numarT++){
 		$deportistaId=$form[$numarT]["deportistaId"];
 		$actividadId=$form[$numarT]["actividadId"];
-		$fecha=$form[$numarT]["fecha"];
+		$fecha=$form[$numarT]["fecha"];		
+		$AñoMesDiaHoraMinutos = explode(" ", $fecha);
+		$AñoMesDia=$AñoMesDiaHoraMinutos[0];
+		$HoraMinutos=$AñoMesDiaHoraMinutos[1];
 		$asistencia=$form[$numarT]["asistencia"];
 		
 		//cargamos el fichero de ejerciciosde la tabla.				
-		fwrite($file,"array(\"deportistaId\"=>'$deportistaId',\"actividadId\"=>'$actividadId',\"fecha\"=>'$fecha',\"asistencia\"=>'$asistencia'," . PHP_EOL);
+		fwrite($file,"array(\"deportistaId\"=>'$deportistaId',\"actividadId\"=>'$actividadId',\"fecha\"=>'$fecha',\"AñoMesDia\"=>'$AñoMesDia',\"HoraMinutos\"=>'$HoraMinutos',\"asistencia\"=>'$asistencia'," . PHP_EOL);
 		//Datos Gestion Actividad
 		//Obtengo el dni del entrenador de esa actividad
 		for ($numarO=0;$numarO<count($ObtenerEntrenadorActividad);$numarO++){
@@ -316,63 +364,79 @@ function crearArrayGestionActividad()
 }
 
 //Crea la reserva
-function altaReserva($deportistaId,$actividadId)
+function altaReserva($deportistaId,$actividadId,$fecha)
 {
 	$mysqli=$this->conexionBD();
-
-	if($mysqli->query("INSERT INTO `Deportista_reserva_actividad`(`Deportista_id_Usuario`,`Actividad_id_Actividad`,`Fecha`,`Asistencia`)
-		VALUES
-		('$deportistaId','$actividadId','now()','1')")==TRUE)
-	{
-		return TRUE;
-	?>
-		<script>
-			alert("Insercción Realizada con Exito");
-		</script>
-		<?php
-	}else{
-		return FALSE;
-		?>
-		<script>
-			alert("Error al insertar. Ya existe un usuario con ese nombre en esa actividad");
-		</script>
-		<?php 
-	}
-	$mysqli->close();
+	
+		$date = getdate();
+		$hora=$date["hours"];
+		$minutos=$date["minutes"];
+		$segundos=$date["seconds"];
+		$fechatotal = $fecha." ".$hora.":".$minutos.":".$segundos."";
+		
+		if($mysqli->query("INSERT INTO `Deportista_reserva_actividad`(`Deportista_id_Usuario`,`Actividad_id_Actividad`,`Fecha`,`Asistencia`)
+			VALUES
+			('$deportistaId','$actividadId','$fechatotal','1')")==TRUE)
+		{
+			return 0;
+			?>
+			<script>
+				alert("Insercción Realizada con Exito");
+			</script>
+			<?php
+		}else{
+			return 1;
+			?>
+			<script>
+				alert("Error al insertar");
+			</script>
+			<?php 
+		}
+		$mysqli->close();
+	
 }
 //Añade la reserva a una actividad existente
-function altaAlumno($deportistaId,$actividadId,$entrenadorId)
+function altaAlumno($deportistaId,$actividadId,$entrenadorId,$fecha)
 {
 	$mysqli=$this->conexionBD();
+	$date = getdate();
+	$hora=$date["hours"];
+	$minutos=$date["minutes"];
+	$segundos=$date["seconds"];
+	$fechatotal = $fecha." ".$hora.":".$minutos.":".$segundos."";
 
 	if($mysqli->query("INSERT INTO `Gestion_actividad`(`Entrenador_id_Usuario`, `Actividad_id_Actividad`, `identificador_deportista`,`fecha`)
 		VALUES
-		('$entrenadorId','$actividadId','$deportistaId','now()')")==TRUE)
+		('$entrenadorId','$actividadId','$deportistaId','$fechatotal')")==TRUE)
 	{
 		?>
 		<script>
-			alert("Deportista agregado con éxito");
+			alert("Deportista agregado a actividad");
 		</script>
 		<?php
 	}else{
 		?>
 		<script>
-			alert("Ya existe ese alumno en la actividad");
+			alert("Problema al agregar alumno a actividad");
 		</script>
 		<?php 
 	}
 	$mysqli->close();
 }
 
-function eliminarReserva($deportistaId,$actividadId){
+function eliminarReserva($deportistaId,$actividadId,$fecha){
 
  	$mysqli=$this->conexionBD();
+ 	//$datetime = $_POST['date'] . ' ' . $_POST['time'];
+	//$datetime = mysql_real_escape_string($fecha);
+	//$datetime = strtotime($fecha);
+	//$datetime = date('Y-m-d H:i:s',$fecha);
 
- 	$query="DELETE FROM `Deportista_reserva_actividad` WHERE Deportista_id_Usuario='$deportistaId' && Actividad_id_Actividad='$actividadId'";
+ 	$query="DELETE FROM `Deportista_reserva_actividad` WHERE Deportista_id_Usuario='$deportistaId' && Actividad_id_Actividad='$actividadId' && Fecha='$fecha'";
  	if($mysqli->query($query)==TRUE){
 	?>
 		<script>
-		alert("Eliminado con Exito");
+		alert("<?php echo $fecha; ?>");
 		</script>
 		<?php
  	}else {

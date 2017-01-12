@@ -90,11 +90,12 @@ DROP TABLE IF EXISTS Deportista_reserva_actividad;
 CREATE TABLE Deportista_reserva_actividad (
   Deportista_id_Usuario varchar(10) NOT NULL,
   Actividad_id_Actividad int(11) NOT NULL,
-  Fecha date NOT NULL,
+  Fecha datetime NOT NULL,
   Asistencia tinyint(1) DEFAULT 0,
-  PRIMARY KEY (Deportista_id_Usuario,Actividad_id_Actividad),
+  PRIMARY KEY (Deportista_id_Usuario,Actividad_id_Actividad,Fecha),
   KEY fk_Deportista_has_Actividad_Actividad1 (Actividad_id_Actividad),
   KEY fk_Deportista_has_Actividad_Deportista1 (Deportista_id_Usuario),
+  KEY fk_Deportista_has_Actividad_Fecha1 (Fecha),
   CONSTRAINT fk_Deportista_has_Actividad_Actividad1 FOREIGN KEY (Actividad_id_Actividad) REFERENCES Actividad (id_Actividad) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT fk_Deportista_has_Actividad_Deportista1 FOREIGN KEY (Deportista_id_Usuario) REFERENCES Deportista (DNI) ON DELETE CASCADE ON UPDATE NO ACTION
 );
@@ -176,7 +177,7 @@ CREATE TABLE Gestion_actividad (
   Entrenador_id_Usuario varchar(10) NOT NULL,
   Actividad_id_Actividad int(11) NOT NULL,
   identificador_deportista varchar(11) NOT NULL,
-  fecha date NOT NULL,
+  fecha datetime NOT NULL,
   PRIMARY KEY (Entrenador_id_Usuario,Actividad_id_Actividad,identificador_deportista),
   KEY fk_Entrenador_has_Actividad_Actividad1 (Actividad_id_Actividad),
   KEY fk_Entrenador_has_Actividad_Entrenador1 (Entrenador_id_Usuario),

@@ -68,6 +68,11 @@ class reservaAlta{
           	echo "</select>";
 			echo "</div></div>";
 
+			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"fecha\"id =\"fecha\"> ".$idiom['Fecha'].":</label>";
+			echo "<div class=\"input-group col-sm-3\">";
+			echo "<"."input"." "."class=\"form-control\""."type=date required id=fecha name=fecha>"; 
+			echo "</div></div>";
+
 			echo "<input type=\"image\" title=\"Crear reserva\" id=\"altaReserva\" name=\"altaReserva\" alt=\"Submit\" value=\"altaReserva\" onclick=\"enviarAltaReserva();\" src=\"..\Archivos\aceptar.png\" width=\"20\" height=\"20\">";
 
 			echo "<input type=\"image\" title=\"Volver\" id=\"Volver\" name=\"Volver\" alt=\"Submit\" value=\"Volver\" onclick=\"enviarPrincipalReservas();\" src=\"..\Archivos\cancelar.png\" width=\"20\" height=\"20\">";
