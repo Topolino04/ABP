@@ -62,10 +62,11 @@ class actividadvista{
 					echo "<div class=\"col-xs-12  well\">";
 						echo "<form class=\"form-horizontal\" method=\"post\" action=\"..\Controlador\ControladorActividades.php\">";
 							echo "<fieldset align=center><legend>".$idiom['DatosActividad'];//."</legend>";
-								echo "<input align=right type=image id=\"Modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"..\Archivos\lapiz.png\" width=\"30\" height=\"30\"></input>";
-
-								
-								echo "<input align=right type=image id=\"eliminar\" name=\"eliminar\" value=\"eliminar\" onclick=\"enviareliminar();\" alt =\"Submit\" src=\"..\Archivos\\eliminar.png\" width=\"30\"  height=\"30\" >";								
+								echo "<input align=right type=image id=\"Modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"..\Archivos\lapiz.png\" width=\"30\" height=\"30\">";
+                                echo "<input align=right type=image id=\"Modificar\" name=\"Asistencia\"  value=\"Asistencia\" alt =\"Submit\" src=\"..\Archivos\lista.png\" width=\"30\" height=\"30\">";
+                                echo "<input type='hidden' name = 'actividad_id' value='{$form[$numar]['id_actividad']}'>";
+                                echo "<input type='hidden' name = 'actividad_nom' value='{$form[$numar]['nombre']}'>";
+								echo "<input align=right type=image id=\"asistencia\" name=\"asistencia\" value=\"eliminar\" onclick=\"doSubmit();\" alt =\"Submit\" src=\"..\Archivos\\eliminar.png\" width=\"30\"  height=\"30\" >";
 							echo "</legend>";
 
 							echo "<input type=hidden id=id_actividad name=id_actividad value=".$form[$numar]["id_actividad"].">";
@@ -130,13 +131,6 @@ class actividadvista{
 
 		 	}
 	include '../plantilla/pie.php';
-?>
-
-
-
-
-
-<?php
 	}//Cierra la funcion crear()
 }//Cierra la clase
 ?>

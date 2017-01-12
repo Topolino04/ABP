@@ -107,6 +107,7 @@ $arrays=array(
     "BorrarTabla" => "Borrar Tabla",
     "Deportistas" =>"Deportistas",
     "Se ha producido un error en la modificación" =>"Se ha producido un error en la modificación",
+    "Tabla_asistencia_de" => "Tabla de asistencia de ",
     //FIN AÑADIDOS
 	);
 

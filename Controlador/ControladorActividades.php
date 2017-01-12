@@ -2,9 +2,11 @@
 session_start();
 include("../Vistas/VistaPrincipalActividades.php");
 include("../Modelos/ActividadModelo.php");
+include("../Modelos/ASISTENCIA_Modelo.php");
 include("../Idiomas/idiomas.php");
 include("../Vistas/AltaActividad.php");
 include("../Vistas/ModificarActividad.php");
+include("../Vistas/ASITENCIA_SHOW_Vista.php");
 
 
 if(isset($_REQUEST['actividades']))
@@ -141,8 +143,17 @@ if (isset($_POST['eliminarAlumno']))
 	$formfinal=$datos->array_consultarGestionActividades();
 	$vista=new actividadvista();
 	$vista->crear($formfinal,$idiom);
-
 }
+if (isset($_POST['Asistencia'])){
+    $idiom=new idiomas();
+    $actividad_id=$_POST['actividad_id'];
+    $actividad_nom=$_POST['actividad_nom'];
 
+    $model = new Asistencia();
+    $fechas = $model->listarFechasDeReservas($actividad_id);
+    $users =  $model->listarDeportisdasQueAsistenActividad($actividad_id);
+    $datos =  $model->listarAsistenciasDeActividad($actividad_id);
+    $vista = new ASISTENCIA_SHOW_Vista($actividad_id,$actividad_nom,$fechas,$users,$datos,"./ControladorActividades.php");
+}
 
 ?>
