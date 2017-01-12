@@ -54,7 +54,8 @@ if(isset($_POST['altaReserva'])){
 		}
 		else{echo "No existe entrenador";}
 	}
-	
+	//Si existe alguna reserva compruba que el deportista no la haya reserva antes
+	if(isset($formReservas[0]["deportistaId"])){//Existe alguna reserva?
 	for ($numarR=0;$numarR<count($formReservas);$numarR++){
 		if( $formReservas[$numarR]["deportistaId"]!=$deportistaId && $formReservas[$numarR]["actividadId"]!=$actividadId ){
 
@@ -68,6 +69,11 @@ if(isset($_POST['altaReserva'])){
 			</script>
 			<?php
 		}
+	}
+	}else{
+		$error=$model->altaReserva($deportistaId,$actividadId,$fecha);
+			//Inserta el alumno en la actividad despues de insertar la reserva
+		$model->altaAlumno($deportistaId,$actividadId,$entrenadorId,$fecha);	
 	}	
 	
 	$model->creararrayReservas();
