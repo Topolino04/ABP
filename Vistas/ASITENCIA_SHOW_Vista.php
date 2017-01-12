@@ -37,7 +37,7 @@ class ASISTENCIA_SHOW_Vista{
                                 echo "<td>$user</td>";
                                 foreach ($this->fechas as $fecha){
                                     ?>
-                                    <td><input type='checkbox'  <?= check($this->datos,$user,$fecha)?>></td>
+                                    <td><input type='checkbox' <?= check($this->datos,$user,$fecha)?>></td>
                                     <?php
                                 }
                             }
@@ -52,24 +52,11 @@ class ASISTENCIA_SHOW_Vista{
         </div>
         <?php
     } //fin metodo render
-/*
-// changed the city ids so we can easily see city_a and city_b
-$tableRows[0]=array("id"=>1, "id_city_a"=>1, "id_city_b"=>11, "distance"=>0);
-$tableRows[1]=array("id"=>2, "id_city_a"=>1, "id_city_b"=>12, "distance"=>8);
-$tableRows[2]=array("id"=>3, "id_city_a"=>1, "id_city_b"=>13, "distance"=>6);
-$tableRows[3]=array("id"=>4, "id_city_a"=>2, "id_city_b"=>11, "distance"=>8);
-$tableRows[4]=array("id"=>5, "id_city_a"=>2, "id_city_b"=>12, "distance"=>0);
-$tableRows[5]=array("id"=>6, "id_city_a"=>2, "id_city_b"=>13, "distance"=>9);
-$tableRows[6]=array("id"=>7, "id_city_a"=>3, "id_city_b"=>11, "distance"=>6);
-$tableRows[7]=array("id"=>8, "id_city_a"=>3, "id_city_b"=>12, "distance"=>9);
-$tableRows[8]=array("id"=>9, "id_city_a"=>3, "id_city_b"=>13, "distance"=>0);
-*/
 }
 
 function check(Array $datos, $user, DateTime $fecha){
     foreach ($datos  as $dato){
         if($dato->getDeportista() == $user && $dato->getFecha() == $fecha && $dato->getAsistencia()){
-
             return "checked";
         }
     }
