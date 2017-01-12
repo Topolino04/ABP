@@ -1,5 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `Gimnasio_BD` /*!40100 DEFAULT CHARACTER SET latin1 */;
 CREATE DATABASE  IF NOT EXISTS `Gimnasio_BD` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE  IF NOT EXISTS `Gimnasio_BD` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `Gimnasio_BD`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
@@ -72,20 +73,10 @@ CREATE TABLE Deportista (
 --
 
 --
--- Deportista por defecto para poder crear Actividad 
+-- `Deportista` por defecto para poder crear Actividad 
 --
-INSERT INTO Deportista(`Usuario`,
-                       `Password`,
-                       `Nombre`,
-                       `Apellidos`,
-                       `FOTO`,
-                       `DNI`,
-                       `Email`,
-                       `FechaNac`,
-                       `Telefono`,
-					   `Tipo`
-                       )
-                       VALUES ('default','default','default','default','default','default','default',0,0,'TDU');
+
+INSERT INTO Deportista (`Usuario`,`Password`,`Nombre`,`Apellidos`,`FOTO`,`DNI`,`Email`,`FechaNac`,`Telefono`,`Tipo`)VALUES ('default','default','default','default','default','default','default',0,0,'TDU');
 
 INSERT INTO Deportista VALUES ('ADMIN','73acd9a5972130b75066c82595a1fae3','Pablo','Gonzalez Rodriguez','321.jpg','39476158B','pablopeiboll@gmail.com','2016-11-05',321313,'TDU');
 
@@ -104,7 +95,7 @@ CREATE TABLE Deportista_reserva_actividad (
   PRIMARY KEY (Deportista_id_Usuario,Actividad_id_Actividad),
   KEY fk_Deportista_has_Actividad_Actividad1 (Actividad_id_Actividad),
   KEY fk_Deportista_has_Actividad_Deportista1 (Deportista_id_Usuario),
-  CONSTRAINT fk_Deportista_has_Actividad_Actividad1 FOREIGN KEY (Actividad_id_Actividad) REFERENCES Actividad (id_Actividad) ON DELETE NO CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT fk_Deportista_has_Actividad_Actividad1 FOREIGN KEY (Actividad_id_Actividad) REFERENCES Actividad (id_Actividad) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT fk_Deportista_has_Actividad_Deportista1 FOREIGN KEY (Deportista_id_Usuario) REFERENCES Deportista (DNI) ON DELETE CASCADE ON UPDATE NO ACTION
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -112,7 +103,7 @@ CREATE TABLE Deportista_reserva_actividad (
 --
 -- Dumping data for table `Deportista_reserva_actividad`
 --
-
+INSERT INTO Deportista_reserva_actividad VALUES ('39476158B',1,now(),1);
 
 --
 -- Table structure for table `Ejercicio`
