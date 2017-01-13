@@ -117,7 +117,7 @@ function conexionBD()
 	function comprobardnimonitor($dni){
 			
 		$mysqli=$this->conexionBD();
-		$query="SELECT * FROM `entrenador` WHERE `DNI`='$dni' ";
+		$query="SELECT * FROM `Entrenador` WHERE `DNI`='$dni' ";
 		$resultado=$mysqli->query($query);
         echo mysqli_num_rows($resultado);
 		if(mysqli_num_rows($resultado)){

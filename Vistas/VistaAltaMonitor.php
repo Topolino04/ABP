@@ -82,7 +82,7 @@ class monitorAlta{
 			echo "<"."input"." "."class=\"form-control\""."type=Password required id=Password name=Password >"; 
 			echo "</div></div>";
 
-			echo "<input type=\"image\" id=\"altaMonitor\" name=\"altaMonitor\" alt=\"Submit\" value=\"altaMonitor\" onclick=\"enviaraltaMonitor();\" src=\"..\Archivos\añadir.png\" width=\"20\" height=\"20\">";
+			echo "<input type=\"image\" id=\"altaMonitor\" name=\"altaMonitor\" alt=\"Submit\" value=\"altaMonitor\" onclick=\"enviaraltaMonitor();\" src=\"../Archivos/agregar.png\" width=\"20\" height=\"20\">";
 
 ?>
 

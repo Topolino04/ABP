@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include '../Modelos/TABLA_Modelo.php';
 include '../Vistas/TABLA_Show_Vista.php';
 include '../Vistas/TABLA_Consultar_Vista.php';
@@ -8,7 +8,6 @@ include '../Vistas/TABLA_Modificar_Vista.php';
 include '../Vistas/TABLA_Borrar_Vista.php';
 include '../Vistas/Mensaje_Vista.php';
 include '../Functions/LibraryFunctions.php';
-session_start();
 
 function get_data_form(){
 	$id_Tabla = $_REQUEST['id_Tabla'];
@@ -18,12 +17,13 @@ function get_data_form(){
 	}else{
 		$ejercicios = null;
 	}
+
     if (isset($_REQUEST["check2"])) {
         $usuarios = $_REQUEST["check2"];
     }else{
         $usuarios = null;
     }
-	$tabla = new TABLA_Modelo($id_Tabla,$nombre,$ejercicios);
+	$tabla = new TABLA_Modelo($id_Tabla,$nombre,$ejercicios,$usuarios);
 	return $tabla;
 }
 
@@ -60,12 +60,13 @@ if (!isset($_REQUEST['accion'])){
 				$valores = $tabla->RellenaDatos();
 				$ejercicios = $tabla->ListarEjerciciosConCheck();
                 $usuarios = $tabla->ListarUsuariosConCheck();
+
 				new TABLA_Modificar($valores,$ejercicios,$usuarios,'TABLA_Controller.php');
 			}
 			else{
 				$tabla = get_data_form();
 				$respuesta = $tabla->Modificar();
-				new Mensaje($respuesta, 'TABLA_Controller.php');
+				new Mensaje($respuesta,'TABLA_Controller.php');
 			}
 			break;
 		case 'Buscar':
@@ -90,6 +91,8 @@ if (!isset($_REQUEST['accion'])){
 				$tabla = get_data_form();
 				$ejercicios = $tabla->ListarEjercicios();
                 $usuarios = $tabla->ListarUsuarios();
+
+
 				new TABLA_Consultar($respuesta,$ejercicios,$usuarios, 'TABLA_Controller.php');
 			}
 				break;

@@ -1,11 +1,11 @@
 <?php 
-
+session_start();	
 include("../Idiomas/idiomas.php");
 include("../Modelos/MonitorModelo.php");
 include("../Vistas/VistaPrincipalMonitor.php");
 include("../Vistas/VistaAltaMonitor.php");
 include("../Vistas/VistaModificarMonitor.php");
-	session_start();		
+	
 
 
 	if(isset($_REQUEST['monitores']))
@@ -89,11 +89,11 @@ include("../Vistas/VistaModificarMonitor.php");
 				
 				$idiom=new idiomas();
 				$nombre=$_POST['nombre'];
-					$apellidos=$_POST['apellido'];
-					$telefono=$_POST['telefono'];
-					$email=$_POST['email'];
-					$usuario=$_POST['usuario'];
-					$dni=$_POST['dni'];
+				$apellidos=$_POST['apellido'];
+				$telefono=$_POST['telefono'];
+				$email=$_POST['email'];
+				$usuario=$_POST['usuario'];
+				$dni=$_POST['dni'];
 				$form1=array("nombre"=>"$nombre","apellidos"=>"$apellidos","telefono"=>"$telefono","dni"=>"$dni","email"=>"$email","usuario"=>"$usuario");
 				$modificar=new monitorModificar();
 				$modificar->crear($idiom,$form1,null);

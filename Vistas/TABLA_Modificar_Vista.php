@@ -23,7 +23,7 @@ function render(){
     <div class="container well">
         <div class="row">
             <div class="col-xs-12">
-                <form class="form-horizontal" method="post"action="..\Controlador\TABLA_Controller.php">
+                <form class="form-horizontal" method="post"action="../Controlador/TABLA_Controller.php">
                     <fieldset><legend> <?=$this->idiom['ConsultarTabla'].":"?></legend>
                         <div class="form-group"><label class="col-sm-2 control-label" for="nombre"id ="nombre"> <?=$this->idiom['id_Tabla'].":"?></label>
                             <div class="input-group col-sm-3">
@@ -35,7 +35,7 @@ function render(){
                                 <input class="form-control" type=text required id=nombre name=Nombre value = '<?= $this->datos['Nombre']?>'>
                             </div>
                         </div>
-                        <input type="image" name="accion" alt="Submit" value="Modificar" onclick="document.doSubmit();" src="..\Archivos\lapiz.png" width="20" height="20">
+                        <input type="image" name="accion" alt="Submit" value="Modificar" onclick="document.doSubmit();" src="../Archivos/lapiz.png" width="20" height="20">
             </div>
         </div>
     </div>
@@ -65,7 +65,7 @@ function render(){
                                 </tr>
                             <?php }?>
                         </table>
-                        <input type="image" name="accion" alt="Submit" value="Modificar" onclick="document.doSubmit();" src="..\Archivos\lapiz.png" width="20" height="20">
+                        <input type="image" name="accion" alt="Submit" value="Modificar" onclick="document.doSubmit();" src="../Archivos/lapiz.png" width="20" height="20">
             </div>
         </div>
     </div>
@@ -95,7 +95,7 @@ function render(){
                         </tr>
                     <?php }?>
                 </table>
-                <input type="image" name="accion" alt="Submit" value="Modificar" onclick="document.doSubmit();" src="..\Archivos\lapiz.png" width="20" height="20">
+                <input type="image" name="accion" alt="Submit" value="Modificar" onclick="document.doSubmit();" src="../Archivos/lapiz.png" width="20" height="20">
                 </fieldset>
                 </form>
             </div>

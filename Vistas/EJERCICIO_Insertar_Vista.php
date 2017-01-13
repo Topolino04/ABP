@@ -16,7 +16,7 @@ function render(){
     <div class="container well">
     <div class="row">
     <div class="col-xs-12">
-        <form class="form-horizontal" method="post"action="..\Controlador\EJERCICIO_Controller.php">
+        <form class="form-horizontal" method="post"action="../Controlador/EJERCICIO_Controller.php">
             <fieldset>
                 <legend> <?= $this->idiom['InsertarEjercicio'] . ":" ?></legend>
                 <input type = "hidden" name = "id_Ejercicio" value = "">
@@ -62,7 +62,7 @@ function render(){
                     </div>
                 </div>
             </fieldset>
-            <input type="image" name="accion" alt="Submit" value="Insertar" onclick="document.doSubmit()" src="..\Archivos\añadir.png" width="20" height="20">
+            <input type="image" name="accion" alt="Submit" value="Insertar" onclick="document.doSubmit()" src="../Archivos/agregar.png" width="20" height="20">
         </form>
     </div></div></div>
 

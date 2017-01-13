@@ -48,14 +48,15 @@ class menulateral{
                     </li>
                         
                     <li>
-                      
+                    
                      <li>
                         <li>
-
+                       
                         <a href="../Controlador/ControladorSesiones.php?sesiones" data-toggle="collapse" data-target="#down2"><i class="fa fa-users"></i> <?php echo $idioma['GestionSesiones'];?> </a>
 
                       </li>
                     </li>
+                    
                     
                       
                      <li>

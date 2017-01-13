@@ -1,4 +1,6 @@
 CREATE DATABASE  IF NOT EXISTS `Gimnasio_BD` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE  IF NOT EXISTS `Gimnasio_BD` /*!40100 DEFAULT CHARACTER SET latin1 */;
+CREATE DATABASE  IF NOT EXISTS `Gimnasio_BD` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `Gimnasio_BD`;
 -- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
 --
@@ -34,7 +36,8 @@ CREATE TABLE Actividad (
   PRIMARY KEY (id_Actividad)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
-
+ALTER TABLE `Actividad`
+  MODIFY `id_Actividad` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Dumping data for table `Actividad`
 --
@@ -45,8 +48,7 @@ INSERT INTO Actividad VALUES (1,'Baile','00:30:00','18:00:00','Aula3',20,'FACIL'
 -- Table structure for table `Deportista`
 --
 
- ALTER TABLE `Actividad`
-  MODIFY `id_Actividad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 
 DROP TABLE IF EXISTS Deportista;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -70,6 +72,12 @@ CREATE TABLE Deportista (
 -- Dumping data for table `Deportista`
 --
 
+--
+-- `Deportista` por defecto para poder crear Actividad 
+--
+
+INSERT INTO Deportista (`Usuario`,`Password`,`Nombre`,`Apellidos`,`FOTO`,`DNI`,`Email`,`FechaNac`,`Telefono`,`Tipo`)VALUES ('default','default','default','default','default','default','default',0,0,'TDU');
+
 INSERT INTO Deportista VALUES ('ADMIN','73acd9a5972130b75066c82595a1fae3','Pablo','Gonzalez Rodriguez','321.jpg','39476158B','pablopeiboll@gmail.com','2016-11-05',321313,'TDU');
 
 --
@@ -84,9 +92,11 @@ CREATE TABLE Deportista_reserva_actividad (
   Actividad_id_Actividad int(11) NOT NULL,
   Fecha datetime NOT NULL,
   Asistencia tinyint(1) DEFAULT 0,
+  PRIMARY KEY (Deportista_id_Usuario,Actividad_id_Actividad,Fecha),
   KEY fk_Deportista_has_Actividad_Actividad1 (Actividad_id_Actividad),
   KEY fk_Deportista_has_Actividad_Deportista1 (Deportista_id_Usuario),
-  CONSTRAINT fk_Deportista_has_Actividad_Actividad1 FOREIGN KEY (Actividad_id_Actividad) REFERENCES Actividad (id_Actividad) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY fk_Deportista_has_Actividad_Fecha1 (Fecha),
+  CONSTRAINT fk_Deportista_has_Actividad_Actividad1 FOREIGN KEY (Actividad_id_Actividad) REFERENCES Actividad (id_Actividad) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT fk_Deportista_has_Actividad_Deportista1 FOREIGN KEY (Deportista_id_Usuario) REFERENCES Deportista (DNI) ON DELETE CASCADE ON UPDATE NO ACTION
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -94,7 +104,7 @@ CREATE TABLE Deportista_reserva_actividad (
 --
 -- Dumping data for table `Deportista_reserva_actividad`
 --
-
+INSERT INTO Deportista_reserva_actividad VALUES ('39476158B',1,'now()',1);
 
 --
 -- Table structure for table `Ejercicio`
@@ -168,21 +178,21 @@ CREATE TABLE Gestion_actividad (
   Actividad_id_Actividad int(11) NOT NULL,
   identificador_deportista varchar(11) NOT NULL,
   fecha datetime NOT NULL,
+  PRIMARY KEY (Entrenador_id_Usuario,Actividad_id_Actividad,identificador_deportista),
   KEY fk_Entrenador_has_Actividad_Actividad1 (Actividad_id_Actividad),
   KEY fk_Entrenador_has_Actividad_Entrenador1 (Entrenador_id_Usuario),
   KEY fk_deportista (identificador_deportista),
   CONSTRAINT fk_Entrenador_has_Actividad_Actividad1 FOREIGN KEY (Actividad_id_Actividad) REFERENCES Actividad (id_Actividad) ON DELETE CASCADE ON UPDATE NO ACTION,
   CONSTRAINT fk_Entrenador_has_Actividad_Entrenador1 FOREIGN KEY (Entrenador_id_Usuario) REFERENCES Entrenador (DNI) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT fk_deportista FOREIGN KEY (identificador_deportista) REFERENCES deportista (DNI) ON DELETE CASCADE ON UPDATE NO ACTION
+  CONSTRAINT fk_deportista FOREIGN KEY (identificador_deportista) REFERENCES Deportista (DNI) ON DELETE CASCADE ON UPDATE NO ACTION
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `Gestion_actividad`
 --
-
+INSERT INTO Gestion_actividad VALUES ('1213131',1,'default','0');
 INSERT INTO Gestion_actividad VALUES ('1213131',1,'39476158B','0000-00-00 00:00:00');
-INSERT INTO Gestion_actividad VALUES ('1213131',1,'39476158B','0000-00-00 00:00:40');
 
 --
 -- Table structure for table `Gestion_deportistas_entrenador`

@@ -1,0 +1,26 @@
+#signup label.label {
+    display:inline-block;
+    width: 150px;
+}
+#signup input.error {
+    background-color: #FFDFFF;
+}
+#signup label.error {
+    border: 4px solid #000000;
+    padding: 4px;
+    margin-left: 4px;
+    background-color: #FF0000;
+    border-radius: 5px;
+    color: White;
+    font-weight: bold;
+}
+.dataTables_filter { visibility: hidden;}
+input.error {
+border-color: red;
+}
+input.error:focus {
+border-color: red;
+}
+.error{
+	color:red;
+}
