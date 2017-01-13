@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include '../Modelos/TABLA_Modelo.php';
 include '../Vistas/TABLA_Show_Vista.php';
 include '../Vistas/TABLA_Consultar_Vista.php';

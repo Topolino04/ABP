@@ -53,10 +53,10 @@ include "../Modelos/SesionModelo.php";
 			$menus->constructor($idiom);
 		}
 			
-			/*if(!isset($_SESSION['usuario']))
+			if(!isset($_SESSION['usuario']))
 			{
 			 echo "<script> window.location=\".././index.php\"</script>";
-			}*/
+			}
 	}
 	//viene de acceder del boton menu principal 
  	if(isset($_REQUEST['principal']))

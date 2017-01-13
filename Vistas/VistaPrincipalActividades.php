@@ -61,8 +61,8 @@ class actividadvista{
 	 			echo "<div class=\"row\">";
 					echo "<div class=\"col-xs-12  well\">";
 						echo "<form class=\"form-horizontal\" method=\"post\" action=\"..\Controlador\ControladorActividades.php\">";
-							echo "<fieldset align=center><legend>".$idiom['DatosActividad'];//."</legend>";
-								echo "<input align=right type=image id=\"Modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"..\Archivos\lapiz.png\" width=\"30\" height=\"30\">";
+							echo "<fieldset align=center><legend>".$idiom['DatosActividad'];//."</legend>";7
+								echo "<input align=right type=image id=\"Modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"../Archivos/lapiz.png\" width=\"30\" height=\"30\">";
                                 echo "<input align=right type=image id=\"Asistencia\" name=\"Asistencia\"  value=\"ida\" alt =\"Submit\" src=\"../Archivos/lista.png\" width=\"30\" height=\"30\">";
                                 echo "<input type='hidden' name = 'actividad_id' value='{$form[$numar]['id_actividad']}'>";
                                 echo "<input type='hidden' name = 'actividad_nom' value='{$form[$numar]['nombre']}'>";
