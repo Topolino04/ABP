@@ -28,18 +28,18 @@ class ASISTENCIA_SHOW_Vista{
                             <th> <?=$this->idiom["DNI"]?></th>
                         <?php
                             foreach ($this->fechas as $fecha){
-                                echo"<th> {$fecha->format("m-d")}</th>";
+                                echo"<th> {$fecha->format("d/m H:i")}</th>";
                             }
                         ?>
                         </tr>
                         <?php
                             foreach ($this->usuarios as $user){
+                                echo "<tr>";
                                 echo "<td>$user</td>";
                                 foreach ($this->fechas as $fecha){
-                                    ?>
-                                    <td><input type='checkbox' name = "<?=$user.$fecha->format("Y-m-d_H:i:s")?>"<?= check($this->datos,$user,$fecha)?>></td>
-                                    <?php
+                                   echo check($this->datos,$user,$fecha);
                                 }
+                                echo "</tr>";
                             }
                         ?>
                     </table>
@@ -56,11 +56,16 @@ class ASISTENCIA_SHOW_Vista{
 }
 
 function check(Array $datos, $user, DateTime $fecha){
+    $toret = "<td></td>";
     foreach ($datos  as $dato){
-        if($dato->getDeportista() == $user && $dato->getFecha() == $fecha && $dato->getAsistencia()){
-            return "checked";
+        if($dato->getDeportista() == $user && $dato->getFecha() == $fecha ){
+            $toret =  "<td><input type='checkbox' name = '{$user}{$fecha->format("Y-m-d_H:i:s")}'";
+            if($dato->getAsistencia()){
+                $toret = $toret."checked";
+            }
+            $toret = $toret."></td>";
         }
     }
-    return "";
+    return $toret;
 }
 ?>
