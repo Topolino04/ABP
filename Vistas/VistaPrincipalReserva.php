@@ -135,6 +135,28 @@
             echo "<br>";
             echo $idiom['DNI'] . ":" . " " . $form[$numar]["deportistaId"];
             echo "<br>";
+			echo "<div class=\"container\">";
+	 			echo "<div class=\"row no-gutters\">";
+					echo "<div class=\"col-xs-4 well\">";
+						echo "<form method=\"post\" action=\"../Controlador/ControladorReservas.php\">";
+							echo "<fieldset><legend><b>".$idiom['DatosReserva']."</b>";
+								//echo "</b>";
+								echo "<input align=right type=image title =".$idiom['Modificar']." id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"../Archivos/lapiz.png\" width=\"30\"  height=\"30\" ></input>";
+								echo "<input align=right type=image title =".$idiom['Eliminar']." id=\"eliminar\" name=\"Eliminar\" value=\"Eliminar\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"../Archivos/eliminar.png\" width=\"30\"  height=\"30\" >";
+								echo "<input type=hidden id=deportistaId name=deportistaId value=".$form[$numar]["deportistaId"].">";
+								echo "<input type=hidden id=actividadId name=actividadId value=".$form[$numar]["actividadId"].">";
+								echo "<input type=hidden id=AñoMesDia name=AñoMesDia value=".$form[$numar]["AñoMesDia"].">";
+								echo "<input type=hidden id=HoraMinutos name=HoraMinutos value=".$form[$numar]["HoraMinutos"].">";
+								//echo "<input type=hidden id=plazas name=plazas value=".$form[$numar]["plazas"].">";
+								//echo "<input type=hidden id=tabla name=tabla value=".$form[$numar]["tabla"].">";
+								//echo "<input type=hidden id=usuario name=usuario value=".$form[$numar]["usuario"].">";
+								echo "</legend>";
+								echo "</fieldset>";
+
+					 			echo $idiom['Deportista'].":"." ".$form[$numar]["usuario"];
+								echo "<br>";
+								echo $idiom['DNI'].":"." ".$form[$numar]["deportistaId"];
+								echo "<br>";
 
             echo $idiom['Fecha'] . ":" . " " . $form[$numar]["AñoMesDia"];
             echo "<fieldset>";

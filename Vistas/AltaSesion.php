@@ -30,7 +30,7 @@ class sesionAlta{
     		echo "<div class=\"container \">";
  			echo "<div class=\"row\">"; 
 			echo "<div class=\"col-xs-7 well\">";
-			echo "<form role=\"form\" name=\"form\" id=\"form\" class=\"form-group\" enctype=\"multipart/form-data\" method=\"post\"action=\"..\Controlador\ControladorSesiones.php\">";
+			echo "<form role=\"form\" name=\"form\" id=\"form\" class=\"form-group\" enctype=\"multipart/form-data\" method=\"post\"action=\"../Controlador/ControladorSesiones.php\">";
 			
 			echo "<fieldset><legend>".$idiom['AltaSesion']."</legend>";		
 
@@ -82,7 +82,7 @@ class sesionAlta{
 			echo "</div></div>";			
 
 			echo "<div align=\"right\" class=\"input-group col-sm-6\">";
-			echo "<input type=\"submit\" id=\"SubmitBtn\" name=\"altaSesion\" alt=\"Submit\" value=\"Enviar\" onclick=\"enviarAltaSesion();\" src=\"..\Archivos\agregar.png\" width=\"20\" height=\"20\">";
+			echo "<input type=\"submit\" id=\"SubmitBtn\" name=\"altaSesion\" alt=\"Submit\" value=\"Enviar\" onclick=\"enviarAltaSesion();\" src=\"../Archivos/agregar.png\" width=\"20\" height=\"20\">";
 			echo "</div>";
 			echo "</form>";			
 ?>

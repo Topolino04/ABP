@@ -40,8 +40,8 @@ class actividadvista{
 					   		<b><div style="color:black;" id ="BotonNuevaActividad"> <?php echo $idiom['NuevaActividad']; echo "&nbsp;"; ?></b>	
 					   </td>
 					   <td>	
-	  						 <form name="formularioalta"  class="form-horizontal" action="..\Controlador\ControladorActividades.php" method="post" >				
-								<input type="image" align="right" title=<?php echo$idiom['NuevaActividad'];?> id="Alta" name="Alta" alt="Submit" value="Alta" onload="MostrarMensaje();" onclick="enviaralta();" src="..\Archivos\agregar.png" width="20" height="20">						
+	  						 <form name="formularioalta"  class="form-horizontal" action="../Controlador/ControladorActividades.php" method="post" >				
+								<input type="image" align="right" title=<?php echo$idiom['NuevaActividad'];?> id="Alta" name="Alta" alt="Submit" value="Alta" onload="MostrarMensaje();" onclick="enviaralta();" src="../Archivos/agregar.png" width="20" height="20">						
 								</input>						
 							</form>
 							</div>
@@ -60,7 +60,7 @@ class actividadvista{
 			echo "<div class=\"container\">";
 	 			echo "<div class=\"row\">";
 					echo "<div class=\"col-xs-12  well\">";
-						echo "<form class=\"form-horizontal\" method=\"post\" action=\"..\Controlador\ControladorActividades.php\">";
+						echo "<form class=\"form-horizontal\" method=\"post\" action=\"../Controlador/ControladorActividades.php\">";
 							echo "<fieldset align=center><legend>".$idiom['DatosActividad'];//."</legend>";7
 								echo "<input align=right type=image id=\"Modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"../Archivos/lapiz.png\" width=\"30\" height=\"30\">";
                                 echo "<input align=right type=image id=\"Asistencia\" name=\"Asistencia\"  value=\"ida\" alt =\"Submit\" src=\"../Archivos/lista.png\" width=\"30\" height=\"30\">";
@@ -116,7 +116,7 @@ class actividadvista{
 																		
 										echo $form[$numar]["UsuarioDeportista"."$numarT"];
 										echo "<input type=hidden id=id_alumno name=id_alumno value=".$form[$numar]["identificador_deportista"."$numarT"].">";
-										echo "<input align=right title =".$idiom['Eliminar']." type=image id=\"eliminarAlumno\" name=\"eliminarAlumno\" value=\"eliminarAlumno\" onclick=\"enviareliminarAlumno()\" alt =\"Submit\" src=\"..\Archivos\\cancelar.png\" width=\"20\"  height=\"20\" >";																				
+										echo "<input align=right title =".$idiom['Eliminar']." type=image id=\"eliminarAlumno\" name=\"eliminarAlumno\" value=\"eliminarAlumno\" onclick=\"enviareliminarAlumno()\" alt =\"Submit\" src=\"../Archivos/cancelar.png\" width=\"20\"  height=\"20\" >";																				
 										echo "<br>";
 										}
 										

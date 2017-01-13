@@ -32,10 +32,10 @@
    <br>
    <div class="container">
   	<div class="row">
- 		<form name="alta" id="alta" class="form-group" action="..\Controlador\ControladorSesiones.php" method="post"> 
+ 		<form name="alta" id="alta" class="form-group" action="../Controlador/ControladorSesiones.php" method="post"> 
 	
  		<b><div style="color:black;" class="col-xs-2 well" id ="BotonNuevaActividad"><?php echo $idiom['NuevaSesion']; echo "&nbsp;"; ?></b>			
-			<input type="image" align=center title=<?php echo$idiom['NuevaSesion'];?> id="Alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();" src="..\Archivos\agregar.png" width="20" height="20">	
+			<input type="image" align=center title=<?php echo$idiom['NuevaSesion'];?> id="Alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();" src="../Archivos/agregar.png" width="20" height="20">	
 		</div>		
 	</div>
 	
@@ -60,13 +60,13 @@
 			
 
 			echo "<b><fieldset><legend>".$idiom['DatosSesion']."</legend></b>";
-			echo "<input type=image title =".$idiom['Modificar']." id=\"modificar\" name=\"modificar\"  value=\"modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"..\Archivos\lapiz.png\" width=\"30\"  height=\"30\" ></input>";
+			echo "<input type=image title =".$idiom['Modificar']." id=\"modificar\" name=\"modificar\"  value=\"modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"../Archivos/lapiz.png\" width=\"30\"  height=\"30\" ></input>";
 			echo "<input type=hidden id=deportista name=deportista value=".$form[$numar]["deportista"].">";
 			echo "<input type=hidden id=fecha name=fecha value=".$form[$numar]["fecha"].">";
 			echo "<input type=hidden id=comentario name=comentario value=".$form[$numar]["comentario"].">";
 			echo "<input type=hidden id=tabla name=tabla value=".$form[$numar]["tabla"].">";
 			//echo "<input type=hidden id=usuario name=usuario value=".$form[$numar]["usuario"].">";
-			echo "<input type=image title =".$idiom['Eliminar']." id=\"eliminar\" name=\"Eliminar\" value=\"Eliminar\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"..\Archivos\\eliminar.png\" width=\"30\"  height=\"30\" >";
+			echo "<input type=image title =".$idiom['Eliminar']." id=\"eliminar\" name=\"Eliminar\" value=\"Eliminar\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"../Archivos/eliminar.png\" width=\"30\"  height=\"30\" >";
 			
 			echo "<thead>";			
 
@@ -124,17 +124,17 @@
 			echo "<div class=\"container well\">";
  			echo "<div class=\"row\">";
 			echo "<div class=\"col-xs-4\">";
-			echo "<form method=\"post\" action=\"..\Controlador\ControladorSesiones.php\">";
+			echo "<form method=\"post\" action=\"../Controlador/ControladorSesiones.php\">";
 			
 
 			echo "<b><fieldset><legend>".$idiom['DatosSesion']."</legend></b>";
-			echo "<input type=image title =".$idiom['Modificar']." id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"..\Archivos\lapiz.png\" width=\"30\"  height=\"30\" ></input>";
+			echo "<input type=image title =".$idiom['Modificar']." id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"../Archivos/lapiz.png\" width=\"30\"  height=\"30\" ></input>";
 			echo "<input type=hidden id=deportista name=deportista value=".$form[$numar]["deportista"].">";
 			echo "<input type=hidden id=fecha name=fecha value=".$form[$numar]["fecha"].">";
 			echo "<input type=hidden id=comentario name=comentario value=".$form[$numar]["comentario"].">";
 			echo "<input type=hidden id=tabla name=tabla value=".$form[$numar]["tabla"].">";
 			//echo "<input type=hidden id=usuario name=usuario value=".$form[$numar]["usuario"].">";
-			echo "<input type=image title =".$idiom['Eliminar']." id=\"eliminar\" name=\"Eliminar\" value=\"Eliminar\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"..\Archivos\\eliminar.png\" width=\"30\"  height=\"30\" >";
+			echo "<input type=image title =".$idiom['Eliminar']." id=\"eliminar\" name=\"Eliminar\" value=\"Eliminar\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"../Archivos/eliminar.png\" width=\"30\"  height=\"30\" >";
 			
 			echo "<thead>";			
 

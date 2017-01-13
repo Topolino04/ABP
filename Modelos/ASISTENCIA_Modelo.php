@@ -31,7 +31,7 @@ class Asistencia
     }
     function listarAsistenciasDeActividad($id_actividad){
         $mysqli=$this->conexionBD();
-        $sql = "SELECT * FROM deportista_reserva_actividad WHERE Actividad_id_Actividad = {$id_actividad}";
+        $sql = "SELECT * FROM Deportista_reserva_actividad WHERE Actividad_id_Actividad = {$id_actividad}";
         if($result = $mysqli->query($sql)){
             $toret = array();
             foreach ($result as $tupla){
@@ -43,7 +43,7 @@ class Asistencia
     }
     function listarDeportisdasQueAsistenActividad($id_actividad){
         $mysqli=$this->conexionBD();
-        $sql = "SELECT DISTINCT Deportista_id_Usuario FROM deportista_reserva_actividad WHERE Actividad_id_Actividad = {$id_actividad}";
+        $sql = "SELECT DISTINCT Deportista_id_Usuario FROM Deportista_reserva_actividad WHERE Actividad_id_Actividad = {$id_actividad}";
         if($result = $mysqli->query($sql)){
             $toret = array();
             foreach ($result as $tupla) {
@@ -55,7 +55,7 @@ class Asistencia
     }
     function listarFechasDeReservas($id_actividad){
         $mysqli=$this->conexionBD();
-        $sql = "SELECT DISTINCT Fecha FROM deportista_reserva_actividad WHERE Actividad_id_Actividad = {$id_actividad}";
+        $sql = "SELECT DISTINCT Fecha FROM Deportista_reserva_actividad WHERE Actividad_id_Actividad = {$id_actividad}";
         if($result = $mysqli->query($sql)) {
             $toret = array();
             foreach ($result as $tupla) {
