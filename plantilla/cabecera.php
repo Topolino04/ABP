@@ -85,7 +85,7 @@ class cabecera{
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="..\Controlador\ControladorPrincipal.php?principal"><?php echo $idioma['Menu']; ?></a>
+                <a class="navbar-brand" href="../Controlador/ControladorPrincipal.php?principal"><?php echo $idioma['Menu']; ?></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -95,10 +95,10 @@ class cabecera{
                     <ul class="dropdown-menu message-dropdown">
                     <?php for($cont=count($form)-1;$cont>=0;$cont--){ ?>
                         <li class="message-preview">
-                            <a <?php echo "href=\"..\Controlador\Notificacion_Controller.php?noti=".$form[$cont]['id']."\""; ?> >
+                            <a <?php echo "href=\"../Controlador/Notificacion_Controller.php?noti=".$form[$cont]['id']."\""; ?> >
                                 <div class="media">
                                     <span class="pull-left">
-                                       <?php echo "<img class=\"media-object\" src=\"..\Archivos\\".$form[$cont]['foto']."\" alt=\"\" height=\"50\" width=\"50\">";  ?>
+                                       <?php echo "<img class=\"media-object\" src=\"../Archivos/".$form[$cont]['foto']."\" alt=\"\" height=\"50\" width=\"50\">";  ?>
                                     </span>
                                     <div class="media-body">
                                         <h5 class="media-heading"><strong><?php  echo $form[$cont]['usuarioorigen'];?></strong>
@@ -112,7 +112,7 @@ class cabecera{
                         <?php if(count($form)>0)
                         {        ?>
                         <li class="message-footer">
-                            <a href="..\Controlador\Notificacion_Controller.php?mostrar"><?php  echo $idioma['mostrartodos'];?></a>
+                            <a href="../Controlador/Notificacion_Controller.php?mostrar"><?php  echo $idioma['mostrartodos'];?></a>
                         </li>
                         <?php  } ?>
                     </ul>
@@ -122,13 +122,13 @@ class cabecera{
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-flag"></i> <b class="caret"></b></a>
                     <ul class="dropdown-menu alert-dropdown">
                         <li>
-                            <a href="ControladorPrincipal.php?idiomas=gallego"><?php echo $idioma['Gallego']; ?><input type="image" align="right" src="..\Archivos\galicia.png" height="30" width="30"></a>
+                            <a href="ControladorPrincipal.php?idiomas=gallego"><?php echo $idioma['Gallego']; ?><input type="image" align="right" src="../Archivos/galicia.png" height="30" width="30"></a>
                         </li>
                         <li>
-                            <a href="ControladorPrincipal.php?idiomas=español"><?php echo $idioma['Español']; ?><input type="image" align="right" src="..\Archivos\españa.gif" height="30" width="30"></a>
+                            <a href="ControladorPrincipal.php?idiomas=español"><?php echo $idioma['Español']; ?><input type="image" align="right" src="../Archivos/espana.gif" height="30" width="30"></a>
                         </li>
                         <li>
-                            <a href="ControladorPrincipal.php?idiomas=ingles"><?php echo $idioma['Ingles']; ?><input type="image" align="right" src="..\Archivos\ingles.png" height="30" width="30"></a>
+                            <a href="ControladorPrincipal.php?idiomas=ingles"><?php echo $idioma['Ingles']; ?><input type="image" align="right" src="../Archivos/ingles.png" height="30" width="30"></a>
                         </li>
                         <li class="divider"></li>
                     </ul>
@@ -140,7 +140,7 @@ class cabecera{
                         <li>
                          <?php
                          if (isset ($_SESSION['usuario'])) echo "<a href=\"#\"><i class=\"fa fa-fw fa-user\"></i>".$_SESSION['usuario']."</a>"; 
-                         //if (isset ($_SESSION['MONITOR'])) echo "<a href=\"#\"><i class=\"fa fa-fw fa-user\"></i>".$_SESSION['MONITOR']."</a>"; 
+                         if (isset ($_SESSION['MONITOR'])) echo "<a href=\"#\"><i class=\"fa fa-fw fa-user\"></i>".$_SESSION['MONITOR']."</a>";
                          ?>
                         </li>
                         <li>

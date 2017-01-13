@@ -50,7 +50,9 @@
 		for ($numar =0;$numar<count($form);$numar++){
 			//Vista para el deportista que está con sesión activa
 			$userLoggedIn=$form[$numar]["usuario"];
-			if (($_SESSION['usuario']!="ADMIN") && ($_SESSION['usuario']!="MONITOR") && ($_SESSION['usuario']==$userLoggedIn)){
+			//if (($_SESSION['usuario']!="ADMIN") && ($_SESSION['usuario']!="MONITOR") && ($_SESSION['usuario']==$userLoggedIn)){
+            if(isset($_SESSION["usuario"])){
+                if($_SESSION["usuario"]==$userLoggedIn){
 			echo "<div class=\"container well\">";
  			echo "<div class=\"row\">";
 			echo "<div class=\"col-xs-6\">";
@@ -115,9 +117,10 @@
 			echo "</div>"; //Cierra col-xs-6
 			echo "</div>"; //Cierra row
 			echo "</div>"; //Cierra container
-
+                }
 ///////////////////////////Vista para ADMIN y MONITOR///////////////////////////////////
-			}if (($_SESSION['usuario']=="ADMIN") or ($_SESSION['usuario']=="MONITOR")){ 
+			}if (isset($_SESSION['MONITOR'])){
+
 			echo "<div class=\"container well\">";
  			echo "<div class=\"row\">";
 			echo "<div class=\"col-xs-4\">";

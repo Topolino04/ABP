@@ -20,7 +20,7 @@ function render(){
     <div class="container well">
         <div class="row">
             <div class="col-xs-12">
-                <form class="form-horizontal" method="post"action="..\Controlador\TABLA_Controller.php">
+                <form class="form-horizontal" method="post"action="../Controlador/TABLA_Controller.php">
                     <fieldset><legend> <?=$this->idiom['ConsultarTabla'].":"?></legend>
                         <div class="form-group"><label class="col-sm-2 control-label" for="nombre"id ="nombre"> <?=$this->idiom['Nombre'].":"?></label>
                             <div class="input-group col-sm-3">

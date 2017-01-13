@@ -39,17 +39,34 @@ class reservaAlta{
 
 					for ($numar =0;$numar<count($listaDeportistas);$numar++)
 					{
-						if($listaDeportistas[$numar]["DNI"]!='default'){
-							//echo $formejercicios[$numar]["IdEjercicio"];
-						
-						$dni=$listaDeportistas[$numar]["DNI"];
-						$usuario=$listaDeportistas[$numar]["Usuario"];
-						 echo '<option value="'.$dni.'">'.$usuario.'</option>';
-						}
+                        $userLoggedIn=$listaDeportistas[$numar]["Usuario"];
+
+                        if(isset($_SESSION["usuario"])) {
+                            if ($_SESSION["usuario"] == $userLoggedIn) {
+                                if ($listaDeportistas[$numar]["DNI"] != 'default') {
+                                    //echo $formejercicios[$numar]["IdEjercicio"];
+
+                                    $dni = $listaDeportistas[$numar]["DNI"];
+                                    $usuario = $listaDeportistas[$numar]["Usuario"];
+                                    echo '<option value="' . $dni . '">' . $usuario . '</option>';
+                                }
+                            }
+                        }
+
+                        if(isset($_SESSION["MONITOR"])) {
+                                if ($listaDeportistas[$numar]["DNI"] != 'default') {
+                                    //echo $formejercicios[$numar]["IdEjercicio"];
+
+                                    $dni = $listaDeportistas[$numar]["DNI"];
+                                    $usuario = $listaDeportistas[$numar]["Usuario"];
+                                    echo '<option value="' . $dni . '">' . $usuario . '</option>';
+                                }
+                        }
 					}
 				}																								
           	echo "</select>";
 			echo "</div></div>";
+
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"actividadId\"id =\"actividadId\"> ".$idiom['Actividad'].":</label>";
 			echo "<div class=\"input-group col-sm-3\">";

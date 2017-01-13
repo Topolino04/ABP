@@ -16,7 +16,7 @@ class Notificacion_VIEW{
 			echo "<form class=\"form-horizontal\"  method=\"post\" action=\"../Controlador/Notificacion_Controller.php?Baja=".$form[$numar]['id']."\">";
 			echo "<fieldset><legend>".$idiom['Notificacion1']."</legend>";
 			echo "<br>";
-			echo "<input type=\"image\" src=\"..\Archivos\\".$form[$numar]["foto"]."\"width=\"50\" height=\"50\">";
+			echo "<input type=\"image\" src=\"../Archivos/".$form[$numar]["foto"]."\"width=\"50\" onClick=\"return confirm('".$idiom['confirmareliminado']."')\" height=\"50\">";
 			echo "<br>";
 			echo "<br>";
 			echo $idiom['Fecha'].":".$form[$numar]["fecha"];

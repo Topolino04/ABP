@@ -60,7 +60,8 @@ if(isset($_REQUEST['altaActividad']))
 	$model->creararrayActividades();
 	$DatosActividad=$model->crearArrayGestionActividad();
 	$NombreEntrenador=$model->getEntrenadores();
-	$model->RellenarArrayFinal($DatosActividad,$NombreEntrenador);
+    $NombreDeportista=$model->crearArrayNombreDeportista();
+	$model->RellenarArrayFinal($DatosActividad,$NombreEntrenador,$NombreDeportista);
 	include("../Archivos/ArrayConsultarGestionActividad.php");
 	$datos=new consult();
 	$formfinal=$datos->array_consultarGestionActividades();
@@ -121,7 +122,8 @@ if (isset($_POST['eliminar']))
 	$model1->creararrayActividades();
 	$DatosActividad=$model1->crearArrayGestionActividad();
 	$NombreEntrenador=$model1->getEntrenadores();
-	$model1->RellenarArrayFinal($DatosActividad,$NombreEntrenador);
+    $NombreDeportista=$model1->crearArrayNombreDeportista();
+	$model1->RellenarArrayFinal($DatosActividad,$NombreEntrenador,$NombreDeportista);
 	include("../Archivos/ArrayConsultarGestionActividad.php");
 	$arra=new consult();
 	$formfinal=$arra->array_consultarGestionActividades();

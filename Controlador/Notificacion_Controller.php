@@ -49,8 +49,8 @@ date_default_timezone_set('Europe/Madrid');
  			  	
  			  	if(isset($_SESSION['usuario'])){
 
- 			  	$modelusuario=new Deportista();
- 			  	$foto=$modelusuario->devolverfoto($user);
+ 			  	$modelnuevo=new Deportista();
+ 			  	$foto=$modelnuevo->devolverfoto($user);
  			  }else{
  			  	$modelusuario=new Monitor();
  			  	$foto=$modelusuario->devolverfoto($user);
@@ -66,10 +66,10 @@ date_default_timezone_set('Europe/Madrid');
  				$notificacion->crear($idioma,NULL,$form,$insertado);
 
  			  }else{
-
+ 			      $aviso="";
  			$notificacion=new notificacionVista();
- 			$model->creararrayEmailusuarios();
- 			include("../Archivos/ArrayEmailUsuarios.php");
+ 			$model->creararrayEmailDeportistas();
+ 			include("../Archivos/ArrayEmailDeportistas.php");
  			$datos=new consultar();
  			$form=$datos->array_consultar();
 

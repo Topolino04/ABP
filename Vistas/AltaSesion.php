@@ -43,10 +43,12 @@ class sesionAlta{
 					{						
 						$dni=$listaDeportistas[$numar]["DNI"];
 						$usuario=$listaDeportistas[$numar]["Usuario"];					
-						if (($_SESSION['usuario']!="ADMIN") && ($_SESSION['usuario']!="MONITOR") && ($_SESSION['usuario']==$usuario)){	
+						if (isset($_SESSION['usuario'])){
+						    if($_SESSION['usuario']==$usuario){
 							echo '<option value="'.$dni.'">'.$usuario.'</option>';
+                            }
 						}
-						if (($_SESSION['usuario']=="ADMIN") or ($_SESSION['usuario']=="MONITOR")){
+						if (isset($_SESSION['MONITOR'])){
 							echo '<option value="'.$dni.'">'.$usuario.'</option>'; 
 						}
 					}

@@ -20,7 +20,7 @@ function render(){
     <div class="container well">
     <div class="row">
         <div class="col-xs-12">
-        <form class="form-horizontal" method="post"action="..\Controlador\EJERCICIO_Controller.php?id_Ejercicio=<?=$this->valores['id_Ejercicio']?>&amp;accion=Borrar">
+        <form class="form-horizontal" method="post"action="../Controlador/EJERCICIO_Controller.php?id_Ejercicio=<?=$this->valores['id_Ejercicio']?>&amp;accion=Borrar">
             <fieldset><legend> <?=$this->idiom['ModificarEjercicio'].":"?></legend>
                 <div class="form-group"><label class="col-sm-2 control-label" for="nombre"id ="nombre"> <?=$this->idiom['id_Ejercicio'].":"?></label>
                     <div class="input-group col-sm-3">
@@ -63,7 +63,7 @@ function render(){
                     </div>
                 </div>
             </fieldset>
-            <input type="image"  name="accion" alt="Submit" value="Modificar" onclick="document.doSubmit();" src="..\Archivos\lapiz.png" width="20" height="20">
+            <input type="image"  name="accion" alt="Submit" value="Modificar" onclick="document.doSubmit();" src="../Archivos/lapiz.png" width="20" height="20">
         </form>
         </div></div></div>
     <?php

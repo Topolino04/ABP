@@ -47,7 +47,6 @@ include "../Modelos/SesionModelo.php";
 		}
 		if($resultado1==true){
 			$_SESSION['MONITOR']=$user;
-			$_SESSION['usuario']=$user; //Añadido para que el monitor pueda ver las sesiones
 			$idiom=new idiomas();
 			$menus=new panel(); 
 			$menus->constructor($idiom);
