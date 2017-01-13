@@ -52,8 +52,10 @@ include "../Modelos/SesionModelo.php";
 			$menus->constructor($idiom);
 		}
 			
-			if(!isset($_SESSION['usuario']))
+			if(!isset($_SESSION['usuario'] ) && !isset($_SESSION['MONITOR'])&& !isset($_SESSION['ADMIN'] ))
 			{
+			 
+			 echo "<script> alert(\"Usuario o Contraseña Incorrectas\")</script>";
 			 echo "<script> window.location=\".././index.php\"</script>";
 			}
 	}

@@ -27,7 +27,7 @@ function conexionBD(){
 
 		$mysqli=$this->conexionBD();
 		
-		$resultado=$mysqli->query("SELECT * FROM `deportista`");
+		$resultado=$mysqli->query("SELECT * FROM `Deportista`");
 		if($resultado!=null){
 		if(mysqli_num_rows($resultado))
 		{
@@ -51,38 +51,6 @@ function conexionBD(){
 				 $mysqli->close();
 	}
 	
-	function arrayalumnos(){
-
-
-		$file=fopen("../Archivos/ArrayEmailAlumnos.php", "w");
-		    fwrite($file,"<?php class consultar{ function array_consultar(){". PHP_EOL);
-			fwrite($file,"\$form=array(". PHP_EOL);
-
-		$mysqli=$this->conexionBD();
-		
-		$resultado=$mysqli->query("SELECT * FROM `alumno`");
-		if($resultado!=null){
-		if(mysqli_num_rows($resultado))
-		{
-		while($fila = $resultado->fetch_array())
-			{
-				$filas[] = $fila;
-			}
-			foreach($filas as $fila)
-			{ 
-				 $nombre=$fila['NOMBRE'];
-				 $apellidos=$fila['APELLIDOS'];
-				 $email=$fila['EMAIL'];
-				 fwrite($file,"array(\"email\"=>\"$email\",\"nombre\"=>\"$nombre\",\"apellidos\"=>\"$apellidos\"),". PHP_EOL);
-				 
-			 }
-
-		}
-		}	 
-				 fwrite($file,");return \$form;}}?>". PHP_EOL);
-				 fclose($file);
-				 $mysqli->close();
-	}
 
 	
 
@@ -93,9 +61,9 @@ function conexionBD(){
 			{
 
 			$mysqli=$this->conexionBD();
-			$query="INSERT INTO `notificacion`(`USUARIO`, `COMENTARIO`, `FECHATIME`,`USUARIOORIGEN`, `VISTO`, `FOTO`) VALUES ('$usuario','$comentario','$fecha','$userorigen','$visto','$foto')";
+			$query="INSERT INTO `Notificacion`(`USUARIO`, `COMENTARIO`, `FECHATIME`,`USUARIOORIGEN`, `VISTO`, `FOTO`) VALUES ('$usuario','$comentario','$fecha','$userorigen','$visto','$foto')";
 			$mysqli->query($query);
-			$mysqli->close();
+			//$mysqli->close();
 			}
 
 	}
@@ -105,7 +73,7 @@ function conexionBD(){
 		fwrite($file,"<?php class datos { function array_consultar(){". PHP_EOL);
 		fwrite($file,"\$form=array(" . PHP_EOL);
 		$mysqli=$this->conexionBD();
-		$resultado=$mysqli->query("SELECT * FROM `notificacion` WHERE `USUARIO`='$usuario'");
+		$resultado=$mysqli->query("SELECT * FROM `Notificacion` WHERE `USUARIO`='$usuario'");
 		if($resultado!=null){
 		if(mysqli_num_rows($resultado)){
 		while($fila = $resultado->fetch_array())
@@ -141,7 +109,7 @@ function conexionBD(){
 		fwrite($file,"<?php class arrays { function array_consultar(){". PHP_EOL);
 		fwrite($file,"\$form=array(" . PHP_EOL);
 		$mysqli=$this->conexionBD();
-		$resultado=$mysqli->query("SELECT * FROM `notificacion` WHERE `ID`='$id'");
+		$resultado=$mysqli->query("SELECT * FROM `Notificacion` WHERE `ID`='$id'");
 		if($resultado!=null){
 		if(mysqli_num_rows($resultado)){
 		while($fila = $resultado->fetch_array())
@@ -180,7 +148,7 @@ function conexionBD(){
 		fwrite($file,"<?php class arrays { function array_consultar(){". PHP_EOL);
 		fwrite($file,"\$form=array(" . PHP_EOL);
 		$mysqli=$this->conexionBD();
-		$resultado=$mysqli->query("SELECT * FROM `notificacion` WHERE `USUARIO`='$usuario'");
+		$resultado=$mysqli->query("SELECT * FROM `Notificacion` WHERE `USUARIO`='$usuario'");
 		if($resultado!=null){
 		if(mysqli_num_rows($resultado)){
 		while($fila = $resultado->fetch_array())
@@ -212,14 +180,14 @@ function conexionBD(){
 	function eliminartodaslasnotificacionesUsuario($usuario){
 		
 		$mysqli=$this->conexionBD();
-		$mysqli->query("DELETE  FROM `notificacion` WHERE `USUARIO`='$usuario'");
+		$mysqli->query("DELETE  FROM `Notificacion` WHERE `USUARIO`='$usuario'");
 		$mysqli->close();
 
 	}
 	function eliminarnotificacion($id)
 	{
 		$mysqli=$this->conexionBD();
-		$mysqli->query("DELETE  FROM `notificacion` WHERE `ID`='$id'");
+		$mysqli->query("DELETE  FROM `Notificacion` WHERE `ID`='$id'");
 		$mysqli->close();
 	}
 }

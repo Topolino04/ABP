@@ -139,8 +139,11 @@ class cabecera{
                     <ul class="dropdown-menu">
                         <li>
                          <?php
-                         if (isset ($_SESSION['usuario'])) echo "<a href=\"#\"><i class=\"fa fa-fw fa-user\"></i>".$_SESSION['usuario']."</a>"; 
-                         if (isset ($_SESSION['MONITOR'])) echo "<a href=\"#\"><i class=\"fa fa-fw fa-user\"></i>".$_SESSION['MONITOR']."</a>";
+                         if (isset ($_SESSION['usuario'])){  echo "<a href=\"#\"><i class=\"fa fa-fw fa-user\"></i>".$_SESSION['usuario']."</a>";} 
+
+                          elseif (isset ($_SESSION['ADMIN'])){  echo "<a href=\"#\"><i class=\"fa fa-fw fa-user\"></i>".$_SESSION['ADMIN']."</a>"; 
+                        } elseif (isset ($_SESSION['MONITOR'])){ echo "<a href=\"#\"><i class=\"fa fa-fw fa-user\"></i>".$_SESSION['MONITOR']."</a>";}
+
                          ?>
                         </li>
                         <li>

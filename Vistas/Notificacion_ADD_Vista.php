@@ -22,10 +22,12 @@ class notificacionVista{
 			for($numar=0;$numar<count($form);$numar++)
 							{
                 if($form[$numar]["usuario"]!='default'){
+
                   echo "<li>";
 							echo "<input type=\"checkbox\" name=\"usuario[]\" value=\"".$form[$numar]["usuario"]."\">".$form[$numar]["usuario"]."";
 							echo "</li>";
-							}}
+							}
+            }
 							echo "</ul>";
 						echo "</div></div>";	
       echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"cuenta\"id =\"cuenta\"> ".$idiom['mensaje'].":</label>";

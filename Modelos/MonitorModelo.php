@@ -61,8 +61,9 @@ function conexionBD()
 
 			$foto="";
 				 $mysqli=$this->conexionBD();
-			$query="SELECT * FROM entrenador where Usuario='$user'";
+			$query="SELECT * FROM Entrenador where Usuario='$user'";
 			$resultado=$mysqli->query($query);
+			if($resultado!=null){ 
 		if(mysqli_num_rows($resultado)){
 				while($fila = $resultado->fetch_array())
 			{
@@ -72,7 +73,7 @@ function conexionBD()
 			{ 
 				 $foto=$fila['FOTO'];
 			}
-			}
+			}}
 			return $foto;
 
 		}

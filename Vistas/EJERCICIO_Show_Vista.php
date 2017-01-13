@@ -23,7 +23,7 @@ function render(){
             <div class="col-xs-12">
                 <form name="formularioalta"  class="form-horizontal" action="../Controlador/EJERCICIO_Controller.php" method="post" >
                     <fieldset>
-                        <input type="image" id="alta" name="accion" alt="Submit" value="Insertar" onclick="doSubmit();" src="..\Archivos\añadir.png" width="20" height="20"></input>
+                        <input type="image" id="alta" name="accion" alt="Submit" value="Insertar" onclick="doSubmit();" src="../Archivos/agregar.png" width="20" height="20"></input>
                     </fieldset>
                 </form>
             </div>
