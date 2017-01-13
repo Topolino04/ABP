@@ -27,7 +27,7 @@ class reservaAlta{
     		echo "<div class=\"container well\">";
  			echo "<div class=\"row\">";
 			echo "<div class=\"col-xs-12\">";
-			echo "<form class=\"form-horizontal\" id=formulario method=\"post\"action=\"..\Controlador\ControladorReservas.php\">";
+			echo "<form class=\"form-horizontal\" id=formulario method=\"post\"action=\"../Controlador/ControladorReservas.php\">";
 
 			echo "<fieldset><legend>".$idiom['AltaReserva']."</legend>";
 
@@ -75,7 +75,7 @@ class reservaAlta{
 
 			echo "<input type=\"image\" title=\"Crear reserva\" id=\"altaReserva\" name=\"altaReserva\" alt=\"Submit\" value=\"altaReserva\" onclick=\"enviarAltaReserva();\" src=\"..\Archivos\aceptar.png\" width=\"20\" height=\"20\">";
 
-			echo "<input type=\"image\" title=\"Volver\" id=\"Volver\" name=\"Volver\" alt=\"Submit\" value=\"Volver\" onclick=\"enviarPrincipalReservas();\" src=\"..\Archivos\cancelar.png\" width=\"20\" height=\"20\">";
+			echo "<input type=\"image\" title=\"Volver\" id=\"Volver\" name=\"Volver\" alt=\"Submit\" value=\"Volver\" onclick=\"enviarPrincipalReservas();\" src=\"../Archivos/cancelar.png\" width=\"20\" height=\"20\">";
 
 
 ?>

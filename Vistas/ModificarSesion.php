@@ -26,7 +26,7 @@ class sesionModificar{
  			echo "<div class=\"container \">";
  			echo "<div class=\"row\">"; 
 			echo "<div class=\"col-xs-7 well\">";
-			echo "<form role=\"form\" name=\"form\" id=\"form\" class=\"form-group\" enctype=\"multipart/form-data\" method=\"post\"action=\"..\Controlador\ControladorSesiones.php\">";
+			echo "<form role=\"form\" name=\"form\" id=\"form\" class=\"form-group\" enctype=\"multipart/form-data\" method=\"post\"action=\"../Controlador/ControladorSesiones.php\">";
 			
 			echo "<fieldset><legend>".$idiom['ModificarSesion']."</legend>";
 
@@ -51,10 +51,10 @@ class sesionModificar{
 			echo "</div></div>";
 
 			echo "<input type=hidden id=fecha name=fecha value=".$form1["fecha"].">";
-			/*echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"fecha\"id =\"fecha\"> ".$idiom['Fecha'].":</label>";
+			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"fecha\"id =\"fecha\"> ".$idiom['Fecha'].":</label>";
 			echo "<div class=\"input-group col-sm-6\">";
 			echo "<input class=\"form-control\" type=\"text\" required id=\"fecha\" name=\"fecha\" value=\"".$form1["fecha"]."\">"; 
-			echo "</div></div>";*/
+			echo "</div></div>";
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"comentario\"id =\"comentario\"> ".$idiom['Comentario'].":</label>";
 			echo "<div class=\"input-group col-sm-6\">";
@@ -81,14 +81,14 @@ class sesionModificar{
         
 			echo "</div></div>";
 			echo "<div align=\"right\" class=\"input-group col-sm-6\">";			
-			echo "<input type=\"submit\" id=\"ModificarSesion\" name=\"ModificarSesion\" alt=\"Submit\" value=\"Enviar\" onclick=\"enviarModificarSesion();\" src=\"..\Archivos\añadir.png\" width=\"20\" height=\"20\">";			
+			echo "<input type=\"submit\" id=\"ModificarSesion\" name=\"ModificarSesion\" alt=\"Submit\" value=\"Enviar\" onclick=\"enviarModificarSesion();\" src=\"../Archivos/agregar.png\" width=\"20\" height=\"20\">";			
 			echo "</div>";
 			echo "</form>";
 
 			/*echo "<div class=\"container\">";
  			echo "<div class=\"row\">"; 
 			echo "<div class=\"col-xs-12 well\">";
-			echo "<form class=\"form-horizontal\" method=\"post\"action=\"..\Controlador\ControladorSesiones.php\">";			
+			echo "<form class=\"form-horizontal\" method=\"post\"action=\"../Controlador/ControladorSesiones.php\">";			
 			echo "<fieldset><legend>".$idiom['ModificarSesion']."</legend>";
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"deportista\"id =\"deportista\"> ".$idiom['DNI'].":</label>";

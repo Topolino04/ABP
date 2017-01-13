@@ -44,8 +44,8 @@
 					   		<b><div style="color:black;" id ="BotonNuevaReserva"> <?php echo $idiom['NuevaReserva']; echo "&nbsp;"; ?></b>
 					   </td>
 					   <td>
-					   		<form name="formularioalta"  class="form-horizontal" action="..\Controlador\ControladorReservas.php" method="post" >
-								<input type="image" align="right" title=<?php echo$idiom['NuevaReserva'];?> id="alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();" src="..\Archivos\agregar.png" width="20" height="20">
+					   		<form name="formularioalta"  class="form-horizontal" action="../Controlador/ControladorReservas.php" method="post" >
+								<input type="image" align="right" title=<?php echo$idiom['NuevaReserva'];?> id="alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();" src="../Archivos/agregar.png" width="20" height="20">
 								</input>
 							</form>
 							</div>
@@ -64,11 +64,11 @@
 			echo "<div class=\"container\">";
 	 			echo "<div class=\"row no-gutters\">";
 					echo "<div class=\"col-xs-4 well\">";
-						echo "<form method=\"post\" action=\"..\Controlador\ControladorReservas.php\">";
+						echo "<form method=\"post\" action=\"../Controlador/ControladorReservas.php\">";
 							echo "<fieldset><legend><b>".$idiom['DatosReserva']."</b>";
 								//echo "</b>";			
-								echo "<input align=right type=image title =".$idiom['Modificar']." id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"..\Archivos\lapiz.png\" width=\"30\"  height=\"30\" ></input>";
-								echo "<input align=right type=image title =".$idiom['Eliminar']." id=\"eliminar\" name=\"Eliminar\" value=\"Eliminar\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"..\Archivos\\eliminar.png\" width=\"30\"  height=\"30\" >";		
+								echo "<input align=right type=image title =".$idiom['Modificar']." id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"../Archivos/lapiz.png\" width=\"30\"  height=\"30\" ></input>";
+								echo "<input align=right type=image title =".$idiom['Eliminar']." id=\"eliminar\" name=\"Eliminar\" value=\"Eliminar\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"../Archivos/eliminar.png\" width=\"30\"  height=\"30\" >";		
 								echo "<input type=hidden id=deportistaId name=deportistaId value=".$form[$numar]["deportistaId"].">";
 								echo "<input type=hidden id=actividadId name=actividadId value=".$form[$numar]["actividadId"].">";
 								echo "<input type=hidden id=AñoMesDia name=AñoMesDia value=".$form[$numar]["AñoMesDia"].">";

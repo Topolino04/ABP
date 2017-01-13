@@ -26,7 +26,7 @@ function enviarAltaActividad(){
 echo "<div  align=\"left\" class=\"container\">";
 	echo "<div class=\"row\">";
 		echo "<div class=\"col-xs-7 well\">";
-			echo "<form role=\"form\" name=\"form\" id=\"form\" class=\"form-group\" enctype=\"multipart/form-data\" method=\"post\"action=\"..\Controlador\ControladorActividades.php?altaActividad\">";
+			echo "<form role=\"form\" name=\"form\" id=\"form\" class=\"form-group\" enctype=\"multipart/form-data\" method=\"post\"action=\"../Controlador/ControladorActividades.php?altaActividad\">";
 
 				echo "<fieldset><legend>".$idiom['AltaActividad']."</legend>";
 
@@ -84,7 +84,7 @@ echo "<div  align=\"left\" class=\"container\">";
 				echo "</div>";
 
 
-				echo "<input align=\"right\" type=\"submit\" id=\"SubmitBtn\" name=\"altaActividad\" alt=\"Submit\" value=\"Enviar\" src=\"..\Archivos\agregar.png\" width=\"20\" height=\"20\">";
+				echo "<input align=\"right\" type=\"submit\" id=\"SubmitBtn\" name=\"altaActividad\" alt=\"Submit\" value=\"Enviar\" src=\"../Archivos/agregar.png\" width=\"20\" height=\"20\">";
 			
 			echo "</form>";
 ?>
