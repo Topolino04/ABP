@@ -290,7 +290,8 @@ function RellenarArrayFinal($DatosActividad,$NombreEntrenador,$NombreDeportista)
 //Alta de actividad
 function CrearActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion)
 {
-	$mysqli=$this->conexionBD();	
+	$mysqli=$this->conexionBD();
+	
 	
 	if($mysqli->query("INSERT INTO `Actividad`(`Nombre`, `Duracion`, `Hora`, `Lugar`, `Plazas`, `Dificultad`, `Descripcion`)
 		VALUES

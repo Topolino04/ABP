@@ -42,7 +42,7 @@ ALTER TABLE `Actividad`
 -- Dumping data for table `Actividad`
 --
 
-INSERT INTO Actividad VALUES (1,'Baile','00:30:00','18:00:00','Aula3',20,'FACIL','Clase de baile');
+INSERT INTO Actividad VALUES (1,'Baile','00:30','18:00','Aula3',20,'FACIL','Clase de baile');
 
 --
 -- Table structure for table `Deportista`

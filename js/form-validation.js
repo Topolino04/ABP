@@ -1,9 +1,11 @@
-   $(document).ready(function () {
+$(document).ready(function () {
+ 	 //Validation data form
+    $.validator.addMethod('positiveNumber',
+    function (value) { 
+        return Number(value) > 0;
+    }, 'Intorduce un número positivo');
 
-	   
-    	 //Validation data form
-
-    $("#form").validate({ 
+    $("#form").validate({
 		
 	   error: function(label) {
        $(this).addClass("error");
@@ -27,20 +29,21 @@
             },
         duracion: {
             required: true,
-            maxlength:8,
-			minlength: 8  
+            maxlength:5,
+			minlength: 5  
               
                },
         hora: {
             required: true,              
-            maxlength:8,
-			minlength: 8  			  
+            maxlength:5,
+			minlength: 5  			  
             },
 		plazas: {
             required: true,
 			digits: true,              
             maxlength:2,
-			max:40
+			max:40,
+            positiveNumber:true
             },          			
         lugar: {
               required: true,
@@ -64,27 +67,28 @@
 		  
         nombre: {             
             required:"Introduce un nombre por favor",
-            minlength:"Mínimo 2 caracteres por favor"
+            minlength:"M&iacute;nimo 2 caracteres por favor"
             },
         entrenador: {             
             required:"Selecciona un entrenador por favor",
              
               },
         duracion:{
-            required:"Introduce una duracion por favor",
-            maxlength:"Formato no valido (HH:MM:SS)",
-			minlength:"Formato no valido (HH:MM:SS)"
+            required:"Introduce una duraci&oacute;n por favor",
+            maxlength:"Formato no v&aacute;lido (HH:MM)",
+			minlength:"Formato no v&aacute;lido (HH:MM)"
             },
         hora:{
             required:"Introduce una hora por favor",                            
-            maxlength:"Formato no valido (HH:MM:SS)",
-			minlength:"Formato no valido (HH:MM:SS)"			  
+            maxlength:"Formato no v&aacute;lido (HH:MM)",
+			minlength:"Formato no v&aacute;lido (HH:MM)"			  
             },
 		plazas:{
-            required:"Introduce un numero de plazas por favor",                            
-            maxlength:"Máximo 2 numeros por favor",
-			digits:"Introduce un número por favor",
-			max:"Máximo 40 plazas"
+            required:"Introduce un n&uacute;mero de plazas por favor",                            
+            maxlength:"M&aacute;ximo 2 n&uacute;meros por favor",
+			digits:"Introduce un n&uacute;mero positivo por favor",
+			max:"M&aacute;ximo 40 plazas",
+            positiveNumber: "Positivo"
             },	  
         lugar: {             
             required:"Introduce un lugar por favor",

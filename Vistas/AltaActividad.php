@@ -46,12 +46,12 @@ echo "<div  align=\"left\" class=\"container\">";
 
 				echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"duracion\"id =\"duracion\"  > ".$idiom['Duracion'].":</label>";
 				echo "<div class=\"input-group col-sm-6\">";
-				echo "<"."input"." "."class=\"form-control\""."type=datetime id=duracion name=duracion>";
+				echo "<"."input"." "."class=\"form-control\""."type=time id=duracion name=duracion>";
 				echo "</div></div>";
 
 				echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"hora\"id =\"hora\"> ".$idiom['Hora'].":</label>";
 				echo "<div class=\"input-group col-sm-6\">";
-				echo "<"."input"." "."class=\"form-control\""."type=datetime id=hora name=hora>";
+				echo "<"."input"." "."class=\"form-control\""."type=time id=hora name=hora>";
 				echo "</div></div>";
 
 				echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"lugar\"id =\"lugar\"> ".$idiom['Lugar'].":</label>";
@@ -81,9 +81,9 @@ echo "<div  align=\"left\" class=\"container\">";
 			
 			echo "</form>";
 ?>
-<script  src="../js/lib/jquery.js"></script>
-<script  src="../js/dist/jquery.validate.js"></script>
-<script  src="../js/form-validation.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../js/dist/jquery.validate.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../js/form-validation.js" charset="UTF-8"></script>
 <?php
 
 		}
