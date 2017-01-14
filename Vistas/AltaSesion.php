@@ -76,12 +76,31 @@ class sesionAlta{
 			echo "<div align=\"right\" class=\"input-group col-sm-6\">";
 			echo "<input type=\"submit\" id=\"SubmitBtn\" name=\"altaSesion\" alt=\"Submit\" value=\"Enviar\" onclick=\"enviarAltaSesion();\" src=\"../Archivos/agregar.png\" width=\"20\" height=\"20\">";
 			echo "</div>";
-			echo "</form>";			
+			echo "</form>";
+/////////VALIDACION MULTIDIOMA			
 ?>
-<script  src="../js/lib/jquery.js"></script>
-<script  src="../js/dist/jquery.validate.js"></script>
-<script  src="../js/form-validation.js"></script>
+<script type="text/javascript" src="../js/lib/jquery.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../js/dist/jquery.validate.js" charset="UTF-8"></script>
 <?php
+if($_SESSION['idioma']=="español"){
+	?>
+      <script type="text/javascript" src="../js/src/localization/messages_es.js" /></script>
+    <?php
+    }elseif($_SESSION['idioma']=="gallego"){
+      ?>
+      <script type="text/javascript" src="../js/src/localization/messages_es_AR.js" /></script>
+    <?php
+    }elseif($_SESSION['idioma']=="ingles"){
+     
+}else{
+    ?>
+      <script type="text/javascript" src="../js/src/localization/messages_es.js" /></script>
+    <?php
+}
+?>
+<script type="text/javascript" src="../js/form-validation.js" charset="UTF-8"></script>
+<?php
+////////VALIDACION MULTIDIOMA
 
 		}
 	}
