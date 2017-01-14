@@ -132,11 +132,11 @@ CREATE TABLE Ejercicio (
 ALTER TABLE `Ejercicio`
   MODIFY `id_Ejercicio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
-INSERT INTO Ejercicio VALUES (1,'tipo1','nombre1','00:00:01',2,25,3,'Descripcion1');
-INSERT INTO Ejercicio VALUES (2,'tipo1','nombre2','00:00:02',3,20,4,'Descripcion2');
-INSERT INTO Ejercicio VALUES (3,'tipo2','nombre3','00:00:03',3,10,5,'Descripcion3');
-INSERT INTO Ejercicio VALUES (4,'tipo2','nombre4','00:00:04',8,50,6,'Descripcion4');
-INSERT INTO Ejercicio VALUES (5,'tipo3','nombre5','00:00:05',2,75,7,'Descripcion5');
+INSERT INTO Ejercicio VALUES (1,'Cardio','Carrera avanzado','00:20:00',2,NULL ,3,'Correr durante 20 min a mas de 10 km/h');
+INSERT INTO Ejercicio VALUES (2,'Aerobico','Eliptica','00:20:00',3,NULL ,4,'20 min de eliptica');
+INSERT INTO Ejercicio VALUES (3,'Cardio','Carrera media','00:20:00',3,null,1,'Correr durante 20 min entre 6 y 10 km/h');
+INSERT INTO Ejercicio VALUES (4,'Estiramiento','Estiramiento leve','00:05:00',8,null,1,'Estiamiento de musculos de las extremidades inferiores');
+INSERT INTO Ejercicio VALUES (5,'Calentamiento','Carrera leve','00:05:00',2,null,2,'Correr durante 20 min a menos de 6 km/h');
 
 --
 -- Table structure for table `Entrenador`
@@ -339,7 +339,6 @@ INSERT INTO Tabla VALUES (2,'Ejercicios Avazados');
 INSERT INTO Tabla VALUES (3,'Ejercicios HARDCORE');
 INSERT INTO Tabla VALUES (4,'Mantenimiento');
 INSERT INTO Tabla VALUES (5,'Musculacion');
-INSERT INTO Tabla VALUES (6,'Mata Sanos');
 
 --
 -- Table structure for table `Tabla_contiene_ejercicios`
