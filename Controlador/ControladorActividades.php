@@ -100,10 +100,12 @@ if(isset($_POST['ModificarActividad']))
 	$model=new Actividad();
 	$model->modificarActividad($id_actividad,$nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion);
 	//$model->asignarEntrenador($entrenadorId,$idActividad);
+	$model->asignarEntrenador($entrenadorId,$idActividad);
 	$model->creararrayActividades();
 	$DatosActividad=$model->crearArrayGestionActividad();
 	$NombreEntrenador=$model->getEntrenadores();
-	$model->RellenarArrayFinal($DatosActividad,$NombreEntrenador);
+    $NombreDeportista=$model->crearArrayNombreDeportista();
+	$model->RellenarArrayFinal($DatosActividad,$NombreEntrenador,$NombreDeportista);
 	include("../Archivos/ArrayConsultarGestionActividad.php");
 	$datos=new consult();
 	$formfinal=$datos->array_consultarGestionActividades();
