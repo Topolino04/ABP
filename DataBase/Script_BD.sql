@@ -268,14 +268,14 @@ DROP TABLE IF EXISTS Notificacion;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE Notificacion (
-  `ID` int(11) NOT NULL,
+  ID int(11) NOT NULL,
   USUARIO varchar(40) NOT NULL,
   COMENTARIO varchar(240) NOT NULL,
   FECHATIME datetime NOT NULL,
   USUARIOORIGEN varchar(40) NOT NULL,
   VISTO tinyint(1) NOT NULL,
   FOTO varchar(100) NOT NULL,
-  PRIMARY KEY (`ID`)
+  PRIMARY KEY (ID)
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -289,11 +289,8 @@ INSERT INTO `Notificacion` (`ID`, `USUARIO`, `COMENTARIO`, `FECHATIME`, `USUARIO
 --
 -- Table structure for table `Sesion`
 --
--- Indices de la tabla `notificacion`
---
-ALTER TABLE `notificacion`
-  ADD PRIMARY KEY (`ID`);
 
+--
 -- AUTO_INCREMENT de la tabla `notificacion`
 --
 ALTER TABLE `Notificacion`
@@ -318,12 +315,6 @@ CREATE TABLE Sesion (
  
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Sesion`
---
-
-INSERT INTO Sesion VALUES ('1213131','39476158B','0000-00-00 00:00:00','asdad',1);
 
 --
 -- Table structure for table `Tabla`

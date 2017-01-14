@@ -1,54 +1,50 @@
-
-
 <?php
 class actividadvista{
 
 	function crear($form,$idioma){
-	include("../Funciones/cargadodedatos.php");
+		include("../Funciones/cargadodedatos.php");
 ?>
-<body background="../Archivos/unnamed.jpg">
 <script type="text/javascript">
 
-            function enviaralta(){
+    function enviaralta(){
 
-                document.getElementById("Alta").submit();
+        document.getElementById("Alta").submit();
+    }
+    function enviarmodificar(){
 
-            }
-            function enviarmodificar(){
+    	document.getElementById("Modificar").submit();
+    }
+    function enviareliminar(){
 
-            	document.getElementById("Modificar").submit();
-            }
-            function enviareliminar(){
+    	document.getElementById("eliminar").submit();
+    }
+    function enviareliminarAlumno(){
 
-            	document.getElementById("eliminar").submit();
-            }
-            function enviareliminarAlumno(){
-
-            	document.getElementById("eliminarAlumno").submit();
-            }
-   </script>
-   <br>
-   <div class="container">    
-	   <div class="row">
-		   <div class="col-xs-3 well">
-			   <table id="myTable">
-				   <tr> 					   
-					   <td>	
-					   		<b><div style="color:black;" id ="BotonNuevaActividad"> <?php echo $idiom['NuevaActividad']; echo "&nbsp;"; ?></b>	
-					   </td>
-					   <td>	
-	  						 <form name="formularioalta"  class="form-horizontal" action="../Controlador/ControladorActividades.php" method="post" >				
-								<input type="image" align="right" title=<?php echo$idiom['NuevaActividad'];?> id="Alta" name="Alta" alt="Submit" value="Alta" onload="MostrarMensaje();" onclick="enviaralta();" src="../Archivos/agregar.png" width="20" height="20">						
-								</input>						
-							</form>
-							</div>
-						</td>
-					</tr>					
-				</table>
-			</div>
+    	document.getElementById("eliminarAlumno").submit();
+    }
+</script>
+<br>
+<div class="container">    
+   <div class="row">
+	   <div class="col-xs-2 well">
+		   <table align=center id="myTable">
+			   <tr> 					   
+				   <td>	
+				   		<b><div style="color:black;" id ="BotonNuevaActividad"> <?php echo $idiom['NuevaActividad']; echo "&nbsp;"; ?></b>	
+				   </td>
+				   <td>	
+  						 <form name="formularioalta"  class="form-horizontal" action="../Controlador/ControladorActividades.php" method="post" >				
+							<input type="image" align="right" title=<?php echo$idiom['NuevaActividad'];?> id="Alta" name="Alta" alt="Submit" value="Alta" onload="MostrarMensaje();" onclick="enviaralta();" src="../Archivos/agregar.png" width="20" height="20">						
+							</input>						
+						</form>
+						</div>
+					</td>
+				</tr>					
+			</table>
 		</div>
-	</div>		
-	<br>
+	</div>
+</div>		
+<br>
 
 <?php
 

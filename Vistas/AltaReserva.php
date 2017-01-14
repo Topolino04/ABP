@@ -1,9 +1,4 @@
-<html>
-<head>
-<title>
-</title>
-</head>
-<body background="../Archivos/background-faded1.jpg">
+
 <?php
 class reservaAlta{
 
@@ -101,5 +96,3 @@ class reservaAlta{
 	}
 
 ?>
-</body>
-</html>

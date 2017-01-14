@@ -2,11 +2,11 @@
 	class monitorvista{
 
 		function crear($form,$idioma){ 
-include("../Funciones/cargadodedatos.php");
+			include("../Funciones/cargadodedatos.php");
     		?>
-    		<header>
+    	
 
-		<script type="text/javascript">
+	<script type="text/javascript">
 
             function enviaralta()
             {
@@ -25,7 +25,7 @@ include("../Funciones/cargadodedatos.php");
             	document.getElementById("eliminar").submit();
            	  }
    </script>
-   </header>
+  
 			<form name="formularioalta"  class="form-horizontal" action="../Controlador/ControladorMonitor.php" method="post" >
 			<fieldset>
 

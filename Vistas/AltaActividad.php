@@ -1,12 +1,5 @@
-<html>
-<head>
-<link rel="stylesheet" href="../css/styles.css">	
-<meta charset="utf8">
-<title>
-</title>
-</head>
-<body background="../Archivos/background-faded1.jpg">
 
+<link rel="stylesheet" href="../css/styles.css">
 <?php
 
 class actividadAlta{
@@ -98,5 +91,4 @@ echo "<div  align=\"left\" class=\"container\">";
 }
 
 ?>
-</body>
-</html>
+
