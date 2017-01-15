@@ -38,7 +38,6 @@ function Insertar(){
     $this->ConectarBD();
     if ($this->nombre <> '' ){
 		$sql = "INSERT INTO Tabla (Nombre) VALUES ('{$this->nombre}')";
-		echo $sql;
 		$this->mysqli->query($sql);
 		return 'Inserción realizada con éxito'; //operacion de insertado correcta
     }
