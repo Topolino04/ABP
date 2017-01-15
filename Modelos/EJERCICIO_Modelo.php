@@ -66,7 +66,6 @@ function Consultar()
 {
     $this->ConectarBD();
     $sql = "SELECT * from Ejercicio where nombre LIKE '%".$this->nombre."%'";
-    echo $sql;
     if (!($resultado = $this->mysqli->query($sql))){
 	    return 'Error en la consulta sobre la base de datos';
 	}
