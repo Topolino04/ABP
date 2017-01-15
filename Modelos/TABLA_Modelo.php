@@ -164,7 +164,7 @@ function ListarEjerciciosConCheck(){
 
 function ListarUsuarios(){
     $this->ConectarBD();
-    $sql ="SELECT * FROM Tabla_Deportista, Deportista WHERE Deportista = DNI AND Tabla = {$this->id_Tabla}";
+    $sql ="SELECT * FROM Tabla_Deportista, Deportista WHERE Deportista = DNI AND DNI != 'default' AND Tabla = {$this->id_Tabla}";
     if($result = $this->mysqli->query($sql)){
         if($result->num_rows <= 0){
             $result = "Tabla vacia";
@@ -178,11 +178,11 @@ function ListarUsuarios(){
 
     function ListarUsuariosConCheck(){
         $this->ConectarBD();
-        $sql ="	SELECT Deportista.*, true FROM Tabla_Deportista, Deportista WHERE Deportista = DNI AND Tabla = {$this->id_Tabla}
+        $sql ="	SELECT Deportista.*, true FROM Tabla_Deportista, Deportista WHERE Deportista = DNI AND DNI != 'default' AND  Tabla = {$this->id_Tabla}
 											UNION
 											SELECT *, false
 											FROM Deportista
-											WHERE DNI not in (	SELECT DNI
+											WHERE DNI != 'default' AND DNI not in (	SELECT DNI
 																		FROM Tabla_Deportista, Deportista
 																		WHERE Deportista = DNI AND Tabla = {$this->id_Tabla})";
         if($result = $this->mysqli->query($sql)){
