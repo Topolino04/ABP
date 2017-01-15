@@ -96,7 +96,6 @@ function Modificar(){
     $result = $this->mysqli->query($sql);
     if ($result->num_rows == 1){
 		$sql ="UPDATE Tabla SET id_Tabla={$this->id_Tabla}, Nombre='{$this->nombre}' WHERE id_Tabla={$this->id_Tabla}; ";
-	   	echo $sql;
 	     if (!$this->mysqli->query($sql)){
 			return "Se ha producido un error en la modificación"; // sustituir por un try
 		}
@@ -117,7 +116,6 @@ function Modificar(){
                 $sql = $sql."( {$this->id_Tabla} , '{$this->usuarios[$i]}'),";
             $sql = rtrim($sql,',');
             $sql = $sql.";";
-			echo $sql;
 
 			if (!$this->mysqli->multi_query($sql)){
 				return "Se ha producido un error en la modificación ejercicios";
@@ -187,7 +185,6 @@ function ListarUsuarios(){
 											WHERE DNI not in (	SELECT DNI
 																		FROM Tabla_Deportista, Deportista
 																		WHERE Deportista = DNI AND Tabla = {$this->id_Tabla})";
-        echo $sql;
         if($result = $this->mysqli->query($sql)){
             if($result->num_rows <= 0){
                 $result = "Tabla vacia";
