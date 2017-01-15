@@ -436,7 +436,7 @@ function eliminarReserva($deportistaId,$actividadId,$fecha){
  	if($mysqli->query($query)==TRUE){
 	?>
 		<script>
-		alert("<?php echo $fecha; ?>");
+		alert("Reserva eliminada");
 		</script>
 		<?php
  	}else {

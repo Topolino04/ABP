@@ -345,13 +345,13 @@ function altaAlumno($id_actividad)
 	{
 	?>
 		<script>
-		alert("Insercción Realizada con Exito");
+		alert("Inserción realizada con Exito");
 		</script>
 		<?php
 		}else {
 		?>
 		<script>
-		alert("Vuelva a Introducir los datos");
+		alert("Vuelva a introducir los datos");
 		</script>
 	<?php }
 		$mysqli->close();

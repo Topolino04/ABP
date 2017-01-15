@@ -287,13 +287,13 @@ function modificarSesion($deportista,$fecha,$comentario,$tabla){
 			if($mysqli->query($query)==TRUE){
 				?>
 				<script>
-					alert("BIEN<?php echo($deportista); echo($fecha); echo($comentario); echo($tabla);?>");
+					alert("Sesion modificada con exito");
 				</script>
 				<?php
 			}else {
 				?>
 				<script>
-					alert("MAL<?php echo($deportista); echo($fecha); echo($comentario); echo($tabla);?>");
+					alert("Error al modificar");
 				</script>
 				<?php }
 				$result->free();
