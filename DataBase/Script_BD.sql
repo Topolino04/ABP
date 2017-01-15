@@ -42,7 +42,8 @@ ALTER TABLE `Actividad`
 -- Dumping data for table `Actividad`
 --
 
-INSERT INTO Actividad VALUES (1,'Baile','00:30','18:00','Aula3',20,'FACIL','Clase de baile');
+INSERT INTO Actividad VALUES (1,'Baile','00:30','18:00','Aula 3',20,'FACIL','Clase de baile');
+INSERT INTO Actividad VALUES (2,'Fitness','00:30','20:00','Aula 4',30,'MEDIA','Clase de Fitness');
 
 --
 -- Table structure for table `Deportista`
@@ -78,7 +79,10 @@ CREATE TABLE Deportista (
 
 INSERT INTO Deportista (`Usuario`,`Password`,`Nombre`,`Apellidos`,`FOTO`,`DNI`,`Email`,`FechaNac`,`Telefono`,`Tipo`)VALUES ('default','default','default','default','default','default','default',0,0,'TDU');
 
-INSERT INTO Deportista VALUES ('ADMIN','73acd9a5972130b75066c82595a1fae3','Pablo','Gonzalez Rodriguez','321.jpg','39476158B','pablopeiboll@gmail.com','2016-11-05',321313,'TDU');
+INSERT INTO Deportista VALUES ('ADMIN','73acd9a5972130b75066c82595a1fae3','Pablo','Gonzalez Rodriguez','321.jpg','39486158B','pablopeiboll@gmail.com','2016-11-05',632131343,'TDU');
+
+INSERT INTO Deportista VALUES ('JUAN','a94652aa97c7211ba8954dd15a3cf838','Juan','Perez Gomez','321.jpg','39486159N','juan@gmail.com','1990-01-15',621313123,'TDU');
+
 
 --
 -- Table structure for table `Deportista_reserva_actividad`
@@ -104,7 +108,7 @@ CREATE TABLE Deportista_reserva_actividad (
 --
 -- Dumping data for table `Deportista_reserva_actividad`
 --
-INSERT INTO Deportista_reserva_actividad VALUES ('39476158B',1,'now()',1);
+INSERT INTO Deportista_reserva_actividad VALUES ('39486158B',1,'now()',1);
 
 --
 -- Table structure for table `Ejercicio`
@@ -164,7 +168,7 @@ CREATE TABLE Entrenador (
 -- Dumping data for table `Entrenador`
 --
 
-INSERT INTO Entrenador VALUES ('MONITOR','ff3e179b3cc64393841107ccba0d6e48','MONITOR1','PACO GIMENEZ','321.jpg','1213131','mario_cafeina@hotmail.com','2016-11-11',2147483647,'Baile');
+INSERT INTO Entrenador VALUES ('MONITOR','ff3e179b3cc64393841107ccba0d6e48','MONITOR1','PACO GIMENEZ','321.jpg','36171672D','mario_cafeina@hotmail.com','2016-11-11',614748364,'Baile');
 
 --
 -- Table structure for table `Gestion_actividad`
@@ -191,8 +195,8 @@ CREATE TABLE Gestion_actividad (
 --
 -- Dumping data for table `Gestion_actividad`
 --
-INSERT INTO Gestion_actividad VALUES ('1213131',1,'default','0');
-INSERT INTO Gestion_actividad VALUES ('1213131',1,'39476158B','0000-00-00 00:00:00');
+INSERT INTO Gestion_actividad VALUES ('36171672D',1,'default','0');
+INSERT INTO Gestion_actividad VALUES ('36171672D',1,'39486158B','0000-00-00 00:00:00');
 
 --
 -- Table structure for table `Gestion_deportistas_entrenador`
@@ -315,6 +319,10 @@ CREATE TABLE Sesion (
  
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+INSERT INTO Sesion VALUES ('39486159N', '2017-01-15 21:21:27','Ejercios tabla 1',1);
+INSERT INTO Sesion VALUES ('39486159N', '2017-01-15 21:21:27','Ejercicicios tabla 2',2);
+
 
 --
 -- Table structure for table `Tabla`
