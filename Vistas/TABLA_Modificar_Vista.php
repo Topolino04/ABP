@@ -11,6 +11,7 @@ function __construct($valores,$arrayE,$usuarios,$volver){
     $this->ejercicios = $arrayE;
     $this->usuarios = $usuarios;
     $this->volver = $volver;
+
  include("../Idiomas/idiomas.php");
     $idioma=new idiomas();
     include("../Funciones/cargadodedatos.php");
@@ -61,7 +62,7 @@ function render(){
                                     <td><?=$ejercicio['Peso']?></td>
                                     <td><?=$ejercicio['Series']?></td>
                                     <td><?=$ejercicio['Descripcion']?></td>
-                                    <td><input type = "checkbox" <?php  if($ejercicio["TRUE"]) echo "checked "; echo " name = check[] value = ".$ejercicio["id_Ejercicio"];?> ></td>
+                                    <td><input type = "checkbox" <?php  if($ejercicio["TRUE"]) echo "checked "; ?> name = check[] value = '<?=$ejercicio["id_Ejercicio"]?>'></td>
                                 </tr>
                             <?php }?>
                         </table>
@@ -82,6 +83,7 @@ function render(){
                         <th><?=$this->idiom['email']?></th>
                         <th><?=$this->idiom['Usuario']?></th>
                     </tr>
+
                     <?php foreach ($this->usuarios  as $usuario){  ?>
                         <tr>
                             <td><?=$usuario['Nombre']?></td>
@@ -91,7 +93,7 @@ function render(){
                             <td><?=$usuario['DNI']?></td>
                             <td><?=$usuario['Email']?></td>
                             <td><?=$usuario['Usuario']?></td>
-                            <td><input type = "checkbox" <?php  if($usuario["TRUE"]) echo "checked "; echo " name = check2[] value = ".$ejercicio["id_Ejercicio"];?> ></td>
+                            <td><input type = "checkbox" <?php  if($usuario["TRUE"]) echo "checked"?> name = check2[] value = "<?=$usuario["DNI"]?>" ></td>
                         </tr>
                     <?php }?>
                 </table>

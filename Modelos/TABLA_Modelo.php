@@ -101,18 +101,18 @@ function Modificar(){
 			return "Se ha producido un error en la modificación"; // sustituir por un try
 		}
 		else{
-			$sql = 	"DELETE FROM Tabla_contiene_Ejercicios WHERE Tabla_id_Tabla= {$this->id_Tabla}; ";
+			$sql = 	"DELETE FROM Tabla_contiene_ejercicios WHERE Tabla_id_Tabla= {$this->id_Tabla}; ";
 
 			if(sizeof($this->ejercicios)>1)
-				$sql = $sql."INSERT INTO Tabla_contiene_Ejercicios VALUES ";
+				$sql = $sql."INSERT INTO Tabla_contiene_ejercicios VALUES ";
 			for($i=0;$i<count($this->ejercicios);$i++)
 				$sql = $sql."( {$this->id_Tabla} , {$this->ejercicios[$i]}),";
 			$sql = rtrim($sql,',');
 			$sql = $sql.";";
 
-			$sql = $sql."DELETE FROM Tabla_Deportista WHERE Tabla_id_Tabla= {$this->id_Tabla}; ";
+			$sql = $sql."DELETE FROM Tabla_Deportista WHERE Tabla= {$this->id_Tabla}; ";
             if(sizeof($this->usuarios)>1)
-                $sql = $sql."INSERT INTO Tabla_Deportista (Tabla_id_Tabla,Deportista_id_Usuario)VALUES ";
+                $sql = $sql."INSERT INTO Tabla_Deportista VALUES ";
             for($i=0;$i<count($this->usuarios);$i++)
                 $sql = $sql."( {$this->id_Tabla} , '{$this->usuarios[$i]}'),";
             $sql = rtrim($sql,',');
@@ -145,12 +145,12 @@ function ListarEjercicios(){
 
 function ListarEjerciciosConCheck(){
 	$this->ConectarBD();
-	$sql ="	SELECT Ejercicio.*, true FROM Tabla_contiene_Ejercicios, Ejercicio WHERE Ejercicio_id_Ejercicio = id_Ejercicio AND Tabla_id_Tabla = {$this->id_Tabla}
+	$sql ="	SELECT Ejercicio.*, true FROM Tabla_contiene_ejercicios, Ejercicio WHERE Ejercicio_id_Ejercicio = id_Ejercicio AND Tabla_id_Tabla = {$this->id_Tabla}
 											UNION
 											SELECT *, false
 											FROM Ejercicio
 											WHERE id_Ejercicio not in (	SELECT id_Ejercicio
-																		FROM Tabla_contiene_Ejercicios, Ejercicio
+																		FROM Tabla_contiene_ejercicios, Ejercicio
 																		WHERE Ejercicio_id_Ejercicio = id_Ejercicio AND Tabla_id_Tabla = {$this->id_Tabla})";
 	if($result = $this->mysqli->query($sql)){
 
@@ -164,7 +164,7 @@ function ListarEjerciciosConCheck(){
 	return $result;
 }
 
-function ListarUsuarios($dni){
+function ListarUsuarios(){
     $this->ConectarBD();
     $sql ="SELECT * FROM Tabla_Deportista, Deportista WHERE Deportista = DNI AND Tabla = {$this->id_Tabla}";
     if($result = $this->mysqli->query($sql)){
@@ -180,13 +180,14 @@ function ListarUsuarios($dni){
 
     function ListarUsuariosConCheck(){
         $this->ConectarBD();
-        $sql ="	SELECT Deportista.*, true FROM Tabla_Deportista, Deportista WHERE Deportista_id_Usuario = DNI AND Tabla_id_Tabla = {$this->id_Tabla}
+        $sql ="	SELECT Deportista.*, true FROM Tabla_Deportista, Deportista WHERE Deportista = DNI AND Tabla = {$this->id_Tabla}
 											UNION
 											SELECT *, false
 											FROM Deportista
 											WHERE DNI not in (	SELECT DNI
 																		FROM Tabla_Deportista, Deportista
-																		WHERE Deportista_id_Usuario = DNI AND Tabla_id_Tabla = {$this->id_Tabla})";
+																		WHERE Deportista = DNI AND Tabla = {$this->id_Tabla})";
+        echo $sql;
         if($result = $this->mysqli->query($sql)){
             if($result->num_rows <= 0){
                 $result = "Tabla vacia";
