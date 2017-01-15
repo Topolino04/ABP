@@ -49,7 +49,7 @@ class sesionVista{
 
 <?php
 			
-for ($numar =0;$numar<count($form);$numar++){
+for ($numar=0;$numar<count($form);$numar++){
 	//Vista para el deportista que está con sesión activa
 	$userLoggedIn=$form[$numar]["usuario"];
 	//if (($_SESSION['usuario']!="ADMIN") && ($_SESSION['usuario']!="MONITOR") && ($_SESSION['usuario']==$userLoggedIn)){
@@ -59,8 +59,9 @@ for ($numar =0;$numar<count($form);$numar++){
 	 			echo "<div class=\"row\">";
 					echo "<div class=\"col-xs-6\">";
 						echo "<form method=\"post\" action=\"..\Controlador\ControladorSesiones.php\">";
+
 						echo "<b><fieldset><legend>".$idiom['DatosSesion']." ".$form[$numar]["usuario"]."</legend></b>";
-							echo "<input type=image title =".$idiom['Modificar']." id=\"modificar\" name=\"modificar\"  value=\"modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"../Archivos/lapiz.png\" width=\"30\"  height=\"30\" ></input>";
+							echo "<input type=image title =".$idiom['Modificar']." id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"../Archivos/lapiz.png\" width=\"30\"  height=\"30\" ></input>";
 							echo "<input type=hidden id=deportista name=deportista value=".$form[$numar]["deportista"].">";
 							echo "<input type=hidden id=fecha name=fecha value=".$form[$numar]["fecha"].">";
 							echo "<input type=hidden id=comentario name=comentario value=".$form[$numar]["comentario"].">";
@@ -119,11 +120,13 @@ for ($numar =0;$numar<count($form);$numar++){
 			echo "</div>"; //Cierra container
      	}
 ///////////////////////////Vista para ADMIN y MONITOR///////////////////////////////////
-	}if (isset($_SESSION['MONITOR'])){
+	}
+	if (isset($_SESSION['MONITOR'])){
+		
 
 	echo "<div class=\"container well\">";
-		echo "<div class=\"row\">";
-	echo "<div class=\"col-xs-4\">";
+	echo "<div class=\"row\">";
+	echo "<div class=\"col-xs-6\">";
 	echo "<form method=\"post\" action=\"../Controlador/ControladorSesiones.php\">";
 	
 
@@ -187,6 +190,7 @@ for ($numar =0;$numar<count($form);$numar++){
 	echo "</div>"; //Cierra container
 
 	}
+	
 }
 ?>
 	

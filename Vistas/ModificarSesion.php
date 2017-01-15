@@ -25,21 +25,39 @@ class sesionModificar{
 
 			echo "<input type=hidden id=deportista name=deportista value=".$form1["deportista"].">";
 
-			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"icdeportista\" id=\"icdeportista\"> ".$idiom['Deportista'].":</label>";
+			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"deportistaId\"id =\"deportistaId\"> ".$idiom['Deportista'].":</label>";
 			echo "<div class=\"input-group col-sm-6\">";
-			
+			echo "<"."select"." "."class=\"form-control\""."required id=deportistaId name=deportistaId><option value='0'>".$idiom['SelecDep']."</option>";	
+				
 	         	if($listaDeportistas!=null){ 
 
 					for ($numar =0;$numar<count($listaDeportistas);$numar++)
 					{
-						
-						//echo $formejercicios[$numar]["IdEjercicio"];
-					$dni=$listaDeportistas[$numar]["DNI"];
-					$usuario=$listaDeportistas[$numar]["Usuario"];
-			echo "<"."select"." "."class=\"form-control\""." required readonly id=\"icdeportista\" name=icdeportista value='0'><option>".$usuario."</option>";	
-					 
+                        $userLoggedIn=$listaDeportistas[$numar]["Usuario"];
+
+                        if(isset($_SESSION["usuario"])) {
+                            if ($_SESSION["usuario"] == $userLoggedIn) {
+                                if ($listaDeportistas[$numar]["DNI"] != 'default') {
+                                    //echo $formejercicios[$numar]["IdEjercicio"];
+
+                                    $dni = $listaDeportistas[$numar]["DNI"];
+                                    $usuario = $listaDeportistas[$numar]["Usuario"];
+                                    echo '<option value="' . $dni . '">' . $usuario . '</option>';
+                                }
+                            }
+                        }
+
+                        if(isset($_SESSION["MONITOR"])) {
+                                if ($listaDeportistas[$numar]["DNI"] != 'default') {
+                                    //echo $formejercicios[$numar]["IdEjercicio"];
+
+                                    $dni = $listaDeportistas[$numar]["DNI"];
+                                    $usuario = $listaDeportistas[$numar]["Usuario"];
+                                    echo '<option value="' . $dni . '">' . $usuario . '</option>';
+                                }
+                        }
 					}
-				}											
+				}																								
           	echo "</select>";
 			echo "</div></div>";
 

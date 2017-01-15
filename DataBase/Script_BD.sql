@@ -81,7 +81,7 @@ INSERT INTO Deportista (`Usuario`,`Password`,`Nombre`,`Apellidos`,`FOTO`,`DNI`,`
 
 INSERT INTO Deportista VALUES ('ADMIN','73acd9a5972130b75066c82595a1fae3','Pablo','Gonzalez Rodriguez','321.jpg','39486158B','pablopeiboll@gmail.com','2016-11-05',632131343,'TDU');
 
-INSERT INTO Deportista VALUES ('JUAN','a94652aa97c7211ba8954dd15a3cf838','Juan','Perez Gomez','321.jpg','39486159N','juan@gmail.com','1990-01-15',621313123,'TDU');
+INSERT INTO Deportista VALUES ('JUAN','c9bf6c4a4fc1ac127bf27c71ce2e7250','Juan','Perez Gomez','321.jpg','39486159N','juan@gmail.com','1990-01-15',621313123,'TDU');
 
 
 --
@@ -377,54 +377,6 @@ INSERT INTO Tabla_contiene_ejercicios VALUES (1,4);
 INSERT INTO Tabla_contiene_ejercicios VALUES (2,1);
 INSERT INTO Tabla_contiene_ejercicios VALUES (3,1);
 INSERT INTO Tabla_contiene_ejercicios VALUES (4,1);
-
-DROP TABLE IF EXISTS Tabla_Deportista;
-CREATE TABLE IF NOT EXISTS `Tabla_Deportista` (
-  `Tabla` int(11) NOT NULL,
-  `Deportista` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `Tabla_Deportista`
---
-
-INSERT INTO `Tabla_Deportista` (`Tabla`, `Deportista`) VALUES
-  (1, '39486158B'),
-  (2, '39486158B'),
-  (3, '39486158B'),
-  (4, '39486158B'),
-  (5, '39486158B'),
-  (1, '39486159N'),
-  (2, '39486159N'),
-  (3, '39486159N'),
-  (4, '39486159N'),
-  (5, '39486159N');
-
---
--- Ãndices para tablas volcadas
---
-
---
--- Indices de la tabla `Tabla_Deportista`
---
-ALTER TABLE `Tabla_Deportista`
-  ADD PRIMARY KEY (`Tabla`,`Deportista`), ADD KEY `Deportista` (`Deportista`);
-
---
--- Restricciones para tablas volcadas
---
-
---
--- Filtros para la tabla `Tabla_Deportista`
---
-ALTER TABLE `Tabla_Deportista`
-  ADD CONSTRAINT `Tabla_Deportista_ibfk_2` FOREIGN KEY (`Deportista`) REFERENCES `Deportista` (`DNI`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `Tabla_Deportista_ibfk_1` FOREIGN KEY (`Tabla`) REFERENCES `Tabla` (`id_Tabla`) ON DELETE CASCADE ON UPDATE CASCADE;
-
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
