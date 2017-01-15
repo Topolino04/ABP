@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="../css/styles.css">
 <?php 
 
 class deportistaAlta{
@@ -27,7 +28,7 @@ class deportistaAlta{
 			echo "<div class=\"container well\">";
  			echo "<div class=\"row\">"; 
 			echo "<div class=\"col-xs-12\">";
-			echo "<form role=\"form\" class=\"form-horizontal\" enctype=\"multipart/form-data\" method=\"post\"action=\"../Controlador/ControladorDeportistas.php?altaDeportista\">";
+			echo "<form role=\"form\" name=\"form\" id=\"form\" class=\"form-horizontal\" enctype=\"multipart/form-data\" method=\"post\"action=\"../Controlador/ControladorDeportistas.php?altaDeportista\">";
 			echo "<fieldset><legend>".$idiom['Datosdeportista']."</legend>";
 			
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"nombre\"id =\"nombre\"> ".$idiom['Nombre'].":</label>";
@@ -85,11 +86,35 @@ class deportistaAlta{
 			echo "<input type=\"image\" id=\"altaDeportista\" name=\"altaDeportista\" alt=\"Submit\" value=\"altaDeportista\"  src=\"../Archivos/agregar.png\" width=\"20\" height=\"20\">";
 			echo "</form>";
 
+/////////VALIDACION MULTIDIOMA			
 ?>
-
-
-
+<script type="text/javascript" src="../js/lib/jquery.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../js/dist/jquery.validate.js" charset="UTF-8"></script>
 <?php
+	if (isset($_SESSION['idioma'])){
+		if($_SESSION['idioma']=="español"){
+			?>
+		      <script type="text/javascript" src="../js/src/localization/messages_es.js" /></script>
+		    <?php
+		    }elseif($_SESSION['idioma']=="gallego"){
+		      ?>
+		      <script type="text/javascript" src="../js/src/localization/messages_es_AR.js" /></script>
+		    <?php
+		    }elseif($_SESSION['idioma']=="ingles"){
+		    }
+		     
+		}else{
+		    ?>
+		      <script type="text/javascript" src="../js/src/localization/messages_es.js" /></script>
+		    <?php
+		}
+
+?>
+<script type="text/javascript" src="../js/form-validation.js" charset="UTF-8"></script>
+<?php
+////////VALIDACION MULTIDIOMA
+
+
 	}}
 
 ?>

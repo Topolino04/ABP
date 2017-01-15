@@ -82,25 +82,30 @@ class sesionAlta{
 <script type="text/javascript" src="../js/lib/jquery.js" charset="UTF-8"></script>
 <script type="text/javascript" src="../js/dist/jquery.validate.js" charset="UTF-8"></script>
 <?php
-if($_SESSION['idioma']=="español"){
-	?>
-      <script type="text/javascript" src="../js/src/localization/messages_es.js" /></script>
-    <?php
-    }elseif($_SESSION['idioma']=="gallego"){
-      ?>
-      <script type="text/javascript" src="../js/src/localization/messages_es_AR.js" /></script>
-    <?php
-    }elseif($_SESSION['idioma']=="ingles"){
-     
-}else{
-    ?>
-      <script type="text/javascript" src="../js/src/localization/messages_es.js" /></script>
-    <?php
-}
+	if (isset($_SESSION['idioma'])){
+		if($_SESSION['idioma']=="español"){
+			?>
+		      <script type="text/javascript" src="../js/src/localization/messages_es.js" /></script>
+		    <?php
+		    }elseif($_SESSION['idioma']=="gallego"){
+		      ?>
+		      <script type="text/javascript" src="../js/src/localization/messages_es_AR.js" /></script>
+		    <?php
+		    }elseif($_SESSION['idioma']=="ingles"){
+		    }
+		     
+		}else{
+		    ?>
+		      <script type="text/javascript" src="../js/src/localization/messages_es.js" /></script>
+		    <?php
+		}
+
 ?>
 <script type="text/javascript" src="../js/form-validation.js" charset="UTF-8"></script>
 <?php
 ////////VALIDACION MULTIDIOMA
+
+
 
 		}
 	}

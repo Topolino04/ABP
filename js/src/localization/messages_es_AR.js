@@ -21,7 +21,7 @@ $.extend( $.validator.messages, {
 	range: $.validator.format( "Por favor, introduza un valor entre {0} e {1}." ),
 	max: $.validator.format( "Por favor, introduza un valor menor ou igual a {0}." ),
 	min: $.validator.format( "Por favor, introduza un valor mayor ou igual a {0}." ),
-	nifES: "Por favor, introduza un NIF válido.",
 	nieES: "Por favor, introduza un NIE válido.",
-	cifES: "Por favor, introduza un CIF válido."
+	cifES: "Por favor, introduza un CIF válido.",
+	dni_valido: "Por favor, introduza un NIF válido."
 } );
