@@ -385,5 +385,52 @@ INSERT INTO Tabla_contiene_ejercicios VALUES (4,1);
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
+DROP TABLE IF EXISTS Tabla_Deportista; 
+CREATE TABLE IF NOT EXISTS `Tabla_Deportista` ( 
+  `Tabla` int(11) NOT NULL, 
+  `Deportista` varchar(10) NOT NULL 
+) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
+ 
+-- 
+-- Volcado de datos para la tabla `Tabla_Deportista` 
+-- 
+ 
+INSERT INTO `Tabla_Deportista` (`Tabla`, `Deportista`) VALUES 
+  (1, '39486158B'), 
+  (2, '39486158B'), 
+  (3, '39486158B'), 
+  (4, '39486158B'), 
+  (5, '39486158B'), 
+  (1, '39486159N'), 
+  (2, '39486159N'), 
+  (3, '39486159N'), 
+  (4, '39486159N'), 
+  (5, '39486159N'); 
+ 
+-- 
+-- Ãndices para tablas volcadas 
+-- 
+ 
+-- 
+-- Indices de la tabla `Tabla_Deportista` 
+-- 
+ALTER TABLE `Tabla_Deportista` 
+  ADD PRIMARY KEY (`Tabla`,`Deportista`), ADD KEY `Deportista` (`Deportista`); 
+ 
+-- 
+-- Restricciones para tablas volcadas 
+-- 
+ 
+-- 
+-- Filtros para la tabla `Tabla_Deportista` 
+-- 
+ALTER TABLE `Tabla_Deportista` 
+  ADD CONSTRAINT `Tabla_Deportista_ibfk_2` FOREIGN KEY (`Deportista`) REFERENCES `Deportista` (`DNI`) ON DELETE CASCADE ON UPDATE CASCADE, 
+  ADD CONSTRAINT `Tabla_Deportista_ibfk_1` FOREIGN KEY (`Tabla`) REFERENCES `Tabla` (`id_Tabla`) ON DELETE CASCADE ON UPDATE CASCADE; 
+ 
+ 
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */; 
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */; 
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */; 
+ 
 -- Dump completed
