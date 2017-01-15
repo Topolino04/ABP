@@ -24,7 +24,7 @@ include("../Funciones/cargadodedatos.php");
 			echo "<div class=\"container well\">";
  			echo "<div class=\"row\">"; 
 			echo "<div class=\"col-xs-12\">";
-			echo "<form class=\"form-horizontal\"  enctype=\"multipart/form-data\" method=\"post\" action=\"../Controlador/ControladorMonitor.php\">";
+			echo "<form class=\"form-horizontal\" name=\"form\" id=\"form\" enctype=\"multipart/form-data\" method=\"post\" action=\"../Controlador/ControladorMonitor.php\">";
 			echo "<fieldset><legend>".$idiom['Datosmonitor']."</legend>";
 			
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"nombre\"id =\"nombre\"> ".$idiom['Nombre'].":</label>";

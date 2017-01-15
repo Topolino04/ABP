@@ -5,19 +5,19 @@ array(
 				"nombre"=>'Baile',
 				"duracion"=>'00:30:00',
 				"hora"=>'18:00:00',
-				"lugar"=>'Aula3',
+				"lugar"=>'Aula 3',
 				"plazas"=>'20',
 				"dificultad"=>'FACIL',				
 				"descripcion"=>'Clase de baile'				
 				),
 array(
 				"id_actividad"=>'2',
-				"nombre"=>'caca',
-				"duracion"=>'20:20:20',
-				"hora"=>'20:20:20',
-				"lugar"=>'we',
-				"plazas"=>'23',
-				"dificultad"=>'FACIL',				
-				"descripcion"=>'232'				
+				"nombre"=>'Fitness',
+				"duracion"=>'00:30:00',
+				"hora"=>'20:00:00',
+				"lugar"=>'Aula 4',
+				"plazas"=>'30',
+				"dificultad"=>'MEDIA',				
+				"descripcion"=>'Clase de Fitness'				
 				),
 );return $form;}}?>

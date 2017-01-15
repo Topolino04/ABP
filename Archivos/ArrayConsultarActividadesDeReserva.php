@@ -1,10 +1,10 @@
 <?php class consult { function array_consultarActividades(){
 $form=array(
-array("deportistaId"=>'39476158B',"actividadId"=>'1',"fecha"=>'2017-01-07 14:58:57',"AñoMesDia"=>'2017-01-07',"HoraMinutos"=>'14:58:57',"asistencia"=>'1',
+array("deportistaId"=>'39486158B',"actividadId"=>'1',"fecha"=>'0000-00-00 00:00:00',"AñoMesDia"=>'0000-00-00',"HoraMinutos"=>'00:00:00',"asistencia"=>'1',
 
-					"entrenadorId"=>'1213131',
+					"entrenadorId"=>'36171672D',
 
-					"entrenadorId"=>'1213131',
+					"entrenadorId"=>'36171672D',
 
 					"NombreEntrenador"=>'MONITOR1',
 
