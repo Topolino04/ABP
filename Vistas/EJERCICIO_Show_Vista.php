@@ -24,6 +24,7 @@ function render(){
                 <form name="formularioalta"  class="form-horizontal" action="../Controlador/EJERCICIO_Controller.php" method="post" >
                     <fieldset>
                         <input type="image" id="alta" name="accion" alt="Submit" value="Insertar" onclick="doSubmit();" src="../Archivos/agregar.png" width="20" height="20"></input>
+                        <?=$this->idiom["InsertarEjercicio"]?>
                     </fieldset>
                 </form>
             </div>

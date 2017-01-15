@@ -130,7 +130,8 @@ function Modificar(){
 }
 function ListarEjercicios(){
 	$this->ConectarBD();
-	$sql ="SELECT * FROM Tabla_contiene_Ejercicios, Ejercicio WHERE Ejercicio_id_Ejercicio = id_Ejercicio AND Tabla_id_Tabla = {$this->id_Tabla}";
+	$sql ="SELECT * FROM Tabla_contiene_ejercicios, Ejercicio WHERE Ejercicio_id_Ejercicio = id_Ejercicio AND Tabla_id_Tabla = {$this->id_Tabla}";
+	echo $sql;
 	if($result = $this->mysqli->query($sql)){
 		if($result->num_rows <= 0){
 			$result = "Tabla vacia";
@@ -164,9 +165,10 @@ function ListarEjerciciosConCheck(){
 	return $result;
 }
 
-function ListarUsuarios(){
+function ListarUsuarios($dni){
     $this->ConectarBD();
     $sql ="SELECT * FROM Tabla_Deportista, Deportista WHERE Deportista_id_Usuario = DNI AND Tabla_id_Tabla = {$this->id_Tabla}";
+	echo $sql;
     if($result = $this->mysqli->query($sql)){
         if($result->num_rows <= 0){
             $result = "Tabla vacia";

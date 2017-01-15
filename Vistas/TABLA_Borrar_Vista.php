@@ -34,7 +34,7 @@ function render(){
                             </div>
                         </div>
                     </fieldset>
-                    <input type="image" name="accion" alt="Submit" value="Borrar" onclick="document.doSubmit();" src="../Archivos/eliminar.png" width="20" height="20">";
+                    <input type="image" name="accion" alt="Submit" value="Borrar" onclick="document.doSubmit();" src="../Archivos/eliminar.png" width="20" height="20">
                 </form>
             </div>
         </div>
