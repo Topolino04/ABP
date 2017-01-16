@@ -12,17 +12,17 @@ array(
 
 						"Entrenador_id_Usuario"=>'36171672D',
 						"Actividad_id_Actividad0"=>'1',
-						"identificador_deportista0"=>'39486158B',
+						"identificador_deportista0"=>'default',
 						"fecha0"=>'0000-00-00 00:00:00',
 
-								"UsuarioDeportista0"=>'ADMIN',
+								"UsuarioDeportista0"=>'default',
 
 						"Entrenador_id_Usuario"=>'36171672D',
 						"Actividad_id_Actividad1"=>'1',
-						"identificador_deportista1"=>'default',
+						"identificador_deportista1"=>'39486158B',
 						"fecha1"=>'0000-00-00 00:00:00',
 
-								"UsuarioDeportista1"=>'default',
+								"UsuarioDeportista1"=>'ADMIN',
 
 						"NombreEntrenadorActividad"=>'MONITOR1',
 						"ApellidoEntrenadorActividad"=>'PACO GIMENEZ',
@@ -38,9 +38,9 @@ array(
 			"dificultad"=>'MEDIA',
 			"descripcion"=>'Clase de Fitness',
 
-								"UsuarioDeportista0"=>'default',
+								"UsuarioDeportista0"=>'ADMIN',
 
-								"UsuarioDeportista1"=>'default',
+								"UsuarioDeportista1"=>'ADMIN',
 
 						"NombreEntrenadorActividad"=>'MONITOR1',
 						"ApellidoEntrenadorActividad"=>'PACO GIMENEZ',

@@ -39,22 +39,22 @@ function render(){
                 </div>
                 <div class="form-group"><label class="col-sm-2 control-label" for="nombre"id ="nombre"> <?=$this->idiom['Tiempo'].":"?></label>
                     <div class="input-group col-sm-3">
-                        <input class="form-control" type=text id=nombre name=Tiempo value = "<?=$this->valores['Tiempo']?>">
+                        <input class="form-control" type=time id=nombre name=Tiempo value = "<?=$this->valores['Tiempo']?>">
                     </div>
                 </div>
                 <div class="form-group"><label class="col-sm-2 control-label" for="nombre"id ="nombre"> <?=$this->idiom['Repeticiones'].":"?></label>
                     <div class="input-group col-sm-3">
-                        <input class="form-control" type=text id=nombre name=Repeticiones value = "<?=$this->valores['Repeticiones']?>">
+                        <input class="form-control" type=number id=nombre name=Repeticiones value = "<?=$this->valores['Repeticiones']?>">
                     </div>
                 </div>
                 <div class="form-group"><label class="col-sm-2 control-label" for="nombre"id ="nombre"> <?=$this->idiom['Peso'].":"?></label>
                     <div class="input-group col-sm-3">
-                        <input class="form-control" type=text id=nombre name=Peso value = "<?=$this->valores['Peso']?>">
+                        <input class="form-control" type=number id=nombre name=Peso value = "<?=$this->valores['Peso']?>">
                     </div>
                 </div>
                 <div class="form-group"><label class="col-sm-2 control-label" for="nombre"id ="nombre"> <?=$this->idiom['Series'].":"?></label>
                     <div class="input-group col-sm-3">
-                        <input class="form-control" type=text id=nombre name=Series value = "<?=$this->valores['Series']?>">
+                        <input class="form-control" type=number id=nombre name=Series value = "<?=$this->valores['Series']?>">
                     </div>
                 </div>
                 <div class="form-group"><label class="col-sm-2 control-label" for="nombre"id ="nombre"> <?=$this->idiom['Descripcion'].":"?></label>
@@ -63,7 +63,8 @@ function render(){
                     </div>
                 </div>
             </fieldset>
-            <input type="image"  name="accion" alt="Submit" value="Modificar" onclick="document.doSubmit();" src="../Archivos/lapiz.png" width="20" height="20">
+            <input type="hidden" name="accion" value="Modificar">
+            <input class="btn btn-default" type="submit" value="<?=$this->idiom['ModificarEjercicio']?>">
         </form>
         </div></div></div>
     <?php

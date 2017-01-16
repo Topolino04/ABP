@@ -101,8 +101,8 @@ function Modificar(){
 		}
 		else{
 			$sql = 	"DELETE FROM Tabla_contiene_ejercicios WHERE Tabla_id_Tabla= {$this->id_Tabla}; ";
-
-			if(sizeof($this->ejercicios)>1)
+            ;
+			if(sizeof($this->ejercicios)>0)
 				$sql = $sql."INSERT INTO Tabla_contiene_ejercicios VALUES ";
 			for($i=0;$i<count($this->ejercicios);$i++)
 				$sql = $sql."( {$this->id_Tabla} , {$this->ejercicios[$i]}),";
@@ -110,13 +110,12 @@ function Modificar(){
 			$sql = $sql.";";
 
 			$sql = $sql."DELETE FROM Tabla_Deportista WHERE Tabla= {$this->id_Tabla}; ";
-            if(sizeof($this->usuarios)>1)
+            if(sizeof($this->usuarios)>0)
                 $sql = $sql."INSERT INTO Tabla_Deportista VALUES ";
             for($i=0;$i<count($this->usuarios);$i++)
                 $sql = $sql."( {$this->id_Tabla} , '{$this->usuarios[$i]}'),";
             $sql = rtrim($sql,',');
             $sql = $sql.";";
-
 			if (!$this->mysqli->multi_query($sql)){
 				return "Se ha producido un error en la modificación ejercicios";
 			}

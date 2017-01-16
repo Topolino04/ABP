@@ -18,14 +18,10 @@ function __construct($array, $volver){
 
 function render(){
     ?><br>
-  <div class="container well">
+  <div class="container well ">
         <div class="row">
-            <div class="col-xs-12">
-                <form name="formularioalta"  class="form-horizontal" action="../Controlador/TABLA_Controller.php" method="post">
-                    <fieldset>
-                        <b><input type="image" id="alta" name="accion" alt="Submit" value="Insertar" onclick="doSubmit();" src="../Archivos/agregar.png" width="20" height="20"><?=$this->idiom["InsertarTabla"]?> </b>
-                    </fieldset>
-                </form>
+            <div class="col-md-12">
+                <a class="btn btn-default" href="../Controlador/TABLA_Controller.php?accion=Insertar"><?=$this->idiom["InsertarTabla"]?> </a>
             </div>
         </div>
   </div>
@@ -33,20 +29,25 @@ function render(){
     <?php    foreach ($this->datos as $dato){        ?>
         <div class="container well">
             <div class="row">
-                <div class="col-xs-12">
-                    <form class="form-horizontal" method="post" action="../Controlador/TABLA_Controller.php">
-                        <fieldset>
-                            <legend><?=$dato["Nombre"]?></legend>
-                            <input type=hidden id=id_Tabla name=id_Tabla value='<?=$dato["id_Tabla"]?>'>
-                            <input type=image name="accion" value="Consultar" alt ="Submit" src="../Archivos/lupa.png"      width="30"  height="30" >
-                            <input type=image name="accion" value="Modificar" alt ="Submit" src="../Archivos/lapiz.png"     width="30"  height="30" >
-                            <input type=image name="accion" value="Borrar"    alt ="Submit" src="../Archivos/eliminar.png" width="30"  height="30" >
-                            <br>
-                            <?=$this->idiom['id_Tabla'].":".$dato["id_Tabla"];?>
-                            <br>
-                            <?=$this->idiom['Nombre'].":"." ".$dato["Nombre"];?>
-                        </fieldset>
-                    </form>
+                <div class="col-md-6">
+                    <legend><?=$dato["Nombre"]?></legend>
+                    <div class="btn-group ">
+                        <a class="btn btn-default" href="../Controlador/TABLA_Controller.php?accion=Consultar&amp;id_Tabla=<?=$dato["id_Tabla"]?>"><?=$this->idiom["ConsultarTabla"]?> </a>
+                        <a class="btn btn-default" href="../Controlador/TABLA_Controller.php?accion=Modificar&amp;id_Tabla=<?=$dato["id_Tabla"]?>"><?=$this->idiom["ModificarTabla"]?> </a>
+                        <a class="btn btn-default" href="../Controlador/TABLA_Controller.php?accion=Borrar&amp;id_Tabla=<?=$dato["id_Tabla"]?>"><?=$this->idiom["BorrarTabla"]?> </a>
+                    </div>
+                    <div class="form-group" style="padding-top: 10px">
+                        <label class="col-sm-3 control-label" for="nombre"id ="nombre"> <?=$this->idiom['id_Tabla'].":"?></label>
+                        <div class="input-group">
+                            <input class="form-control" type=text readonly id=nombre name=id_Tabla value = '<?= $dato['id_Tabla']?>'>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" for="nombre"id ="nombre"> <?=$this->idiom['Nombre'].":"?></label>
+                        <div class="input-group">
+                            <input class="form-control" type=text readonly id=nombre name=Nombre value = '<?= $dato['Nombre']?>'>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -20,7 +20,6 @@ function __construct($valores,$volver){
 
 function render(){
 
-	include '../Locates/Strings_SPANISH.php';
 	include '../Functions/EjercicioDefForm.php';
 
     ?><br>
@@ -70,7 +69,8 @@ function render(){
                  </div>
              </div>
         </fieldset>
-        <input type="image"  name="accion" alt="Submit" value="Borrar" onclick="document.doSubmit();" src="../Archivos/eliminar.png" width="20" height="20">";
+        <input type="hidden" name="accion" value="Borrar">
+        <input class="btn btn-default" type="submit" value="<?=$this->idiom['BorrarEjercicio']?>">
     </form>
     </div></div></div>
          <?php

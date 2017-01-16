@@ -62,7 +62,8 @@ function render(){
                     </div>
                 </div>
             </fieldset>
-            <input type="image" name="accion" alt="Submit" value="Insertar" onclick="document.doSubmit()" src="../Archivos/agregar.png" width="20" height="20">
+            <input type="hidden" name="accion" value="Insertar">
+            <input class="btn btn-default" type="submit" value="<?=$this->idiom['InsertarEjercicio']?>">
         </form>
     </div></div></div>
 

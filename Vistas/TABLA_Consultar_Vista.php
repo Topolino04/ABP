@@ -46,7 +46,7 @@ function render(){
                         <th><?=$this->idiom['Series']?></th>
                         <th><?=$this->idiom['Descripcion']?></th>
                     </tr>
-                    <?php if($this->ejercicios != "Tabla vacia")foreach ($this->ejercicios  as $ejercicio){  ?>
+                    <?php  if($this->ejercicios != "Tabla vacia")foreach ($this->ejercicios  as $ejercicio){  ?>
                         <tr>
                             <td><?=$ejercicio['id_Ejercicio']?></td>
                             <td><?=$ejercicio['Nombre']?></td>
@@ -76,7 +76,7 @@ function render(){
                         <th><?=$this->idiom['Usuario']?></th>
 
                     </tr>
-                    <?php if($this->usuarios != "Tabla vacia") foreach ($this->usuarios  as $usuario){  ?>
+                    <?php  if($this->usuarios != "Tabla vacia") foreach ($this->usuarios  as $usuario){  ?>
                         <tr>
                             <td><?=$usuario['Nombre']?></td>
                             <td><?=$usuario['Apellidos']?></td>

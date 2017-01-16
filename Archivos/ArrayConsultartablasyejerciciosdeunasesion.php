@@ -1,9 +1,6 @@
 <?php class consult { function array_consultar12(){
 $form=array(
-array("tabla"=>'1',"deportista"=>'39486159N',"fecha"=>'2017-01-15 21:21:27',"comentario"=>'Ejercicios tabla 1',
-
-						"NombreTabla"=>'Ejercicios Basicos',						
-						
+array("tabla"=>'1',"deportista"=>'39486159N',"fecha"=>'2017-01-15 21:21:27',"comentario"=>'Ejercios tabla 1',
 
 		"usuario"=>'JUAN',
 
@@ -11,9 +8,9 @@ array("tabla"=>'1',"deportista"=>'39486159N',"fecha"=>'2017-01-15 21:21:27',"com
 
 					"Nombre0"=>'Carrera avanzado',
 					"Tipo0"=>'Cardio',
-					"Tiempo0"=>'00:20:00',
+					"Tiempo0"=>'00:00:00',
 					"Repeticiones0"=>'2',
-					"Peso0"=>'',
+					"Peso0"=>'2',
 					"Series0"=>'3',
 					"Descripcion0"=>'3',
 
@@ -53,15 +50,5 @@ array("tabla"=>'2',"deportista"=>'39486159N',"fecha"=>'2017-01-15 21:21:27',"com
 						
 
 		"usuario"=>'JUAN',
-
-				"idejercicio0"=>'1',
-
-					"Nombre0"=>'Carrera avanzado',
-					"Tipo0"=>'Cardio',
-					"Tiempo0"=>'00:20:00',
-					"Repeticiones0"=>'2',
-					"Peso0"=>'',
-					"Series0"=>'3',
-					"Descripcion0"=>'3',
 ),
 );return $form;}}?>
