@@ -23,7 +23,7 @@ function render(){
 
     <fieldset><legend> <?=$this->idiom[$this->string]?></legend>
 
-    <a href='<?=$this->volver?>'> <?=$this->idiom['Volver'] ?></a>
+    <a class="btn-default btn" href='<?=$this->volver?>'> <?=$this->idiom['Volver'] ?></a>
 <?php
 } //fin metodo render
 
