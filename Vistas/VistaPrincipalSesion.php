@@ -64,7 +64,7 @@
 			echo "<input type=image title =".$idiom['Eliminar']." id=\"eliminar\" name=\"Eliminar\" value=\"Eliminar\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"../Archivos/eliminar.png\" width=\"30\"  height=\"30\" >";
 			
 			echo "<thead>";			
-				
+			echo "<br>";	
 			echo $idiom['DNI'].":"." ".$form[$numar]["deportista"];
 			echo "<br>";
 			echo $idiom['Fecha'].":"." ".$form[$numar]["fecha"];
