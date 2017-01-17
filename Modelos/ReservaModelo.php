@@ -442,7 +442,7 @@ function eliminarReserva($deportistaId,$actividadId,$fecha){
  	}else {
 		?>
 		<script>
-		alert("Problema al Borrar. Ya existe un usuario con ese nombre en esa actividad ");
+		alert("Problema al Borrar.");
 		</script>
 	<?php }
 	$mysqli->close();

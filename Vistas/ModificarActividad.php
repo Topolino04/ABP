@@ -45,14 +45,20 @@ echo "<div align=\"left\" class=\"container\">";
 					}																								
 					echo "</select>";
 				echo "</div></div>";
+
+			$num = 3;
+            
+			$DuracionSinSegundos = substr($form["duracion"], 0, -$num);
+			$HoraSinSegundos = substr($form["hora"], 0, -$num);
+
 			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"duracion\"id =\"duracion\"> ".$idiom['Duracion'].":</label>";
 			echo "<div class=\"input-group col-sm-6\">";
-			echo "<"."input"." "."class=\"form-control\""."type=text required id=duracion name=duracion value=\"".$form["duracion"]."\">"; 
+			echo "<"."input"." "."class=\"form-control\""."type=text required id=duracion name=duracion value=\"".$DuracionSinSegundos."\">"; 
 			echo "</div></div>";	
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"hora\"id =\"hora\"> ".$idiom['Hora'].":</label>";
 			echo "<div class=\"input-group col-sm-6\">";
-			echo "<"."input"." "."class=\"form-control\""."type=datetime id=hora name=hora value=\"".$form["hora"]."\">"; 
+			echo "<"."input"." "."class=\"form-control\""."type=datetime id=hora name=hora value=\"".$HoraSinSegundos."\">"; 
 			echo "</div></div>";
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"lugar\"id =\"lugar\"> ".$idiom['Lugar'].":</label>";

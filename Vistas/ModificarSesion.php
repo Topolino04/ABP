@@ -61,10 +61,10 @@ class sesionModificar{
           	echo "</select>";
 			echo "</div></div>";
 
-			echo "<input type=hidden id=fecha name=fecha value=".$form1["fecha"].">";
+			//echo "<input type=hidden id=fecha name=fecha value=".$form1["fecha"].">";
 			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"fecha\"id =\"fecha\"> ".$idiom['Fecha'].":</label>";
 			echo "<div class=\"input-group col-sm-6\">";
-			echo "<input class=\"form-control\" type=\"text\" required id=\"fecha\" name=\"fecha\" value=\"".$form1["fecha"]."\">"; 
+			echo "<input class=\"form-control\" type=\"date\" required id=\"fecha\" name=\"fecha\" value=\"".$form1["AñoMesDia"]."\">"; 
 			echo "</div></div>";
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"comentario\"id =\"comentario\"> ".$idiom['Comentario'].":</label>";

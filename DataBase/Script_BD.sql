@@ -196,7 +196,8 @@ CREATE TABLE Gestion_actividad (
 -- Dumping data for table `Gestion_actividad`
 --
 INSERT INTO Gestion_actividad VALUES ('36171672D',1,'default','0');
-INSERT INTO Gestion_actividad VALUES ('36171672D',1,'39486158B','0000-00-00 00:00:00');
+INSERT INTO Gestion_actividad VALUES ('36171672D',2,'default','0');
+INSERT INTO Gestion_actividad VALUES ('36171672D',1,'39486159N','0000-00-00 00:00:00');
 
 --
 -- Table structure for table `Gestion_deportistas_entrenador`
@@ -320,7 +321,7 @@ CREATE TABLE Sesion (
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-INSERT INTO Sesion VALUES ('39486159N', '2017-01-15 21:21:27','Ejercios tabla 1',1);
+INSERT INTO Sesion VALUES ('39486159N', '2017-01-16 22:21:27','Ejercios tabla 1',1);
 INSERT INTO Sesion VALUES ('39486159N', '2017-01-15 21:21:27','Ejercicicios tabla 2',2);
 
 

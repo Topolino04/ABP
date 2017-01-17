@@ -73,7 +73,7 @@ class sesionAlta{
         
 			echo "</div></div>";
 
-			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"fecha\"id =\"fecha\"> ".$idiom['Fecha'].":</label>";
+			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"fecha\" id=\"fecha\"> ".$idiom['Fecha'].":</label>";
 			echo "<div class=\"input-group col-sm-6\">";
 			echo "<"."input"." "."class=\"form-control\""."type=date required id=fecha name=fecha>"; 
 			echo "</div></div>";			

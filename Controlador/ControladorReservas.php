@@ -39,7 +39,9 @@ if(isset($_REQUEST['altaReserva'])){
 	$idiom=new idiomas();
 	$deportistaId=$_POST['deportistaId'];
 	$actividadId=$_POST['actividadId'];
+	
 	$fecha=$_POST['fecha'];
+	
 
 
 	
@@ -50,14 +52,14 @@ if(isset($_REQUEST['altaReserva'])){
 	$formReservas=$FuncionFichero->array_consultarReservasActuales();
 	
 	$ObtenerEntrenadorActividad=$model->crearArrayGestionActividad();
-
+	
 	for ($numarO=0;$numarO<count($ObtenerEntrenadorActividad);$numarO++){
 		if($actividadId==$ObtenerEntrenadorActividad[$numarO]["actividadId"]){			
 			$entrenadorId=$ObtenerEntrenadorActividad[$numarO]["entrenadorId"];	
-			//var_dump($entrenadorId);	
+				
 		}
 	}
-	//Si existe alguna reserva compruba que el deportista no la haya reserva antes
+	//Si existe alguna reserva comprueba que el deportista no la haya reserva antes
 	if(isset($formReservas[0]["deportistaId"])){//Existe alguna reserva?
 
         
@@ -161,7 +163,7 @@ if (isset($_POST['Eliminar']))
 	$vista->crear($formfinal,$idiom);	
 }
 
-if(isset($_POST['ModificarReserva']))
+/*if(isset($_POST['ModificarReserva']))
 {
 	$idiom=new idiomas();
 	$deportistaId=$_POST['deportistaId'];
@@ -176,5 +178,5 @@ if(isset($_POST['ModificarReserva']))
 	$form=$arra->array_consultarReserva();
 	$vista=new reservavista();
 	$vista->crear($form,$idiom);
-}
+}*/
 ?>
