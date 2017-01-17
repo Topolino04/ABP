@@ -163,10 +163,11 @@ if (isset($_REQUEST['eliminarAlumno']))
 	$vista=new actividadvista();
 	$vista->crear($formfinal,$idiom);
 }
-if (isset($_POST['Asistencia'])){
-    if($_POST['Asistencia'] == "ida"){
-        $actividad_id=$_POST['actividad_id'];
-        $actividad_nom=$_POST['actividad_nom'];
+if (isset($_REQUEST['Asistencia'])){
+
+    if($_REQUEST['Asistencia'] == "ida"){
+        $actividad_id=$_REQUEST['actividad_id'];
+        $actividad_nom=$_REQUEST['actividad_nom'];
 
         $model = new Asistencia();
         $fechas = $model->listarFechasDeReservas($actividad_id);
@@ -174,8 +175,8 @@ if (isset($_POST['Asistencia'])){
         $datos =  $model->listarAsistenciasDeActividad($actividad_id);
         $vista = new ASISTENCIA_SHOW_Vista($actividad_id,$actividad_nom,$fechas,$users,$datos);
     }
-    if($_POST['Asistencia'] == "vuelta") {
-        $actividad_id = $_POST['actividad_id'];
+    if($_REQUEST['Asistencia'] == "vuelta") {
+        $actividad_id = $_REQUEST['actividad_id'];
 
         $model = new Asistencia();
         $fechas = $model->listarFechasDeReservas($actividad_id);
@@ -185,14 +186,14 @@ if (isset($_POST['Asistencia'])){
         $asistencias = array();
         foreach ($users as $user) {
             foreach ($fechas as $fecha) {
-                if(isset($_POST[$user . $fecha->format("Y-m-d_H:i:s")]))
+                if(isset($_REQUEST[$user . $fecha->format("Y-m-d_H:i:s")]))
                     array_push($asistencias, new Asistencia($actividad_id, $fecha, $user,1));
                 else
                     array_push($asistencias, new Asistencia($actividad_id, $fecha, $user,0));
             }
         }
 
-        $mensaje = 'Error en la consulta sobre la base de datos';
+        $mensaje = 'Se ha producido un error en la modificación';
         foreach ($asistencias as $elem) {
             $mensaje = $elem->update();
         }

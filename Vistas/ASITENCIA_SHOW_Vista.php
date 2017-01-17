@@ -45,7 +45,8 @@ class ASISTENCIA_SHOW_Vista{
                     </table>
                     <input type="hidden" name="actividad_id"  value="<?=$this->actividad_id ?>">
                     <input type="hidden" name="actividad_nom" value="<?=$this->actividad_nom?>">
-                    <input align=right type=image name="Asistencia"  value="vuelta" alt ="Submit" src="./../Archivos/lapiz.png" width="30" height="30">
+                    <input type="hidden" name="Asistencia" value="vuelta">
+                    <input class="btn btn-default" type="submit" value="<?=$this->idiom['Guardar']?>">
 
                 </div>
             </div>

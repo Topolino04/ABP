@@ -67,11 +67,12 @@ class Asistencia
     }
     function update(){
         $mysqli=$this->conexionBD();
-        $sql = "UPDATE deportista_reserva_actividad SET Asistencia = '{$this->asistencia}'  WHERE Deportista_id_Usuario = '{$this->deportista}'AND Actividad_id_Actividad = '{$this->id_actividad}' AND Fecha = '{$this->fecha->format('Y-m-d H:i:s')}'";
+        $sql = "UPDATE Deportista_reserva_actividad SET Asistencia = '{$this->asistencia}'  WHERE Deportista_id_Usuario = '{$this->deportista}'AND Actividad_id_Actividad = '{$this->id_actividad}' AND Fecha = '{$this->fecha->format('Y-m-d H:i:s')}'";
+        echo $sql;
         if($result = $mysqli->query($sql)) {
             return "La modificación se ha realizado con éxito";
         }
-        return 'Error en la consulta sobre la base de datos';
+        return 'Se ha producido un error en la modificación';
     }
 
     /**

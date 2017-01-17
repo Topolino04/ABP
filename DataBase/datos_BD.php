@@ -1,6 +1,6 @@
 <?php
     $host = "localhost";
     $user = "root";
-    $pass = "iu";
+    $pass = "";
     $name = "Gimnasio_BD";
  ?>

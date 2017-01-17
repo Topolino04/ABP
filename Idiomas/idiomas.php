@@ -85,7 +85,6 @@ $arrays=array(
 	"SelecAct"=>"Seleccione una actividad",
 	"SelectEnt"=>"Seleccione un entrenador",
 	"Id"=>"Id",	
-	 //AÑADIDOS SIN TRADUCIR
 	"BorrarEjercicio" => "Borrar Ejercicio",
     "InsertarEjercicio" => "Insertar Ejercicio",
     "ModificarEjercicio" => "Modificar Ejercicio",
@@ -108,7 +107,7 @@ $arrays=array(
     "Deportistas" =>"Deportistas",
     "Se ha producido un error en la modificación" =>"Se ha producido un error en la modificación",
     "Tabla_asistencia_de" => "Tabla de asistencia de ",
-    //FIN AÑADIDOS
+    "Guardar"=>"Guardar"
 	);
 
 return $arrays;
@@ -222,6 +221,7 @@ $arrays=array(
     "Deportistas" =>"Deportistas",
     "Se ha producido un error en la modificación" =>"Produciuse un erro na modificación",
     "Tabla_asistencia_de" => "Tabla de asistencia de ",
+    "Guardar" => "Gardar"
 	);
 
 return $arrays;
@@ -339,7 +339,8 @@ $arrays=array(
     "Deportistas" =>"Athletes",
     "Se ha producido un error en la modificación" =>"Modification failed",
     "Tabla_asistencia_de" => "Visiting table of ",
- 	"ModificarSesion" => "Edit Session"
+ 	"ModificarSesion" => "Edit Session",
+    "Guardar"=>"Save"
  	);
 
 return $arrays;
