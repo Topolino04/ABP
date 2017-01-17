@@ -432,7 +432,7 @@ function eliminarReserva($id_alumno,$id_actividad){
 		</script>
 	<?php }
 	$mysqli->close();
-}
+	}
 }
 
 ?>

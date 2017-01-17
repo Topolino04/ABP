@@ -108,7 +108,7 @@ CREATE TABLE Deportista_reserva_actividad (
 --
 -- Dumping data for table `Deportista_reserva_actividad`
 --
-INSERT INTO Deportista_reserva_actividad VALUES ('39486158B',1,'now()',1);
+INSERT INTO Deportista_reserva_actividad VALUES ('39486159N',1,'2017-15-01 13:00',1);
 
 --
 -- Table structure for table `Ejercicio`
@@ -307,12 +307,12 @@ DROP TABLE IF EXISTS Sesion;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE Sesion (
-
+  id_Sesion int(11) NOT NULL,
   Deportista_id_Usuario varchar(10) NOT NULL,
   Fecha datetime NOT NULL,
   Comentario varchar(150) DEFAULT NULL,
   Tabla_id int(11) NOT NULL,
-  PRIMARY KEY (Deportista_id_Usuario,Fecha,Tabla_id),
+  PRIMARY KEY (id_Sesion,Deportista_id_Usuario,Fecha,Tabla_id),
   KEY fk_Entrenador_has_Deportista_Deportista1_idx (Deportista_id_Usuario),  
   KEY idx_Sesion_Tabla_id (Tabla_id),
   CONSTRAINT fk_Sesion_has_Tabla FOREIGN KEY (Tabla_id) REFERENCES Tabla (id_Tabla) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -320,10 +320,14 @@ CREATE TABLE Sesion (
  
 );
 /*!40101 SET character_set_client = @saved_cs_client */;
+--
+-- AUTO_INCREMENT de la tabla `Sesion`
+--
+ALTER TABLE `Sesion`
+  MODIFY `id_Sesion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
-INSERT INTO Sesion VALUES ('39486159N', '2017-01-16 22:21:27','Ejercios tabla 1',1);
-INSERT INTO Sesion VALUES ('39486159N', '2017-01-15 21:21:27','Ejercicicios tabla 2',2);
-
+INSERT INTO Sesion VALUES ('1','39486159N', '2017-01-16 22:21:27','Ejercios tabla 1',1);
+INSERT INTO Sesion VALUES ('2','39486159N', '2017-01-15 21:21:27','Ejercicicios tabla 2',2);
 
 --
 -- Table structure for table `Tabla`

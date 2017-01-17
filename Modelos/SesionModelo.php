@@ -55,16 +55,18 @@ function creararraySesiones()
 			$filas[] = $fila;
 		}
 		foreach($filas as $fila)
-		{				 
+		{	
+			$idSesion=$fila['id_Sesion'];		 
 			$deportista=$fila['Deportista_id_Usuario'];
 			$fecha=$fila['Fecha'];
 			
 			$comentario=$fila['Comentario'];
-			//$comentario=preg_replace('[\s+]',"_", $comentario1);
+			
 			
 			$tabla=$fila['Tabla_id'];
 
 			fwrite($file,"array(
+				\"idSesion\"=>'$idSesion',
 				\"deportista\"=>'$deportista',
 				\"fecha\"=>'$fecha',
 				\"comentario\"=>'$comentario',
@@ -279,19 +281,35 @@ function eliminarSesion($deportista,$tabla,$fecha){
 		<?php }
 		$mysqli->close();
 	}
+function modificarSesion($deportista,$fecha,$comentario,$tabla,$idSesion){
+ 	$mysqli=$this->conexionBD();
+    $query= "UPDATE `Sesion` SET `Fecha`='$fecha',`Deportista_id_Usuario`='$deportista',`Comentario`='$comentario',`Tabla_id`='$tabla' WHERE `id_Sesion`='$idSesion'";
+	if($mysqli->query($query)==TRUE){
+		?>
+		<script>
+		alert("Modificado con Exito");
+		</script>
+		<?php
+	}else {
+		?>
+		<script>
+		alert("Problema al Modificar");
+		</script>
+	<?php }
+	$mysqli->close();
+	}
 
-
-
-function modificarSesion($deportista,$fecha,$comentario,$tabla){
+/*
+function modificarSesion($deportista,$fecha,$comentario,$tabla,$idSesion){
 
 	$mysqli=$this->conexionBD();
 	$sql = "SELECT * FROM `Sesion`"; 
 	$result = $mysqli->query($sql);
 	if ($row = $result->fetch_array(MYSQLI_ASSOC)) 
 	{
-		if($row["Fecha"]=="$fecha") {
+		if($row["id_Sesion"]=="$idSesion") {
 
-			$query= "UPDATE `Sesion` SET `Comentario`='$comentario',`Tabla_id`='$tabla' WHERE `Deportista_id_Usuario`='$deportista' && `Fecha`='".$row["Fecha"]."'";
+			$query= "UPDATE `Sesion` SET `Comentario`='$comentario',`Tabla_id`='$tabla' WHERE `Deportista_id_Usuario`='$deportista'";
 
 			if($mysqli->query($query)==TRUE){
 				?>
@@ -316,7 +334,7 @@ function modificarSesion($deportista,$fecha,$comentario,$tabla){
 		</script>
 		<?php }
 		
-	}
+	}*/
 /*function RellenaDatos()
 {
     $this->ConectarBD();

@@ -23,16 +23,16 @@ class sesionVista{
 <br>
 <div class="container">    
    <div class="row">
-	   <div class="col-xs-2 well">
+	   <div class="col-xs-3 well">
 		   <table align=center id="myTable">
 			   <tr> 					   
 				   <td>	
 				   		<b><div style="color:black;" id ="Alta"> <?php echo $idiom['NuevaSesion']; echo "&nbsp;"; ?></b>	
 				   </td>
 				   <td>	
-  						 <form name="Alta" id ="Alta" class="form-horizontal" action="../Controlador/ControladorSesiones.php" method="" >				
-							<input type="submit" align="right" title=<?php echo$idiom['NuevaSesion'];?> id="Alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();">			
-													
+  						 <form name="Alta" id ="Alta" class="form-horizontal" action="../Controlador/ControladorSesiones.php" method="" >		<div  class="col-xs-2">		
+							<input type="submit" title=<?php echo$idiom['NuevaSesion'];?> id="Alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();">			
+							</div>						
 						</form>
 						</div>
 					</td>
@@ -56,30 +56,31 @@ class sesionVista{
                 if($_SESSION["usuario"]==$userLoggedIn){
 			echo "<div class=\"container well\">";
  			echo "<div class=\"row\">";
-			echo "<div class=\"col-xs-6\">";
+			echo "<div class=\"col-xs-4\">";
 			echo "<form method=\"post\" action=\"../Controlador/ControladorSesiones.php\">";
 			
 
 			echo "<b><fieldset><legend>".$idiom['DatosSesion']." ".$form[$numar]["usuario"]."</legend></b>";
-			echo "<input align=right type=\"submit\" id=\"Modificar\" name=\"Modificar\" value=\"Modificar\" onclick=\"enviarmodificar();\">";
-			echo "<input type=hidden id=\"deportista\" name=deportista value=".$form[$numar]["deportista"].">";
-			
-			//echo "<input type=hidden id=\"fecha\" name=fecha value=".$form[$numar]["fecha"].">";
-			echo "<input type=hidden id=AñoMesDia name=AñoMesDia value=" . $form[$numar]["AñoMesDia"] . ">";
-            echo "<input type=hidden id=HoraMinutos name=HoraMinutos value=" . $form[$numar]["HoraMinutos"] . ">";
 
-			echo "<input type=hidden id=\"comentario\" name=comentario value=".$form[$numar]["comentario"].">";
-			echo "<input type=hidden id=\"tabla\" name=tabla value=".$form[$numar]["tabla"].">";
+			echo "<input align=\"right\" type=\"submit\" id=\"Modificar\" name=\"Modificar\" value=\"Modificar\" onclick=\"enviarmodificar();\">";
+			echo "<input type=\"hidden\" id=\"deportista\" name=\"deportista\" value=".$form[$numar]["deportista"].">";
+
+			echo "<input type=\"hidden\" id=\"idSesion\" name=\"idSesion\" value=" . $form[$numar]["idSesion"] . ">";
+			echo "<input type=\"hidden\" id=\"AñoMesDia\" name=\"AñoMesDia\" value=" . $form[$numar]["AñoMesDia"] . ">";
+            echo "<input type=\"hidden\" id=\"HoraMinutos\" name=\"HoraMinutos\" value=" . $form[$numar]["HoraMinutos"] . ">";
+
+			echo "<input type=hidden id=\"comentario\" name=\"comentario\" value=".$form[$numar]["comentario"].">";
+			echo "<input type=hidden id=\"tabla\" name=\"tabla\" value=".$form[$numar]["tabla"].">";
 			//echo "<input type=hidden id=usuario name=usuario value=".$form[$numar]["usuario"].">";
-			echo "<input align=right type=\"submit\" id=\"eliminar\" name=\"eliminar\" value=\"Eliminar\" onclick=\"doSubmit();\" alt =\"Submit\">";;
+			echo "<input align=right type=\"submit\" id=\"eliminar\" name=\"eliminar\" value=\"Eliminar\" onclick=\"doSubmit();\" alt =\"Submit\">";
 			//$fecha=preg_replace('[_]'," ", $form[$numar]["fecha"]);
-			//$comentario=preg_replace('[_]'," ", $form[$numar]["comentario"]);
+			//$comentario=preg_replace('[_]'," ", $form[$numar]["comentario"]);			
 			echo "<thead>";			
-			echo "<br>";	
+			echo "<br>";
 			echo $idiom['DNI'].":"." ".$form[$numar]["deportista"];
 			echo "<br>";			
-			 echo $idiom['Fecha'] . ":" . " " . $form[$numar]["AñoMesDia"];
-			echo "<br>";
+			echo $idiom['Fecha'] . ":" . " " . $form[$numar]["AñoMesDia"]." ".$form[$numar]["HoraMinutos"];
+			echo "<br>";			
 			echo $idiom['Comentario'].":"." ".$form[$numar]["comentario"];
 			echo "<br>";
 			echo $idiom['Tabla'].":"." ".$form[$numar]["tabla"];
@@ -118,7 +119,8 @@ class sesionVista{
 			echo "</div>"; //Cierra col-xs-6
 			echo "</div>"; //Cierra row
 			echo "</div>"; //Cierra container
-                }
+
+			}
 ///////////////////////////Vista para ADMIN y MONITOR///////////////////////////////////
 			}if (isset($_SESSION['MONITOR'])){
 
@@ -129,10 +131,14 @@ class sesionVista{
 			
 
 			echo "<b><fieldset><legend>".$idiom['DatosSesion']." ".$form[$numar]["usuario"]."</legend></b>";
-			echo "<input align=right type=\"submit\" id=\"Modificar\" name=\"Modificar\" value=\"Modificar\" onclick=\"enviarmodificar();\">";
-			echo "<input type=hidden id=\"deportista\" name=\"deportista\" value=".$form[$numar]["deportista"].">";
-			echo "<input type=hidden id=AñoMesDia name=AñoMesDia value=" . $form[$numar]["AñoMesDia"] . ">";
-            echo "<input type=hidden id=HoraMinutos name=HoraMinutos value=" . $form[$numar]["HoraMinutos"] . ">";
+
+			echo "<input align=\"right\" type=\"submit\" id=\"Modificar\" name=\"Modificar\" value=\"Modificar\" onclick=\"enviarmodificar();\">";
+			echo "<input type=\"hidden\" id=\"deportista\" name=\"deportista\" value=".$form[$numar]["deportista"].">";
+
+			echo "<input type=\"hidden\" id=\"idSesion\" name=\"idSesion\" value=" . $form[$numar]["idSesion"] . ">";
+			echo "<input type=\"hidden\" id=\"AñoMesDia\" name=\"AñoMesDia\" value=" . $form[$numar]["AñoMesDia"] . ">";
+            echo "<input type=\"hidden\" id=\"HoraMinutos\" name=\"HoraMinutos\" value=" . $form[$numar]["HoraMinutos"] . ">";
+
 			echo "<input type=hidden id=\"comentario\" name=\"comentario\" value=".$form[$numar]["comentario"].">";
 			echo "<input type=hidden id=\"tabla\" name=\"tabla\" value=".$form[$numar]["tabla"].">";
 			//echo "<input type=hidden id=usuario name=usuario value=".$form[$numar]["usuario"].">";
@@ -143,7 +149,7 @@ class sesionVista{
 			echo "<br>";
 			echo $idiom['DNI'].":"." ".$form[$numar]["deportista"];
 			echo "<br>";			
-			echo $idiom['Fecha'] . ":" . " " . $form[$numar]["AñoMesDia"];
+			echo $idiom['Fecha'] . ":" . " " . $form[$numar]["AñoMesDia"]." ".$form[$numar]["HoraMinutos"];
 			echo "<br>";			
 			echo $idiom['Comentario'].":"." ".$form[$numar]["comentario"];
 			echo "<br>";

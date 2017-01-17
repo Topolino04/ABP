@@ -38,12 +38,8 @@ if(isset($_REQUEST['Alta'])) //Al hacer click en Crear Reserva
 if(isset($_REQUEST['altaReserva'])){
 	$idiom=new idiomas();
 	$deportistaId=$_POST['deportistaId'];
-	$actividadId=$_POST['actividadId'];
-	
+	$actividadId=$_POST['actividadId'];	
 	$fecha=$_POST['fecha'];
-	
-
-
 	
 	$model=new Reserva();
 	$reservasActuales=$model->getReservasActuales();

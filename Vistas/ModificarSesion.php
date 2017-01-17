@@ -26,8 +26,13 @@ class sesionModificar{
 			echo "<input type=hidden id=deportista name=deportista value=".$form1["deportista"].">";
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"deportistaId\"id =\"deportistaId\"> ".$idiom['Deportista'].":</label>";
+
+
 			echo "<div class=\"input-group col-sm-6\">";
-			echo "<"."select"." "."class=\"form-control\""."required id=deportistaId name=deportistaId><option value='0'>".$idiom['SelecDep']."</option>";	
+			echo "<input class=\"form-control\" type=\"text\" readonly id=\"deportistaId\" name=\"deportistaId\" value=\"".$form1["deportista"]."\">"; 
+			echo "</div></div>";
+			/*echo "<div class=\"input-group col-sm-6\">";
+			echo "<"."select"." "."class=\"form-control\""."required id=\"deportistaId\" name=\"deportistaId\"><option value='0'>".$idiom['SelecDep']."</option>";	
 				
 	         	if($listaDeportistas!=null){ 
 
@@ -57,25 +62,30 @@ class sesionModificar{
                                 }
                         }
 					}
-				}																								
+				}																							
           	echo "</select>";
-			echo "</div></div>";
+			echo "</div></div>";*/	
 
 			//echo "<input type=hidden id=fecha name=fecha value=".$form1["fecha"].">";
 			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"fecha\"id =\"fecha\"> ".$idiom['Fecha'].":</label>";
 			echo "<div class=\"input-group col-sm-6\">";
-			echo "<input class=\"form-control\" type=\"date\" required id=\"fecha\" name=\"fecha\" value=\"".$form1["AñoMesDia"]."\">"; 
+
+			//echo "<input type=\"hidden\" id=\"AnoMesDia\" name=\"AnoMesDia\" value=".$form1["AnoMesDia"].">";
+			echo "<input type=\"hidden\" id=\"HoraMinutos\" name=\"HoraMinutos\" value=".$form1["HoraMinutos"].">";
+			echo "<input type=\"hidden\" id=\"idSesion\" name=\"idSesion\" value=".$form1["idSesion"].">";
+
+			echo "<input class=\"form-control\" type=\"date\" required id=\"AnoMesDia\" name=\"AnoMesDia\" value=\"".$form1["AñoMesDia"]."\">"; 
 			echo "</div></div>";
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"comentario\"id =\"comentario\"> ".$idiom['Comentario'].":</label>";
 			echo "<div class=\"input-group col-sm-6\">";
-			echo "<"."textarea"." "."class=\"form-control\""."name=comentario cols=40 rows=10>";
+			echo "<"."textarea"." "."class=\"form-control\""."name=comentario id=\"comentario\" cols=40 rows=10 value=\"".$form1["comentario"]."\">";
 			echo "<"."/textarea".">";
 			echo "</div></div>";
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"Tabla\" id =\"Tabla\"> ".$idiom['Tabla'].":</label>";
 			echo "<div class=\"input-group col-sm-6\">";
-			echo "<"."select"." "."class=\"form-control\""."required id=\"Tabla\" name=Tabla><option></option>";
+			echo "<"."select"." "."class=\"form-control\""."required id=\"Tabla\" name=Tabla><option>".$idiom['SelecTab']."</option>";
 				
 				if($listablas!=null){ 
 
