@@ -1,28 +1,23 @@
 <?php
 class actividadvista{
-
 	function crear($form,$idioma){
 		include("../Funciones/cargadodedatos.php");
 ?>
 <script type="text/javascript">
-
     function enviaralta(){
-
         document.getElementById("Alta").submit();
     }
     function enviarmodificar(){
-
     	document.getElementById("Modificar").submit();
     }
     function enviareliminar(){
-
     	document.getElementById("eliminar").submit();
     }
     function enviareliminarAlumno(){
-
     	document.getElementById("eliminarAlumno").submit();
     }
 </script>
+
 <br>
 <div class="container">    
    <div class="row">
@@ -30,12 +25,11 @@ class actividadvista{
 		   <table align=center id="myTable">
 			   <tr> 					   
 				   <td>	
-				   		<b><div style="color:black;" id ="BotonNuevaActividad"> <?php echo $idiom['NuevaActividad']; echo "&nbsp;"; ?></b>	
+				   		<b><div style="color:black;" id ="Alta"> <?php echo $idiom['NuevaActividad']; echo "&nbsp;"; ?></b>	
 				   </td>
 				   <td>	
-  						 <form name="formularioalta"  class="form-horizontal" action="../Controlador/ControladorActividades.php" method="post" >				
-							<input type="image" align="right" title=<?php echo$idiom['NuevaActividad'];?> id="Alta" name="Alta" alt="Submit" value="Alta" onload="MostrarMensaje();" onclick="enviaralta();" src="../Archivos/agregar.png" width="20" height="20">						
-							</input>						
+  						 <form name="Alta" id ="Alta" class="form-horizontal" action="../Controlador/ControladorActividades.php" method="" >				
+							<input type="submit" align="right" title=<?php echo$idiom['NuevaActividad'];?> id="Alta" name="Alta" alt="Submit" value="Alta" onload="MostrarMensaje();" onclick="enviaralta();">													
 						</form>
 						</div>
 					</td>
@@ -48,20 +42,19 @@ class actividadvista{
 
 <?php
 
+		
 		for ($numar=0;$numar<count($form);$numar++){
-
 			echo "<div class=\"container\">";
 	 			echo "<div class=\"row\">";
 					echo "<div class=\"col-xs-12  well\">";
 						echo "<form class=\"form-horizontal\" method=\"post\" action=\"../Controlador/ControladorActividades.php\">";
 							echo "<fieldset align=center><legend>".$idiom['DatosActividad'];//."</legend>";7
-								echo "<input align=right type=image id=\"Modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"../Archivos/lapiz.png\" width=\"30\" height=\"30\">";
-                                echo "<input align=right type=image id=\"Asistencia\" name=\"Asistencia\"  value=\"ida\" alt =\"Submit\" src=\"../Archivos/lista.png\" width=\"30\" height=\"30\">";
+								echo "<input align=right type=\"submit\" id=\"Modificar\" name=\"Modificar\" value=\"Modificar\" onclick=\"enviarmodificar();\">";
+                                echo "<input align=right type=image id=\"Asistencia\" name=\"Asistencia\" value=\"ida\" alt =\"Submit\" src=\"../Archivos/lista.png\" width=\"30\" height=\"30\">";
                                 echo "<input type='hidden' name = 'actividad_id' value='{$form[$numar]['id_actividad']}'>";
                                 echo "<input type='hidden' name = 'actividad_nom' value='{$form[$numar]['nombre']}'>";
-								echo "<input align=right type=image id=\"eliminar\" name=\"eliminar\" value=\"eliminar\" onclick=\"doSubmit();\" alt =\"Submit\" src=\"../Archivos/eliminar.png\" width=\"30\"  height=\"30\" >";
+								echo "<input align=right type=submit id=\"eliminar\" name=\"eliminar\" value=\"eliminar\" onclick=\"doSubmit();\" alt =\"Submit\">";
 							echo "</legend>";
-
 							echo "<input type=hidden id=id_actividad name=id_actividad value=".$form[$numar]["id_actividad"].">";
 															
 							echo "<input type=hidden id=nombre name=nombre value=".$form[$numar]["nombre"].">";
@@ -106,10 +99,12 @@ class actividadvista{
 										if($form[$numar]["identificador_deportista"."$numarT"]=='default'){
 											
 										}else{
-																		
+										echo "<div align=center class=\"col-xs-6\">";							
 										echo $form[$numar]["UsuarioDeportista"."$numarT"];
+										echo "</div>";
 										echo "<input type=hidden id=id_alumno name=id_alumno value=".$form[$numar]["identificador_deportista"."$numarT"].">";
-										echo "<input align=right title =".$idiom['Eliminar']." type=image id=\"eliminarAlumno\" name=\"eliminarAlumno\" value=\"eliminarAlumno\" onclick=\"enviareliminarAlumno()\" alt =\"Submit\" src=\"../Archivos/cancelar.png\" width=\"20\"  height=\"20\" >";																				
+										echo "<div align=center class=\"col-xs-6\">";
+										echo "<input title =".$idiom['Eliminar']." type=\"submit\" id=\"eliminarAlumno\" name=\"eliminarAlumno\" value=\"Eliminar\" onclick=\"enviareliminarAlumno()\" alt =\"Submit\" src=\"../Archivos/cancelar.png\" width=\"20\"  height=\"20\" >";											echo "</div>";									
 										echo "<br>";
 										}
 										

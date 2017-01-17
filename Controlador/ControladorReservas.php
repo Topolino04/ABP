@@ -24,7 +24,7 @@ if( isset($_REQUEST['reservas']) or isset($_REQUEST['Volver']) )
 	$vista=new reservaVista();
 	$vista->crear($formfinal,$idiom);
 }
-if(isset($_POST['Alta'])) //Al hacer click en Crear Reserva
+if(isset($_REQUEST['Alta'])) //Al hacer click en Crear Reserva
 {
 	$idiom=new idiomas();
 	$vista=new reservaAlta(); //Llamada a la vista de alta
@@ -35,11 +35,13 @@ if(isset($_POST['Alta'])) //Al hacer click en Crear Reserva
 	$vista->crear($idiom,$listaDeportistas,$listActividades);
 }
 //Cuando se introducen los datos de la nueva reserva, al enviar el alta carga todas las reservas
-if(isset($_POST['altaReserva'])){
+if(isset($_REQUEST['altaReserva'])){
 	$idiom=new idiomas();
 	$deportistaId=$_POST['deportistaId'];
 	$actividadId=$_POST['actividadId'];
 	$fecha=$_POST['fecha'];
+
+
 	
 	$model=new Reserva();
 	$reservasActuales=$model->getReservasActuales();
@@ -48,9 +50,11 @@ if(isset($_POST['altaReserva'])){
 	$formReservas=$FuncionFichero->array_consultarReservasActuales();
 	
 	$ObtenerEntrenadorActividad=$model->crearArrayGestionActividad();
+
 	for ($numarO=0;$numarO<count($ObtenerEntrenadorActividad);$numarO++){
 		if($actividadId==$ObtenerEntrenadorActividad[$numarO]["actividadId"]){			
-			$entrenadorId=$ObtenerEntrenadorActividad[$numarO]["entrenadorId"];			
+			$entrenadorId=$ObtenerEntrenadorActividad[$numarO]["entrenadorId"];	
+			//var_dump($entrenadorId);	
 		}
 	}
 	//Si existe alguna reserva compruba que el deportista no la haya reserva antes

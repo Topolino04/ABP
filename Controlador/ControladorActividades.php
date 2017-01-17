@@ -10,6 +10,8 @@ include("../Vistas/ModificarActividad.php");
 include("../Vistas/ASITENCIA_SHOW_Vista.php");
 
 
+
+
 if(isset($_REQUEST['actividades']))
 {
 	$idiom=new idiomas();
@@ -30,7 +32,7 @@ if(isset($_REQUEST['actividades']))
 
 }
 
-if(isset($_POST['Alta']) and !isset($_REQUEST['altaActividad']))
+if(isset($_REQUEST['Alta']) and !isset($_REQUEST['altaActividad']))
 {
 	$idiom=new idiomas();
 	$vista=new actividadAlta();
@@ -52,10 +54,11 @@ if(isset($_REQUEST['altaActividad']))
 	$dificultad=$_POST['dificultad'];			
 	$descripcion=$_POST['descripcion'];
 	$entrenadorId=$_POST['entrenador'];	
-		
+	
 	$model=new Actividad();
 	$idActividad=$model->CrearActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion);
-	
+	var_dump($idActividad);	
+	var_dump($entrenadorId);
 	$model->asignarEntrenador($entrenadorId,$idActividad);
 	$model->creararrayActividades();
 	$DatosActividad=$model->crearArrayGestionActividad();
@@ -69,7 +72,7 @@ if(isset($_REQUEST['altaActividad']))
 	$vista->crear($formfinal,$idiom);
 }
 
-if (isset($_POST['Modificar']))
+if (isset($_REQUEST['Modificar']))
 {
 	$idiom=new idiomas();
 	$id_actividad=$_POST['id_actividad'];
@@ -85,7 +88,7 @@ if (isset($_POST['Modificar']))
 	$modificar=new actividadModificar();
 	$modificar->crear($idiom,$form1);
 }
-if(isset($_POST['ModificarActividad']))
+if(isset($_REQUEST['ModificarActividad']))
 {
 	$idiom=new idiomas();
 	$id_actividad=$_POST['id_actividad'];
@@ -114,7 +117,7 @@ if(isset($_POST['ModificarActividad']))
 }
 
 
-if (isset($_POST['eliminar']))
+if (isset($_REQUEST['eliminar']))
 {
 	$idiom=new idiomas();
 	$id_actividad=$_POST['id_actividad'];		
@@ -133,11 +136,13 @@ if (isset($_POST['eliminar']))
 	$vista->crear($formfinal,$idiom);
 }
 
-if (isset($_POST['eliminarAlumno']))
+if (isset($_REQUEST['eliminarAlumno']))
 {
 	$idiom=new idiomas();
 	$id_actividad=$_POST['id_actividad'];
 	$id_alumno=$_POST['id_alumno'];
+	var_dump($id_actividad);
+	var_dump($id_alumno);
 	$actividad=new Actividad();
 	$actividad->eliminarAlumno($id_actividad,$id_alumno);
 	$actividad->eliminarReserva($id_alumno,$id_actividad);

@@ -57,8 +57,11 @@ function creararraySesiones()
 		foreach($filas as $fila)
 		{				 
 			$deportista=$fila['Deportista_id_Usuario'];
-			$fecha=$fila['Fecha'];
-			$comentario=$fila['Comentario'];
+			$fechaO=$fila['Fecha'];
+			$fecha=preg_replace('[\s+]',"_", $fechaO);	
+			$comentario1=$fila['Comentario'];
+			$comentario=preg_replace('[\s+]',"_", $comentario1);
+			
 			$tabla=$fila['Tabla_id'];
 
 			fwrite($file,"array(
@@ -230,13 +233,18 @@ function gettablas(){
 }
 
 
-function altaSesion($deportista,$comentario,$tabla)
+function altaSesion($deportista,$comentario,$tabla,$fecha)
 {
-	$mysqli=$this->conexionBD();	
+	$mysqli=$this->conexionBD();
+	$date = getdate();
+	$hora=$date["hours"];
+	$minutos=$date["minutes"];
+	$segundos=$date["seconds"];
+	$fechatotal = $fecha." ".$hora.":".$minutos.":".$segundos."";	
 	
 	if($mysqli->query("INSERT INTO `Sesion`(`Deportista_id_Usuario`, `Fecha`, `Comentario`, `Tabla_id`)
 		VALUES
-		('$deportista',now(),'$comentario','$tabla')")==TRUE)
+		('$deportista','$fechatotal','$comentario','$tabla')")==TRUE)
 	{
 		?>
 		<script>
@@ -253,9 +261,11 @@ function altaSesion($deportista,$comentario,$tabla)
 		$mysqli->close();
 	}
 
-function eliminarSesion($deportista,$tabla,$comentario){
+function eliminarSesion($deportista,$tabla,$fecha){
 	$mysqli=$this->conexionBD();
-	$query="DELETE FROM `Sesion` WHERE Deportista_id_Usuario='$deportista' && Tabla_id = '$tabla' && Comentario = '$comentario'";
+	$fechaO=preg_replace('[_]'," ", $fecha);	
+
+	$query="DELETE FROM `Sesion` WHERE Deportista_id_Usuario='$deportista' && Tabla_id = '$tabla' Fecha='$fechaO'";
 	if($mysqli->query($query)==TRUE){
 		?>
 		<script>

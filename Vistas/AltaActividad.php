@@ -14,6 +14,12 @@ class actividadAlta{
 function enviarAltaActividad(){
     document.getElementById("altaActividad").submit();
     }
+  function getIdEntrenador()
+    {
+    // obteniendo el valor del elemento
+    var entrenadorId = document.getElementById("entrenador").value;
+    
+    }
 </script>
 <?php
 echo "<div  align=\"left\" class=\"container\">";
@@ -30,7 +36,7 @@ echo "<div  align=\"left\" class=\"container\">";
 
 				echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"entrenador\"id =\"entrenador\"> ".$idiom['Monitor'].":</label>";
 				echo "<div class=\"input-group col-sm-6\">";
-					echo "<"."select"." "."class=\"form-control\""."required id=entrenador name=entrenador><option value='0'>".$idiom['SelectEnt']."</option>";	
+					echo "<"."select"." "."class=\"form-control\""."required id=\"entrenador\" name=entrenador><option value='0'>".$idiom['SelectEnt']."</option>";	
 					
 				 	if($listaEntrenadores!=null){ 
 

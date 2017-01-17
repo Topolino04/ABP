@@ -31,8 +31,11 @@ for ($numarT=0;$numarT<count($form);$numarT++){
 
 	$tabla=$form[$numarT]["tabla"];
 	$deportista=$form[$numarT]["deportista"];
-	$fecha=$form[$numarT]["fecha"];
-	$comentario=$form[$numarT]["comentario"];
+	$fecha=$form[$numarT]['fecha'];
+	//$fecha=preg_replace('[\s+]',"", $fechaO);			
+	$comentario=$form[$numarT]['comentario'];
+	//$comentario=preg_replace('[\s+]',"", $comentario1);
+		
 	//Variables para mostrar el nombre del deportista y los ejercicios
 	$NombreDeportista=$sesion->crearArrayNombreDeportista($deportista);
 	$formejercicios=$sesion->creararrayTabla($tabla);
@@ -107,7 +110,7 @@ $vista=new sesionVista();
 $vista->crear($formfinal,$idiom);
 }
 ////////////////////////////////////VISTA ALTA///////////////////////////////
-if(isset($_POST['Alta'])) //Cuando se hace click en el + dentro de la vista principal de sesion
+if(isset($_REQUEST['Alta'])) //Cuando se hace click en el + dentro de la vista principal de sesion
 {
 	$idiom=new idiomas();		
 	$vista=new sesionAlta();
@@ -120,12 +123,13 @@ if(isset($_POST['Alta'])) //Cuando se hace click en el + dentro de la vista prin
 }
 /////////////////////////////////////////INSERTAR//////////////////////////////////////////////
 //Cuando se introducen los datos de la nueva sesion, al enviar el alta carga todas las sesiones
-if(isset($_POST['altaSesion'])){ 
+if(isset($_REQUEST['altaSesion'])){ 
 	
 	$idiom=new idiomas();												
 	$deportista=$_POST['deportista'];					
 	$comentario=$_POST['comentario'];
 	$tabla=$_POST['tabla'];
+
 	$sesion=new Sesion();
 	$sesion->altaSesion($deportista,$comentario,$tabla);
 	//cargo todo de nuevo
@@ -220,7 +224,7 @@ $vista->crear($formfinal,$idiom);
 
 }
 ////////////////////////////////////////VISTA MODIFICAR///////////////////////////////////////////////////
-if (isset($_POST['Modificar'])) //Cuando se muestra la sesion a modificar
+if (isset($_REQUEST['Modificar'])) //Cuando se muestra la sesion a modificar
 {				
 	$idiom=new idiomas();
 	$deportista=$_POST['deportista'];				
@@ -235,14 +239,19 @@ if (isset($_POST['Modificar'])) //Cuando se muestra la sesion a modificar
 	$vista->crear($idiom,$form1,$listaDeportistas,$listablas);
 }
 ////////////////////////////////////////ELIMINAR//////////////////////////////////////
-if (isset($_POST['Eliminar']))
+if (isset($_REQUEST['eliminar']))
 {
 	$idiom=new idiomas();
 	$deportista=$_POST['deportista'];
 	$tabla=$_POST['tabla'];
-	$comentario=$_POST['comentario'];
+	$fecha=$_POST['fecha'];
+	//$comentario=$_POST['comentario'];
+	var_dump($deportista);
+	var_dump($tabla);
+	var_dump($fecha);
+	
 	$sesion=new Sesion();
-	$sesion->eliminarSesion($deportista,$tabla,$comentario);				
+	$sesion->eliminarSesion($deportista,$tabla,$fecha);				
 	$sesion->creararraySesiones();
 	include("../Archivos/ArrayConsultarSesiones.php");
 $arra=new consultSesion();
@@ -333,7 +342,7 @@ $vista=new sesionVista();
 $vista->crear($formfinal,$idiom);
 }
 /////////////////////////////////MODIFICAR/////////////////////////////////////////////
-if(isset($_POST['ModificarSesion'])) //Cuando se cubren los campos al modificar
+if(isset($_REQUEST['ModificarSesion'])) //Cuando se cubren los campos al modificar
 {
 	$idiom=new idiomas();
 	$deportista=$_POST['deportista'];					

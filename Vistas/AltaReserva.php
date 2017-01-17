@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" href="../css/styles.css">
 <?php
 class reservaAlta{
 
@@ -22,13 +22,13 @@ class reservaAlta{
     		echo "<div class=\"container well\">";
  			echo "<div class=\"row\">";
 			echo "<div class=\"col-xs-12\">";
-			echo "<form class=\"form-horizontal\" id=formulario method=\"post\"action=\"../Controlador/ControladorReservas.php\">";
+			echo "<form class=\"form-horizontal\" name=\"form\" id=\"form\" method=\"post\"action=\"../Controlador/ControladorReservas.php\">";
 
 			echo "<fieldset><legend>".$idiom['AltaReserva']."</legend>";
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"deportistaId\"id =\"deportistaId\"> ".$idiom['Deportista'].":</label>";
 			echo "<div class=\"input-group col-sm-3\">";
-			echo "<"."select"." "."class=\"form-control\""."required id=deportistaId name=deportistaId><option value='0'>".$idiom['SelecDep']."</option>";	
+			echo "<"."select"." "."class=\"form-control\""."required id=\"deportistaId\" name=\"deportistaId\"><option value='0'>".$idiom['SelecDep']."</option>";	
 				
 	         	if($listaDeportistas!=null){ 
 
@@ -65,7 +65,7 @@ class reservaAlta{
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"actividadId\"id =\"actividadId\"> ".$idiom['Actividad'].":</label>";
 			echo "<div class=\"input-group col-sm-3\">";
-			echo "<"."select"." "."class=\"form-control\""."required id=actividadId name=actividadId><option value='0'>".$idiom['SelecAct']."</option>";	
+			echo "<"."select"." "."class=\"form-control\""."required id=\"actividadId\" name=\"actividadId\"><option value='0'>".$idiom['SelecAct']."</option>";	
 				
 	         	if($listaActividades!=null){ 
 
@@ -85,13 +85,36 @@ class reservaAlta{
 			echo "<"."input"." "."class=\"form-control\""."type=date required id=fecha name=fecha>"; 
 			echo "</div></div>";
 
-			echo "<input type=\"image\" title=\"Crear reserva\" id=\"altaReserva\" name=\"altaReserva\" alt=\"Submit\" value=\"altaReserva\" onclick=\"enviarAltaReserva();\" src=\"..\Archivos\aceptar.png\" width=\"20\" height=\"20\">";
+			echo "<input type=\"submit\" title=\"Crear reserva\" id=\"altaReserva\" name=\"altaReserva\" alt=\"Submit\" value=\"Enviar\" onclick=\"enviarAltaReserva();\">";
 
-			echo "<input type=\"image\" title=\"Volver\" id=\"Volver\" name=\"Volver\" alt=\"Submit\" value=\"Volver\" onclick=\"enviarPrincipalReservas();\" src=\"../Archivos/cancelar.png\" width=\"20\" height=\"20\">";
-
+			echo "<input type=\"submit\" title=\"Volver\" id=\"Volver\" name=\"Volver\" alt=\"Submit\" value=\"Volver\" onclick=\"enviarPrincipalReservas();\">";
+/////////VALIDACION MULTIDIOMA			
+?>
+<script type="text/javascript" src="../js/lib/jquery.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../js/dist/jquery.validate.js" charset="UTF-8"></script>
+<?php
+	if (isset($_SESSION['idioma'])){
+		if($_SESSION['idioma']=="español"){
+			?>
+		      <script type="text/javascript" src="../js/src/localization/messages_es.js" /></script>
+		    <?php
+		    }elseif($_SESSION['idioma']=="gallego"){
+		      ?>
+		      <script type="text/javascript" src="../js/src/localization/messages_es_AR.js" /></script>
+		    <?php
+		    }elseif($_SESSION['idioma']=="ingles"){
+		    }
+		     
+		}else{
+		    ?>
+		      <script type="text/javascript" src="../js/src/localization/messages_es.js" /></script>
+		    <?php
+		}
 
 ?>
+<script type="text/javascript" src="../js/form-validation.js" charset="UTF-8"></script>
 <?php
+////////VALIDACION MULTIDIOMA
 		}
 	}
 

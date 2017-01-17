@@ -22,7 +22,7 @@ class sesionAlta{
     		echo "<div class=\"container \">";
  			echo "<div class=\"row\">"; 
 			echo "<div class=\"col-xs-7 well\">";
-			echo "<form role=\"form\" name=\"form\" id=\"form\" class=\"form-group\" enctype=\"multipart/form-data\" method=\"post\"action=\"../Controlador/ControladorSesiones.php\">";
+			echo "<form role=\"form\" name=\"form\" id=\"form\" class=\"form-group\" enctype=\"multipart/form-data\" method=\"post\"action=\"../Controlador/ControladorSesiones.php?altaSesion\">";
 			
 			echo "<fieldset><legend>".$idiom['AltaSesion']."</legend>";		
 
@@ -71,6 +71,11 @@ class sesionAlta{
 	          	
           	echo "</select>";
         
+			echo "</div></div>";
+
+			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"fecha\"id =\"fecha\"> ".$idiom['Fecha'].":</label>";
+			echo "<div class=\"input-group col-sm-6\">";
+			echo "<"."input"." "."class=\"form-control\""."type=date required id=fecha name=fecha>"; 
 			echo "</div></div>";			
 
 			echo "<div align=\"right\" class=\"input-group col-sm-6\">";
