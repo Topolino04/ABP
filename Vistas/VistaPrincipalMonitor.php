@@ -26,7 +26,7 @@
            	  }
    </script>
   
-			<form name="formularioalta"  class="form-horizontal" action="../Controlador/ControladorMonitor.php" method="post" >
+			<form name="formularioalta"  class="form-horizontal" action="../Controlador/ControladorMonitor.php?Alta" method="post" >
 			<fieldset>
 
 			<input type="image" id="alta" name="Alta" alt="Submit" value="Alta" onclick="enviaralta();" src="../Archivos/agregar.png" width="20" height="20">
@@ -42,9 +42,11 @@
 			echo "<div class=\"col-xs-12\">";
 			echo "<form class=\"form-horizontal\" method=\"post\" action=\"../Controlador/ControladorMonitor.php\">";
 			echo "<fieldset><legend>".$idiom['Datosmonitor']."</legend>";
-			echo "<input type=image id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"../Archivos/lapiz.png\" width=\"30\"  height=\"30\" >";
+			//echo "<input type=image id=\"modificar\" name=\"Modificar\"  value=\"Modificar\" onclick=\"enviarmodificar();\" alt =\"Submit\" src=\"../Archivos/lapiz.png\" width=\"30\"  height=\"30\" >";
+			echo "<input  type=\"submit\" id=\"eliminar\" name=\"Modificar\" value=\"".$idiom['Modificar']."\" onclick=\"enviarmodificar()\" alt =\"Submit\" src=\"../Archivos/cancelar.png\" width=\"20\"  height=\"20\" >";	
 			echo "<input type=hidden id=dni name=dni value=".$form[$numar]["dni"].">";
-			echo "<input type=image id=\"eliminar\" name=\"Eliminar\" value=\"Eliminar\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"../Archivos/eliminar.png\" width=\"30\"  height=\"30\" >";
+			//echo "<input type=image id=\"eliminar\" name=\"Eliminar\" value=\"Eliminar\" onclick=\"return confirm('¿Está seguro?');\" alt =\"Submit\" src=\"../Archivos/eliminar.png\" width=\"30\"  height=\"30\" >";
+			echo "<input  type=\"submit\" id=\"eliminar\" name=\"Eliminar\" value=\"".$idiom['Eliminar']."\" onclick=\"eliminar()\" alt =\"Submit\" src=\"../Archivos/cancelar.png\" width=\"20\"  height=\"20\" >";	
 			echo "<br>";
 			echo "<input type=hidden  name=dni value=".$form[$numar]["dni"].">";
 			echo "<input type=hidden  name=nombre value=".$form[$numar]["nombre"].">";

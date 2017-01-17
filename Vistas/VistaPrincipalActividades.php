@@ -53,7 +53,7 @@ class actividadvista{
                                 echo "<input align=right type=image id=\"Asistencia\" name=\"Asistencia\" value=\"ida\" alt =\"Submit\" src=\"../Archivos/lista.png\" width=\"30\" height=\"30\">";
                                 echo "<input type='hidden' name = 'actividad_id' value='{$form[$numar]['id_actividad']}'>";
                                 echo "<input type='hidden' name = 'actividad_nom' value='{$form[$numar]['nombre']}'>";
-								echo "<input align=right type=submit id=\"eliminar\" name=\"eliminar\" value=\"eliminar\" onclick=\"doSubmit();\" alt =\"Submit\">";
+								echo "<input align=right type=submit id=\"eliminar\" name=\"eliminar\" value=\"".$idiom['Eliminar']."\" onclick=\"doSubmit();\" alt =\"Submit\">";
 							echo "</legend>";
 							echo "<input type=hidden id=id_actividad name=id_actividad value=".$form[$numar]["id_actividad"].">";
 															
@@ -104,7 +104,8 @@ class actividadvista{
 										echo "</div>";
 										echo "<input type=hidden id=id_alumno name=id_alumno value=".$form[$numar]["identificador_deportista"."$numarT"].">";
 										echo "<div align=center class=\"col-xs-6\">";
-										echo "<input title =".$idiom['Eliminar']." type=\"submit\" id=\"eliminarAlumno\" name=\"eliminarAlumno\" value=\"Eliminar\" onclick=\"enviareliminarAlumno()\" alt =\"Submit\" src=\"../Archivos/cancelar.png\" width=\"20\"  height=\"20\" >";											echo "</div>";									
+
+										echo "<input  type=\"submit\" id=\"eliminarAlumno\" name=\"eliminarAlumno\" value=\"".$idiom['Eliminar']."\" onclick=\"enviareliminarAlumno()\" alt =\"Submit\" src=\"../Archivos/cancelar.png\" width=\"20\"  height=\"20\" >";											echo "</div>";									
 										echo "<br>";
 										}
 										

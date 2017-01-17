@@ -19,6 +19,34 @@ class deportistaAlta{
             }
             </script>
  <?php
+ /////////VALIDACION MULTIDIOMA			
+?>
+<!--<script type="text/javascript" src="../js/lib/jquery.js" charset="UTF-8"></script>
+<script type="text/javascript" src="../js/dist/jquery.validate.js" charset="UTF-8"></script>-->
+<?php
+	if (isset($_SESSION['idioma'])){
+		if($_SESSION['idioma']=="español"){
+			?>
+		      <script type="text/javascript" src="../js/src/localization/messages_es.js" /></script>
+		    <?php
+		    }elseif($_SESSION['idioma']=="gallego"){
+		      ?>
+		      <script type="text/javascript" src="../js/src/localization/messages_es_AR.js" /></script>
+		    <?php
+		    }elseif($_SESSION['idioma']=="ingles"){
+
+		    }
+		     
+		}else{
+		    ?>
+		     <!-- <script type="text/javascript" src="../js/src/localization/messages_es.js" /></script>-->
+		    <?php
+		}
+
+?>
+<script type="text/javascript" src="../js/form-validation.js" charset="UTF-8"></script>
+<?php
+////////VALIDACION MULTIDIOMA
 
  			if (!empty($msg)){
  				echo "<script>alert(\"".$msg."\")</script>";
@@ -28,7 +56,7 @@ class deportistaAlta{
 			echo "<div class=\"container well\">";
  			echo "<div class=\"row\">"; 
 			echo "<div class=\"col-xs-12\">";
-			echo "<form role=\"form\" name=\"form\" id=\"form\" class=\"form-horizontal\" enctype=\"multipart/form-data\" method=\"post\"action=\"../Controlador/ControladorDeportistas.php?altaDeportista\">";
+			echo "<form role=\"form\" class=\"form-horizontal\" enctype=\"multipart/form-data\" method=\"post\"action=\"../Controlador/ControladorDeportistas.php?altaDeportista\">";
 			echo "<fieldset><legend>".$idiom['Datosdeportista']."</legend>";
 			
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"nombre\"id =\"nombre\"> ".$idiom['Nombre'].":</label>";
@@ -54,7 +82,7 @@ class deportistaAlta{
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"FechaNac\"id =\"FechaNac\"> ".$idiom['FechaNac'].":</label>";
 			echo "<div class=\"input-group col-sm-3\">";
-			echo "<"."input"." "."class=\"form-control\""."type=date required id=FechaNac name=FechaNac value=\"".$form["fechaNac"]."\" >"; 
+			echo "<"."input"." "."class=\"form-control\""."type=date required id=\"example1\"  pattern=\"[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])\" required name=\"FechaNac\" value=\"".$form["fechaNac"]."\" >"; 
 			echo "</div></div>";
 
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"DNI\"id =\"DNI\"> ".$idiom['DNI'].":</label>";
@@ -65,6 +93,7 @@ class deportistaAlta{
 			echo "<div class=\"form-group\"><label class=\"col-sm-2 control-label\" for=\"email\"id =\"email\"> ".$idiom['email'].":</label>";
 			echo "<div class=\"input-group col-sm-3\">";
 			echo "<span class=\"input-group-addon\">@</span>";
+			
 			echo "<"."input"." "."class=\"form-control\""."type=text required id=email name=email value=\"".$form["email"]."\" >"; 
 			echo "</div></div>";
 
@@ -86,33 +115,7 @@ class deportistaAlta{
 			echo "<input type=\"image\" id=\"altaDeportista\" name=\"altaDeportista\" alt=\"Submit\" value=\"altaDeportista\"  src=\"../Archivos/agregar.png\" width=\"20\" height=\"20\">";
 			echo "</form>";
 
-/////////VALIDACION MULTIDIOMA			
-?>
-<script type="text/javascript" src="../js/lib/jquery.js" charset="UTF-8"></script>
-<script type="text/javascript" src="../js/dist/jquery.validate.js" charset="UTF-8"></script>
-<?php
-	if (isset($_SESSION['idioma'])){
-		if($_SESSION['idioma']=="español"){
-			?>
-		      <script type="text/javascript" src="../js/src/localization/messages_es.js" /></script>
-		    <?php
-		    }elseif($_SESSION['idioma']=="gallego"){
-		      ?>
-		      <script type="text/javascript" src="../js/src/localization/messages_es_AR.js" /></script>
-		    <?php
-		    }elseif($_SESSION['idioma']=="ingles"){
-		    }
-		     
-		}else{
-		    ?>
-		      <script type="text/javascript" src="../js/src/localization/messages_es.js" /></script>
-		    <?php
-		}
 
-?>
-<script type="text/javascript" src="../js/form-validation.js" charset="UTF-8"></script>
-<?php
-////////VALIDACION MULTIDIOMA
 
 
 	}}

@@ -21,7 +21,7 @@ include("../Vistas/VistaModificarMonitor.php");
 				$vista->crear($form,$idiom);
 			}
 
-			if(isset($_POST['Alta']))
+			if(isset($_REQUEST['Alta']))
 
 			{	$alertadni="";
 				$idiom=new idiomas();
@@ -29,7 +29,7 @@ include("../Vistas/VistaModificarMonitor.php");
 				$clase->crear($idiom,null,null,$alertadni);
 			}
 
-			if(isset($_POST['altaMonitor'])){
+			if(isset($_REQUEST['altaMonitor'])){
 							
 					$idiom=new idiomas();
 					$nombre=$_POST['Nombre'];
@@ -84,7 +84,7 @@ include("../Vistas/VistaModificarMonitor.php");
 
 					}
 				}
-			if (isset($_POST['Modificar']))
+			if (isset($_REQUEST['Modificar']))
 			{
 				
 				$idiom=new idiomas();
@@ -99,7 +99,7 @@ include("../Vistas/VistaModificarMonitor.php");
 				$modificar->crear($idiom,$form1,null);
 
 			}
-			if (isset($_POST['Eliminar']))
+			if (isset($_REQUEST['Eliminar']))
 			{
 				$idiom=new idiomas();
 				$DNI=$_POST['dni'];
@@ -114,7 +114,7 @@ include("../Vistas/VistaModificarMonitor.php");
 
 
 			}
-			if(isset($_POST['ModificarMonitor']))
+			if(isset($_REQUEST['ModificarMonitor']))
 			{
 					$idiom=new idiomas();
 					$nombre=$_POST['Nombre'];

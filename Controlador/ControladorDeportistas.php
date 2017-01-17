@@ -19,7 +19,7 @@ session_start();
 				$vista->crear($form,$idiom);
 			}
 
-			if(isset($_POST['Alta']) and !isset($_REQUEST['altaDeportista']))
+			if(isset($_REQUEST['Alta']) and !isset($_REQUEST['altaDeportista']))
 			{	
 				$alerta="";
 				$idiom=new idiomas();
@@ -84,7 +84,7 @@ session_start();
 						$clase->crear($idiom,$msg,$form1,$alertadni);
 					}
 			}
-			if (isset($_POST['Modificar']))
+			if (isset($_REQUEST['Modificar']))
 			{
 				$idiom=new idiomas();
 				$dni=$_POST['dni'];
@@ -100,7 +100,7 @@ session_start();
 				$modificar->crear($idiom,$form1,null);
 
 			}
-			if (isset($_POST['Eliminar']))
+			if (isset($_REQUEST['Eliminar']))
 			{
 				$idiom=new idiomas();
 				$DNI=$_POST['dni'];
@@ -114,7 +114,7 @@ session_start();
 				$vista->crear($form,$idiom);
 
 			}
-			if(isset($_POST['ModificarDeportista']))
+			if(isset($_REQUEST['ModificarDeportista']))
 			{
 					$idiom=new idiomas();
 					$nombre=$_POST['Nombre'];
