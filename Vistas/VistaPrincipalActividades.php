@@ -29,7 +29,7 @@ class actividadvista{
 				   </td>
 				   <td>	
   						 <form name="Alta" id ="Alta" class="form-horizontal" action="../Controlador/ControladorActividades.php" method="" >				
-							<input type="submit" align="right" title=<?php echo$idiom['NuevaActividad'];?> id="Alta" name="Alta" alt="Submit" value="Alta" onload="MostrarMensaje();" onclick="enviaralta();">													
+							<input type="submit" class='btn btn-default' align="right" title=<?php echo$idiom['NuevaActividad'];?> id="Alta" name="Alta" alt="Submit" value="Alta" onload="MostrarMensaje();" onclick="enviaralta();">
 						</form>
 						</div>
 					</td>
@@ -49,12 +49,16 @@ class actividadvista{
 					echo "<div class=\"col-xs-12  well\">";
 						echo "<form class=\"form-horizontal\" method=\"post\" action=\"../Controlador/ControladorActividades.php\">";
 							echo "<fieldset align=center><legend>".$idiom['DatosActividad'];//."</legend>";7
-								echo "<input align=right type=\"submit\" id=\"Modificar\" name=\"Modificar\" value=\"Modificar\" onclick=\"enviarmodificar();\">";
-                                echo "<input align=right type=image id=\"Asistencia\" name=\"Asistencia\" value=\"ida\" alt =\"Submit\" src=\"../Archivos/lista.png\" width=\"30\" height=\"30\">";
+                                echo "<div class='btn-group' style='padding-left: 50%'>";
+								echo "<input class='btn btn-default' align=right type=\"submit\" id=\"Modificar\" name=\"Modificar\" value=\"Modificar\" onclick=\"enviarmodificar();\">";
+
+                                echo "<a class='btn btn-default' href='../Controlador/ControladorActividades.php?Asistencia=ida&amp;actividad_id={$form[$numar]['id_actividad']}&amp;actividad_nom={$form[$numar]['nombre']}'> {$idiom["Asistencia"]}</a>";
                                 echo "<input type='hidden' name = 'actividad_id' value='{$form[$numar]['id_actividad']}'>";
                                 echo "<input type='hidden' name = 'actividad_nom' value='{$form[$numar]['nombre']}'>";
-								echo "<input align=right type=submit id=\"eliminar\" name=\"eliminar\" value=\"".$idiom['Eliminar']."\" onclick=\"doSubmit();\" alt =\"Submit\">";
-							echo "</legend>";
+								echo "<input class='btn btn-default' align=right type=submit id=\"eliminar\" name=\"eliminar\" value=\"".$idiom['Eliminar']."\" onclick=\"doSubmit();\" alt =\"Submit\">";
+							    echo "</div>";
+
+								echo "</legend>";
 							
 							echo "<input type=hidden id=id_actividad name=id_actividad value=".$form[$numar]["id_actividad"].">";
 															
@@ -106,7 +110,7 @@ class actividadvista{
 										echo "<input type=hidden id=id_alumno name=id_alumno value=".$form[$numar]["identificador_deportista"."$numarT"].">";
 										echo "<div align=center class=\"col-xs-6\">";
 
-										echo "<input  type=\"submit\" id=\"eliminarAlumno\" name=\"eliminarAlumno\" value=\"".$idiom['Eliminar']."\" onclick=\"enviareliminarAlumno()\" alt =\"Submit\" src=\"../Archivos/cancelar.png\" width=\"20\"  height=\"20\" >";											echo "</div>";									
+										echo "<input class='btn btn-default' type=\"submit\" id=\"eliminarAlumno\" name=\"eliminarAlumno\" value=\"".$idiom['Eliminar']."\" onclick=\"enviareliminarAlumno()\" alt =\"Submit\" src=\"../Archivos/cancelar.png\" width=\"20\"  height=\"20\" >";											echo "</div>";
 										echo "<br>";
 										}
 										
