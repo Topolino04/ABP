@@ -79,7 +79,7 @@ class menulateral{
                         <?php if(isset($_SESSION['MONITOR'])){?>
                       
                     <li>
-                         <a href="..\Controlador\Notificacion_Controller.php?notificacion" ><i class="fa fa-archive" aria-hidden="true"></i> <?php echo $idioma['notificacion'];?> </a>
+                         <a href="../Controlador/Notificacion_Controller.php?notificacion" ><i class="fa fa-archive" aria-hidden="true"></i> <?php echo $idioma['notificacion'];?> </a>
                         </li>
                         
                           <?php  } ?>

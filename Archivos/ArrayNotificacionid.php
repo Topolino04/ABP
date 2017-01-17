@@ -1,5 +1,5 @@
 <?php class arrays { function array_consultar(){
 $form=array(
-array("id"=>'402',"usuario"=>'JUAN',"comentario"=>'32131313',"fecha"=>'2017-01-17 02:28:56',"usuarioorigen"=>'MONITOR',
+array("id"=>'403',"usuario"=>'JUAN',"comentario"=>'VENTECORRIENDO',"fecha"=>'2017-01-17 11:48:08',"usuarioorigen"=>'MONITOR',
 				 	"visto"=>'1',"foto"=>'321.jpg'),
 );return $form;}}?>

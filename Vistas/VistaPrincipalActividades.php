@@ -55,6 +55,7 @@ class actividadvista{
                                 echo "<input type='hidden' name = 'actividad_nom' value='{$form[$numar]['nombre']}'>";
 								echo "<input align=right type=submit id=\"eliminar\" name=\"eliminar\" value=\"".$idiom['Eliminar']."\" onclick=\"doSubmit();\" alt =\"Submit\">";
 							echo "</legend>";
+							
 							echo "<input type=hidden id=id_actividad name=id_actividad value=".$form[$numar]["id_actividad"].">";
 															
 							echo "<input type=hidden id=nombre name=nombre value=".$form[$numar]["nombre"].">";

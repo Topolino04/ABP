@@ -3,11 +3,13 @@
 include ("Idiomas/idiomas.php");
 include("Vistas/VistapanelPrincipal.php");
 
+
 session_start();
+
 if(isset($_SESSION['usuario']))
 {
 	
-	header("location:Controlador\ControladorPrincipal.php?acceso=acceso");
+	header("location:Controlador/ControladorPrincipal.php?acceso");
 
 }else {
 
@@ -61,7 +63,7 @@ if(isset($_SESSION['usuario']))
 
 	<div class="row">
  		<div class="col-xs-12"> 
-			<img src="Archivos\avatar.png" class="img-responsive" id="avatar">
+			<img src="Archivos/avatar.png" class="img-responsive" id="avatar">
  		</div>
 	</div>
 		<form class="login" method="post" action="Controlador/ControladorPrincipal.php">
@@ -72,8 +74,8 @@ if(isset($_SESSION['usuario']))
 		</div>
 
 		<div class="form-group">
-			<label for="password">Contraseña:</label>
-			<input type="password" class="form-control" name="password" placeholder="Introduzca una contraseña" id="password" required>
+			<label for="password">Password:</label>
+			<input type="password" class="form-control" name="password" placeholder="Introduzca una password" id="password" required>
 		</div>
 		<div class="checkbox">
 

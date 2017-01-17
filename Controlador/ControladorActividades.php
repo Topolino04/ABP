@@ -57,8 +57,8 @@ if(isset($_REQUEST['altaActividad']))
 	
 	$model=new Actividad();
 	$idActividad=$model->CrearActividad($nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion);
-	var_dump($idActividad);	
-	var_dump($entrenadorId);
+	//var_dump($idActividad);	
+	//var_dump($entrenadorId);
 	$model->asignarEntrenador($entrenadorId,$idActividad);
 	$model->creararrayActividades();
 	$DatosActividad=$model->crearArrayGestionActividad();
@@ -85,8 +85,11 @@ if (isset($_REQUEST['Modificar']))
 	$descripcion=$_POST['descripcion'];
 	//$entrenadorId=$_POST['entrenador'];
 	$form1=array("id_actividad"=>"$id_actividad","nombreAct"=>"$nombreAct","duracion"=>"$duracion","hora"=>"$hora","lugar"=>"$lugar","plazas"=>"$plazas","dificultad"=>"$dificultad","descripcion"=>"$descripcion");
+	//Variable para menu despelgable entrenadores
+	$actividad=new Actividad();
+	$listaEntrenadores=$actividad->getEntrenadores();
 	$modificar=new actividadModificar();
-	$modificar->crear($idiom,$form1);
+	$modificar->crear($idiom,$form1,$listaEntrenadores);
 }
 if(isset($_REQUEST['ModificarActividad']))
 {
@@ -99,11 +102,11 @@ if(isset($_REQUEST['ModificarActividad']))
 	$plazas=$_POST['plazas'];
 	$dificultad=$_POST['dificultad'];							
 	$descripcion=$_POST['descripcion'];
-	//$entrenadorId=$_POST['entrenador'];	
+	$entrenadorId=$_POST['entrenador'];
 	$model=new Actividad();
 	$model->modificarActividad($id_actividad,$nombreAct,$duracion,$hora,$lugar,$plazas,$dificultad,$descripcion);
 	//$model->asignarEntrenador($entrenadorId,$idActividad);
-	$model->asignarEntrenador($entrenadorId,$idActividad);
+	$model->asignarEntrenador($entrenadorId,$id_actividad);
 	$model->creararrayActividades();
 	$DatosActividad=$model->crearArrayGestionActividad();
 	$NombreEntrenador=$model->getEntrenadores();

@@ -3,7 +3,7 @@
 
 class actividadModificar{
 
-	function crear($idioma,$form){
+	function crear($idioma,$form,$listaEntrenadores){
 
 	include("../Funciones/cargadodedatos.php");
 ?>
@@ -30,6 +30,21 @@ echo "<div align=\"left\" class=\"container\">";
 			echo "<"."input"." "."class=\"form-control\""."type=text required id=nombre name=nombre value=\"".$form["nombreAct"]."\">"; 
 			echo "</div></div>";
 
+			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"entrenador\"id =\"entrenador\"> ".$idiom['Monitor'].":</label>";
+				echo "<div class=\"input-group col-sm-6\">";
+					echo "<"."select"." "."class=\"form-control\""."required id=\"entrenador\" name=entrenador><option value='0'>".$idiom['SelectEnt']."</option>";	
+					
+				 	if($listaEntrenadores!=null){ 
+
+						for ($numar =0;$numar<count($listaEntrenadores);$numar++)
+						{
+							$dni=$listaEntrenadores[$numar]["DNI"];
+							$Nombre=$listaEntrenadores[$numar]["Nombre"];
+							echo '<option value="'.$dni.'">'.$Nombre.'</option>';
+						}
+					}																								
+					echo "</select>";
+				echo "</div></div>";
 			echo "<div class=\"form-group\"><label class=\"col-sm-3 control-label\" for=\"duracion\"id =\"duracion\"> ".$idiom['Duracion'].":</label>";
 			echo "<div class=\"input-group col-sm-6\">";
 			echo "<"."input"." "."class=\"form-control\""."type=text required id=duracion name=duracion value=\"".$form["duracion"]."\">"; 

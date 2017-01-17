@@ -13,7 +13,6 @@ class deportistaAlta{
 
             function enviaraltadeportista()
             {
-            	
                 document.getElementById("altaDeportista").submit();
                 
             }
