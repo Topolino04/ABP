@@ -28,7 +28,7 @@ fwrite($file,"<?php class consult { function array_consultar12(){". PHP_EOL);
 	fwrite($file,"\$form=array(" . PHP_EOL);
 
 for ($numarT=0;$numarT<count($form);$numarT++){
-
+	$idSesion=$form[$numarT]["idSesion"];
 	$tabla=$form[$numarT]["tabla"];
 	$deportista=$form[$numarT]["deportista"];
 	$fecha=$form[$numarT]['fecha'];
@@ -46,7 +46,7 @@ for ($numarT=0;$numarT<count($form);$numarT++){
 
 	//cargamos el fichero de ejerciciosde la tabla.				
 
-	fwrite($file,"array(\"tabla\"=>'$tabla',\"deportista\"=>'$deportista',\"fecha\"=>'$fecha',\"AñoMesDia\"=>'$AñoMesDia',\"HoraMinutos\"=>'$HoraMinutos',\"comentario\"=>'$comentario'," . PHP_EOL);
+	fwrite($file,"array(\"idSesion\"=>'$idSesion',\"tabla\"=>'$tabla',\"deportista\"=>'$deportista',\"fecha\"=>'$fecha',\"AñoMesDia\"=>'$AñoMesDia',\"HoraMinutos\"=>'$HoraMinutos',\"comentario\"=>'$comentario'," . PHP_EOL);
 
 	//Nombre tabla
 	if (isset($NTabla)){
@@ -147,7 +147,7 @@ if(isset($_REQUEST['altaSesion'])){
 	fwrite($file,"\$form=array(" . PHP_EOL);
 
 	for ($numarT=0;$numarT<count($form);$numarT++){
-
+	$idSesion=$form[$numarT]["idSesion"];
 	$tabla=$form[$numarT]["tabla"];
 	$deportista=$form[$numarT]["deportista"];
 	$fecha=$form[$numarT]['fecha'];
@@ -165,7 +165,7 @@ if(isset($_REQUEST['altaSesion'])){
 
 	//cargamos el fichero de ejerciciosde la tabla.				
 
-	fwrite($file,"array(\"tabla\"=>'$tabla',\"deportista\"=>'$deportista',\"fecha\"=>'$fecha',\"AñoMesDia\"=>'$AñoMesDia',\"HoraMinutos\"=>'$HoraMinutos',\"comentario\"=>'$comentario'," . PHP_EOL);
+	fwrite($file,"array(\"idSesion\"=>'$idSesion',\"tabla\"=>'$tabla',\"deportista\"=>'$deportista',\"fecha\"=>'$fecha',\"AñoMesDia\"=>'$AñoMesDia',\"HoraMinutos\"=>'$HoraMinutos',\"comentario\"=>'$comentario'," . PHP_EOL);
 
 	//Nombre tabla
 	if (isset($NTabla)){
@@ -235,16 +235,135 @@ $vista->crear($formfinal,$idiom);
 if (isset($_REQUEST['Modificar'])) //Cuando se muestra la sesion a modificar
 {				
 	$idiom=new idiomas();
+	$idSesion=$_POST['idSesion'];
 	$deportista=$_POST['deportista'];				
 	$AñoMesDia=$_POST['AñoMesDia'];
+	$HoraMinutos=$_POST['HoraMinutos'];		
 	$comentario=$_POST['comentario'];
 	$tabla=$_POST['tabla'];
-	$form1=array("deportista"=>"$deportista","AñoMesDia"=>"$AñoMesDia","comentario"=>"$comentario","tabla"=>"$tabla");
+	$form1=array("idSesion"=>"$idSesion","deportista"=>"$deportista","AñoMesDia"=>"$AñoMesDia","HoraMinutos"=>"$HoraMinutos","comentario"=>"$comentario","tabla"=>"$tabla");
+	
 	$sesion=new Sesion();
 	$listaDeportistas=$sesion->getDeportistas();
 	$listablas=$sesion->gettablas();
 	$vista=new sesionModificar();
 	$vista->crear($idiom,$form1,$listaDeportistas,$listablas);
+}
+/////////////////////////////////MODIFICAR/////////////////////////////////////////////
+if(isset($_REQUEST['ModificarSesion'])) //Cuando se cubren los campos al modificar
+{
+	$idiom=new idiomas();
+	$deportista=$_POST['deportista'];
+	$AnoMesDia=$_POST['AnoMesDia'];
+	$HoraMinutos=$_POST['HoraMinutos'];					
+	//$fecha=$_POST['fecha'];
+	$comentario=$_POST['comentario'];
+	$tabla=$_POST['Tabla'];
+	$fecha = $AnoMesDia . '_' . $HoraMinutos;
+	$idSesion=$_POST['idSesion'];
+	
+	var_dump($deportista);
+	var_dump($AñoMesDia);
+	var_dump($HoraMinutos);
+	var_dump($fecha);
+	var_dump($idSesion);
+	
+	
+	$sesion=new Sesion();
+	$sesion->modificarSesion($deportista,$fecha,$comentario,$tabla,$idSesion);
+	$sesion->creararraySesiones();	
+	include("../Archivos/ArrayConsultarSesiones.php");
+	$arra=new consultSesion();
+	$form=$arra->array_consultarSesiones();
+
+	//creo el array con las sesiones y las tablas de ejercicios.
+	$file = fopen("../Archivos/ArrayConsultartablasyejerciciosdeunasesion.php", "w");
+	fwrite($file,"<?php class consult { function array_consultar12(){". PHP_EOL);
+	fwrite($file,"\$form=array(" . PHP_EOL);
+
+	for ($numarT=0;$numarT<count($form);$numarT++){
+    $idSesion=$form[$numarT]["idSesion"];
+	$tabla=$form[$numarT]["tabla"];
+	$deportista=$form[$numarT]["deportista"];
+	$fecha=$form[$numarT]['fecha'];
+	$AñoMesDiaHoraMinutos = explode(" ", $fecha);
+	$AñoMesDia=$AñoMesDiaHoraMinutos[0];
+	$HoraMinutos=$AñoMesDiaHoraMinutos[1];			
+	$comentario=$form[$numarT]['comentario'];
+	//$comentario=preg_replace('[\s+]',"", $comentario1);
+		
+	//Variables para mostrar el nombre del deportista y los ejercicios
+	$NombreDeportista=$sesion->crearArrayNombreDeportista($deportista);
+	$formejercicios=$sesion->creararrayTabla($tabla);
+	$NTabla=$sesion->gettablas($tabla);
+	
+
+	//cargamos el fichero de ejerciciosde la tabla.				
+
+	fwrite($file,"array(\"idSesion\"=>'$idSesion',\"tabla\"=>'$tabla',\"deportista\"=>'$deportista',\"fecha\"=>'$fecha',\"AñoMesDia\"=>'$AñoMesDia',\"HoraMinutos\"=>'$HoraMinutos',\"comentario\"=>'$comentario'," . PHP_EOL);
+
+	//Nombre tabla
+	if (isset($NTabla)){
+			//Datos tabla Entrenador Actividad
+			for ($numarC=0;$numarC<count($NTabla);$numarC++){
+				if($tabla==$NTabla[$numarC]["idtabla"]){				
+				$NombreTabla=$NTabla[$numarC]["nombre"];				
+				fwrite($file,"
+						\"NombreTabla\"=>'$NombreTabla',						
+						" . PHP_EOL);				
+				}
+			}
+		}	
+	//Nombre de usuario		
+	$usuario=$NombreDeportista[0]["usuario"];
+	fwrite($file,"
+		\"usuario"."\"=>'$usuario'," . PHP_EOL);
+
+	//Lista de ejercicios con su nombre
+	if($formejercicios!=null){ 
+
+		for ($numar =0;$numar<count($formejercicios);$numar++){
+			
+			
+			$idejercicio=$formejercicios[$numar]["IdEjercicio"];
+			fwrite($file,"
+				\"idejercicio".$numar."\"=>'$idejercicio'," . PHP_EOL);	
+	
+
+			$DatosEjercicio=$sesion->crearArrayDatosEjercicio();	
+			if($DatosEjercicio!=null){ 
+	
+				$nombre=$DatosEjercicio[$numar]["Nombre"];
+				$tipo=$DatosEjercicio[$numar]["tipo"];
+				$tiempo=$DatosEjercicio[$numar]["tiempo"];
+				$repeticiones=$DatosEjercicio[$numar]["repeticiones"];
+				$peso=$DatosEjercicio[$numar]["peso"];
+				$series=$DatosEjercicio[$numar]["series"];
+				$descripcion=$DatosEjercicio[$numar]["descripcion"];
+				
+				
+				fwrite($file,"
+					\"Nombre".$numar."\"=>'$nombre',
+					\"Tipo".$numar."\"=>'$tipo',
+					\"Tiempo".$numar."\"=>'$tiempo',
+					\"Repeticiones".$numar."\"=>'$repeticiones',
+					\"Peso".$numar."\"=>'$peso',
+					\"Series".$numar."\"=>'$series',
+					\"Descripcion".$numar."\"=>'$descripcion'," . PHP_EOL);
+			}
+		}							
+	}
+	fwrite($file,")," . PHP_EOL);
+}
+fwrite($file,");return \$form;}}?>". PHP_EOL);
+fclose($file);
+//fichero creado
+//cargo el fichero final
+include("../Archivos/ArrayConsultartablasyejerciciosdeunasesion.php");
+$datos=new consult();
+$formfinal=$datos->array_consultar12();
+$vista=new sesionVista();
+$vista->crear($formfinal,$idiom);
 }
 ////////////////////////////////////////ELIMINAR//////////////////////////////////////
 if (isset($_REQUEST['eliminar']))
@@ -269,7 +388,7 @@ fwrite($file,"<?php class consult { function array_consultar12(){". PHP_EOL);
 	fwrite($file,"\$form=array(" . PHP_EOL);
 
 for ($numarT=0;$numarT<count($form);$numarT++){
-
+	$idSesion=$form[$numarT]["idSesion"];
 	$tabla=$form[$numarT]["tabla"];
 	$deportista=$form[$numarT]["deportista"];
 	$fecha=$form[$numarT]['fecha'];
@@ -287,7 +406,7 @@ for ($numarT=0;$numarT<count($form);$numarT++){
 
 	//cargamos el fichero de ejerciciosde la tabla.				
 
-	fwrite($file,"array(\"tabla\"=>'$tabla',\"deportista\"=>'$deportista',\"fecha\"=>'$fecha',\"AñoMesDia\"=>'$AñoMesDia',\"HoraMinutos\"=>'$HoraMinutos',\"comentario\"=>'$comentario'," . PHP_EOL);
+	fwrite($file,"array(\"idSesion\"=>'$idSesion',\"tabla\"=>'$tabla',\"deportista\"=>'$deportista',\"fecha\"=>'$fecha',\"AñoMesDia\"=>'$AñoMesDia',\"HoraMinutos\"=>'$HoraMinutos',\"comentario\"=>'$comentario'," . PHP_EOL);
 	//Nombre tabla
 	if (isset($NTabla)){
 			//Datos tabla Entrenador Actividad
@@ -351,109 +470,5 @@ $formfinal=$datos->array_consultar12();
 $vista=new sesionVista();
 $vista->crear($formfinal,$idiom);
 }
-/////////////////////////////////MODIFICAR/////////////////////////////////////////////
-if(isset($_REQUEST['ModificarSesion'])) //Cuando se cubren los campos al modificar
-{
-	$idiom=new idiomas();
-	$deportista=$_POST['deportista'];					
-	$fecha=$_POST['fecha'];
-	$comentario=$_POST['comentario'];
-	$tabla=$_POST['Tabla'];
 
-	$sesion=new Sesion();
-	$sesion->modificarSesion($deportista,$fecha,$comentario,$tabla);
-	$sesion->creararraySesiones();	
-	include("../Archivos/ArrayConsultarSesiones.php");
-	$arra=new consultSesion();
-	$form=$arra->array_consultarSesiones();
-
-//creo el array con las sesiones y las tablas de ejercicios.
-$file = fopen("../Archivos/ArrayConsultartablasyejerciciosdeunasesion.php", "w");
-fwrite($file,"<?php class consult { function array_consultar12(){". PHP_EOL);
-	fwrite($file,"\$form=array(" . PHP_EOL);
-
-	for ($numarT=0;$numarT<count($form);$numarT++){
-
-	$tabla=$form[$numarT]["tabla"];
-	$deportista=$form[$numarT]["deportista"];
-	$fecha=$form[$numarT]['fecha'];
-	$AñoMesDiaHoraMinutos = explode(" ", $fecha);
-	$AñoMesDia=$AñoMesDiaHoraMinutos[0];
-	$HoraMinutos=$AñoMesDiaHoraMinutos[1];			
-	$comentario=$form[$numarT]['comentario'];
-	//$comentario=preg_replace('[\s+]',"", $comentario1);
-		
-	//Variables para mostrar el nombre del deportista y los ejercicios
-	$NombreDeportista=$sesion->crearArrayNombreDeportista($deportista);
-	$formejercicios=$sesion->creararrayTabla($tabla);
-	$NTabla=$sesion->gettablas($tabla);
-	
-
-	//cargamos el fichero de ejerciciosde la tabla.				
-
-	fwrite($file,"array(\"tabla\"=>'$tabla',\"deportista\"=>'$deportista',\"fecha\"=>'$fecha',\"AñoMesDia\"=>'$AñoMesDia',\"HoraMinutos\"=>'$HoraMinutos',\"comentario\"=>'$comentario'," . PHP_EOL);
-
-	//Nombre tabla
-	if (isset($NTabla)){
-			//Datos tabla Entrenador Actividad
-			for ($numarC=0;$numarC<count($NTabla);$numarC++){
-				if($tabla==$NTabla[$numarC]["idtabla"]){				
-				$NombreTabla=$NTabla[$numarC]["nombre"];				
-				fwrite($file,"
-						\"NombreTabla\"=>'$NombreTabla',						
-						" . PHP_EOL);				
-				}
-			}
-		}	
-	//Nombre de usuario		
-	$usuario=$NombreDeportista[0]["usuario"];
-	fwrite($file,"
-		\"usuario"."\"=>'$usuario'," . PHP_EOL);
-
-	//Lista de ejercicios con su nombre
-	if($formejercicios!=null){ 
-
-		for ($numar =0;$numar<count($formejercicios);$numar++){
-			
-			
-			$idejercicio=$formejercicios[$numar]["IdEjercicio"];
-			fwrite($file,"
-				\"idejercicio".$numar."\"=>'$idejercicio'," . PHP_EOL);	
-	
-
-			$DatosEjercicio=$sesion->crearArrayDatosEjercicio();	
-			if($DatosEjercicio!=null){ 
-	
-				$nombre=$DatosEjercicio[$numar]["Nombre"];
-				$tipo=$DatosEjercicio[$numar]["tipo"];
-				$tiempo=$DatosEjercicio[$numar]["tiempo"];
-				$repeticiones=$DatosEjercicio[$numar]["repeticiones"];
-				$peso=$DatosEjercicio[$numar]["peso"];
-				$series=$DatosEjercicio[$numar]["series"];
-				$descripcion=$DatosEjercicio[$numar]["descripcion"];
-				
-				
-				fwrite($file,"
-					\"Nombre".$numar."\"=>'$nombre',
-					\"Tipo".$numar."\"=>'$tipo',
-					\"Tiempo".$numar."\"=>'$tiempo',
-					\"Repeticiones".$numar."\"=>'$repeticiones',
-					\"Peso".$numar."\"=>'$peso',
-					\"Series".$numar."\"=>'$series',
-					\"Descripcion".$numar."\"=>'$descripcion'," . PHP_EOL);
-			}
-		}							
-	}
-	fwrite($file,")," . PHP_EOL);
-}
-fwrite($file,");return \$form;}}?>". PHP_EOL);
-fclose($file);
-//fichero creado
-//cargo el fichero final
-include("../Archivos/ArrayConsultartablasyejerciciosdeunasesion.php");
-$datos=new consult();
-$formfinal=$datos->array_consultar12();
-$vista=new sesionVista();
-$vista->crear($formfinal,$idiom);
-}
 ?>

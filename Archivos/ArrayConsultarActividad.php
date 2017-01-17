@@ -15,19 +15,9 @@ array(
 				"nombre"=>'Fitness',
 				"duracion"=>'00:30:00',
 				"hora"=>'20:00:00',
-				"lugar"=>'Aula',
+				"lugar"=>'Aula 4',
 				"plazas"=>'30',
-				"dificultad"=>'FACIL',				
-				"descripcion"=>'231321'				
-				),
-array(
-				"id_actividad"=>'3',
-				"nombre"=>'32131',
-				"duracion"=>'20:20:00',
-				"hora"=>'20:20:00',
-				"lugar"=>'32131',
-				"plazas"=>'23',
-				"dificultad"=>'FACIL',				
-				"descripcion"=>'CACA'				
+				"dificultad"=>'MEDIA',				
+				"descripcion"=>'Clase de Fitness'				
 				),
 );return $form;}}?>

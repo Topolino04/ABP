@@ -3,8 +3,9 @@
 include ("Idiomas/idiomas.php");
 include("Vistas/VistapanelPrincipal.php");
 
-
+if (session_status() == PHP_SESSION_NONE){
 session_start();
+}
 
 if(isset($_SESSION['usuario']))
 {
