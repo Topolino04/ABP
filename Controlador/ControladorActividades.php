@@ -144,8 +144,8 @@ if (isset($_REQUEST['eliminarAlumno']))
 	$idiom=new idiomas();
 	$id_actividad=$_POST['id_actividad'];
 	$id_alumno=$_POST['id_alumno'];
-	var_dump($id_actividad);
-	var_dump($id_alumno);
+	//var_dump($id_actividad);
+	//var_dump($id_alumno);
 	$actividad=new Actividad();
 	$actividad->eliminarAlumno($id_actividad,$id_alumno);
 	$actividad->eliminarReserva($id_alumno,$id_actividad);

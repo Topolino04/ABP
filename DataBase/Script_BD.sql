@@ -108,7 +108,7 @@ CREATE TABLE Deportista_reserva_actividad (
 --
 -- Dumping data for table `Deportista_reserva_actividad`
 --
-INSERT INTO Deportista_reserva_actividad VALUES ('39486159N',1,'2017-15-01 13:00',1);
+INSERT INTO Deportista_reserva_actividad VALUES ('39486159N',1,'2017-11-01 13:00',1);
 
 --
 -- Table structure for table `Ejercicio`
@@ -195,9 +195,9 @@ CREATE TABLE Gestion_actividad (
 --
 -- Dumping data for table `Gestion_actividad`
 --
-INSERT INTO Gestion_actividad VALUES ('36171672D',1,'default','0');
-INSERT INTO Gestion_actividad VALUES ('36171672D',2,'default','0');
-INSERT INTO Gestion_actividad VALUES ('36171672D',1,'39486159N','0000-00-00 00:00:00');
+INSERT INTO Gestion_actividad VALUES ('36171672D',1,'default','2017-11-12 12:01:01');
+INSERT INTO Gestion_actividad VALUES ('36171672D',2,'default','2017-01-03 14:31:01');
+INSERT INTO Gestion_actividad VALUES ('36171672D',1,'39486159N','2017-12-12 12:01:01');
 
 --
 -- Table structure for table `Gestion_deportistas_entrenador`

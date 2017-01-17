@@ -12,28 +12,19 @@ array(
 
 						"Entrenador_id_Usuario"=>'36171672D',
 						"Actividad_id_Actividad0"=>'1',
-						"identificador_deportista0"=>'39486158B',
-						"fecha0"=>'2017-01-01 22:47:35',
+						"identificador_deportista0"=>'39486159N',
+						"fecha0"=>'2017-12-12 12:01:01',
 
-								"UsuarioDeportista0"=>'ADMIN',
+								"UsuarioDeportista0"=>'JUAN',
 
 						"Entrenador_id_Usuario"=>'36171672D',
 						"Actividad_id_Actividad1"=>'1',
-						"identificador_deportista1"=>'39486159N',
-						"fecha1"=>'0000-00-00 00:00:00',
+						"identificador_deportista1"=>'default',
+						"fecha1"=>'2017-11-12 12:01:01',
 
-								"UsuarioDeportista1"=>'JUAN',
-
-						"Entrenador_id_Usuario"=>'36171672D',
-						"Actividad_id_Actividad2"=>'1',
-						"identificador_deportista2"=>'default',
-						"fecha2"=>'0000-00-00 00:00:00',
+								"UsuarioDeportista1"=>'default',
 
 								"UsuarioDeportista2"=>'default',
-
-								"UsuarioDeportista3"=>'default',
-
-								"UsuarioDeportista4"=>'default',
 
 						"NombreEntrenadorActividad"=>'MONITOR1',
 						"ApellidoEntrenadorActividad"=>'PACO GIMENEZ',
@@ -53,21 +44,12 @@ array(
 
 								"UsuarioDeportista1"=>'default',
 
+						"Entrenador_id_Usuario"=>'36171672D',
+						"Actividad_id_Actividad2"=>'2',
+						"identificador_deportista2"=>'default',
+						"fecha2"=>'2017-01-03 14:31:01',
+
 								"UsuarioDeportista2"=>'default',
-
-						"Entrenador_id_Usuario"=>'36171672D',
-						"Actividad_id_Actividad3"=>'2',
-						"identificador_deportista3"=>'39486159N',
-						"fecha3"=>'2017-01-01 22:46:22',
-
-								"UsuarioDeportista3"=>'JUAN',
-
-						"Entrenador_id_Usuario"=>'36171672D',
-						"Actividad_id_Actividad4"=>'2',
-						"identificador_deportista4"=>'default',
-						"fecha4"=>'0000-00-00 00:00:00',
-
-								"UsuarioDeportista4"=>'default',
 
 						"NombreEntrenadorActividad"=>'MONITOR1',
 						"ApellidoEntrenadorActividad"=>'PACO GIMENEZ',
